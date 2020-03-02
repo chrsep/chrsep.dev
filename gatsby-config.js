@@ -21,6 +21,22 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-netlify`,
     {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Domine`,
+            subsets: [`latin`],
+            variants: [`700`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`400`, `700`],
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-plugin-metomic`,
       options: {
         clientId: "prj:a5ea0b1d-320a-4695-8d40-3c1a81058202",
