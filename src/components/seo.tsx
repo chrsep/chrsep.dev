@@ -8,7 +8,7 @@ interface Props {
   meta?: HTMLMetaElement[]
   title: string
 }
-const SEO: FC<Props> = ({ description, lang, meta = [], title }) => {
+const SEO: FC<Props> = ({ description, lang = "en", meta = [], title }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
