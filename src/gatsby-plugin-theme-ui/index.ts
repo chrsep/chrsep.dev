@@ -8,4 +8,12 @@ import { Theme } from "theme-ui"
 
 export default merge(toTheme(alton), {
   useColorSchemeMediaQuery: true,
+  colors: {
+    background: "white",
+    text: "black",
+    dark: {
+      text: "white",
+      background: "black",
+    },
+  },
 } as Theme)
