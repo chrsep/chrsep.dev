@@ -37,12 +37,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-metomic`,
-      options: {
-        clientId: "prj:a5ea0b1d-320a-4695-8d40-3c1a81058202",
-      },
-    },
-    {
       resolve: `gatsby-plugin-segment-js`,
       options: {
         prodKey: `u48tY9NusT3UsBY1zzzKedcGbpj0jqb6`,
