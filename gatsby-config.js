@@ -47,7 +47,8 @@ module.exports = {
       options: {
         prodKey: `u48tY9NusT3UsBY1zzzKedcGbpj0jqb6`,
         devKey: "",
-        delay: true,
+        delayLoad: true,
+        delayLoadTime: 1000,
       },
     },
     {
