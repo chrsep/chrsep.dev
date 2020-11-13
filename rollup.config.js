@@ -5,6 +5,7 @@ import svelte from 'rollup-plugin-svelte';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
+import tailwind from 'tailwindcss'
 import typescript from '@rollup/plugin-typescript';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
@@ -31,7 +32,13 @@ export default {
 			svelte({
 				dev,
 				hydratable: true,
-				preprocess: sveltePreprocess(),
+				preprocess: sveltePreprocess({
+					postcss: {
+						plugins: [
+							tailwind('./tailwind.config.js')
+						]
+					},
+				}),
 				emitCss: true
 			}),
 			resolve({
@@ -78,7 +85,13 @@ export default {
 			svelte({
 				generate: 'ssr',
 				hydratable: true,
-				preprocess: sveltePreprocess(),
+				preprocess: sveltePreprocess({
+					postcss: {
+						plugins: [
+							tailwind('./tailwind.config.js')
+						]
+					},
+				}),
 				dev
 			}),
 			resolve({

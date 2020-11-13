@@ -20,53 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ed0212c-6cd0-4c0d-ad77-d030c2bf2a01" name="Default Changelist" comment="move to sapper">
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Nav.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/_error.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/_layout.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/about.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/blog/[slug].json.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/blog/[slug].svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/blog/_posts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/blog/index.json.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/blog/index.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service-worker.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/template.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/logo-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/logo-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/successkid.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.graphqlconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatsby-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatsby-config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatsby-node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatsby-ssr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/seo.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gatsby-plugin-theme-ui/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/gatsby-astronaut.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/gatsby-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/404.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_layout.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +71,7 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
@@ -161,6 +120,7 @@
       <workItem from="1583143798438" duration="10892000" />
       <workItem from="1587301736388" duration="209000" />
       <workItem from="1603535704603" duration="1792000" />
+      <workItem from="1605284656283" duration="765000" />
     </task>
     <task id="LOCAL-00001" summary="Update license.">
       <created>1574012922228</created>
@@ -283,5 +243,31 @@
     <MESSAGE value="Update a bunch of stuffs." />
     <MESSAGE value="move to sapper" />
     <option name="LAST_COMMIT_MESSAGE" value="move to sapper" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="182" key="#Plugins" timestamp="1605285382670">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="440" y="182" key="#Plugins/0.25.1680.1025@0.25.1680.1025" timestamp="1605285382670" />
+    <state x="476" y="114" key="CommitChangelistDialog2" timestamp="1605285403426">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="476" y="114" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1605285403426" />
+    <state x="363" y="173" key="SettingsEditor" timestamp="1605285271391">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="363" y="173" key="SettingsEditor/0.25.1680.1025@0.25.1680.1025" timestamp="1605285271391" />
+    <state x="440" y="274" key="Vcs.Push.Dialog.v2" timestamp="1605285398860">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="440" y="274" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1605285398860" />
+    <state x="505" y="247" width="670" height="675" key="run.anything.popup" timestamp="1605284615831">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="505" y="247" width="670" height="675" key="run.anything.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1605284615831" />
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1605285417938">
+      <screen x="0" y="25" width="1680" height="1025" />
+    </state>
+    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1605285417938" />
   </component>
 </project>
