@@ -3,10 +3,10 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: [],
+  purge: ["./src/**/*.svelte"],
   theme: {
     extend: {},
   },
   variants: {},
-  plugins: [],
+  plugins: ["@tailwind/typography"],
 }

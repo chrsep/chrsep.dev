@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,32 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed0212c-6cd0-4c0d-ad77-d030c2bf2a01" name="Default Changelist" comment="add prettier.ˆ">
-      <change afterPath="$PROJECT_DIR$/.nvmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+    <list default="true" id="5ed0212c-6cd0-4c0d-ad77-d030c2bf2a01" name="Default Changelist" comment="update deps">
+      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/extensions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/_error.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_error.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/about.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/about.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/blog/[slug].json.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/blog/[slug].json.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/blog/[slug].svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/blog/[slug].svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/blog/_posts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/blog/_posts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/blog/index.json.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/blog/index.json.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/blog/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/blog/index.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service-worker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service-worker.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,8 +65,8 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="15.2.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="14.14.7" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vor" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.10" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -90,12 +74,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="prettier.files.pattern" value="{**/*,*}.{js,ts,jsx,tsx,svelte}" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -143,7 +127,12 @@
       <workItem from="1587301736388" duration="209000" />
       <workItem from="1603535704603" duration="1792000" />
       <workItem from="1605284656283" duration="836000" />
-      <workItem from="1605285516502" duration="1101000" />
+      <workItem from="1605285516502" duration="6799000" />
+      <workItem from="1607138114560" duration="74000" />
+      <workItem from="1607138340629" duration="410000" />
+      <workItem from="1607138774378" duration="1544000" />
+      <workItem from="1607156546913" duration="101000" />
+      <workItem from="1607156705087" duration="2109000" />
     </task>
     <task id="LOCAL-00001" summary="Update license.">
       <created>1574012922228</created>
@@ -257,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605285486859</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add prettier">
+      <created>1605286670734</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1605286670734</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,40 +277,11 @@
     <MESSAGE value="move to sapper" />
     <MESSAGE value="add tailwind" />
     <MESSAGE value="add prettier.ˆ" />
-    <option name="LAST_COMMIT_MESSAGE" value="add prettier.ˆ" />
+    <MESSAGE value="add prettier" />
+    <option name="LAST_COMMIT_MESSAGE" value="add prettier" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="440" y="182" key="#Plugins" timestamp="1605285382670">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="440" y="182" key="#Plugins/0.25.1680.1025@0.25.1680.1025" timestamp="1605285382670" />
-    <state x="612" y="345" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605285711399">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="612" y="345" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.1025@0.25.1680.1025" timestamp="1605285711399" />
-    <state x="476" y="114" key="CommitChangelistDialog2" timestamp="1605285403426">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="476" y="114" key="CommitChangelistDialog2/0.25.1680.1025@0.25.1680.1025" timestamp="1605285403426" />
-    <state x="363" y="173" key="SettingsEditor" timestamp="1605286425550">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="363" y="173" key="SettingsEditor/0.25.1680.1025@0.25.1680.1025" timestamp="1605286425550" />
-    <state x="440" y="274" key="Vcs.Push.Dialog.v2" timestamp="1605285480500">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="440" y="274" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1605285480500" />
-    <state x="665" y="221" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605286273789">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="665" y="221" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1680.1025@0.25.1680.1025" timestamp="1605286273789" />
-    <state x="505" y="247" width="670" height="675" key="run.anything.popup" timestamp="1605284615831">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="505" y="247" width="670" height="675" key="run.anything.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1605284615831" />
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup" timestamp="1605286618935">
-      <screen x="0" y="25" width="1680" height="1025" />
-    </state>
-    <state x="505" y="252" width="670" height="676" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1605286618935" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
