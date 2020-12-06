@@ -34,7 +34,7 @@ export default {
           dev,
           hydratable: true,
         },
-        preprocess: sveltePreprocess({ postcss: true }),
+        preprocess: sveltePreprocess(),
         emitCss: true,
       }),
       resolve({
@@ -92,7 +92,7 @@ export default {
           hydratable: true,
           dev,
         },
-        preprocess: sveltePreprocess({ postcss: true }),
+        preprocess: sveltePreprocess(),
       }),
       resolve({
         dedupe: ["svelte"],
@@ -108,21 +108,21 @@ export default {
     onwarn,
   },
 
-  serviceworker: {
-    input: config.serviceworker.input().replace(/.js$/, ".ts"),
-    output: config.serviceworker.output(),
-    plugins: [
-      resolve(),
-      replace({
-        "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
-      }),
-      commonjs(),
-      typescript({ sourceMap: dev }),
-      !dev && terser(),
-    ],
-
-    preserveEntrySignatures: false,
-    onwarn,
-  },
+  // serviceworker: {
+  //   input: config.serviceworker.input().replace(/.js$/, ".ts"),
+  //   output: config.serviceworker.output(),
+  //   plugins: [
+  //     resolve(),
+  //     replace({
+  //       "process.browser": true,
+  //       "process.env.NODE_ENV": JSON.stringify(mode),
+  //     }),
+  //     commonjs(),
+  //     typescript({ sourceMap: dev }),
+  //     !dev && terser(),
+  //   ],
+  //
+  //   preserveEntrySignatures: false,
+  //   onwarn,
+  // },
 }
