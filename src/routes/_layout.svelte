@@ -4,10 +4,10 @@
   export let segment: string
 </script>
 
-<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="/index.css" />
 
 <Nav {segment} />
 
-<main>
+<main class="p-3 max-w-6xl mx-auto">
   <slot />
 </main>
