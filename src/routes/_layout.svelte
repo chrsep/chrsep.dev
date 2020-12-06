@@ -4,11 +4,7 @@
   export let segment: string
 </script>
 
-<style global lang="postcss">
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-</style>
+<link rel="stylesheet" href="index.css" />
 
 <Nav {segment} />
 

@@ -34,7 +34,7 @@ export default {
           dev,
           hydratable: true,
         },
-        preprocess: sveltePreprocess({ postcss: true }),
+        preprocess: sveltePreprocess(),
         emitCss: true,
       }),
       resolve({
@@ -92,7 +92,7 @@ export default {
           hydratable: true,
           dev,
         },
-        preprocess: sveltePreprocess({ postcss: true }),
+        preprocess: sveltePreprocess(),
       }),
       resolve({
         dedupe: ["svelte"],
