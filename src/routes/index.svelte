@@ -5,6 +5,6 @@
 <h1>Bad Success!</h1>
 
 <p>
-  <strong>Try editing this file (src/routes/index.svelte) to test live
+  <strong>Try wditing this file (src/routes/index.svelte) to test live
     reloading.</strong>
 </p>
