@@ -4,7 +4,9 @@
   export let segment: string
 </script>
 
-<link rel="stylesheet" href="/index.css" />
+<style lang="postcss">
+  @import "/index.css";
+</style>
 
 <Nav {segment} />
 
