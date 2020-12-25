@@ -22,9 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed0212c-6cd0-4c0d-ad77-d030c2bf2a01" name="Default Changelist" comment="revert to tailwind 1">
+    <list default="true" id="5ed0212c-6cd0-4c0d-ad77-d030c2bf2a01" name="Default Changelist" comment="update deps.">
+      <change afterPath="$PROJECT_DIR$/src/routes/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_layout.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -139,7 +141,7 @@
       <workItem from="1607156546913" duration="101000" />
       <workItem from="1607156705087" duration="2109000" />
       <workItem from="1607254563722" duration="148000" />
-      <workItem from="1608866381227" duration="1272000" />
+      <workItem from="1608866381227" duration="1510000" />
     </task>
     <task id="LOCAL-00001" summary="Update license.">
       <created>1574012922228</created>
@@ -267,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607254669196</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update deps.">
+      <created>1608867783052</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1608867783052</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,7 +307,8 @@
     <MESSAGE value="add prettier.ˆ" />
     <MESSAGE value="add prettier" />
     <MESSAGE value="revert to tailwind 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="revert to tailwind 1" />
+    <MESSAGE value="update deps." />
+    <option name="LAST_COMMIT_MESSAGE" value="update deps." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,9 +2,8 @@
   <title>Sapper project template</title>
 </svelte:head>
 
-<h1>good Success!</h1>
+<h1>bad Success!</h1>
 
 <p>
-  <strong>Try wditing this file (src/routes/index.svelte) to test live
-    reloading.</strong>
+  <strong>Try ffff (src/routes/index.svelte) to test live reloading.</strong>
 </p>
