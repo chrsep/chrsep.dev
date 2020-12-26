@@ -2,9 +2,9 @@
   <title>Sapper project template</title>
 </svelte:head>
 
-<div class="prose">
+<div class="prose dark:prose-dark">
   <h1>
     Hi, I'm Chrisando Eka Pramudhita
   </h1>
-  <p>check back lateasdfasdfr</p>
+  <p>Test</p>
 </div>

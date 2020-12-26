@@ -5,8 +5,17 @@
 </script>
 
 
-<Nav {segment} />
+<style global>
+  body {
+      @apply bg-black;
+  }
+</style>
 
-<main class="p-3 max-w-6xl mx-auto dark">
-  <slot />
-</main>
+<div>
+  <Nav {segment} />
+
+  <main class="p-3 max-w-6xl mx-auto dark">
+    <slot />
+  </main>
+</div>
+
