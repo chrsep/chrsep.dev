@@ -4,7 +4,7 @@
 
 <div class="prose dark:prose-dark">
   <h1>
-    Hi, I'm Chrisando Eka Pramudhita
+    Hi, I'm Chrisando Pramudhita
   </h1>
-  <p>Test</p>
+  <p>I build web and mobile applications.</p>
 </div>
