@@ -3,5 +3,8 @@
 </svelte:head>
 
 <div class="prose">
-  <p>check back later</p>
+  <h1>
+    Hi, I'm Chrisando Eka Pramudhita
+  </h1>
+  <p>check back lateasdfasdfr</p>
 </div>
