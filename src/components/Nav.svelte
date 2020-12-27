@@ -2,4 +2,7 @@
   <a href="/">
     <h1 class="text-base font-black leading-none dark:text-white">chrsep.dev</h1>
   </a>
+  <a>
+    About
+  </a>
 </nav>
