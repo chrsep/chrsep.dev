@@ -10,8 +10,8 @@ module.exports = {
       compile: false,
       prefix: "windi-",
       globalPreflight: true,
-      globalUtility: true
-    })
+      globalUtility: true,
+    }),
   ],
   kit: {
     // By default, `npm run build` will create a standard Node app.
@@ -20,6 +20,6 @@ module.exports = {
     adapter: "@sveltejs/adapter-vercel",
 
     // hydrate the <div id="svelte"> element in src/app.html
-    target: "#svelte"
-  }
+    target: "#svelte",
+  },
 }
