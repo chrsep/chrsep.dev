@@ -2,7 +2,7 @@
   import Sun from "../icons/other/sun.svg"
   import Moon from "../icons/other/moon.svg"
 
-  let darkMode = false
+  let darkMode = true
 
   function handleToggleTheme() {
     darkMode = !darkMode
@@ -12,7 +12,7 @@
 </script>
 
 <div class:dark={darkMode}>
-  <div class="bg-white dark:bg-black ">
+  <div class="bg-white dark:bg-black text-black dark:text-white min-h-screen">
     <nav class="w-full">
       <ul class="flex item-center">
         <li class="m-3">
