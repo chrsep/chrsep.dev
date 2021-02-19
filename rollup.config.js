@@ -81,7 +81,6 @@ export default {
             ],
           ],
         }),
-
       !dev &&
         terser({
           module: true,
