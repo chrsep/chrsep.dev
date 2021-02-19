@@ -1,110 +1,79 @@
-module.exports = {
-  purge: {
-    mode: "all",
-    content: ["./src/**/*.svelte"]
+let darkModeTheme = (theme) => ({
+  light: {
+    css: [
+      {
+        color: theme("colors.gray.400"),
+        '[class~="lead"]': {
+          color: theme("colors.gray.300"),
+        },
+        a: {
+          color: theme("colors.white"),
+        },
+        strong: {
+          color: theme("colors.white"),
+        },
+        "ol > li::before": {
+          color: theme("colors.gray.400"),
+        },
+        "ul > li::before": {
+          backgroundColor: theme("colors.gray.600"),
+        },
+        hr: {
+          borderColor: theme("colors.gray.200"),
+        },
+        blockquote: {
+          color: theme("colors.gray.200"),
+          borderLeftColor: theme("colors.gray.600"),
+        },
+        h1: {
+          color: theme("colors.white"),
+        },
+        h2: {
+          color: theme("colors.white"),
+        },
+        h3: {
+          color: theme("colors.white"),
+        },
+        h4: {
+          color: theme("colors.white"),
+        },
+        "figure figcaption": {
+          color: theme("colors.gray.400"),
+        },
+        code: {
+          color: theme("colors.white"),
+        },
+        "a code": {
+          color: theme("colors.white"),
+        },
+        pre: {
+          color: theme("colors.gray.200"),
+          backgroundColor: theme("colors.gray.800"),
+        },
+        thead: {
+          color: theme("colors.white"),
+          borderBottomColor: theme("colors.gray.400"),
+        },
+        "tbody tr": {
+          borderBottomColor: theme("colors.gray.600"),
+        },
+      },
+    ],
   },
+})
+
+module.exports = {
+  purge: ["./src/**/*.svelte", "./src/**/*.html"],
+  darkMode: "class",
   theme: {
     extend: {
-      colors: {
-        dark: "#24283b"
-      },
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-            a: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            h1: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            h2: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            h3: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            h4: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            h5: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            h6: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            strong: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            },
-            figcaption: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
-            }
-          }
-        },
-
-        dark: {
-          css: {
-            color: "white",
-            fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-
-            a: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white",
-              "&:hover": {
-                color: "white"
-              }
-            },
-
-            h1: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-            h2: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-            h3: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-            h4: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-            h5: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-            h6: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-
-            strong: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: "white"
-            },
-
-            code: {
-              color: "white"
-            },
-
-            figcaption: {
-              fontFamily: `"Recursive","ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-              color: theme("colors.gray.500")
-            },
-
-            "::selection": {
-              backgroundColor: "#6f7bb635"
-            }
-          }
-        }
-      })
-    }
+      typography: darkModeTheme,
+    },
   },
   variants: {
-    typography: ["dark"]
+    extend: {
+      typography: ["dark"],
+    },
   },
   plugins: [require("@tailwindcss/typography")],
-  darkMode: "media"
 }

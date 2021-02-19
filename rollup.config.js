@@ -8,6 +8,7 @@ import sveltePreprocess from "svelte-preprocess"
 import typescript from "@rollup/plugin-typescript"
 import config from "sapper/config/rollup.js"
 import pkg from "./package.json"
+import svelteSVG from "rollup-plugin-svelte-svg"
 
 const mode = process.env.NODE_ENV
 const dev = mode === "development"
@@ -25,6 +26,7 @@ export default {
     input: config.client.input().replace(/.js$/, ".ts"),
     output: config.client.output(),
     plugins: [
+      svelteSVG({ dev }),
       replace({
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode),
@@ -82,6 +84,7 @@ export default {
     input: { server: config.server.input().server.replace(/.js$/, ".ts") },
     output: config.server.output(),
     plugins: [
+      svelteSVG({ generate: "ssr", dev }),
       replace({
         "process.browser": false,
         "process.env.NODE_ENV": JSON.stringify(mode),
