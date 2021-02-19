@@ -12,7 +12,7 @@
 </script>
 
 <div class:dark={darkMode}>
-  <div class="bg-white dark:bg-black">
+  <div class="bg-white dark:bg-black text-black dark:text-white">
     <nav>
       <ul class="flex item-center">
         <li class="m-3">
