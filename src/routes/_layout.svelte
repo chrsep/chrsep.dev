@@ -11,7 +11,7 @@
   export let segment: string
 </script>
 
-<div class:dark={darkMode}>
+<div class={darkMode ? "dark" : ""}>
   <div class="bg-white dark:bg-black text-black dark:text-white min-h-screen">
     <nav class="w-full">
       <ul class="flex item-center">
