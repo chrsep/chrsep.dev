@@ -2391,9 +2391,9 @@ vary@~1.1.2:
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
 windicss@^2.1.3:
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.1.12.tgz#840b963f03af7a3e31b989d2b51de52dcd57a37a"
-  integrity sha512-VC057iG65zlvdqUI+1ynzOuKikalvYg6XqPGbG17HEAfwQ0sg1dACTk2plEp1QAEQNtKU3BnLnueWa4oKlltEQ==
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.1.13.tgz#55972934854c653cc6d83e91ed0c7f675f0f7b80"
+  integrity sha512-o0eOzR1rDgENcSAjGpGKHh449tbrLJ9oTiCeXPJmAEmiUvlaFvqz8AgjIuUTetSnyFRxnk9uU5UeE75RKuw8cA==
 
 wrappy@1:
   version "1.0.2"
