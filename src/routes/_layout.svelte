@@ -30,9 +30,9 @@
         <li class="mr-3 my-3 ml-auto">
           <button on:click={handleToggleTheme}>
             {#if darkMode}
-              <img alt="switch to light mode" src={Sun} />
+              <Sun />
             {:else}
-              <img alt="switch to dark mode" src={Moon} />
+              <Moon />
             {/if}
           </button>
         </li>

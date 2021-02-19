@@ -75,5 +75,5 @@ module.exports = {
       typography: ["dark"],
     },
   },
-  plugins: [require("windicss/plugin/typography")],
+  plugins: [require("@tailwindcss/typography")],
 }
