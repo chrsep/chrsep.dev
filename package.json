@@ -7,7 +7,7 @@
     "watch:tailwind": "postcss static/_tailwind.css -o ./static/index.css -w",
     "build:tailwind": "NODE_ENV=production postcss static/_tailwind.css -o ./static/index.css",
     "dev:svelte": "sapper dev",
-    "build:svelte": "sapper build",
+    "build:svelte": "sapper export && rm -rf dist && mv ./__sapper__/export ./dist",
     "dev": "run-p watch:tailwind dev:svelte",
     "build": "yarn build:tailwind && yarn build:svelte",
     "export": "yarn build:tailwind && sapper export",
