@@ -63,8 +63,8 @@ let darkModeTheme = (theme) => ({
 })
 
 module.exports = {
-  purge: ["./src/**/*"],
-  darkMode: "class", // or 'media' or 'class'
+  purge: ["./src/**/*.svelte", "./src/**/*.html"],
+  darkMode: "class",
   theme: {
     extend: {
       typography: darkModeTheme,

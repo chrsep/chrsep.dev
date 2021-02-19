@@ -10,6 +10,7 @@ import sveltePreprocess from "svelte-preprocess"
 import typescript from "@rollup/plugin-typescript"
 import config from "sapper/config/rollup.js"
 import pkg from "./package.json"
+import { preprocess as tailwindPreprocess } from "svelte-windicss-preprocess"
 
 const mode = process.env.NODE_ENV
 const dev = mode === "development"
@@ -21,6 +22,14 @@ const onwarn = (warning, onwarn) =>
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   warning.code === "THIS_IS_UNDEFINED" ||
   onwarn(warning)
+
+const tailwindConfig = {
+  config: "tailwind.config.js", // tailwind config file path
+  // compile: true, // false: interpretation mode; true: compilation mode
+  // prefix: "windi-", // set compilation mode style prefix
+  globalPreflight: true, // set preflight style is global or scoped
+  globalUtility: true, // set utility style is global or scoped
+}
 
 export default {
   client: {
@@ -34,27 +43,15 @@ export default {
       svelte({
         preprocess: [
           sveltePreprocess({ sourceMap: dev }),
-          require("svelte-windicss-preprocess").preprocess({
-            config: "tailwind.config.js", // tailwind config file path
-            compile: true, // false: interpretation mode; true: compilation mode
-            prefix: "windi-", // set compilation mode style prefix
-            globalPreflight: true, // set preflight style is global or scoped
-            globalUtility: true, // set utility style is global or scoped
-          }),
+          tailwindPreprocess(tailwindConfig),
         ],
-        compilerOptions: {
-          dev,
-          hydratable: true,
-        },
+        compilerOptions: { dev, hydratable: true },
       }),
       url({
         sourceDir: path.resolve(__dirname, "src/node_modules/images"),
         publicPath: "/client/",
       }),
-      resolve({
-        browser: true,
-        dedupe: ["svelte"],
-      }),
+      resolve({ browser: true, dedupe: ["svelte"] }),
       commonjs(),
       typescript({ sourceMap: dev }),
 
@@ -81,10 +78,8 @@ export default {
             ],
           ],
         }),
-      !dev &&
-        terser({
-          module: true,
-        }),
+
+      !dev && terser({ module: true }),
     ],
 
     preserveEntrySignatures: false,
@@ -102,19 +97,9 @@ export default {
       svelte({
         preprocess: [
           sveltePreprocess({ sourceMap: dev }),
-          require("svelte-windicss-preprocess").preprocess({
-            config: "tailwind.config.js", // tailwind config file path
-            compile: true, // false: interpretation mode; true: compilation mode
-            prefix: "windi-", // set compilation mode style prefix
-            globalPreflight: true, // set preflight style is global or scoped
-            globalUtility: true, // set utility style is global or scoped
-          }),
+          tailwindPreprocess(tailwindConfig),
         ],
-        compilerOptions: {
-          dev,
-          generate: "ssr",
-          hydratable: true,
-        },
+        compilerOptions: { dev, generate: "ssr", hydratable: true },
         emitCss: false,
       }),
       url({
@@ -122,9 +107,7 @@ export default {
         publicPath: "/client/",
         emitFiles: false, // already emitted by client build
       }),
-      resolve({
-        dedupe: ["svelte"],
-      }),
+      resolve({ dedupe: ["svelte"] }),
       commonjs(),
       typescript({ sourceMap: dev }),
     ],

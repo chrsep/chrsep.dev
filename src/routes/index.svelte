@@ -2,4 +2,6 @@
   <title>Sapper project template</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<article class="prose dark:prose-light m-3">
+  <h1>Great success!</h1>
+</article>

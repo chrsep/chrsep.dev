@@ -12,8 +12,8 @@
 </script>
 
 <div class:dark={darkMode}>
-  <div class="bg-white dark:bg-black text-black dark:text-white">
-    <nav>
+  <div class="bg-white dark:bg-black ">
+    <nav class="w-full">
       <ul class="flex item-center">
         <li class="m-3">
           <a aria-current={segment === undefined ? "page" : undefined} href="."
@@ -27,7 +27,7 @@
           >
         </li>
 
-        <li class="m-3 ml-auto">
+        <li class="mr-3 my-3 ml-auto">
           <button on:click={handleToggleTheme}>
             {#if darkMode}
               <img alt="switch to light mode" src={Sun} />
