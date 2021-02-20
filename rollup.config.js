@@ -1,8 +1,6 @@
-import path from "path"
 import resolve from "@rollup/plugin-node-resolve"
 import replace from "@rollup/plugin-replace"
 import commonjs from "@rollup/plugin-commonjs"
-import url from "@rollup/plugin-url"
 import svelte from "rollup-plugin-svelte"
 import babel from "@rollup/plugin-babel"
 import { terser } from "rollup-plugin-terser"
@@ -10,7 +8,7 @@ import sveltePreprocess from "svelte-preprocess"
 import typescript from "@rollup/plugin-typescript"
 import config from "sapper/config/rollup.js"
 import pkg from "./package.json"
-import { preprocess as tailwindPreprocess } from "svelte-windicss-preprocess"
+import svelteSVG from "rollup-plugin-svelte-svg"
 
 const mode = process.env.NODE_ENV
 const dev = mode === "development"
@@ -23,35 +21,28 @@ const onwarn = (warning, onwarn) =>
   warning.code === "THIS_IS_UNDEFINED" ||
   onwarn(warning)
 
-const tailwindConfig = {
-  config: "tailwind.config.js", // tailwind config file path
-  // compile: true, // false: interpretation mode; true: compilation mode
-  // prefix: "windi-", // set compilation mode style prefix
-  globalPreflight: true, // set preflight style is global or scoped
-  globalUtility: true, // set utility style is global or scoped
-}
-
 export default {
   client: {
-    input: config.client.input().replace(/\.js$/, ".ts"),
+    input: config.client.input().replace(/.js$/, ".ts"),
     output: config.client.output(),
     plugins: [
+      svelteSVG({ dev }),
       replace({
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode),
       }),
       svelte({
-        preprocess: [
-          sveltePreprocess({ sourceMap: dev }),
-          tailwindPreprocess(tailwindConfig),
-        ],
-        compilerOptions: { dev, hydratable: true },
+        compilerOptions: {
+          dev,
+          hydratable: true,
+        },
+        preprocess: sveltePreprocess(),
+        emitCss: true,
       }),
-      url({
-        sourceDir: path.resolve(__dirname, "src/node_modules/images"),
-        publicPath: "/client/",
+      resolve({
+        browser: true,
+        dedupe: ["svelte"],
       }),
-      resolve({ browser: true, dedupe: ["svelte"] }),
       commonjs(),
       typescript({ sourceMap: dev }),
 
@@ -79,7 +70,10 @@ export default {
           ],
         }),
 
-      !dev && terser({ module: true }),
+      !dev &&
+        terser({
+          module: true,
+        }),
     ],
 
     preserveEntrySignatures: false,
@@ -87,27 +81,25 @@ export default {
   },
 
   server: {
-    input: { server: config.server.input().server.replace(/\.js$/, ".ts") },
+    input: { server: config.server.input().server.replace(/.js$/, ".ts") },
     output: config.server.output(),
     plugins: [
+      svelteSVG({ generate: "ssr", dev }),
       replace({
         "process.browser": false,
         "process.env.NODE_ENV": JSON.stringify(mode),
       }),
       svelte({
-        preprocess: [
-          sveltePreprocess({ sourceMap: dev }),
-          tailwindPreprocess(tailwindConfig),
-        ],
-        compilerOptions: { dev, generate: "ssr", hydratable: true },
-        emitCss: false,
+        compilerOptions: {
+          generate: "ssr",
+          hydratable: true,
+          dev,
+        },
+        preprocess: sveltePreprocess(),
       }),
-      url({
-        sourceDir: path.resolve(__dirname, "src/node_modules/images"),
-        publicPath: "/client/",
-        emitFiles: false, // already emitted by client build
+      resolve({
+        dedupe: ["svelte"],
       }),
-      resolve({ dedupe: ["svelte"] }),
       commonjs(),
       typescript({ sourceMap: dev }),
     ],
@@ -118,4 +110,22 @@ export default {
     preserveEntrySignatures: "strict",
     onwarn,
   },
+
+  // serviceworker: {
+  //   input: config.serviceworker.input().replace(/.js$/, ".ts"),
+  //   output: config.serviceworker.output(),
+  //   plugins: [
+  //     resolve(),
+  //     replace({
+  //       "process.browser": true,
+  //       "process.env.NODE_ENV": JSON.stringify(mode),
+  //     }),
+  //     commonjs(),
+  //     typescript({ sourceMap: dev }),
+  //     !dev && terser(),
+  //   ],
+  //
+  //   preserveEntrySignatures: false,
+  //   onwarn,
+  // },
 }

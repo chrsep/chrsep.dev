@@ -63,7 +63,7 @@ let darkModeTheme = (theme) => ({
 })
 
 module.exports = {
-  purge: ["./src/**/*.svelte", "./src/**/*.html"],
+  purge: ["./src/**/*.svelte", "./src/**/*.html", "./src/**/*.html"],
   darkMode: "class",
   theme: {
     extend: {
@@ -75,5 +75,5 @@ module.exports = {
       typography: ["dark"],
     },
   },
-  plugins: [require("windicss/plugin/typography")],
+  plugins: [require("@tailwindcss/typography")],
 }

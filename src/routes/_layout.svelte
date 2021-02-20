@@ -11,7 +11,7 @@
   export let segment: string
 </script>
 
-<div class:dark={darkMode}>
+<div class={darkMode ? "dark" : ""}>
   <div class="bg-white dark:bg-black text-black dark:text-white min-h-screen">
     <nav class="w-full">
       <ul class="flex item-center">
@@ -30,9 +30,9 @@
         <li class="mr-3 my-3 ml-auto">
           <button on:click={handleToggleTheme}>
             {#if darkMode}
-              <img alt="switch to light mode" src={Sun} />
+              <Sun />
             {:else}
-              <img alt="switch to dark mode" src={Moon} />
+              <Moon />
             {/if}
           </button>
         </li>

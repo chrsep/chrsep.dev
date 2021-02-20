@@ -23,7 +23,7 @@
         the user hovers over the link or taps it, instead of
         waiting for the 'click' event -->
     <li class="text-md hover:underline">
-      <a rel="prefetch" href="blog/{post.slug}" class="prose">
+      <a rel="prefetch" href="blog/{post.slug}" class="prose dark:prose-light">
         <h1>
           {post.title}
         </h1>

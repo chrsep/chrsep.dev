@@ -21,7 +21,7 @@
   <title>{post.title}</title>
 </svelte:head>
 
-<div class="prose m-3">
+<div class="prose dark:prose-light m-3">
   <h1>{post.title}</h1>
 
   {@html post.html}
