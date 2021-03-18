@@ -3072,10 +3072,10 @@ supports-color@^7.0.0, supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-svelte-check@1.1.35:
-  version "1.1.35"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.1.35.tgz#062f08ff6b4ff0fa326a0b67fdf5173c14e1a166"
-  integrity sha512-ZTMTkLbdfDwdYtKYHySy7DSCXett9KLl+zpV0CQKhZjXKB95EiRpjmV61+TbIU0/oaljmkCovkHOT2WLiLqWOQ==
+svelte-check@1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.2.5.tgz#7f1581fe85f0ab454ded7993121cc6e138391503"
+  integrity sha512-1hqlH/J86lpuXk6+SSeZRfCfxXvCpqYGfgPb2sD0YW+tueknbJGR9oaGaLzytU0dgja4ShG+zQzHEsjKb0tFeA==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
