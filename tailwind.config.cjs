@@ -22,16 +22,18 @@ const maxWidth = {DEFAULT: "80rem"}
 //   },
 // }
 
-const colors = {}
+const colors = {
+  primary: "purple"
+}
 
 module.exports = {
   mode: "jit",
   purge: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     // fontFamily,
-    borderRadius,
     extend: {
       // typography,
+      borderRadius,
       colors,
       maxWidth,
     },

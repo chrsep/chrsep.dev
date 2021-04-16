@@ -25,7 +25,7 @@
             <li>Svelte</li>
             <li>Prisma</li>
             <li>Golang</li>
-            <li>Typescipt</li>
+            <li>Typescript</li>
             <li>Kotlin</li>
         </ul>
     </section>
