@@ -5,6 +5,4 @@
 
 <Navbar />
 
-<div class="dark">
-  <slot />
-</div>
+<slot />

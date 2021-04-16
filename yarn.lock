@@ -1503,10 +1503,10 @@ mdn-data@2.0.14:
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"
   integrity sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==
 
-mdsvex@^0.8.9:
-  version "0.8.9"
-  resolved "https://registry.yarnpkg.com/mdsvex/-/mdsvex-0.8.9.tgz#7d7bf557ba83bb7f2856f6211b387f8f1688d791"
-  integrity sha512-9CDBDV29IVNJsJWDlCg1UwascU8QmuHsYEXJH2ZGsf7lCCWUDSwbOmR+I77tm8D2YQrPsbLCLq/UndUMJck3Cw==
+mdsvex@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/mdsvex/-/mdsvex-0.9.0.tgz#904adece2fbd5a87a20739be63fe757d286caa99"
+  integrity sha512-1REYRZPgGWoEkA4N0xxeJLdjOzkOwXJeQGgx8F6Gm/dVZkoBmfY49EVc0PGql/fmwj7Qrkc8eGoPg7z6Q1U5hA==
   dependencies:
     "@types/unist" "^2.0.3"
     prismjs "^1.17.1"

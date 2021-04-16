@@ -2,7 +2,7 @@ const borderRadius = {
   DEFAULT: "8px",
   xl: "24px",
 }
-const maxWidth = {DEFAULT: "80rem"}
+const maxWidth = { DEFAULT: "80rem" }
 
 // const serif = "Lora, Georgia"
 //
@@ -23,7 +23,7 @@ const maxWidth = {DEFAULT: "80rem"}
 // }
 
 const colors = {
-  primary: "purple"
+  primary: "purple",
 }
 
 module.exports = {

@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+  export let prerender = true
+</script>
+
 <svelte:head>
   <title>Home | Chrisando Eka Pramudhita</title>
 </svelte:head>
@@ -7,3 +11,4 @@
     <h1>Under Construction</h1>
   </section>
 </main>
+
