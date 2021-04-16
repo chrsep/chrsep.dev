@@ -24,6 +24,7 @@ const maxWidth = { DEFAULT: "80rem" }
 
 const colors = {
   primary: "purple",
+  "primary-text": "#992424",
 }
 
 module.exports = {
