@@ -4,8 +4,8 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/.svelte" />
       <excludeFolder url="file://$MODULE_DIR$/.vercel_build_output" />
+      <excludeFolder url="file://$MODULE_DIR$/.svelte" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
