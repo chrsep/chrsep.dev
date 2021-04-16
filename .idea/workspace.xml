@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f732837-f6b1-4bdc-a2cf-b2e1121b5011" name="Default Changelist" comment="add prerender.">
-      <change afterPath="$PROJECT_DIR$/static/ico.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="6f732837-f6b1-4bdc-a2cf-b2e1121b5011" name="Default Changelist" comment="add favicon.">
       <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/static/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +104,7 @@
       <workItem from="1614759548427" duration="58000" />
       <workItem from="1614760157084" duration="671000" />
       <workItem from="1618586224954" duration="1809000" />
-      <workItem from="1618588711228" duration="5156000" />
+      <workItem from="1618588711228" duration="5292000" />
     </task>
     <task id="LOCAL-00001" summary="update config to latest.">
       <created>1613742764902</created>
@@ -203,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618592600599</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add favicon.">
+      <created>1618593935974</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1618593935974</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +234,7 @@
     <MESSAGE value="add github link." />
     <MESSAGE value="add icons." />
     <MESSAGE value="add prerender." />
-    <option name="LAST_COMMIT_MESSAGE" value="add prerender." />
+    <MESSAGE value="add favicon." />
+    <option name="LAST_COMMIT_MESSAGE" value="add favicon." />
   </component>
 </project>
