@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f732837-f6b1-4bdc-a2cf-b2e1121b5011" name="Default Changelist" comment="migrate to svelte kit.">
-      <change beforePath="$PROJECT_DIR$/.idea/chrsep.dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/chrsep.dev.iml" afterDir="false" />
+    <list default="true" id="6f732837-f6b1-4bdc-a2cf-b2e1121b5011" name="Default Changelist" comment="move to yarn">
+      <change afterPath="$PROJECT_DIR$/chrsep.dev.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/Navbar.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.cjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/jsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mdsvex.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/mdsvex.config.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.postcss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.postcss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Counter.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Example.svx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/foo.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/$layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/$layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/example-markdown.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/example-markdown.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/svelte.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/svelte.config.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +75,12 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -70,7 +91,21 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="open dashboard" />
+      <command value="open chrsep.dev" />
+      <command value="dev" />
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -86,7 +121,8 @@
       <workItem from="1613884866080" duration="1478000" />
       <workItem from="1614759548427" duration="58000" />
       <workItem from="1614760157084" duration="671000" />
-      <workItem from="1618586224954" duration="1119000" />
+      <workItem from="1618586224954" duration="1809000" />
+      <workItem from="1618588711228" duration="1749000" />
     </task>
     <task id="LOCAL-00001" summary="update config to latest.">
       <created>1613742764902</created>
@@ -144,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618586739744</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="move to yarn">
+      <created>1618587404635</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1618587404635</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +212,7 @@
     <MESSAGE value="add renovate config." />
     <MESSAGE value="make config less aggresive." />
     <MESSAGE value="migrate to svelte kit." />
-    <option name="LAST_COMMIT_MESSAGE" value="migrate to svelte kit." />
+    <MESSAGE value="move to yarn" />
+    <option name="LAST_COMMIT_MESSAGE" value="move to yarn" />
   </component>
 </project>
