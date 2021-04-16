@@ -8,7 +8,9 @@
 
 <main class="max-w-7xl mx-auto p-6">
   <section class="prose prose-xl sm:my-32">
-    <h1>Under Construction</h1>
+    <h1>Latest Post</h1>
+
+    <p>Nothing to see here yet...</p>
   </section>
 </main>
 
