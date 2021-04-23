@@ -81,15 +81,10 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sveltejs/adapter-static@^1.0.0-next.4":
-  version "1.0.0-next.4"
-  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-static/-/adapter-static-1.0.0-next.4.tgz#5305a2fedf9d1ec40af6c25384b7542a0337ec4c"
-  integrity sha512-Atri/5jyiVmAklqDKb/5czmLkHos6LQOag61k/C6qWozMb8UopvL3bTm62hFQXGKvGnuSRq2xIueDOKWHM/7rA==
-
-"@sveltejs/adapter-vercel@next":
-  version "1.0.0-next.10"
-  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-vercel/-/adapter-vercel-1.0.0-next.10.tgz#71dbb4e15cb7d0294f1d62e33c41c8fde6b752c8"
-  integrity sha512-hEk1acpk02UsODC9NCF7VtooybXgLlnOX3JIWNkEtqihG6cfyMTOxAl+plT2APknB8i1cUt5FEe/O/r8LGql5Q==
+"@sveltejs/adapter-static@1.0.0-next.5":
+  version "1.0.0-next.5"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-static/-/adapter-static-1.0.0-next.5.tgz#9edb7a8728bedc18e119f2f02ca472c4312fb2b2"
+  integrity sha512-ITZYE+y2oh8Q3GSUpuxW4VwWpTICLxqr/W0XP7zhRBicD99PcLoq6fPjlnpYbk8/UR+tSCEuIGrhAb+3/Bt2mQ==
 
 "@sveltejs/kit@^1.0.0-next.84":
   version "1.0.0-next.84"
