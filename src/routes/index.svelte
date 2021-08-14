@@ -1,2 +1,60 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import TechPills from "$lib/TechPills.svelte";
+</script>
+
+
+<section class="px-8 py-8 md:pt-32 md:px-32">
+  <a href="github.com/chrsep"
+     class="border  rounded-lg text-sm px-4 py-2 border-opacity-20 mr-2 hover:border-blue-300 transition mb-6 inline-block"
+     target="_blank">
+    GitHub
+  </a>
+
+  <h1 class="font-bold text-6xl leading-none mb-6">
+    Chrisando E. <br /> Pramudhita
+  </h1>
+
+  <p class="text-xl max-w-lg text-secondary">
+    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help people build fast and
+    accessible web experiences.
+  </p>
+</section>
+
+<section class="px-8 md:px-32 mb-16">
+  <h2 class="font-bold text-xl mb-6">Techs I work with</h2>
+
+  <ul class="flex">
+    <li>
+      <TechPills text="NextJS" web="https://nextjs.org" />
+    </li>
+    <li>
+      <TechPills text="Gatsby" web="https://gatsbyjs.com" />
+    </li>
+    <li>
+      <TechPills text="React / Preact" web="https://reactjs.org" />
+    </li>
+    <li>
+      <TechPills text="Typescript" web="https://typescriptlang.org" />
+    </li>
+    <li>
+      <TechPills text="Tailwind" web="https://tailwindcss.com" />
+    </li>
+
+    <li>
+      <TechPills text="Go" web="https://golang.org" />
+    </li>
+  </ul>
+</section>
+
+
+<section class="px-8 md:px-32 mb-16">
+  <h2 class="font-bold text-4xl mb-16">Projects</h2>
+
+  <ul class="flex">
+    <li class="w-1/3">Obserfy</li>
+    <li class="w-1/3">Joyful Montessori</li>
+    <li class="w-1/3">Portal</li>
+  </ul>
+</section>
+
+
