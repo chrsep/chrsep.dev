@@ -7,7 +7,6 @@
 
 
 <main>
-  test
   <slot>
   </slot>
 </main>
