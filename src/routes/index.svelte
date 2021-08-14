@@ -5,44 +5,35 @@
 
 <section class="px-8 py-8 md:pt-32 md:px-32">
   <a href="github.com/chrsep"
-     class="border  rounded-lg text-sm px-4 py-2 border-opacity-20 mr-2 hover:border-blue-300 transition mb-6 inline-block"
+     class="border  rounded-lg text-sm px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 inline-block"
      target="_blank">
     GitHub
   </a>
 
-  <h1 class="font-bold text-6xl leading-none mb-6">
+  <h1 class="font-bold text-3xl sm:text-6xl leading-none mb-6">
     Chrisando E. <br /> Pramudhita
   </h1>
 
-  <p class="text-xl max-w-lg text-secondary">
-    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help people build fast and
-    accessible web experiences.
+  <p class="sm:text-xl max-w-lg text-secondary">
+    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help people
+    build fast and accessible web experiences.
   </p>
 </section>
 
-<section class="px-8 md:px-32 mb-16">
-  <h2 class="font-bold text-xl mb-6">Techs I work with</h2>
+<section class="px-8 md:px-32 mb-32">
+  <h2 class="font-bold text-xl mb-4 sm:mb-6">Techs I work with</h2>
 
-  <ul class="flex">
-    <li>
-      <TechPills text="NextJS" web="https://nextjs.org" />
-    </li>
-    <li>
-      <TechPills text="Gatsby" web="https://gatsbyjs.com" />
-    </li>
-    <li>
-      <TechPills text="React / Preact" web="https://reactjs.org" />
-    </li>
-    <li>
-      <TechPills text="Typescript" web="https://typescriptlang.org" />
-    </li>
-    <li>
-      <TechPills text="Tailwind" web="https://tailwindcss.com" />
-    </li>
-
-    <li>
-      <TechPills text="Go" web="https://golang.org" />
-    </li>
+  <ul class="flex flex-wrap max-w-2xl">
+    <TechPills text="NextJS" web="https://nextjs.org" />
+    <TechPills text="Gatsby" web="https://gatsbyjs.com" />
+    <TechPills text="React / Preact" web="https://reactjs.org" />
+    <TechPills text="Typescript" web="https://typescriptlang.org" />
+    <TechPills text="Tailwind" web="https://tailwindcss.com" />
+    <TechPills text="Go" web="https://golang.org" />
+    <TechPills text="Prisma" web="https://www.prisma.io/" />
+    <TechPills text="Postgres" web="https://www.postgresql.org/" />
+    <TechPills text="Kotlin" web="https://kotlinlang.org/" />
+    <TechPills text="Android" web="https://developer.android.com/" />
   </ul>
 </section>
 
