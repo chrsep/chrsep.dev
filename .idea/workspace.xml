@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f732837-f6b1-4bdc-a2cf-b2e1121b5011" name="Default Changelist" comment="add inter and color.">
-      <change afterPath="$PROJECT_DIR$/.nvmrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/__layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__layout.svelte" afterDir="false" />
+    <list default="true" id="6f732837-f6b1-4bdc-a2cf-b2e1121b5011" name="Default Changelist" comment="add nvmrc.">
+      <change beforePath="$PROJECT_DIR$/.nvmrc" beforeDir="false" afterPath="$PROJECT_DIR$/.nvmrc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +275,8 @@
     <MESSAGE value="re init." />
     <MESSAGE value="re init project." />
     <MESSAGE value="add inter and color." />
-    <option name="LAST_COMMIT_MESSAGE" value="add inter and color." />
+    <MESSAGE value="add nvmrc." />
+    <option name="LAST_COMMIT_MESSAGE" value="add nvmrc." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
