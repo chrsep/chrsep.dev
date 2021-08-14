@@ -4,7 +4,7 @@
 
 
 <section class="px-8 py-8 md:pt-32 md:px-32">
-  <a href="github.com/chrsep"
+  <a href="https://github.com/chrsep"
      class="border  rounded-lg text-sm px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 inline-block"
      target="_blank">
     GitHub
