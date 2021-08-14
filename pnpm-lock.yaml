@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@fontsource/fira-mono': ^4.5.0
+  '@fontsource/inter': ^4.5.0
   '@sveltejs/adapter-static': ^1.0.0-next.16
   '@sveltejs/kit': ^1.0.0-next.148
   '@typescript-eslint/eslint-plugin': ^4.29.1
@@ -24,6 +25,7 @@ specifiers:
 
 dependencies:
   '@fontsource/fira-mono': 4.5.0
+  '@fontsource/inter': 4.5.0
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.16
@@ -94,6 +96,10 @@ packages:
 
   /@fontsource/fira-mono/4.5.0:
     resolution: {integrity: sha512-KE+d3wmgq/YKM0BqgUF7p2yeBNi805Nfof1lC1wJ7E9i2EWoC363sGdKG+MQBVm+ei3GYZu+Bo8Xha1w1pkB7g==}
+    dev: false
+
+  /@fontsource/inter/4.5.0:
+    resolution: {integrity: sha512-2efK8Ru0LkuOYrEpiHPlV02YkTdIKGbezlxVNeA8/3c+tNt7P2aQPuiYYkVy7N4GA5LWSUVcLL/91MpCIjinOw==}
     dev: false
 
   /@humanwhocodes/config-array/0.5.0:
