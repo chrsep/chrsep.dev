@@ -36,7 +36,6 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/fira-mono": "^4.5.0",
-		"@fontsource/inter": "^4.5.0",
-		"svelthree": "^0.119.0-5"
+		"@fontsource/inter": "^4.5.0"
 	}
 }
