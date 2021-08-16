@@ -4,11 +4,21 @@
 
 
 <section class="px-8 py-8 md:pt-32 md:px-32">
-  <a href="https://github.com/chrsep"
-     class="border  rounded-lg text-sm px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 inline-block"
-     target="_blank">
-    GitHub
-  </a>
+  <div class="flex">
+    <a href="https://github.com/chrsep"
+       class="border  rounded-lg text-xs px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 flex items-center"
+       target="_blank">
+      <img src="/icons/github.svg" class="w-4 h-4 mr-2 opacity-60" alt="" />
+      @chrsep
+    </a>
+
+    <a href="https://twitter.com/_chrsep"
+       class="border  rounded-lg text-xs px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 flex items-center"
+       target="_blank">
+      <img src="/icons/twitter.svg" class="w-4 h-4 mr-2 opacity-60" alt="" />
+      @_chrsep
+    </a>
+  </div>
 
   <h1 class="font-bold text-3xl sm:text-6xl leading-none mb-6">
     Chrisando E. <br /> Pramudhita
@@ -38,14 +48,14 @@
 </section>
 
 
-<section class="px-8 md:px-32 mb-16">
-  <h2 class="font-bold text-4xl mb-16">Projects</h2>
+<!--<section class="px-8 md:px-32 mb-16">-->
+<!--  <h2 class="font-bold text-4xl mb-16">Projects</h2>-->
 
-  <ul class="flex">
-    <li class="w-1/3">Obserfy</li>
-    <li class="w-1/3">Joyful Montessori</li>
-    <li class="w-1/3">Portal</li>
-  </ul>
-</section>
+<!--  <ul class="flex">-->
+<!--    <li class="w-1/3">Obserfy</li>-->
+<!--    <li class="w-1/3">Joyful Montessori</li>-->
+<!--    <li class="w-1/3">Portal</li>-->
+<!--  </ul>-->
+<!--</section>-->
 
 
