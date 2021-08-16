@@ -47,7 +47,7 @@
 
       <p class="sm:text-xl max-w-lg text-secondary">
         Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help people
-        build fast and accessible web experiences.
+        build fast web experiences.
       </p>
     </div>
 
