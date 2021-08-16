@@ -17,6 +17,10 @@
   let cubeMaterial = new MeshStandardMaterial();
 </script>
 
+<svelte:head>
+  <title>chrsep.dev</title>
+</svelte:head>
+
 
 <section class="flex items-center">
   <div>
