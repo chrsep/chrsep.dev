@@ -1,6 +1,6 @@
 <script lang="ts">
-  export const text = "";
-  export const web = "";
+  export let text;
+  export let web;
   // export const icon: string;
 </script>
 
