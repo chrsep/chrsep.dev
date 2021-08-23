@@ -20,7 +20,7 @@
     </a>
   </div>
 
-  <h1 class="font-bold text-3xl sm:text-6xl leading-none mb-6">
+  <h1 class="font-bold text-4xl sm:text-6xl leading-none mb-6">
     Chrisando E. <br /> Pramudhita
   </h1>
 
@@ -34,16 +34,16 @@
   <h2 class="font-bold text-xl mb-4 sm:mb-6">Techs I work with</h2>
 
   <ul class="flex flex-wrap max-w-2xl">
-    <TechPills text="NextJS" web="https://nextjs.org" />
-    <TechPills text="Gatsby" web="https://gatsbyjs.com" />
-    <TechPills text="React / Preact" web="https://reactjs.org" />
-    <TechPills text="Typescript" web="https://typescriptlang.org" />
-    <TechPills text="Tailwind" web="https://tailwindcss.com" />
-    <TechPills text="Go" web="https://golang.org" />
-    <TechPills text="Prisma" web="https://www.prisma.io/" />
-    <TechPills text="Postgres" web="https://www.postgresql.org/" />
-    <TechPills text="Kotlin" web="https://kotlinlang.org/" />
-    <TechPills text="Android" web="https://developer.android.com/" />
+    <TechPills text="Next" web="https://nextjs.org" icon="/icons/nextdotjs.svg" />
+    <TechPills text="Gatsby" web="https://gatsbyjs.com" icon="/icons/gatsby.svg" />
+    <TechPills text="React / Preact" web="https://reactjs.org" icon="/icons/react.svg" />
+    <TechPills text="Typescript" web="https://typescriptlang.org" icon="/icons/typescript.svg" />
+    <TechPills text="Tailwind" web="https://tailwindcss.com" icon="/icons/tailwindcss.svg" />
+    <TechPills text="Go" web="https://golang.org" icon="/icons/go.svg" />
+    <TechPills text="Prisma" web="https://www.prisma.io/" icon="/icons/prisma.svg" />
+    <TechPills text="Postgres" web="https://www.postgresql.org/" icon="/icons/postgresql.svg" />
+    <TechPills text="Kotlin" web="https://kotlinlang.org/" icon="/icons/kotlin.svg" />
+    <TechPills text="Android" web="https://developer.android.com/" icon="/icons/android.svg" />
   </ul>
 </section>
 
