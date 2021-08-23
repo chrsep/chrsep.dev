@@ -1,5 +1,4 @@
-const config = {
-	mode: 'jit',
+export default {
 	purge: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
@@ -17,5 +16,3 @@ const config = {
 	},
 	plugins: []
 };
-
-module.exports = config;

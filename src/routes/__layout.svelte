@@ -1,5 +1,4 @@
 <script>
-  import "tailwindcss/tailwind.css";
   import "@fontsource/inter/variable.css";
 </script>
 
@@ -8,3 +7,6 @@
   <slot>
   </slot>
 </main>
+
+<style global windi:global  windi:preflights:global windi:safelist:global>
+</style>

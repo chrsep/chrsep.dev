@@ -10,9 +10,12 @@
 
 <li class="flex-shrink-0 mb-2">
   <a href={web}
-     class="border rounded-lg text-xs sm:px-4 px-3 sm:py-3 py-2 border-opacity-30 mr-2 hover:ring-2 {ringHoverClass} transition flex items-center group"
+     class="border border-white rounded-lg text-xs sm:px-4 px-3 sm:py-3 py-2 border-opacity-20 mr-2 hover:ring-2 {ringHoverClass} transition flex items-center group"
      target="_blank">
-    <Icon --icon-src="url('{icon}')" class="mr-3 w-[16px] h-[16px] {iconGroupHoverClass} transition" />
+    <Icon --icon-src="url('{icon}')" class="mr-3 !w-[16px] !h-[16px] {iconGroupHoverClass} transition" />
     {text}
   </a>
 </li>
+
+<style windi:global>
+</style>

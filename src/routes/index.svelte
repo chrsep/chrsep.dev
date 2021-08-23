@@ -84,15 +84,5 @@
   </ul>
 </section>
 
-
-<!--<section class="px-8 md:px-32 mb-16">-->
-<!--  <h2 class="font-bold text-4xl mb-16">Projects</h2>-->
-
-<!--  <ul class="flex">-->
-<!--    <li class="w-1/3">Obserfy</li>-->
-<!--    <li class="w-1/3">Joyful Montessori</li>-->
-<!--    <li class="w-1/3">Portal</li>-->
-<!--  </ul>-->
-<!--</section>-->
-
-
+<style windi:global>
+</style>
