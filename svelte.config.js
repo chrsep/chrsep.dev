@@ -7,7 +7,7 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: [
-		preprocess(),
+		preprocess({ postcss: true }),
 		windi({
 			configPath: 'windi.config.js',
 			disableFormatter: true
