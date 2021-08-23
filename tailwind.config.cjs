@@ -11,7 +11,7 @@ const config = {
 				secondary: '#d0d0d0'
 			},
 			backgroundColor: {
-				default: '#000'
+				default: '#1a1a1a'
 			}
 		}
 	},

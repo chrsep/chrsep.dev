@@ -1,23 +1,13 @@
 <script>
   import TechPills from "$lib/TechPills.svelte";
+  import SocialLink from "$lib/SocialLink.svelte";
 </script>
 
 
 <section class="px-8 py-8 md:pt-32 md:px-32">
-  <div class="flex">
-    <a href="https://github.com/chrsep"
-       class="border  rounded-lg text-xs px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 flex items-center"
-       target="_blank">
-      <img src="/icons/github.svg" class="w-4 h-4 mr-2 opacity-60" alt="" />
-      @chrsep
-    </a>
-
-    <a href="https://twitter.com/_chrsep"
-       class="border  rounded-lg text-xs px-4 py-2 border-opacity-30 mr-2 hover:border-blue-300 transition mb-6 flex items-center"
-       target="_blank">
-      <img src="/icons/twitter.svg" class="w-4 h-4 mr-2 opacity-60" alt="" />
-      @_chrsep
-    </a>
+  <div class="flex mb-6">
+    <SocialLink text="@chrsep" href="https://github.com/chrsep" icon="/icons/github.svg" />
+    <SocialLink text="@_chrsep" href="https://twitter.com/_chrsep" icon="/icons/twitter.svg" />
   </div>
 
   <h1 class="font-bold text-4xl sm:text-6xl leading-none mb-6">
@@ -26,7 +16,7 @@
 
   <p class="sm:text-xl max-w-lg text-secondary">
     Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help people
-    build fast and accessible web experiences.
+    build fast and beautiful digital experiences.
   </p>
 </section>
 
