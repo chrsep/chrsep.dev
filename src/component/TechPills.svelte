@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "$lib/Icon.svelte";
+  import Icon from "$component/Icon.svelte";
 
   export let text: string;
   export let web: string;
@@ -16,6 +16,3 @@
     {text}
   </a>
 </li>
-
-<style windi:global>
-</style>
