@@ -4,3 +4,4 @@ node_modules
 /.svelte-kit
 /package
 .idea/workspace.xml
+.idea/misc.xml
