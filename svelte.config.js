@@ -1,23 +1,20 @@
 import preprocess from 'svelte-preprocess';
 import adapterStatic from '@sveltejs/adapter-static';
-import { windi } from 'svelte-windicss-preprocess';
+import WindiCSS from 'vite-plugin-windicss';
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: [
-		preprocess({ postcss: true }),
-		windi({
-			configPath: 'windi.config.js',
-			disableFormatter: true
-		})
-	],
+	preprocess: [preprocess()],
 
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		adapter: adapterStatic()
+		adapter: adapterStatic(),
+		vite: {
+			plugins: [WindiCSS()]
+		}
 	}
 };
 
