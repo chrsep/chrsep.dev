@@ -33,8 +33,8 @@
   </h1>
 
   <p class="sm:text-xl max-w-lg text-default-800">
-    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help
-    people build fast and beautiful digital experiences.
+    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help build
+    fast and beautiful digital experiences.
   </p>
 </article>
 
