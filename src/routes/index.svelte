@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
 </script>
@@ -104,3 +104,14 @@
   </ul>
 </article>
 
+<article class="px-8 md:px-32 mb-32">
+  <h2 class="font-bold text-4xl mb-4 sm:mb-6">Projects</h2>
+  <p class="text-gray-400">Some stuffs I've worked on in the last few years.</p>
+
+  <section class="flex">
+    <article class="rounded-xl p-8">Obserfy</article>
+    <article class="rounded-xl p-8">Joyful Montessori</article>
+    <article class="rounded-xl p-8">Portal</article>
+    <article class="rounded-xl p-8">Atreus</article>
+  </section>
+</article>
