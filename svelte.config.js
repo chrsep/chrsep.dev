@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess';
-import adapterCloudflare from '@sveltejs/adapter-cloudflare';
-import WindiCSS from 'vite-plugin-windicss';
+import vercel from '@sveltejs/adapter-vercel';
+import windiCSS from 'vite-plugin-windicss';
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
@@ -11,9 +11,9 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		adapter: adapterCloudflare(),
+		adapter: vercel(),
 		vite: {
-			plugins: [WindiCSS()]
+			plugins: [windiCSS()]
 		}
 	}
 };

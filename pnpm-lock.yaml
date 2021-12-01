@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@fontsource/fira-mono': ^4.5.0
   '@fontsource/inter': ^4.5.1
-  '@sveltejs/adapter-cloudflare': ^1.0.0-next.2
+  '@sveltejs/adapter-vercel': ^1.0.0-next.31
   '@sveltejs/kit': ^1.0.0-next.201
   '@typescript-eslint/eslint-plugin': ^5.5.0
   '@typescript-eslint/parser': ^5.5.0
@@ -24,9 +24,9 @@ specifiers:
 dependencies:
   '@fontsource/fira-mono': 4.5.0
   '@fontsource/inter': 4.5.1
-  '@sveltejs/adapter-cloudflare': 1.0.0-next.2
 
 devDependencies:
+  '@sveltejs/adapter-vercel': 1.0.0-next.31
   '@sveltejs/kit': 1.0.0-next.201_svelte@3.44.2
   '@typescript-eslint/eslint-plugin': 5.5.0_2a935f58a3cc0b0f42856ccf18d8367f
   '@typescript-eslint/parser': 5.5.0_eslint@8.3.0+typescript@4.5.2
@@ -121,11 +121,11 @@ packages:
       picomatch: 2.3.0
     dev: true
 
-  /@sveltejs/adapter-cloudflare/1.0.0-next.2:
-    resolution: {integrity: sha512-4Q7ZuoMck7wwzIO7gd8gqnm7gWflztTDHU/C1DzLr8V2UprQFQwsUE/padtQhFPXkgAiXJ8AwLksey4A8qjOsA==}
+  /@sveltejs/adapter-vercel/1.0.0-next.31:
+    resolution: {integrity: sha512-W8p/U00B6ihVrDpwMkgEexfVUzaLmn4MRtXj//Gw4NDFfsrZR4P5wBidrOAIkCYBMvqCOHD+vbAvIiAMOaN23g==}
     dependencies:
       esbuild: 0.13.15
-    dev: false
+    dev: true
 
   /@sveltejs/kit/1.0.0-next.201_svelte@3.44.2:
     resolution: {integrity: sha512-WcYexOEPWgDWOk0oOteTU5QwWykdIcOFJig+akeHqwE/jVtPURLZFtTNx0ymUWXN4S+dUXf60KF6HEMv74FHpA==}
@@ -712,6 +712,7 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-darwin-64/0.13.15:
@@ -719,6 +720,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-darwin-arm64/0.13.15:
@@ -726,6 +728,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-freebsd-64/0.13.15:
@@ -733,6 +736,7 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-freebsd-arm64/0.13.15:
@@ -740,6 +744,7 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-linux-32/0.13.15:
@@ -747,6 +752,7 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-linux-64/0.13.15:
@@ -754,6 +760,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-linux-arm/0.13.15:
@@ -761,6 +768,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-linux-arm64/0.13.15:
@@ -768,6 +776,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-linux-mips64le/0.13.15:
@@ -775,6 +784,7 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-linux-ppc64le/0.13.15:
@@ -782,6 +792,7 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-netbsd-64/0.13.15:
@@ -789,6 +800,7 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-openbsd-64/0.13.15:
@@ -796,6 +808,7 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-sunos-64/0.13.15:
@@ -803,6 +816,7 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-windows-32/0.13.15:
@@ -810,6 +824,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-windows-64/0.13.15:
@@ -817,6 +832,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild-windows-arm64/0.13.15:
@@ -824,6 +840,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /esbuild/0.13.15:
@@ -848,6 +865,7 @@ packages:
       esbuild-windows-32: 0.13.15
       esbuild-windows-64: 0.13.15
       esbuild-windows-arm64: 0.13.15
+    dev: true
 
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
