@@ -3,6 +3,6 @@
   import "virtual:windi.css"
 </script>
 
-<main class="bg-default text-default min-h-screen">
+<main class="text-default-900 min-h-screen">
   <slot />
 </main>

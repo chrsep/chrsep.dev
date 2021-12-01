@@ -1,6 +1,7 @@
 <script>
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
+  import Project from "$lib/projects.svelte"
 </script>
 
 <article class="px-8 py-8 md:pt-32 md:px-32">
@@ -17,11 +18,11 @@
     />
   </div>
 
-  <h1 class="font-bold text-4xl sm:text-6xl leading-none mb-6">
+  <h1 class="font-black text-4xl sm:text-6xl leading-none mb-6">
     Chrisando E. <br /> Pramudhita
   </h1>
 
-  <p class="sm:text-xl max-w-lg text-secondary">
+  <p class="sm:text-xl max-w-lg text-default-800">
     Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help
     people build fast and beautiful digital experiences.
   </p>
@@ -106,12 +107,41 @@
 
 <article class="px-8 md:px-32 mb-32">
   <h2 class="font-bold text-4xl mb-4 sm:mb-6">Projects</h2>
-  <p class="text-gray-400">Some stuffs I've worked on in the last few years.</p>
+  <p class="text-default-800">Some stuffs I've worked on</p>
 
-  <section class="flex">
-    <article class="rounded-xl p-8">Obserfy</article>
-    <article class="rounded-xl p-8">Joyful Montessori</article>
-    <article class="rounded-xl p-8">Portal</article>
-    <article class="rounded-xl p-8">Atreus</article>
+  <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+    <Project
+      title="Obserfy"
+      description="Record keeping and parent communication tool for Montessori Schools."
+      saas
+      openSource
+    />
+    <Project
+      title="Atreus"
+      description="Automated asset discovery service and vulnerability scanning for bug bounty."
+      openSource
+    />
+    <Project
+      title="Joyful Marketing Site"
+      description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
+      marketing
+    />
+    <Project
+      title="Portal"
+      description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
+      app
+      openSourc
+    />
+    <Project
+      title="Sekitarmu"
+      description="A platform for discovering local small and medium businesses in a Community."
+      saas
+      openSource
+    />
+    <Project
+      title="Timetravelers.id"
+      description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
+      ecommerce
+    />
   </section>
 </article>

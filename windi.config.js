@@ -6,13 +6,18 @@ export default {
         sans: `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"`,
       },
       textColor: {
-        default: "#fff",
-        secondary: "#d0d0d0",
+        default: {
+          800: "#d0d0d0",
+          900: "#fff",
+        },
       },
       backgroundColor: {
-        default: "#1a1a1a",
+        default: {
+          800: "#1e1e1e",
+          900: "#181818",
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [require("windicss/plugin/aspect-ratio")],
 }
