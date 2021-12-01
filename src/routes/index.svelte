@@ -16,6 +16,16 @@
       href="https://twitter.com/_chrsep"
       icon="/icons/twitter.svg"
     />
+    <SocialLink
+      text="@chrsep"
+      href="https://stackoverflow.com/users/6656573/chrsep"
+      icon="/icons/stackoverflow.svg"
+    />
+    <SocialLink
+      text="Chrisando"
+      href="https://linkedin.com/in/chrsep"
+      icon="/icons/linkedin.svg"
+    />
   </div>
 
   <h1 class="font-black text-4xl sm:text-6xl leading-none mb-6">
@@ -106,8 +116,7 @@
 </article>
 
 <article class="px-8 md:px-32 mb-32">
-  <h2 class="font-bold text-4xl mb-4 sm:mb-6">Projects</h2>
-  <p class="text-default-800">Some stuffs I've worked on</p>
+  <h2 class="font-bold text-4xl">Projects</h2>
 
   <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
     <Project
@@ -122,7 +131,7 @@
       openSource
     />
     <Project
-      title="Joyful Marketing Site"
+      title="Joyful Montessori"
       description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
       marketing
     />
