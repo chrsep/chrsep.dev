@@ -10,7 +10,6 @@
       text="@chrsep"
       href="https://github.com/chrsep"
       icon="/icons/github.svg"
-      class="!font-base !opacity-80 font-bold"
     />
     <SocialLink
       text="@_chrsep"
