@@ -4,17 +4,12 @@
   import Project from "$lib/projects.svelte"
 </script>
 
-<article class="px-8 py-8 md:pt-32 md:px-32">
-  <div class="flex mb-6">
+<article class="px-8 pb-8 pt-16 sm:pt-32 md:px-32">
+  <div class="flex mb-6 gap-4">
     <SocialLink
       text="@chrsep"
       href="https://github.com/chrsep"
       icon="/icons/github.svg"
-    />
-    <SocialLink
-      text="@_chrsep"
-      href="https://twitter.com/_chrsep"
-      icon="/icons/twitter.svg"
     />
     <SocialLink
       text="@chrsep"
@@ -25,6 +20,12 @@
       text="Chrisando"
       href="https://linkedin.com/in/chrsep"
       icon="/icons/linkedin.svg"
+    />
+    <SocialLink
+      text="@_chrsep"
+      href="https://twitter.com/_chrsep"
+      icon="/icons/twitter.svg"
+      class="hidden sm:flex"
     />
   </div>
 
@@ -116,9 +117,9 @@
 </article>
 
 <article class="px-8 md:px-32 mb-32">
-  <h2 class="font-bold text-4xl">Projects</h2>
+  <h2 class="font-bold text-4xl mb-8">Projects</h2>
 
-  <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+  <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8">
     <Project
       title="Obserfy"
       description="Record keeping and parent communication tool for Montessori Schools."

@@ -16,7 +16,7 @@
   export let app: boolean
 </script>
 
-<article class="rounded-2xl w-full my-8">
+<article class="rounded-2xl w-full">
   <div class="aspect-w-2 aspect-h-1 bg-red-200 mb-6 rounded-xl" />
 
   <ul class="flex flex-wrap mb-4 gap-2">
@@ -40,7 +40,7 @@
   <h3 class="mb-1 text-lg font-bold">{title}</h3>
   <p class="text-default-800 max-w-md">{description}</p>
 
-  <ul class="flex gap-8 mt-4">
+  <ul class="flex gap-x-4 mt-4">
     {#if githubLink}
       <ProjectLink name="GitHub" link={githubLink} icon="/icons/github.svg" />
     {/if}
