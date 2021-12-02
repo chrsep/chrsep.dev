@@ -10,6 +10,7 @@
       text="@chrsep"
       href="https://github.com/chrsep"
       icon="/icons/github.svg"
+      class="!font-base !opacity-80 font-bold"
     />
     <SocialLink
       text="@_chrsep"
@@ -124,33 +125,42 @@
       description="Record keeping and parent communication tool for Montessori Schools."
       saas
       openSource
+      githubLink="https://github.com/obserfy/obserfy"
+      webLink="https://obserfy.com"
     />
     <Project
       title="Atreus"
       description="Automated asset discovery service and vulnerability scanning for bug bounty."
       openSource
+      githubLink="https://github.com/chrsep/atreus"
     />
     <Project
       title="Joyful Montessori"
       description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
       marketing
+      webLink="https://www.joyfulmontessori.id"
     />
     <Project
       title="Portal"
       description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
       app
-      openSourc
+      openSource
+      githubLink="https://github.com/chrsep/Kingfish"
+      googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
     />
     <Project
       title="Sekitarmu"
       description="A platform for discovering local small and medium businesses in a Community."
       saas
       openSource
+      webLink="https://www.sekitarmu.id"
+      githubLink="https://github.com/chrsep/grayson"
     />
     <Project
-      title="Timetravelers.id"
+      title="Timetravelers"
       description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
       ecommerce
+      webLink="https://timetravelers.id"
     />
   </section>
 </article>

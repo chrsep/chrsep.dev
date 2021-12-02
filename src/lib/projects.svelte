@@ -1,8 +1,13 @@
 <script lang="ts">
   import ProjectTag from "$lib/project-tag.svelte"
+  import ProjectLink from "$lib/project-link.svelte"
 
   export let title: string
   export let description: string
+
+  export let githubLink: string
+  export let webLink: string
+  export let googlePlayLink: string
 
   export let saas: boolean
   export let ecommerce: boolean
@@ -34,4 +39,16 @@
 
   <h3 class="mb-1 text-lg font-bold">{title}</h3>
   <p class="text-default-800 max-w-md">{description}</p>
+
+  <ul class="flex gap-8 mt-4">
+    {#if githubLink}
+      <ProjectLink name="GitHub" link={githubLink} icon="/icons/github.svg" />
+    {/if}
+    {#if webLink}
+      <ProjectLink name="Web" link={webLink} icon="/icons/globe.svg" />
+    {/if}
+    {#if googlePlayLink}
+      <ProjectLink name="Google Play" link={googlePlayLink} />
+    {/if}
+  </ul>
 </article>
