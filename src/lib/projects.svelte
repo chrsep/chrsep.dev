@@ -25,19 +25,22 @@
 
   <ul class="flex flex-wrap mb-4 gap-2">
     {#if saas}
-      <ProjectTag name="SaaS" bgColor="bg-red-700" />
+      <ProjectTag name="SaaS" bgColor="bg-red-50 text-red-900" />
     {/if}
     {#if ecommerce}
-      <ProjectTag name="E-commerce" bgColor="bg-green-800" />
+      <ProjectTag name="E-commerce" bgColor="bg-green-50 text-green-900" />
     {/if}
     {#if marketing}
-      <ProjectTag name="Marketing Site" bgColor="bg-yellow-300 !text-black" />
+      <ProjectTag
+        name="Marketing Site"
+        bgColor="bg-yellow-50 !text-yellow-900"
+      />
     {/if}
     {#if openSource}
-      <ProjectTag name="Open Source" bgColor="bg-blue-700" />
+      <ProjectTag name="Open Source" bgColor="bg-blue-50 text-blue-900" />
     {/if}
     {#if app}
-      <ProjectTag name="App" bgColor="bg-teal-800" />
+      <ProjectTag name="App" bgColor="bg-teal-50 text-teal-900" />
     {/if}
   </ul>
 
