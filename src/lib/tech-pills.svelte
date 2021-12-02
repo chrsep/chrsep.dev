@@ -13,6 +13,7 @@
     href={web}
     class="border border-white rounded-lg text-xs sm:px-4 px-3 sm:py-3 py-2 border-opacity-20 mr-2 hover:ring-2 {ringHoverClass} transition flex items-center group"
     target="_blank"
+    rel="noreferrer"
   >
     <Icon
       --icon-src="url('{icon}')"
