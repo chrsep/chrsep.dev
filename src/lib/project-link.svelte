@@ -6,7 +6,7 @@
 </script>
 
 <li class="opacity-60 hover:opacity-100 text-sm transition-opacity font-bold">
-  <a href={link} class="flex">
+  <a href={link} class="flex items-center">
     <Icon --icon-src="url('/icons/link.svg')" class="mr-1" />{name}
   </a>
 </li>

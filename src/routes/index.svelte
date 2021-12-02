@@ -4,7 +4,7 @@
   import Project from "$lib/projects.svelte"
 </script>
 
-<article class="px-8 pb-8 pt-16 sm:pt-32 md:px-32">
+<article class="px-6 sm:px-8 pb-8 pt-16 sm:pt-32 md:px-32">
   <div class="flex mb-6 gap-4">
     <SocialLink
       text="@chrsep"
@@ -39,7 +39,7 @@
   </p>
 </article>
 
-<article class="px-8 md:px-32 mb-32">
+<article class="px-6 sm:px-8 md:px-32 mb-32">
   <h2 class="font-bold text-xl mb-4 sm:mb-6">Techs I work with</h2>
 
   <ul class="flex flex-wrap max-w-2xl">
@@ -116,10 +116,12 @@
   </ul>
 </article>
 
-<article class="px-8 md:px-32 mb-32">
+<article class="px-6 sm:px-8 md:px-32 mb-32">
   <h2 class="font-bold text-4xl mb-8">Projects</h2>
 
-  <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8">
+  <section
+    class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"
+  >
     <Project
       title="Obserfy"
       description="Record keeping and parent communication tool for Montessori Schools."
@@ -127,26 +129,14 @@
       openSource
       githubLink="https://github.com/obserfy/obserfy"
       webLink="https://obserfy.com"
-    />
-    <Project
-      title="Atreus"
-      description="Automated asset discovery service and vulnerability scanning for bug bounty."
-      openSource
-      githubLink="https://github.com/chrsep/atreus"
+      heroBg="bg-gradient-to-br from-teal-500 to-green-400"
     />
     <Project
       title="Joyful Montessori"
       description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
       marketing
       webLink="https://www.joyfulmontessori.id"
-    />
-    <Project
-      title="Portal"
-      description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
-      app
-      openSource
-      githubLink="https://github.com/chrsep/Kingfish"
-      googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
+      heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
     />
     <Project
       title="Sekitarmu"
@@ -155,12 +145,30 @@
       openSource
       webLink="https://www.sekitarmu.id"
       githubLink="https://github.com/chrsep/grayson"
+      heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
+    />
+    <Project
+      title="Atreus"
+      description="Automated asset discovery service built for bug bounty."
+      openSource
+      githubLink="https://github.com/chrsep/atreus"
+      heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
+    />
+    <Project
+      title="Portal"
+      description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
+      app
+      openSource
+      githubLink="https://github.com/chrsep/Kingfish"
+      googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
+      heroBg="bg-gradient-to-br from-gray-800 to-gray-700"
     />
     <Project
       title="Timetravelers"
       description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
       ecommerce
       webLink="https://timetravelers.id"
+      heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"
     />
   </section>
 </article>

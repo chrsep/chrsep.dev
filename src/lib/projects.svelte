@@ -14,10 +14,14 @@
   export let marketing: boolean
   export let openSource: boolean
   export let app: boolean
+
+  export let heroBg: string
 </script>
 
-<article class="rounded-2xl w-full">
-  <div class="aspect-w-2 aspect-h-1 bg-red-200 mb-6 rounded-xl" />
+<article>
+  <div
+    class="aspect-w-2 aspect-h-1 bg-red-200 mb-6 rounded-xl sm:rounded-2xl xl:rounded-3xl shadow-lg {heroBg}"
+  />
 
   <ul class="flex flex-wrap mb-4 gap-2">
     {#if saas}
