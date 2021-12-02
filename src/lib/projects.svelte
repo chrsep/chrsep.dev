@@ -20,7 +20,7 @@
 
 <article>
   <div
-    class="aspect-w-2 aspect-h-1 bg-red-200 mb-6 rounded-xl sm:rounded-2xl xl:rounded-3xl shadow-lg {heroBg}"
+    class="aspect-w-1.5 aspect-h-1 bg-red-200 mb-6 rounded-xl sm:rounded-2xl xl:rounded-3xl shadow-lg {heroBg}"
   />
 
   <ul class="flex flex-wrap mb-4 gap-2">
