@@ -14,6 +14,6 @@
   target="_blank"
   rel="noreferrer"
 >
-  <img src={icon} class="w-4 h-4 mr-2 object-cover" alt="" />
+  <img src={icon} class="w-4 h-4 mr-2 object-cover" alt="" width="16px" height="16px"/>
   {text}
 </a>

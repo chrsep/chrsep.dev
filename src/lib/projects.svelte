@@ -18,9 +18,9 @@
   export let heroBg: string
 </script>
 
-<article>
+<article class="mb-4 md:mb-8">
   <div
-    class="aspect-w-1.5 aspect-h-1 bg-red-200 mb-6 rounded-xl sm:rounded-2xl xl:rounded-3xl shadow-lg {heroBg}"
+    class="aspect-w-16 aspect-h-9 bg-red-200 mb-6 rounded-xl sm:rounded-2xl xl:rounded-3xl shadow-lg {heroBg}"
   />
 
   <ul class="flex flex-wrap mb-4 gap-2">
@@ -28,16 +28,16 @@
       <ProjectTag name="SaaS" bgColor="bg-red-700" />
     {/if}
     {#if ecommerce}
-      <ProjectTag name="E-commerce" bgColor="bg-green-700" />
+      <ProjectTag name="E-commerce" bgColor="bg-green-800" />
     {/if}
     {#if marketing}
-      <ProjectTag name="Marketing Site" bgColor="bg-orange-700" />
+      <ProjectTag name="Marketing Site" bgColor="bg-yellow-300 !text-black" />
     {/if}
     {#if openSource}
       <ProjectTag name="Open Source" bgColor="bg-blue-700" />
     {/if}
     {#if app}
-      <ProjectTag name="App" bgColor="bg-teal-700" />
+      <ProjectTag name="App" bgColor="bg-teal-800" />
     {/if}
   </ul>
 
