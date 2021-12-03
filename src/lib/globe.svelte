@@ -11,6 +11,7 @@
     console.log(canvas)
     if (!canvas.hidden) {
       globe = createGlobe(canvas, {
+        devicePixelRatio: window.devicePixelRatio,
         width: 1400,
         height: 1400,
         phi: 0,
