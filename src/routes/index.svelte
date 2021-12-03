@@ -2,7 +2,8 @@
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
-  import Globe from "$lib/globe.svelte"
+
+  const globe = import("$lib/globe.svelte")
 </script>
 
 <div class="relative max-w-screen overflow-hidden">
@@ -118,7 +119,9 @@
     </ul>
   </article>
 
-  <Globe class="absolute -z-0 -bottom-110 -right-110 opacity-70 hidden lg:block" />
+  {#await globe then module}
+    <svelte:component this={module.default} />
+  {/await}
 </div>
 
 <article

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte"
   import createGlobe from "cobe"
+  import { fade } from "svelte/transition"
 
   let phi = 2
   let canvas: HTMLCanvasElement
@@ -19,7 +20,7 @@
         mapSamples: 20000,
         mapBrightness: 3,
         baseColor: [0.3, 0.3, 0.3],
-        markerColor: [0, 0.4, 1],
+        markerColor: [0, 0.2, 1],
         glowColor: [1, 1, 1],
         markers: [{ location: [-6.2922, 106.6655], size: 0.04 }],
         onRender: (state) => {
@@ -43,4 +44,10 @@
   export { className as class }
 </script>
 
-<canvas class={className} bind:this={canvas} width="1400" height="1400" />
+<canvas
+  transition:fade={{ duration: 2000 }}
+  bind:this={canvas}
+  width="1400"
+  height="1400"
+  class="absolute -z-0 -bottom-110 -right-110 opacity-40 hidden lg:block"
+/>
