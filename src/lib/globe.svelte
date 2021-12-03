@@ -14,7 +14,7 @@
         width: 1400,
         height: 1400,
         phi: 0,
-        theta: -0.4,
+        theta: -0.5,
         dark: true,
         diffuse: 1.2,
         mapSamples: 26000,
@@ -49,5 +49,5 @@
   bind:this={canvas}
   width="1400"
   height="1400"
-  class="absolute -z-0 -bottom-110 -right-110 opacity-40 hidden lg:block"
+  class="absolute -z-0 -bottom-[110%] left-0 lg:-bottom-110 lg:left-auto lg:-right-110 opacity-40 "
 />
