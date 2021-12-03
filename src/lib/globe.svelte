@@ -49,5 +49,5 @@
   bind:this={canvas}
   width="1400"
   height="1400"
-  class="absolute -z-0 -bottom-110 -right-110 opacity-40 hidden lg:block bg-default-900"
+  class="absolute -z-0 -bottom-110 -right-110 opacity-40 hidden lg:block"
 />

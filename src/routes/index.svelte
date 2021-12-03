@@ -34,7 +34,7 @@
       />
     </div>
 
-    <h1 class="font-black text-4xl sm:text-6xl leading-none mb-6">
+    <h1 class="font-black text-5xl sm:text-6xl leading-none mb-6">
       Chrisando E. <br /> Pramudhita
     </h1>
 
