@@ -8,8 +8,7 @@
   let globe: any
 
   onMount(async () => {
-    console.log(canvas)
-    if (!canvas.hidden) {
+    if (window.getComputedStyle(canvas, null).display !== "none") {
       globe = createGlobe(canvas, {
         devicePixelRatio: window.devicePixelRatio,
         width: 1400,
