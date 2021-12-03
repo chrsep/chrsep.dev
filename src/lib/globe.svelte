@@ -14,20 +14,20 @@
         width: 1400,
         height: 1400,
         phi: 0,
-        theta: -0.3,
+        theta: -0.4,
         dark: true,
         diffuse: 1.2,
-        mapSamples: 20000,
-        mapBrightness: 3,
+        mapSamples: 26000,
+        mapBrightness: 4,
         baseColor: [0.3, 0.3, 0.3],
-        markerColor: [0, 0.2, 1],
+        markerColor: [1, 0.2, 0.2],
         glowColor: [1, 1, 1],
-        markers: [{ location: [-6.2922, 106.6655], size: 0.04 }],
+        markers: [{ location: [-6.2922, 106.6655], size: 0.05 }],
         onRender: (state) => {
           // Called on every animation frame.
           // `state` will be an empty object, return updated params.
           state.phi = phi
-          phi += 0.0008
+          phi += 0.0006
         },
         onLoad: () => {
           console.log("loaded")
