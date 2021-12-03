@@ -1,9 +1,11 @@
-<script>
+<script lang="ts" context="module">
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
 
   const globe = import("$lib/globe.svelte")
+
+  export const prerender = true
 </script>
 
 <div class="relative max-w-screen overflow-hidden">
