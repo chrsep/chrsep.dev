@@ -45,9 +45,9 @@
 </script>
 
 <canvas
-  transition:fade={{ duration: 1000 }}
+  transition:fade={{ duration: 3000 }}
   bind:this={canvas}
   width="1400"
   height="1400"
-  class="absolute -z-0 -bottom-110 -right-110 opacity-40 hidden lg:block"
+  class="absolute -z-0 -bottom-110 -right-110 opacity-40 hidden lg:block bg-default-900"
 />
