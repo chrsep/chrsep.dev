@@ -34,7 +34,7 @@
   </h1>
 
   <p class="sm:text-xl max-w-lg text-default-800">
-    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help build
+    Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help businesses build
     fast and beautiful digital experiences.
   </p>
 </article>
@@ -116,7 +116,9 @@
   </ul>
 </article>
 
-<article class="px-6 sm:px-8 md:px-32 mb-32">
+<article
+  class="px-6 sm:px-8 md:px-32 mb-32 py-32 bg-default-900 border-t border-b border-[#ffffff0D]"
+>
   <h2 class="font-bold text-4xl mb-8">Projects</h2>
 
   <section
