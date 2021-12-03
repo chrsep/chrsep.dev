@@ -40,9 +40,6 @@
   onDestroy(() => {
     globe?.destroy()
   })
-
-  let className = ""
-  export { className as class }
 </script>
 
 <canvas
