@@ -50,5 +50,5 @@
   bind:this={canvas}
   width="1400"
   height="1400"
-  class="absolute -z-0 -bottom-[110%] left-0 lg:-bottom-110 lg:left-auto lg:-right-110 opacity-40 "
+  class="absolute -z-0 -bottom-[110%] left-0 xl:-bottom-110 xl:left-auto xl:-right-110 opacity-40 "
 />
