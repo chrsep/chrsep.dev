@@ -153,7 +153,7 @@
     <Project
       title="Sekitarmu"
       description="A platform for discovering local small and medium businesses in a Community."
-      saas
+      ecommerce
       openSource
       webLink="https://www.sekitarmu.id"
       githubLink="https://github.com/chrsep/grayson"
