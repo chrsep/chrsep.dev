@@ -1,0 +1,11 @@
+<script lang="ts">
+  import Icon from "$lib/icon.svelte"
+  export let link: string
+  export let name: string
+</script>
+
+<li class="opacity-60 hover:opacity-100 text-sm transition-opacity font-bold">
+  <a href={link} class="flex items-center" rel="noreferrer" target="_blank">
+    <Icon --icon-src="url('/icons/link.svg')" class="mr-1" />{name}
+  </a>
+</li>
