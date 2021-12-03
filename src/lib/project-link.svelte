@@ -2,7 +2,6 @@
   import Icon from "$lib/icon.svelte"
   export let link: string
   export let name: string
-  export let icon: string
 </script>
 
 <li class="opacity-60 hover:opacity-100 text-sm transition-opacity font-bold">

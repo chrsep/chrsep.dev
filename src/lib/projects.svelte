@@ -5,15 +5,15 @@
   export let title: string
   export let description: string
 
-  export let githubLink: string
-  export let webLink: string
-  export let googlePlayLink: string
+  export let githubLink: string = null
+  export let webLink: string = null
+  export let googlePlayLink: string = null
 
-  export let saas: boolean
-  export let ecommerce: boolean
-  export let marketing: boolean
-  export let openSource: boolean
-  export let app: boolean
+  export let saas: boolean = false
+  export let ecommerce: boolean = false
+  export let marketing: boolean = false
+  export let openSource: boolean = false
+  export let app: boolean = false
 
   export let heroBg: string
 </script>
@@ -49,10 +49,10 @@
 
   <ul class="flex gap-x-4 mt-4">
     {#if githubLink}
-      <ProjectLink name="GitHub" link={githubLink} icon="/icons/github.svg" />
+      <ProjectLink name="GitHub" link={githubLink} />
     {/if}
     {#if webLink}
-      <ProjectLink name="Web" link={webLink} icon="/icons/globe.svg" />
+      <ProjectLink name="Web" link={webLink} />
     {/if}
     {#if googlePlayLink}
       <ProjectLink name="Google Play" link={googlePlayLink} />
