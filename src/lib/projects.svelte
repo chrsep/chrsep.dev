@@ -58,7 +58,7 @@
 
   <ul class="flex items-center gap-x-4 mt-4">
     {#if lighthouse}
-      <li class="relative w-[32px] h-[32px]">
+      <li class="relative w-[40px] h-[40px]">
         <a href="#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +66,8 @@
             stroke-width="6"
             class="overflow-visible"
             fill="none"
-            height="32"
-            width="32"
+            height="40"
+            width="40"
           >
             <circle
               cx="32"
@@ -94,7 +94,7 @@
           <p
             class="flex items-center justify-center absolute inset-0 text-xs text-green-50 shadow-sm"
           >
-            93
+            {lighthouse.score}
           </p>
         </a>
       </li>
