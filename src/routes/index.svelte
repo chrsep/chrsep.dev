@@ -2,6 +2,7 @@
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
+  import Button from "$lib/button.svelte"
 
   const globe = import("$lib/globe.svelte")
 
@@ -41,17 +42,23 @@
     </h1>
 
     <p class="sm:text-xl max-w-lg text-default-800">
-      Hi there, I'm a fullstack software developer from Indonesia 🇮🇩. I help
-      businesses build fast and beautiful digital experiences.
+      👋 Hi there, I'm a fullstack software developer from Indonesia 🇮🇩, helping
+      businesses to build fast and beautiful digital experiences.
     </p>
+
+    <a href="mailto:hi@chrsep.dev">
+      <Button variant="text" class="mt-8 p">Let's Work Together <span class="ml-1">-></span></Button>
+    </a>
   </article>
 
   <article
-    class="px-6 sm:px-8 md:px-32 pb-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
-    <h2 class="font-bold text-xl mb-4 sm:mb-6">Techs I work with</h2>
+    <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
+      Some techs I work with
+    </h2>
 
-    <ul class="flex flex-wrap max-w-2xl">
+    <ul class="flex flex-wrap max-w-2xl gap-2">
       <TechPills
         text="Next"
         web="https://nextjs.org"
@@ -132,9 +139,9 @@
 
 <div class="border-t border-b border-[#ffffff0D]">
   <article
-    class="px-6 sm:px-8 md:px-32 mb-32 py-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 md:px-32 mb-32 py-16 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <h2 class="font-bold text-4xl mb-8">Some things I've built...</h2>
+    <h2 class="font-bold text-4xl mb-8">Some things I've built</h2>
 
     <section
       class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"

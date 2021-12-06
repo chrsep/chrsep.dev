@@ -23,6 +23,12 @@ export default {
           900: "#181818",
         },
       },
+      ringOffsetColor: {
+        default: {
+          800: "#1e1e1e",
+          900: "#181818",
+        },
+      },
     },
   },
   plugins: [require("windicss/plugin/aspect-ratio")],
