@@ -9,7 +9,9 @@
 </script>
 
 <div class="relative max-w-screen overflow-hidden">
-  <article class="px-6 sm:px-8 pb-8 pt-16 sm:pt-32 md:px-32 relative z-1 bg-gradient-to-r from-default-900">
+  <article
+    class="px-6 sm:px-8 pb-8 pt-16 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900"
+  >
     <div class="flex mb-6 gap-4">
       <SocialLink
         text="@chrsep"
@@ -44,7 +46,9 @@
     </p>
   </article>
 
-  <article class="px-6 sm:px-8 md:px-32 pb-32 relative z-1 bg-gradient-to-r from-default-900">
+  <article
+    class="px-6 sm:px-8 md:px-32 pb-32 relative z-1 xl:bg-gradient-to-r from-default-900"
+  >
     <h2 class="font-bold text-xl mb-4 sm:mb-6">Techs I work with</h2>
 
     <ul class="flex flex-wrap max-w-2xl">

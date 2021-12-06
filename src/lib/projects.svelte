@@ -15,6 +15,11 @@
   export let openSource: boolean = false
   export let app: boolean = false
 
+  export let lightHouse: {
+    score: number
+    link: string
+  } = null
+
   export let heroBg: string
 </script>
 
@@ -47,7 +52,49 @@
   <h3 class="mb-1 text-lg font-bold">{title}</h3>
   <p class="text-default-800 max-w-md">{description}</p>
 
-  <ul class="flex gap-x-4 mt-4">
+  <ul class="flex items-center gap-x-4 mt-4">
+    {#if lightHouse}
+      <li class="relative w-[32px] h-[32px]">
+        <a href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            stroke-width="6"
+            class="overflow-visible"
+            fill="none"
+            height="32"
+            width="32"
+          >
+            <circle
+              cx="32"
+              cy="32"
+              r="29"
+              fill="none"
+              stroke="currentColor"
+              transform="rotate(-90 32 32)"
+            />
+            <circle
+              cx="32"
+              cy="32"
+              r="29"
+              fill="none"
+              stroke="#34D399"
+              stroke-dasharray="182.212373908208 182.212373908208"
+              stroke-dashoffset="29.153979825313286"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              transform="rotate(-90 32 32)"
+              class="filter drop-shadow-sm"
+            />
+          </svg>
+          <p
+            class="flex items-center justify-center absolute inset-0 text-xs text-green-50 shadow-sm"
+          >
+            93
+          </p>
+        </a>
+      </li>
+    {/if}
     {#if githubLink}
       <ProjectLink name="GitHub" link={githubLink} />
     {/if}
