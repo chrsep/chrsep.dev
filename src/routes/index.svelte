@@ -57,7 +57,7 @@
     class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
     <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
-      Some techs I work with
+      Techs I work with
     </h2>
 
     <ul class="flex flex-wrap max-w-2xl gap-2">
@@ -143,7 +143,9 @@
   <article
     class="px-6 sm:px-8 md:px-32 mb-32 py-16 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <h2 class="font-bold text-4xl mb-8">Some things I've built</h2>
+    <h2 class="font-bold text-3xl mb-8 leading-tight">
+      🛠️ Some things I've worked on
+    </h2>
 
     <section
       class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"
