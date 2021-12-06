@@ -47,7 +47,7 @@
     </p>
 
     <a href="mailto:hi@chrsep.dev">
-      <Button variant="text" class="mt-8 p">Let's Work Together <span class="ml-1">-></span></Button>
+      <Button variant="text" class="w-full sm:w-auto mt-8 p">Let's Work Together <span class="ml-1">-></span></Button>
     </a>
   </article>
 
