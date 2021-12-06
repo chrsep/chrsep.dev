@@ -8,9 +8,9 @@
   export const prerender = true
 </script>
 
-<div class="relative max-w-screen overflow-hidden">
+<div class="relative overflow-hidden ">
   <article
-    class="px-6 sm:px-8 pb-8 pt-16 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900"
+    class="px-6 sm:px-8 pb-8 pt-16 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
     <div class="flex mb-6 gap-4">
       <SocialLink
@@ -47,7 +47,7 @@
   </article>
 
   <article
-    class="px-6 sm:px-8 md:px-32 pb-32 relative z-1 xl:bg-gradient-to-r from-default-900"
+    class="px-6 sm:px-8 md:px-32 pb-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
     <h2 class="font-bold text-xl mb-4 sm:mb-6">Techs I work with</h2>
 
@@ -88,7 +88,7 @@
         iconGroupHoverClass="group-hover:bg-[#38B2AC]"
       />
       <TechPills
-        text="Go"
+        text="Golang"
         web="https://golang.org"
         icon="/icons/go.svg"
         ringHoverClass="hover:ring-[#00ADD8]"
@@ -130,61 +130,76 @@
   {/await}
 </div>
 
-<article
-  class="px-6 sm:px-8 md:px-32 mb-32 py-32 bg-default-900 border-t border-b border-[#ffffff0D] z-1 relative"
->
-  <h2 class="font-bold text-4xl mb-8">Projects</h2>
-
-  <section
-    class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"
+<div class="border-t border-b border-[#ffffff0D]">
+  <article
+    class="px-6 sm:px-8 md:px-32 mb-32 py-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <Project
-      title="Obserfy"
-      description="Record keeping and parent communication tool for Montessori Schools."
-      saas
-      openSource
-      githubLink="https://github.com/obserfy/obserfy"
-      webLink="https://obserfy.com"
-      heroBg="bg-gradient-to-br from-teal-500 to-green-400"
-    />
-    <Project
-      title="Joyful Montessori"
-      description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
-      marketing
-      webLink="https://www.joyfulmontessori.id"
-      heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
-    />
-    <Project
-      title="Sekitarmu"
-      description="A platform for discovering local small and medium businesses in a Community."
-      ecommerce
-      openSource
-      webLink="https://www.sekitarmu.id"
-      githubLink="https://github.com/chrsep/grayson"
-      heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
-    />
-    <Project
-      title="Atreus"
-      description="Automated asset discovery service built for bug bounty."
-      openSource
-      githubLink="https://github.com/chrsep/atreus"
-      heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
-    />
-    <Project
-      title="Portal"
-      description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
-      app
-      openSource
-      githubLink="https://github.com/chrsep/Kingfish"
-      googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
-      heroBg="bg-gradient-to-br from-gray-800 to-gray-700"
-    />
-    <Project
-      title="Timetravelers"
-      description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
-      ecommerce
-      webLink="https://timetravelers.id"
-      heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"
-    />
-  </section>
-</article>
+    <h2 class="font-bold text-4xl mb-8">Some things I've built...</h2>
+
+    <section
+      class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"
+    >
+      <Project
+        title="Obserfy"
+        description="Record keeping and parent communication tool for Montessori Schools."
+        saas
+        openSource
+        githubLink="https://github.com/obserfy/obserfy"
+        webLink="https://obserfy.com"
+        heroBg="bg-gradient-to-br from-teal-500 to-green-400"
+        lighthouse={{
+          score: 95,
+          link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
+        }}
+      />
+      <Project
+        title="Joyful Montessori"
+        description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
+        marketing
+        webLink="https://www.joyfulmontessori.id"
+        heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
+        lighthouse={{
+          score: 100,
+          link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
+        }}
+      />
+      <Project
+        title="Sekitarmu"
+        description="A platform for discovering local small and medium businesses in a Community."
+        ecommerce
+        openSource
+        webLink="https://www.sekitarmu.id"
+        githubLink="https://github.com/chrsep/grayson"
+        heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
+        lighthouse={{
+          score: 92,
+          link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
+        }}
+      />
+      <Project
+        title="Atreus"
+        description="Automated asset discovery service built for bug bounty."
+        openSource
+        webApp
+        githubLink="https://github.com/chrsep/atreus"
+        heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
+      />
+      <Project
+        title="Portal"
+        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
+        android
+        openSource
+        githubLink="https://github.com/chrsep/Kingfish"
+        googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
+        heroBg="bg-gradient-to-br from-gray-800 to-gray-700"
+      />
+      <Project
+        title="Timetravelers"
+        description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
+        ecommerce
+        webLink="https://timetravelers.id"
+        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"
+      />
+    </section>
+  </article>
+</div>

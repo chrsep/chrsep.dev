@@ -13,9 +13,10 @@
   export let ecommerce: boolean = false
   export let marketing: boolean = false
   export let openSource: boolean = false
-  export let app: boolean = false
+  export let android: boolean = false
+  export let webApp: boolean = false
 
-  export let lightHouse: {
+  export let lighthouse: {
     score: number
     link: string
   } = null
@@ -44,8 +45,11 @@
     {#if openSource}
       <ProjectTag name="Open Source" bgColor="bg-blue-50 text-blue-900" />
     {/if}
-    {#if app}
-      <ProjectTag name="App" bgColor="bg-teal-50 text-teal-900" />
+    {#if android}
+      <ProjectTag name="Android" bgColor="bg-teal-50 text-teal-900" />
+    {/if}
+    {#if webApp}
+      <ProjectTag name="Web Application" bgColor="bg-teal-50 text-teal-900" />
     {/if}
   </ul>
 
@@ -53,7 +57,7 @@
   <p class="text-default-800 max-w-md">{description}</p>
 
   <ul class="flex items-center gap-x-4 mt-4">
-    {#if lightHouse}
+    {#if lighthouse}
       <li class="relative w-[32px] h-[32px]">
         <a href="#">
           <svg

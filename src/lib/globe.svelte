@@ -45,6 +45,6 @@
   transition:fade={{ duration: 3000 }}
   bind:this={canvas}
   width="1400"
-  height="1400"
+  height="1800"
   class="absolute -z-0 -bottom-[110%] left-0 xl:-bottom-110 xl:left-auto xl:-right-110 hidden xl:block"
 />
