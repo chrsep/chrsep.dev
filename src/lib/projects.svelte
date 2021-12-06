@@ -60,39 +60,8 @@
     {#if lighthouse}
       <li class="relative w-[40px] h-[40px]">
         <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            stroke-width="6"
-            class="overflow-visible"
-            fill="none"
-            height="40"
-            width="40"
-          >
-            <circle
-              cx="32"
-              cy="32"
-              r="29"
-              fill="none"
-              stroke="currentColor"
-              transform="rotate(-90 32 32)"
-            />
-            <circle
-              cx="32"
-              cy="32"
-              r="29"
-              fill="none"
-              stroke="#34D399"
-              stroke-dasharray="182.212373908208 182.212373908208"
-              stroke-dashoffset="29.153979825313286"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              transform="rotate(-90 32 32)"
-              class="filter drop-shadow-sm"
-            />
-          </svg>
           <p
-            class="flex items-center justify-center absolute inset-0 text-xs text-green-50 shadow-sm"
+            class="flex items-center justify-center absolute inset-0 text-xs text-green-50 shadow-sm border-4 border-[#34D399] rounded-full"
           >
             {lighthouse.score}
           </p>
