@@ -1,4 +1,6 @@
 <script lang="ts" context="module">
+  import { fade } from "svelte/transition"
+
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
@@ -25,7 +27,7 @@
   export const prerender = true
 </script>
 
-<div class="relative overflow-hidden">
+<div class="relative overflow-hidden" in:fade>
   <article
     class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
@@ -83,7 +85,7 @@
         <Button class="w-full sm:w-auto group">
           Let's work together!
           <span
-            class="text-xl transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
           >
             ->
           </span>
@@ -94,7 +96,7 @@
         <Button variant="secondary" class="w-full sm:w-auto group">
           Learn more about me
           <span
-            class="text-2xl transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+            class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
           >
             👨‍💻
           </span>

@@ -22,5 +22,5 @@
 </nav>
 
 <main class="text-default-900 min-h-screen">
-  <slot />
+  <slot  />
 </main>

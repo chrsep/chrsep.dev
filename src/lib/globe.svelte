@@ -37,7 +37,7 @@
 </script>
 
 <canvas
-  transition:fade={{ duration: 3000 }}
+  in:fade={{ duration: 2000, delay: 1000 }}
   bind:this={canvas}
   width="1400"
   height="1800"
