@@ -29,9 +29,6 @@
           state.phi = phi
           phi += 0.0006
         },
-        onLoad: () => {
-          console.log("loaded")
-        },
       })
     }
   })
@@ -48,3 +45,17 @@
   height="1800"
   class="absolute -z-0 -bottom-[110%] left-0 xl:-bottom-110 xl:left-auto xl:-right-110 hidden xl:block"
 />
+
+<p
+  class="text-sm absolute bottom-0 right-0 z-1 p-4 text-gray-500 hidden xl:block"
+>
+  Globe by
+  <a
+    href="https://github.com/shuding/cobe"
+    class="hover:text-white transition"
+    target="_blank"
+    rel="noreferrer"
+  >
+    shuding/cobe
+  </a>
+</p>
