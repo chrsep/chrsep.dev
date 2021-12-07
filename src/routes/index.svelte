@@ -27,7 +27,7 @@
 
 <div class="relative overflow-hidden">
   <article
-    class="px-6 sm:px-8 pb-12 pt-20 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-12 pt-24 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
     <div class="flex mb-6 gap-4">
       <SocialLink
@@ -36,6 +36,14 @@
         icon="/icons/github.svg"
       >
         <GithubIcon slot="icon" let:class={className} class={className} />
+      </SocialLink>
+
+      <SocialLink
+        text="Chrisando"
+        href="https://linkedin.com/in/chrsep"
+        icon="/icons/linkedin.svg"
+      >
+        <LinkedinIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
       <SocialLink
         text="@chrsep"
@@ -47,13 +55,6 @@
           let:class={className}
           class={className}
         />
-      </SocialLink>
-      <SocialLink
-        text="Chrisando"
-        href="https://linkedin.com/in/chrsep"
-        icon="/icons/linkedin.svg"
-      >
-        <LinkedinIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
       <SocialLink
         text="@_chrsep"
