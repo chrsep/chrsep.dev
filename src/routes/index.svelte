@@ -65,16 +65,15 @@
       </SocialLink>
     </div>
 
-    <h1 class="font-black text-5xl sm:text-6xl leading-none mb-6">
-      Chrisando E. <br /> Pramudhita
+    <h1 class="text-xl sm:text-2xl max-w-md">
+      <span class="font-bold text-default-900">👋 Hi there, I'm Chris!</span>
+      <span class="text-default-800">
+        I'm a fullstack software developer from Indonesia 🇮🇩. I help businesses
+        build fast and beautiful digital experiences.
+      </span>
     </h1>
 
-    <p class="sm:text-xl max-w-lg text-default-800">
-      👋 Hi there, I'm a fullstack software developer from Indonesia 🇮🇩, helping
-      businesses to build fast and beautiful digital experiences.
-    </p>
-
-    <a href="mailto:hi@chrsep.dev">
+    <a href="mailto:hi@chrsep.dev" class="inline-block w-full sm:w-auto ">
       <Button variant="text" class="w-full sm:w-auto mt-8 group">
         Let's Work Together
         <span
@@ -197,7 +196,7 @@
     class="px-6 sm:px-8 md:px-32 mb-32 py-16 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
     <h2 class="font-bold text-3xl mb-8 leading-tight">
-      🛠️ Some things I've worked on
+      <span class="mr-1">🛠</span>️ Some things I've worked on
     </h2>
 
     <section
