@@ -8,10 +8,10 @@
 
 <a
   {href}
-  class="text-sm flex items-center transition-opacity opacity-60 hover:opacity-100 {className}"
+  class="text-sm flex items-center transition-opacity opacity-40 font-medium hover:opacity-100 {className}"
   target="_blank"
   rel="noreferrer"
 >
-  <slot name="icon" class="w-4 h-4 mr-1 object-cover" width="16px"/>
+  <slot name="icon" class="w-4 h-4 mr-2 object-cover" width="16px" />
   {text}
 </a>

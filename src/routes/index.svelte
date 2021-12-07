@@ -27,7 +27,7 @@
 
 <div class="relative overflow-hidden">
   <article
-    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
     <div class="flex mb-6 gap-4">
       <SocialLink
@@ -67,10 +67,11 @@
     </div>
 
     <h1 class="text-xl sm:text-2xl max-w-md">
-      <span class="font-bold text-default-900">👋 Hi there, I'm Chris!</span>
-      <span class="text-default-800">
-        I'm a fullstack software developer from Indonesia 🇮🇩. I help businesses
-        build fast and beautiful digital experiences.
+      <span class="font-black text-default-900">👋 Hi there, I'm Chris!</span>
+      <span class="text-default-700">
+        I'm a fullstack software developer from 🇮🇩 Indonesia. I help businesses
+        build <b class="text-default-900">fast</b> and
+        <b class="text-default-900">beautiful</b> digital experiences.
       </span>
     </h1>
 
@@ -82,7 +83,7 @@
         <Button class="w-full sm:w-auto group">
           Let's work together!
           <span
-            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+            class="text-xl transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
           >
             ->
           </span>
@@ -90,15 +91,20 @@
       </a>
 
       <a href="/about" class="inline-block w-full sm:w-auto ">
-        <Button variant="secondary" class="w-full sm:w-auto">
+        <Button variant="secondary" class="w-full sm:w-auto group">
           Learn more about me
+          <span
+            class="text-2xl transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          >
+            👨‍💻
+          </span>
         </Button>
       </a>
     </div>
   </article>
 
   <article
-    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
   >
     <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
       Techs I work with

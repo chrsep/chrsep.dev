@@ -54,6 +54,6 @@
     target="_blank"
     rel="noreferrer"
   >
-    shuding/cobe
+    @shuding
   </a>
 </p>

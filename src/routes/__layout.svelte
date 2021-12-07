@@ -9,13 +9,13 @@
   <a href="/" class="font-bold mr-auto">@chrsep</a>
   <a
     href="/about"
-    class=" font-medium text-default-800 hover:text-default-900 transition-colors"
+    class=" font-medium text-default-700 hover:text-default-900 transition-colors"
   >
     About
   </a>
   <a
     href="/resume"
-    class="font-medium text-default-800 hover:text-default-900 transition-colors"
+    class="font-medium text-default-700 hover:text-default-900 transition-colors"
   >
     Resume
   </a>

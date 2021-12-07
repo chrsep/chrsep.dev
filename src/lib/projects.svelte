@@ -59,7 +59,7 @@
   <ul class="flex items-center gap-x-4 mt-4">
     {#if lighthouse}
       <li class="relative w-[36px] h-[36px]">
-        <a href={lighthouse.link}>
+        <a href={lighthouse.link} target="_blank" rel="noreferrer">
           <p
             class="flex items-center justify-center absolute inset-0 text-xs text-green-50 shadow-sm border-3 border-[#34D399] rounded-full"
           >

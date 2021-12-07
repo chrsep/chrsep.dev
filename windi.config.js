@@ -7,6 +7,7 @@ export default {
       },
       textColor: {
         default: {
+          700: "#bbbbbb",
           800: "#d0d0d0",
           900: "#fff",
         },
