@@ -75,8 +75,8 @@
     </p>
 
     <a href="mailto:hi@chrsep.dev">
-      <Button variant="text" class="w-full sm:w-auto mt-8">
-        Let's Work Together <span class="ml-3">-></span>
+      <Button variant="text" class="w-full sm:w-auto mt-8 group">
+        Let's Work Together <span class="transition-transform transform mx-3 group-hover:translate-x-2 ease-in-out duration-200">-></span>
       </Button>
     </a>
   </article>
