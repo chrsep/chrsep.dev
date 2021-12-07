@@ -75,7 +75,7 @@
 
     <a href="mailto:hi@chrsep.dev" class="inline-block w-full sm:w-auto ">
       <Button variant="text" class="w-full sm:w-auto mt-8 group">
-        Let's Work Together
+        Let's Work Together!
         <span
           class="transition-transform transform mx-3 group-hover:translate-x-2 ease-in-out duration-200"
         >
