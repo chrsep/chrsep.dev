@@ -27,7 +27,7 @@
 
 <div class="relative overflow-hidden">
   <article
-    class="px-6 sm:px-8 pb-12 pt-24 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
     <div class="flex mb-6 gap-4">
       <SocialLink
@@ -46,23 +46,23 @@
         <LinkedinIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
       <SocialLink
+        text="@_chrsep"
+        href="https://twitter.com/_chrsep"
+        icon="/icons/twitter.svg"
+      >
+        <TwitterIcon slot="icon" let:class={className} class={className} />
+      </SocialLink>
+      <SocialLink
         text="@chrsep"
-        href="https://stackoverflow.com/users/6656573/chrsep"
+        href="https://stackoverflow.com/users/story/6656573"
         icon="/icons/stackoverflow.svg"
+        class="hidden sm:flex"
       >
         <StackOverflowIcon
           slot="icon"
           let:class={className}
           class={className}
         />
-      </SocialLink>
-      <SocialLink
-        text="@_chrsep"
-        href="https://twitter.com/_chrsep"
-        icon="/icons/twitter.svg"
-        class="hidden sm:flex"
-      >
-        <TwitterIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
     </div>
 
@@ -74,16 +74,27 @@
       </span>
     </h1>
 
-    <a href="mailto:hi@chrsep.dev" class="inline-block w-full sm:w-auto ">
-      <Button variant="text" class="w-full sm:w-auto mt-8 group">
-        Let's Work Together!
-        <span
-          class="transition-transform transform mx-3 group-hover:translate-x-2 ease-in-out duration-200"
-        >
-          ->
-        </span>
-      </Button>
-    </a>
+    <div class="mt-8">
+      <a
+        href="mailto:hi@chrsep.dev"
+        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4"
+      >
+        <Button class="w-full sm:w-auto group">
+          Let's work together!
+          <span
+            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          >
+            ->
+          </span>
+        </Button>
+      </a>
+
+      <a href="/about" class="inline-block w-full sm:w-auto ">
+        <Button variant="secondary" class="w-full sm:w-auto">
+          Learn more about me
+        </Button>
+      </a>
+    </div>
   </article>
 
   <article
