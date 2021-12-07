@@ -10,15 +10,13 @@
   onMount(async () => {
     if (window.getComputedStyle(canvas, null).display !== "none") {
       globe = createGlobe(canvas, {
-        devicePixelRatio: window.devicePixelRatio,
         width: 1400,
         height: 1400,
-        phi: 0,
         theta: -0.5,
         dark: true,
-        diffuse: 1.2,
-        mapSamples: 26000,
-        mapBrightness: 4,
+        diffuse: 1.9,
+        mapSamples: 14000,
+        mapBrightness: 7,
         baseColor: [0.3, 0.3, 0.3],
         markerColor: [1, 0.2, 0.2],
         glowColor: [1, 1, 1],
@@ -27,7 +25,7 @@
           // Called on every animation frame.
           // `state` will be an empty object, return updated params.
           state.phi = phi
-          phi += 0.0006
+          phi += 0.0004
         },
       })
     }

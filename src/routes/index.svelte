@@ -25,9 +25,9 @@
   export const prerender = true
 </script>
 
-<div class="relative overflow-hidden ">
+<div class="relative overflow-hidden">
   <article
-    class="px-6 sm:px-8 pb-8 pt-16 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-12 pt-20 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
   >
     <div class="flex mb-6 gap-4">
       <SocialLink
