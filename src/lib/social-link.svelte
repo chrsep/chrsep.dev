@@ -1,6 +1,5 @@
 <script lang="ts">
   export let href: string
-  export let icon: string
   export let text: string
 
   let className: string = ""
@@ -13,6 +12,6 @@
   target="_blank"
   rel="noreferrer"
 >
-  <img src={icon} class="w-4 h-4 mr-2 object-cover" alt="" width="16px" height="16px"/>
+  <slot name="icon" class="w-4 h-4 mr-2 object-cover" width="16px"/>
   {text}
 </a>

@@ -4,6 +4,22 @@
   import Project from "$lib/projects.svelte"
   import Button from "$lib/button.svelte"
 
+  import GithubIcon from "$icons/github.svg"
+  import StackOverflowIcon from "$icons/stackoverflow.svg"
+  import TwitterIcon from "$icons/twitter.svg"
+  import LinkedinIcon from "$icons/linkedin.svg"
+
+  import NextIcon from "$icons/nextdotjs.svg"
+  import GatsbyIcon from "$icons/gatsby.svg"
+  import ReactIcon from "$icons/react.svg"
+  import TypeScriptIcon from "$icons/typescript.svg"
+  import TailwindIcon from "$icons/tailwindcss.svg"
+  import GoIcon from "$icons/go.svg"
+  import PrismaIcon from "$icons/prisma.svg"
+  import PostgresqlIcon from "$icons/postgresql.svg"
+  import KotlinIcon from "$icons/kotlin.svg"
+  import AndroidIcon from "$icons/android.svg"
+
   const globe = import("$lib/globe.svelte")
 
   export const prerender = true
@@ -18,23 +34,35 @@
         text="@chrsep"
         href="https://github.com/chrsep"
         icon="/icons/github.svg"
-      />
+      >
+        <GithubIcon slot="icon" let:class={className} class={className} />
+      </SocialLink>
       <SocialLink
         text="@chrsep"
         href="https://stackoverflow.com/users/6656573/chrsep"
         icon="/icons/stackoverflow.svg"
-      />
+      >
+        <StackOverflowIcon
+          slot="icon"
+          let:class={className}
+          class={className}
+        />
+      </SocialLink>
       <SocialLink
         text="Chrisando"
         href="https://linkedin.com/in/chrsep"
         icon="/icons/linkedin.svg"
-      />
+      >
+        <LinkedinIcon slot="icon" let:class={className} class={className} />
+      </SocialLink>
       <SocialLink
         text="@_chrsep"
         href="https://twitter.com/_chrsep"
         icon="/icons/twitter.svg"
         class="hidden sm:flex"
-      />
+      >
+        <TwitterIcon slot="icon" let:class={className} class={className} />
+      </SocialLink>
     </div>
 
     <h1 class="font-black text-5xl sm:text-6xl leading-none mb-6">
@@ -66,71 +94,91 @@
         web="https://nextjs.org"
         icon="/icons/nextdotjs.svg"
         ringHoverClass="hover:ring-white"
-        iconGroupHoverClass="group-hover:bg-white"
-      />
+        iconGroupHoverClass="group-hover:text-white"
+      >
+        <NextIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Gatsby"
         web="https://gatsbyjs.com"
         icon="/icons/gatsby.svg"
         ringHoverClass="hover:ring-[#663399]"
-        iconGroupHoverClass="group-hover:bg-white"
-      />
+        iconGroupHoverClass="group-hover:text-white"
+      >
+        <GatsbyIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="React / Preact"
         web="https://reactjs.org"
         icon="/icons/react.svg"
         ringHoverClass="hover:ring-[#61DAFB]"
-        iconGroupHoverClass="group-hover:bg-[#61DAFB]"
-      />
+        iconGroupHoverClass="group-hover:text-[#61DAFB]"
+      >
+        <ReactIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Typescript"
         web="https://typescriptlang.org"
         icon="/icons/typescript.svg"
         ringHoverClass="hover:ring-[#3178C6]"
-        iconGroupHoverClass="group-hover:bg-[#3178C6]"
-      />
+        iconGroupHoverClass="group-hover:text-[#3178C6]"
+      >
+        <TypeScriptIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Tailwind"
         web="https://tailwindcss.com"
         icon="/icons/tailwindcss.svg"
         ringHoverClass="hover:ring-[#38B2AC]"
-        iconGroupHoverClass="group-hover:bg-[#38B2AC]"
-      />
+        iconGroupHoverClass="group-hover:text-[#38B2AC]"
+      >
+        <TailwindIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Golang"
         web="https://golang.org"
         icon="/icons/go.svg"
         ringHoverClass="hover:ring-[#00ADD8]"
-        iconGroupHoverClass="group-hover:bg-[#00ADD8]"
-      />
+        iconGroupHoverClass="group-hover:text-[#00ADD8]"
+      >
+        <GoIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Prisma"
         web="https://www.prisma.io/"
         icon="/icons/prisma.svg"
         ringHoverClass="hover:ring-white"
-        iconGroupHoverClass="group-hover:bg-white"
-      />
+        iconGroupHoverClass="group-hover:text-white"
+      >
+        <PrismaIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Postgres"
         web="https://www.postgresql.org/"
         icon="/icons/postgresql.svg"
         ringHoverClass="hover:ring-[#4169E1]"
-        iconGroupHoverClass="group-hover:bg-white]"
-      />
+        iconGroupHoverClass="group-hover:text-white]"
+      >
+        <PostgresqlIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Kotlin"
         web="https://kotlinlang.org/"
         icon="/icons/kotlin.svg"
         ringHoverClass="hover:ring-[#0095D5]"
-        iconGroupHoverClass="group-hover:bg-[#0095D5]"
-      />
+        iconGroupHoverClass="group-hover:text-[#0095D5]"
+      >
+        <KotlinIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
       <TechPills
         text="Android"
         web="https://developer.android.com/"
         icon="/icons/android.svg"
         ringHoverClass="hover:ring-[#3DDC84]"
-        iconGroupHoverClass="group-hover:bg-[#3DDC84]"
-      />
+        iconGroupHoverClass="group-hover:text-[#3DDC84]"
+      >
+        <AndroidIcon let:class={className} class={className} slot="icon" />
+      </TechPills>
     </ul>
   </article>
 

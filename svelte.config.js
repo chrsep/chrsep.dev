@@ -1,6 +1,8 @@
 import preprocess from "svelte-preprocess"
 import vercel from "@sveltejs/adapter-vercel"
 import windiCSS from "vite-plugin-windicss"
+import path from "path"
+import svg from "@poppanator/sveltekit-svg"
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
@@ -13,7 +15,12 @@ const config = {
     target: "#svelte",
     adapter: vercel(),
     vite: {
-      plugins: [windiCSS()],
+      plugins: [svg(), windiCSS()],
+      resolve: {
+        alias: {
+          $icons: path.resolve("./src/icons"),
+        },
+      },
     },
   },
 }

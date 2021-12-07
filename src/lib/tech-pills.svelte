@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Icon from "$lib/icon.svelte"
-
   export let text: string
   export let web: string
   export let icon: string
@@ -15,10 +13,11 @@
     target="_blank"
     rel="noreferrer"
   >
-    <Icon
-      --icon-src="url('{icon}')"
+    <slot
+      name="icon"
       class="mr-3 !w-[16px] !h-[16px] {iconGroupHoverClass} transition"
     />
+
     {text}
   </a>
 </li>
