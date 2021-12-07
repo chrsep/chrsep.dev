@@ -71,7 +71,7 @@
     <h1 class="text-xl sm:text-2xl max-w-md">
       <span class="font-black text-default-900">👋 Hi there, I'm Chris!</span>
       <span class="text-default-700">
-        I'm a fullstack software developer from 🇮🇩 Indonesia. I help businesses
+        I'm a fullstack software developer from Indonesia. I help businesses
         build <b class="text-default-900">fast</b> and
         <b class="text-default-900">beautiful</b> digital experiences.
       </span>
