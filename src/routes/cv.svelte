@@ -1,15 +1,24 @@
 <script lang="ts" context="module">
+  import { fade } from "svelte/transition"
+
   export let prerender = true
 </script>
 
-<div class="p-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
-  <article class="pt-24 md:pt-32 prose lg:pt-40 max-w-xl">
-    <h1 class="!sm:text-5xl">
-      Chrisando Eka <br /> Pramudhita
-    </h1>
+<heading
+  class="w-full block pt-32 lg:pt-40 md:px-32 2xl:px-0 px-6"
+  in:fade
+>
+  <h1 class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl">
+    Chrisando Eka <br /> Pramudhita
+  </h1>
+</heading>
 
+<div class="px-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
+  <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
     <section>
-      <h2 id="experience">Experience</h2>
+      <h2 id="experience" class="border-b border-[#ffffff0D] pb-3">
+        Experiences
+      </h2>
       <h3>Self-employed</h3>
       <h4>Fullstack Software Developer</h4>
       <ul>
@@ -41,71 +50,66 @@
     </section>
 
     <section>
-      <h2>Personal Projects</h2>
+      <h2 id="projects" class="border-b border-[#ffffff0D] pb-3">
+        Personal Projects
+      </h2>
       <h3>Obserfy</h3>
       <p>
-        Record keeping and parent communication tool for Montessori Schools.
+        Open-source record keeping and parent communication tool for Montessori
+        Schools.
+        <a href="https://github.com/chrsep/obserfy"> GitHub </a>
+        <a href="https://obserfy.com">Web</a>
       </p>
-      <ul class="flex gap-4">
-        <li>
-          <a href="https://github.com/chrsep/obserfy"> GitHub </a>
-        </li>
-        <li>
-          <a href="https://obserfy.com">Web</a>
-        </li>
-      </ul>
+      <p class="text-sm">SaaS, Open-source | 2020-Today</p>
 
       <h3>Portal</h3>
       <p>
-        Offline-first android app for keeping track of campus info and
-        activities with over 20k downloads.
+        Open-source, offline-first android app for keeping track of campus info
+        and activities with over 20k downloads.
+        <a href="https://github.com/chrsep/Kingfish"> GitHub. </a>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.directdev.portal"
+        >
+          Google Play.
+        </a>
       </p>
-      <ul class="flex gap-4">
-        <li>
-          <a href="https://github.com/chrsep/Kingfish"> GitHub </a>
-        </li>
-        <li>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.directdev.portal"
-          >
-            Google Play
-          </a>
-        </li>
-      </ul>
+      <p class="text-sm">Android, Open-source | 2014-2018</p>
 
       <h3>Atreus</h3>
-      <p>Automated asset discovery service built for bug bounty.</p>
-      <ul>
-        <li>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.directdev.portal"
-          >
-            GitHub
-          </a>
-        </li>
-      </ul>
+      <p>
+        Open-source automated asset discovery service built for bug bounty built
+        with NextJS and Go.
+        <a
+          href="https://play.google.com/store/apps/details?id=com.directdev.portal"
+        >
+          GitHub.
+        </a>
+      </p>
+      <p class="text-sm">Open-source | 2021</p>
     </section>
 
     <section>
-      <h2 id="#education">Education</h2>
+      <h2 id="education" class="border-b border-[#ffffff0D] pb-3">Education</h2>
 
-      <h3>Binus University Global Class</h3>
+      <h3>Binus University</h3>
       <h4>Bachelor's Degree in Computer Science</h4>
       <p>
         Graduated with GPA of 3.4 and enrolled in Global Class with an
         internationalized curriculum delivered in english.
       </p>
+      <p class="text-sm">Jakarta, Indonesia | 2014-2018</p>
 
-      <h3>National Sun-Yat Sen University, Taiwan</h3>
+      <h3>National Sun-Yat Sen University</h3>
       <h4>Student Exchange</h4>
       <p>
         Learned Python and UNIX tools through making and debugging unix based
         text games.
       </p>
+      <p class="text-sm">Kaohsiung, Taiwan | 2017</p>
     </section>
 
     <section>
-      <h2 id="#courses">Courses</h2>
+      <h2 id="courses" class="border-b border-[#ffffff0D] pb-3">Courses</h2>
 
       <h3>Deep Learning Specialization</h3>
       <h4>Coursera</h4>

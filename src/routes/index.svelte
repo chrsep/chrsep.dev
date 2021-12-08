@@ -27,7 +27,7 @@
   export const prerender = true
 </script>
 
-<div class="relative overflow-hidden" in:fade>
+<div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
   <article
     class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
