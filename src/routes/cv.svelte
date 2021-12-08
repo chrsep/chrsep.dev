@@ -3,8 +3,8 @@
   export let prerender = true
 </script>
 
-<div class="p-6 mx-auto max-w-7xl">
-  <article class="pt-24 prose sm:pt-40 ">
+<div class="p-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
+  <article class="pt-24 md:pt-32 prose lg:pt-40 ">
     <h1 class="!sm:text-5xl">
       Chrisando Eka <br /> Pramudhita
     </h1>
