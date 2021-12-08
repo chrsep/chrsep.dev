@@ -11,7 +11,7 @@
       <div
         class="transform sm:group-hover:-translate-y-1/2 transition-transform duration-500 ease-in-out "
       >
-        @chrsep<br />
+        <span class="font-black">@chrsep</span><br />
         🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
       </div>
     </div>
