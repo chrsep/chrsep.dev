@@ -30,7 +30,44 @@ export default {
           900: "#181818",
         },
       },
+
+      typography: {
+        DEFAULT: {
+          css: {
+            color: "white",
+            h1: {
+              fontWeight: "900",
+              color: "#fff",
+            },
+            h2: {
+              fontWeight: "900",
+              color: "#fff",
+            },
+            h3: {
+              color: "#fff",
+            },
+            h4: {
+              color: "#d0d0d0",
+            },
+            h5: {
+              color: "#d0d0d0",
+            },
+            h6: {
+              color: "#d0d0d0",
+            },
+            p: {
+              color: "#bbbbbb",
+            },
+            li: {
+              color: "#bbbbbb",
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("windicss/plugin/aspect-ratio")],
+  plugins: [
+    require("windicss/plugin/aspect-ratio"),
+    require("windicss/plugin/typography"),
+  ],
 }
