@@ -44,6 +44,7 @@ export default {
               color: "#fff",
             },
             h3: {
+              fontWeight: "700",
               color: "#fff",
             },
             h4: {
@@ -56,6 +57,9 @@ export default {
               color: "#d0d0d0",
             },
             p: {
+              color: "#bbbbbb",
+            },
+            a: {
               color: "#bbbbbb",
             },
             li: {
