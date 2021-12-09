@@ -211,7 +211,7 @@
   {/await}
 </div>
 
-<div class="border-t border-b border-[#ffffff0D]">
+<div class="border-t border-[#ffffff0D]">
   <article
     class="px-6 sm:px-8 md:px-32 mb-32 py-16 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >

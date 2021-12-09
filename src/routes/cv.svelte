@@ -114,16 +114,16 @@
       <h3>Binus University</h3>
       <h4>Bachelor's Degree in Computer Science</h4>
       <p>
-        Graduated with GPA of 3.4 and enrolled in Global Class with an
-        internationalized curriculum delivered in english.
+        Graduated with GPA of 3.4 and enrolled in the "Global Class" that uses
+        an internationalized curriculum delivered in english.
       </p>
       <p class="text-sm">Jakarta, Indonesia | 2014-2018</p>
 
       <h3>National Sun-Yat Sen University</h3>
       <h4>Student Exchange</h4>
       <p>
-        Learned Python and UNIX tools through making and debugging unix based
-        text games.
+        Learned Python and UNIX through building and debugging various unix
+        based text games.
       </p>
       <p class="text-sm">Kaohsiung, Taiwan | 2017</p>
     </section>
