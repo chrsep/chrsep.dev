@@ -37,7 +37,7 @@
 </script>
 
 <canvas
-  in:fade={{ duration: 2000, delay: 1000 }}
+  in:fade={{ duration: 2000, delay: 300 }}
   bind:this={canvas}
   width="1400"
   height="1800"
@@ -45,7 +45,7 @@
 />
 
 <p
-  in:fade={{ duration: 2000, delay: 1000 }}
+  in:fade={{ duration: 2000, delay: 300 }}
   class="text-sm absolute bottom-0 right-0 z-1 p-4 text-gray-500 hidden xl:block"
 >
   Globe by
