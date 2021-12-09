@@ -73,7 +73,7 @@
       <span class="text-default-700">
         I'm a fullstack software developer from Indonesia. I help businesses
         build <b class="text-default-900">fast</b> and
-        <b class="text-default-900">beautiful</b> websites and apps.
+        <b class="text-default-900">beautiful</b> websites and web-apps.
       </span>
     </h1>
 
