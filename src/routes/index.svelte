@@ -1,4 +1,6 @@
 <script lang="ts" context="module">
+  import { fade } from "svelte/transition"
+
   import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
@@ -25,11 +27,11 @@
   export const prerender = true
 </script>
 
-<div class="relative overflow-hidden">
-  <article
-    class="px-6 sm:px-8 pb-12 pt-24 sm:pt-32 md:px-32 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+<div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
+  <header
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
-    <div class="flex mb-6 gap-4">
+    <ul class="flex mb-6 gap-4">
       <SocialLink
         text="@chrsep"
         href="https://github.com/chrsep"
@@ -46,9 +48,17 @@
         <LinkedinIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
       <SocialLink
+        text="@_chrsep"
+        href="https://twitter.com/_chrsep"
+        icon="/icons/twitter.svg"
+      >
+        <TwitterIcon slot="icon" let:class={className} class={className} />
+      </SocialLink>
+      <SocialLink
         text="@chrsep"
-        href="https://stackoverflow.com/users/6656573/chrsep"
+        href="https://stackoverflow.com/users/story/6656573"
         icon="/icons/stackoverflow.svg"
+        class="hidden sm:flex"
       >
         <StackOverflowIcon
           slot="icon"
@@ -56,38 +66,47 @@
           class={className}
         />
       </SocialLink>
-      <SocialLink
-        text="@_chrsep"
-        href="https://twitter.com/_chrsep"
-        icon="/icons/twitter.svg"
-        class="hidden sm:flex"
-      >
-        <TwitterIcon slot="icon" let:class={className} class={className} />
-      </SocialLink>
-    </div>
+    </ul>
 
     <h1 class="text-xl sm:text-2xl max-w-md">
-      <span class="font-bold text-default-900">👋 Hi there, I'm Chris!</span>
-      <span class="text-default-800">
-        I'm a fullstack software developer from Indonesia 🇮🇩. I help businesses
-        build fast and beautiful digital experiences.
+      <span class="font-black text-default-900">👋 Hi there, I'm Chris!</span>
+      <span class="text-default-700">
+        I'm a fullstack software developer from Indonesia. I help businesses
+        build <b class="text-default-900">fast</b> and
+        <b class="text-default-900">beautiful</b> digital experiences.
       </span>
     </h1>
 
-    <a href="mailto:hi@chrsep.dev" class="inline-block w-full sm:w-auto ">
-      <Button variant="text" class="w-full sm:w-auto mt-8 group">
-        Let's Work Together!
-        <span
-          class="transition-transform transform mx-3 group-hover:translate-x-2 ease-in-out duration-200"
-        >
-          ->
-        </span>
-      </Button>
-    </a>
-  </article>
+    <div class="mt-8">
+      <a
+        href="mailto:hi@chrsep.dev"
+        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4"
+      >
+        <Button class="w-full sm:w-auto group">
+          Let's work together!
+          <span
+            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          >
+            ->
+          </span>
+        </Button>
+      </a>
+
+      <a href="/cv" class="inline-block w-full sm:w-auto ">
+        <Button variant="secondary" class="w-full sm:w-auto group">
+          Get to know me
+          <span
+            class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          >
+            👨‍💻
+          </span>
+        </Button>
+      </a>
+    </div>
+  </header>
 
   <article
-    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 xl:bg-gradient-to-r from-default-900 max-w-[1920px] mx-auto"
+    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
   >
     <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
       Techs I work with

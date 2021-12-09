@@ -7,6 +7,7 @@ export default {
       },
       textColor: {
         default: {
+          700: "#bbbbbb",
           800: "#d0d0d0",
           900: "#fff",
         },
@@ -29,7 +30,51 @@ export default {
           900: "#181818",
         },
       },
+
+      typography: {
+        DEFAULT: {
+          css: {
+            color: "white",
+            h1: {
+              fontWeight: "900",
+              color: "#fff",
+            },
+            h2: {
+              fontWeight: "900",
+              color: "#fff",
+            },
+            h3: {
+              fontWeight: "700",
+              color: "#fff",
+            },
+            h4: {
+              color: "#d0d0d0",
+            },
+            h5: {
+              color: "#d0d0d0",
+            },
+            h6: {
+              color: "#d0d0d0",
+            },
+            p: {
+              color: "#bbbbbb",
+            },
+            a: {
+              color: "#bbbbbb",
+            },
+            li: {
+              color: "#bbbbbb",
+            },
+          },
+        },
+      },
+      animation: {
+        "spin-slow": "spin 30s linear infinite",
+      },
     },
   },
-  plugins: [require("windicss/plugin/aspect-ratio")],
+  plugins: [
+    require("windicss/plugin/aspect-ratio"),
+    require("windicss/plugin/typography"),
+  ],
 }
