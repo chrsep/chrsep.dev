@@ -4,14 +4,11 @@
   export let prerender = true
 </script>
 
-<heading
-  class="w-full block pt-32 lg:pt-40 md:px-32 2xl:px-0 px-6"
-  in:fade
->
+<header class="w-full block pt-32 lg:pt-40 md:px-32 2xl:px-0 px-6" in:fade>
   <h1 class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl">
     Chrisando Eka <br /> Pramudhita
   </h1>
-</heading>
+</header>
 
 <div class="px-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
   <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
@@ -21,6 +18,7 @@
       </h2>
       <h3>Self-employed</h3>
       <h4>Fullstack Software Developer</h4>
+      <p class="text-sm">2018-Today</p>
       <ul>
         <li>
           Designed and deployed e-commerce and marketing sites using NextJS and
@@ -42,6 +40,7 @@
 
       <h3>PT. Bank Central Asia Tbk</h3>
       <h4>Software Engineering Intern</h4>
+      <p class="text-sm">2017</p>
       <ul>
         <li>Implemented new business rules on IBM z/OS.</li>
         <li>Helped test and monitor new codes to be deployed.</li>
@@ -53,6 +52,18 @@
       <h2 id="projects" class="border-b border-[#ffffff0D] pb-3">
         Personal Projects
       </h2>
+      <h3>Atreus</h3>
+      <p>
+        Open-source automated asset discovery service built for bug bounty built
+        with NextJS and Go.
+        <a
+          href="https://play.google.com/store/apps/details?id=com.directdev.portal"
+        >
+          GitHub.
+        </a>
+      </p>
+      <p class="text-sm">Web Application, Open-source | 2021</p>
+
       <h3>Obserfy</h3>
       <p>
         Open-source record keeping and parent communication tool for Montessori
@@ -74,18 +85,6 @@
         </a>
       </p>
       <p class="text-sm">Android, Open-source | 2014-2018</p>
-
-      <h3>Atreus</h3>
-      <p>
-        Open-source automated asset discovery service built for bug bounty built
-        with NextJS and Go.
-        <a
-          href="https://play.google.com/store/apps/details?id=com.directdev.portal"
-        >
-          GitHub.
-        </a>
-      </p>
-      <p class="text-sm">Open-source | 2021</p>
     </section>
 
     <section>
@@ -121,13 +120,13 @@
           </a>
         </li>
         <li>
-          Learned how to structuring machine learning projects
+          Learned how to structuring machine learning projects.
           <a href="https://coursera.org/share/228b975f5d801b33f02680a0be0dfcb2">
             Certificate.
           </a>
         </li>
         <li>
-          Learned about neural networks and peep learning
+          Learned about neural networks and deep learning.
           <a href="https://coursera.org/share/5ebb9114286e6700c399a0f9a90f43cb">
             Certificate.
           </a>

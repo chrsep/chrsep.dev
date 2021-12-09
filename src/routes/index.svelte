@@ -28,10 +28,10 @@
 </script>
 
 <div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
-  <article
+  <header
     class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
-    <div class="flex mb-6 gap-4">
+    <ul class="flex mb-6 gap-4">
       <SocialLink
         text="@chrsep"
         href="https://github.com/chrsep"
@@ -66,7 +66,7 @@
           class={className}
         />
       </SocialLink>
-    </div>
+    </ul>
 
     <h1 class="text-xl sm:text-2xl max-w-md">
       <span class="font-black text-default-900">👋 Hi there, I'm Chris!</span>
@@ -103,7 +103,7 @@
         </Button>
       </a>
     </div>
-  </article>
+  </header>
 
   <article
     class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
