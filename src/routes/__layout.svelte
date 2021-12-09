@@ -19,12 +19,7 @@
       </div>
     </div>
   </a>
-  <a
-    href="/about"
-    class=" font-medium text-default-700 hover:text-default-900 transition-colors h-full flex items-center"
-  >
-    About
-  </a>
+
   <a
     href="/cv"
     class="font-medium text-default-700 hover:text-default-900 transition-colors h-full flex items-center"
