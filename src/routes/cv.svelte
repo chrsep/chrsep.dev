@@ -22,9 +22,9 @@
   <div
     class="flex items-center justify-center absolute inset-0 overflow-hidden"
   >
-    <div class="absolute top-48 flex animate-spin-slow filter blur-3xl">
+    <div class="absolute top-70 flex animate-spin-slow filter blur-3xl">
       <div class="w-140 h-200 bg-green-700 rounded-full opacity-30" />
-      <div class="w-140 h-200 bg-blue-700 rounded-full -ml-100 opacity-30" />
+      <div class="w-140 h-200 bg-blue-700 rounded-full -ml-64 opacity-30" />
     </div>
   </div>
 </header>

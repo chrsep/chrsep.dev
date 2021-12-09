@@ -69,7 +69,7 @@ export default {
         },
       },
       animation: {
-        "spin-slow": "spin 45s linear infinite",
+        "spin-slow": "spin 60s linear infinite",
       },
     },
   },
