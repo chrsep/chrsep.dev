@@ -9,7 +9,7 @@
   in:fade
 >
   <p
-    class="2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-700 font-bold"
+    class="lg:text-lg 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-700 font-bold"
   >
     Curriculum Vitae
   </p>
@@ -25,8 +25,8 @@
     <div
       class="absolute top-70 md:top-80 md:right-1/6 flex animate-spin-slow filter blur-3xl"
     >
-      <div class="w-200 h-200 bg-green-700 rounded-full opacity-50" />
-      <div class="w-200 h-200 bg-blue-700 rounded-full -ml-160 opacity-50" />
+      <div class="w-200 h-200 bg-green-700 rounded-full opacity-80" />
+      <div class="w-200 h-200 bg-blue-700 rounded-full -ml-160 opacity-80" />
     </div>
   </div>
 </header>
@@ -42,8 +42,8 @@
       <p class="text-sm">2018-Today</p>
       <ul>
         <li>
-          Designed and deployed e-commerce and marketing sites using NextJS and
-          Gatsby for SMEs.
+          Designed and deployed e-commerce and marketing sites for SMEs using
+          NextJS and Gatsby.
         </li>
         <li>
           Redesigned internal CRM for managing magazine subscriptions and
