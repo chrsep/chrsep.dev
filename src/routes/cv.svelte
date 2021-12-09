@@ -5,7 +5,7 @@
 </script>
 
 <header
-  class="border-b border-black pb-12 sm:pb-24 w-full block pt-40 lg:pt-50 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
+  class="border-b border-black pb-12 sm:pb-24 w-full block pt-32 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
   in:fade
 >
   <p
@@ -14,7 +14,7 @@
     Curriculum Vitae
   </p>
   <h1
-    class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4"
+    class="font-black text-4xl !sm:text-5xl !xl:text-6xl 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4"
   >
     Chrisando Eka <br /> Pramudhita
   </h1>
@@ -22,9 +22,11 @@
   <div
     class="flex items-center justify-center absolute inset-0 overflow-hidden"
   >
-    <div class="absolute top-70 flex animate-spin-slow filter blur-3xl">
-      <div class="w-140 h-200 bg-green-700 rounded-full opacity-30" />
-      <div class="w-140 h-200 bg-blue-700 rounded-full -ml-64 opacity-30" />
+    <div
+      class="absolute top-70 md:top-80 md:right-1/6 flex animate-spin-slow filter blur-3xl"
+    >
+      <div class="w-200 h-200 bg-green-700 rounded-full opacity-50" />
+      <div class="w-200 h-200 bg-blue-700 rounded-full -ml-160 opacity-50" />
     </div>
   </div>
 </header>
