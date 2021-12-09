@@ -68,6 +68,9 @@ export default {
           },
         },
       },
+      animation: {
+        "spin-slow": "spin 45s linear infinite",
+      },
     },
   },
   plugins: [

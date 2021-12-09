@@ -4,16 +4,35 @@
   export let prerender = true
 </script>
 
-<header class="w-full block pt-32 lg:pt-40 md:px-32 2xl:px-0 px-6" in:fade>
-  <h1 class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl">
+<header
+  class="border-b border-black pb-12 sm:pb-24 w-full block pt-40 lg:pt-50 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
+  in:fade
+>
+  <p
+    class="2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-700 font-bold"
+  >
+    Curriculum Vitae
+  </p>
+  <h1
+    class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4"
+  >
     Chrisando Eka <br /> Pramudhita
   </h1>
+
+  <div
+    class="flex items-center justify-center absolute inset-0 overflow-hidden"
+  >
+    <div class="absolute top-48 flex animate-spin-slow filter blur-3xl">
+      <div class="w-140 h-200 bg-green-700 rounded-full opacity-30" />
+      <div class="w-140 h-200 bg-blue-700 rounded-full -ml-100 opacity-30" />
+    </div>
+  </div>
 </header>
 
 <div class="px-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
   <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
     <section>
-      <h2 id="experience" class="border-b border-[#ffffff0D] pb-3">
+      <h2 id="experience" class="border-b border-[#ffffff0D] pb-3 !mt-8">
         Experiences
       </h2>
       <h3>Self-employed</h3>
