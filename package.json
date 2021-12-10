@@ -30,6 +30,7 @@
   "dependencies": {
     "@fontsource/fira-mono": "4.5.0",
     "@fontsource/inter": "4.5.1",
-    "cobe": "0.3.3"
+    "cobe": "0.3.3",
+    "vite-imagetools": "^4.0.1"
   }
 }

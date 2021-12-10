@@ -25,8 +25,8 @@
     <div
       class="absolute top-70 md:top-80 md:right-1/6 flex animate-spin-slow filter blur-3xl"
     >
-      <div class="w-200 h-200 bg-green-700 rounded-full opacity-80" />
-      <div class="w-200 h-200 bg-blue-700 rounded-full -ml-160 opacity-80" />
+      <div class="w-200 h-200 bg-green-700 rounded-full opacity-90" />
+      <div class="w-200 h-200 bg-blue-700 rounded-full -ml-160 opacity-90" />
     </div>
   </div>
 </header>

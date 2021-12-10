@@ -94,7 +94,7 @@
 
       <a href="/cv" class="inline-block w-full sm:w-auto ">
         <Button variant="secondary" class="w-full sm:w-auto group">
-          Get to know me
+          More about me
           <span
             class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
           >
