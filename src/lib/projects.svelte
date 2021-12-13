@@ -26,7 +26,7 @@
 
 <article class="mb-4 md:mb-8">
   <div
-    class="aspect-w-16 aspect-h-9 bg-red-200 mb-6 rounded-xl sm:rounded-2xl xl:rounded-3xl shadow-lg {heroBg}"
+    class="aspect-w-3 aspect-h-4 bg-red-200 mb-6 rounded-4xl shadow-lg {heroBg}"
   />
 
   <ul class="flex flex-wrap mb-4 gap-2">

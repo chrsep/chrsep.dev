@@ -215,12 +215,16 @@
   <article
     class="px-6 sm:px-8 md:px-32 mb-32 py-16 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <h2 class="font-bold text-3xl mb-8 leading-tight">
-      <span class="mr-1">🛠</span>️ Some things I've worked on
-    </h2>
+    <div class="mb-8 max-w-lg">
+      <h2 class="font-black text-3xl leading-tight">Recent Projects</h2>
+      <p class="text-lg max-xs my-4 text-default-800">
+        I build web-applications, marketing sites, and e-commerce websites.
+        Below are some projects I'm recently worked on.
+      </p>
+    </div>
 
     <section
-      class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"
+      class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-12 sm:gap-8"
     >
       <Project
         title="Obserfy"
@@ -259,30 +263,47 @@
           link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
         }}
       />
-      <Project
-        title="Atreus"
-        description="Automated asset discovery service built for bug bounty."
-        openSource
-        webApp
-        githubLink="https://github.com/chrsep/atreus"
-        heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
-      />
-      <Project
-        title="Portal"
-        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
-        android
-        openSource
-        githubLink="https://github.com/chrsep/Kingfish"
-        googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
-        heroBg="bg-gradient-to-br from-gray-800 to-gray-700"
-      />
-      <Project
-        title="Timetravelers"
-        description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
-        ecommerce
-        webLink="https://timetravelers.id"
-        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"
-      />
+      <div>
+        <a
+          href="/cv"
+          class="group block aspect-w-3 aspect-h-4 bg-default-800 mb-6 rounded-4xl shadow-lg hover:ring-4 ring-white transition duration-250"
+        >
+          <h2
+            class="flex flex-col items-center h-full w-full font-black justify-center text-xl text-default-800 group-hover:text-white transition-colors"
+          >
+            <div
+              class="rounded-full ring group-hover:ring-2 ring-white h-16 w-16 mb-6 group-hover:-translate-y-2 transform flex items-center justify-center ring-[#ffffff0D] group-hover:ring-white transition ease-in-out duration-250"
+            >
+              ->
+            </div>
+            Explore More
+          </h2>
+        </a>
+      </div>
+      <!--      <Project-->
+      <!--        title="Atreus"-->
+      <!--        description="Automated asset discovery service built for bug bounty."-->
+      <!--        openSource-->
+      <!--        webApp-->
+      <!--        githubLink="https://github.com/chrsep/atreus"-->
+      <!--        heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"-->
+      <!--      />-->
+      <!--      <Project-->
+      <!--        title="Portal"-->
+      <!--        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."-->
+      <!--        android-->
+      <!--        openSource-->
+      <!--        githubLink="https://github.com/chrsep/Kingfish"-->
+      <!--        googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"-->
+      <!--        heroBg="bg-gradient-to-br from-gray-800 to-gray-700"-->
+      <!--      />-->
+      <!--      <Project-->
+      <!--        title="Timetravelers"-->
+      <!--        description="Product listing for Travel agency, offering a wide range of travel packages and visa services."-->
+      <!--        ecommerce-->
+      <!--        webLink="https://timetravelers.id"-->
+      <!--        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"-->
+      <!--      />-->
     </section>
   </article>
 </div>
