@@ -40,10 +40,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@poppanator/sveltekit-svg@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@poppanator/sveltekit-svg/-/sveltekit-svg-0.2.0.tgz#eb7402c3c7bd7a665ddc49910fdea73cc8d59d19"
-  integrity sha512-/bupd6IZQUz/9WFMjHwWMzSxD7gtDPd8yhI6gYnnXAB4Iye0QTDUrmvBFkzy5fGh2zhQbHrs0yN6s0bsevJOYA==
+"@poppanator/sveltekit-svg@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@poppanator/sveltekit-svg/-/sveltekit-svg-0.2.2.tgz#10fa54126bfa54d5f339cf6e5c37dcbf05921e25"
+  integrity sha512-eEqFz2ff+9LeGbC/1njye4bzMlakclwnqtX/Gz8FEYarzRP4Op+ekYv0M+mp7rXD9kwW7vHmLJooQqjV12dEXA==
   dependencies:
     svgo "^2.3.0"
 
