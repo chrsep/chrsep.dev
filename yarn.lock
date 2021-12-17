@@ -309,10 +309,10 @@ chownr@^1.1.1:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
   integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
 
-cobe@0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/cobe/-/cobe-0.3.3.tgz#d4ca1e2615fbcb2bdfb0cf1b7733181901ee068a"
-  integrity sha512-okgBuYZCKaAfo9IOwh3y1lg7asXawsHDb5fh3EjRJ8M27O/Rn3CIRXXdMb/mgI6uC1r9ortfEkWbSZSQMJE07Q==
+cobe@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/cobe/-/cobe-0.4.0.tgz#6763aa9166762b31a216757b7aa1f423ad126973"
+  integrity sha512-Nj2vDav1PKRE4NZeNuEXYe18oGYI1OXNx4UP+9fZMHMwspB0CalG7/T7SwAVWvHahFcrzCpoZu4wHn1ZLA1Ziw==
   dependencies:
     phenomenon "^1.6.0"
 
