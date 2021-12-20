@@ -24,7 +24,9 @@
   export let heroBg: string
 </script>
 
-<article class="mb-4 md:mb-8">
+<article
+  class="mb-4 md:mb-8 w-70vw sm:w-auto sm:basis-1/2 xl:basis-1/4 flex-shrink-0 snap-center first:ml-8 last:mr-8 sm:first:ml-0 sm:last:mr-0"
+>
   <div
     class="aspect-w-3 aspect-h-4 bg-red-200 mb-6 rounded-4xl shadow-lg {heroBg}"
   />
@@ -54,7 +56,9 @@
   </ul>
 
   <h3 class="mb-1 text-lg font-bold">{title}</h3>
-  <p class="text-default-800 max-w-md">{description}</p>
+  <p class="text-default-800 max-w-md text-sm sm:text-base mt-2">
+    {description}
+  </p>
 
   <ul class="flex items-center gap-x-4 mt-4">
     {#if lighthouse}

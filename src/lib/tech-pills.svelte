@@ -1,7 +1,6 @@
 <script lang="ts">
   export let text: string
   export let web: string
-  export let icon: string
   export let ringHoverClass: string
   export let iconGroupHoverClass: string
 </script>
