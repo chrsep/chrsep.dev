@@ -204,14 +204,14 @@
     <div class="mb-8 max-w-lg">
       <h2 class="font-black text-3xl leading-tight">Recent Projects</h2>
       <p class="text-lg max-xs my-4 text-default-800">
-        I build web-applications, marketing sites, and e-commerce websites.
-        Below are some projects I'm recently worked on.
+        I build webapps, marketing sites, and e-commerce.
+        Below are some projects I''e worked on recently.
       </p>
     </div>
   </article>
 
   <section
-    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8"
+    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
   >
     <Project
       title="Obserfy"
