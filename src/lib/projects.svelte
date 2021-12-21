@@ -25,10 +25,10 @@
 </script>
 
 <article
-  class="mb-4 md:mb-8 w-70vw sm:w-auto sm:basis-1/2 xl:basis-1/4 flex-shrink-0 snap-center first:ml-8 last:mr-8 sm:first:ml-0 sm:last:mr-0"
+  class="mb-4 md:mb-8 w-70vw sm:w-auto sm:basis-1/2 xl:basis-1/4 flex-shrink-0 snap-center first:ml-6 last:mr-6 sm:first:ml-0 sm:last:mr-0"
 >
   <div
-    class="aspect-w-3 aspect-h-4 bg-red-200 mb-6 rounded-4xl shadow-lg {heroBg}"
+    class="aspect-w-3 aspect-h-4 bg-red-200 mb-6 rounded-2xl shadow-lg {heroBg}"
   />
 
   <ul class="flex flex-wrap mb-4 gap-2">
