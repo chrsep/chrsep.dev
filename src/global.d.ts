@@ -1,4 +1,4 @@
-/// <reference types="@sveltejs/kit" />
+/// <reference path="@sveltejs/kit" />
 declare module "cobe" {
   export default function createGlobe(
     canvas: HTMLCanvasElement,
@@ -7,15 +7,13 @@ declare module "cobe" {
 }
 
 declare module "*.svg" {
-  import { SvelteComponent } from "svelte"
-  const content: SvelteComponent
-  export default content
+  import { SvelteComponentTyped } from "svelte"
+  export default class extends SvelteComponentTyped<{ class: string }> {}
 }
 
 declare module "*.svg?component" {
-  import { SvelteComponent } from "svelte"
-  const content: SvelteComponent
-  export default content
+  import { SvelteComponentTyped } from "svelte"
+  export default class extends SvelteComponentTyped<{ class: string }> {}
 }
 
 declare module "*.svg?src" {

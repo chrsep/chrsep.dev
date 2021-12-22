@@ -10,7 +10,6 @@
   import StackOverflowIcon from "$icons/stackoverflow.svg"
   import TwitterIcon from "$icons/twitter.svg"
   import LinkedinIcon from "$icons/linkedin.svg"
-
   import NextIcon from "$icons/nextdotjs.svg"
   import GatsbyIcon from "$icons/gatsby.svg"
   import ReactIcon from "$icons/react.svg"
@@ -32,32 +31,18 @@
     class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
     <ul class="flex mb-6 gap-4">
-      <SocialLink
-        text="@chrsep"
-        href="https://github.com/chrsep"
-        icon="/icons/github.svg"
-      >
+      <SocialLink text="@chrsep" href="https://github.com/chrsep">
         <GithubIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
-
-      <SocialLink
-        text="Chrisando"
-        href="https://linkedin.com/in/chrsep"
-        icon="/icons/linkedin.svg"
-      >
+      <SocialLink text="Chrisando" href="https://linkedin.com/in/chrsep">
         <LinkedinIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
-      <SocialLink
-        text="@_chrsep"
-        href="https://twitter.com/_chrsep"
-        icon="/icons/twitter.svg"
-      >
+      <SocialLink text="@_chrsep" href="https://twitter.com/_chrsep">
         <TwitterIcon slot="icon" let:class={className} class={className} />
       </SocialLink>
       <SocialLink
         text="@chrsep"
         href="https://stackoverflow.com/users/story/6656573"
-        icon="/icons/stackoverflow.svg"
         class="hidden sm:flex"
       >
         <StackOverflowIcon
@@ -109,14 +94,13 @@
     class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
   >
     <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
-      Techs I work with
+      Some Techs I work with
     </h2>
 
     <ul class="flex flex-wrap max-w-2xl gap-2">
       <TechPills
         text="Next"
         web="https://nextjs.org"
-        icon="/icons/nextdotjs.svg"
         ringHoverClass="hover:ring-white"
         iconGroupHoverClass="group-hover:text-white"
       >
@@ -125,7 +109,6 @@
       <TechPills
         text="Gatsby"
         web="https://gatsbyjs.com"
-        icon="/icons/gatsby.svg"
         ringHoverClass="hover:ring-[#663399]"
         iconGroupHoverClass="group-hover:text-white"
       >
@@ -134,7 +117,6 @@
       <TechPills
         text="React / Preact"
         web="https://reactjs.org"
-        icon="/icons/react.svg"
         ringHoverClass="hover:ring-[#61DAFB]"
         iconGroupHoverClass="group-hover:text-[#61DAFB]"
       >
@@ -143,7 +125,6 @@
       <TechPills
         text="Typescript"
         web="https://typescriptlang.org"
-        icon="/icons/typescript.svg"
         ringHoverClass="hover:ring-[#3178C6]"
         iconGroupHoverClass="group-hover:text-[#3178C6]"
       >
@@ -152,7 +133,6 @@
       <TechPills
         text="Tailwind"
         web="https://tailwindcss.com"
-        icon="/icons/tailwindcss.svg"
         ringHoverClass="hover:ring-[#38B2AC]"
         iconGroupHoverClass="group-hover:text-[#38B2AC]"
       >
@@ -161,7 +141,6 @@
       <TechPills
         text="Golang"
         web="https://golang.org"
-        icon="/icons/go.svg"
         ringHoverClass="hover:ring-[#00ADD8]"
         iconGroupHoverClass="group-hover:text-[#00ADD8]"
       >
@@ -170,7 +149,6 @@
       <TechPills
         text="Prisma"
         web="https://www.prisma.io/"
-        icon="/icons/prisma.svg"
         ringHoverClass="hover:ring-white"
         iconGroupHoverClass="group-hover:text-white"
       >
@@ -179,7 +157,6 @@
       <TechPills
         text="Postgres"
         web="https://www.postgresql.org/"
-        icon="/icons/postgresql.svg"
         ringHoverClass="hover:ring-[#4169E1]"
         iconGroupHoverClass="group-hover:text-white]"
       >
@@ -188,7 +165,6 @@
       <TechPills
         text="Kotlin"
         web="https://kotlinlang.org/"
-        icon="/icons/kotlin.svg"
         ringHoverClass="hover:ring-[#0095D5]"
         iconGroupHoverClass="group-hover:text-[#0095D5]"
       >
@@ -197,7 +173,6 @@
       <TechPills
         text="Android"
         web="https://developer.android.com/"
-        icon="/icons/android.svg"
         ringHoverClass="hover:ring-[#3DDC84]"
         iconGroupHoverClass="group-hover:text-[#3DDC84]"
       >
@@ -211,78 +186,99 @@
   {/await}
 </div>
 
-<div class="border-t border-[#ffffff0D]">
+<div class="border-t border-[#ffffff0D] pt-16">
   <article
-    class="px-6 sm:px-8 md:px-32 mb-32 py-16 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 md:px-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <h2 class="font-bold text-3xl mb-8 leading-tight">
-      <span class="mr-1">🛠</span>️ Some things I've worked on
-    </h2>
-
-    <section
-      class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-12 sm:gap-8"
-    >
-      <Project
-        title="Obserfy"
-        description="Record keeping and parent communication tool for Montessori Schools."
-        saas
-        openSource
-        githubLink="https://github.com/obserfy/obserfy"
-        webLink="https://obserfy.com"
-        heroBg="bg-gradient-to-br from-teal-500 to-green-400"
-        lighthouse={{
-          score: 95,
-          link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
-        }}
-      />
-      <Project
-        title="Joyful Montessori"
-        description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
-        marketing
-        webLink="https://www.joyfulmontessori.id"
-        heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
-        lighthouse={{
-          score: 100,
-          link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
-        }}
-      />
-      <Project
-        title="Sekitarmu"
-        description="A platform for discovering local small and medium businesses in a Community."
-        ecommerce
-        openSource
-        webLink="https://www.sekitarmu.id"
-        githubLink="https://github.com/chrsep/grayson"
-        heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
-        lighthouse={{
-          score: 92,
-          link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
-        }}
-      />
-      <Project
-        title="Atreus"
-        description="Automated asset discovery service built for bug bounty."
-        openSource
-        webApp
-        githubLink="https://github.com/chrsep/atreus"
-        heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
-      />
-      <Project
-        title="Portal"
-        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."
-        android
-        openSource
-        githubLink="https://github.com/chrsep/Kingfish"
-        googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"
-        heroBg="bg-gradient-to-br from-gray-800 to-gray-700"
-      />
-      <Project
-        title="Timetravelers"
-        description="Product listing for Travel agency, offering a wide range of travel packages and visa services."
-        ecommerce
-        webLink="https://timetravelers.id"
-        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"
-      />
-    </section>
+    <div class="mb-8 max-w-lg">
+      <h2 class="font-black text-3xl leading-tight">Recent Projects</h2>
+      <p class="text-base sm:text-lg max-xs my-4 text-default-800">
+        I build webapps, marketing sites, and e-commerce. I've worked across the
+        stack from CI/CD and backend to frontend and design.
+      </p>
+    </div>
   </article>
+
+  <section
+    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
+  >
+    <Project
+      title="Obserfy"
+      description="Record keeping and parent communication tool for Montessori Schools."
+      saas
+      openSource
+      githubLink="https://github.com/obserfy/obserfy"
+      webLink="https://obserfy.com"
+      heroBg="bg-gradient-to-br from-teal-500 to-green-400"
+      lighthouse={{
+        score: 95,
+        link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
+      }}
+    />
+    <Project
+      title="Joyful Montessori"
+      description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
+      marketing
+      webLink="https://www.joyfulmontessori.id"
+      heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
+      lighthouse={{
+        score: 100,
+        link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
+      }}
+    />
+    <Project
+      title="Sekitarmu"
+      description="A platform for discovering local small and medium businesses in a Community."
+      ecommerce
+      openSource
+      webLink="https://www.sekitarmu.id"
+      githubLink="https://github.com/chrsep/grayson"
+      heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
+      lighthouse={{
+        score: 92,
+        link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
+      }}
+    />
+    <!--      <div class="w-100">-->
+    <!--        <a-->
+    <!--          href="/cv"-->
+    <!--          class="group block aspect-w-3 aspect-h-4 bg-default-800 mb-6 rounded-4xl shadow-lg hover:ring-4 ring-white transition duration-250"-->
+    <!--        >-->
+    <!--          <h2-->
+    <!--            class="flex flex-col items-center h-full w-full font-black justify-center text-xl text-default-800 group-hover:text-white transition-colors"-->
+    <!--          >-->
+    <!--            <div-->
+    <!--              class="rounded-full ring group-hover:ring-2 ring-white h-16 w-16 mb-6 group-hover:-translate-y-2 transform flex items-center justify-center ring-[#ffffff0D] group-hover:ring-white transition ease-in-out duration-250"-->
+    <!--            >-->
+    <!--              ->-->
+    <!--            </div>-->
+    <!--            Explore More-->
+    <!--          </h2>-->
+    <!--        </a>-->
+    <!--      </div>-->
+    <Project
+      title="Atreus"
+      description="Automated asset discovery service built for bug bounty."
+      openSource
+      webApp
+      githubLink="https://github.com/chrsep/atreus"
+      heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
+    />
+    <!--      <Project-->
+    <!--        title="Portal"-->
+    <!--        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."-->
+    <!--        android-->
+    <!--        openSource-->
+    <!--        githubLink="https://github.com/chrsep/Kingfish"-->
+    <!--        googlePlayLink="https://play.google.com/store/apps/details?id=com.directdev.portal"-->
+    <!--        heroBg="bg-gradient-to-br from-gray-800 to-gray-700"-->
+    <!--      />-->
+    <!--      <Project-->
+    <!--        title="Timetravelers"-->
+    <!--        description="Product listing for Travel agency, offering a wide range of travel packages and visa services."-->
+    <!--        ecommerce-->
+    <!--        webLink="https://timetravelers.id"-->
+    <!--        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"-->
+    <!--      />-->
+  </section>
 </div>

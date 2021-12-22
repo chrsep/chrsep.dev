@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   import { fade } from "svelte/transition"
 
-  export let prerender = true
+  export const prerender = true
 </script>
 
 <header
@@ -34,11 +34,13 @@
 <div class="px-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
   <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
     <section>
-      <h2 id="experience" class="border-b border-[#ffffff0D] pb-3 !mt-8">
+      <h2 id="experience" class="!mt-8">
         Experiences
+        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
       </h2>
-      <h3>Self-employed</h3>
-      <h4>Fullstack Software Developer</h4>
+
+      <h3>Independent Software Developer</h3>
+      <h4>Fullstack Web Developer</h4>
       <p class="text-sm">2018-Today</p>
       <ul>
         <li>
@@ -70,8 +72,9 @@
     </section>
 
     <section>
-      <h2 id="projects" class="border-b border-[#ffffff0D] pb-3">
+      <h2 id="projects">
         Personal Projects
+        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
       </h2>
       <h3>Atreus</h3>
       <p>
@@ -109,7 +112,10 @@
     </section>
 
     <section>
-      <h2 id="education" class="border-b border-[#ffffff0D] pb-3">Education</h2>
+      <h2 id="education">
+        Education
+        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
+      </h2>
 
       <h3>Binus University</h3>
       <h4>Bachelor's Degree in Computer Science</h4>
@@ -129,7 +135,10 @@
     </section>
 
     <section>
-      <h2 id="courses" class="border-b border-[#ffffff0D] pb-3">Courses</h2>
+      <h2 id="courses">
+        Courses
+        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
+      </h2>
 
       <h3>Deep Learning Specialization</h3>
       <h4>Coursera</h4>
