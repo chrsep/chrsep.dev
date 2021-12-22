@@ -10,7 +10,6 @@
   import StackOverflowIcon from "$icons/stackoverflow.svg";
   import TwitterIcon from "$icons/twitter.svg";
   import LinkedinIcon from "$icons/linkedin.svg";
-
   import NextIcon from "$icons/nextdotjs.svg";
   import GatsbyIcon from "$icons/gatsby.svg";
   import ReactIcon from "$icons/react.svg";
@@ -102,7 +101,6 @@
       <TechPills
         text="Next"
         web="https://nextjs.org"
-        icon="/icons/nextdotjs.svg"
         ringHoverClass="hover:ring-white"
         iconGroupHoverClass="group-hover:text-white"
       >
@@ -111,7 +109,6 @@
       <TechPills
         text="Gatsby"
         web="https://gatsbyjs.com"
-        icon="/icons/gatsby.svg"
         ringHoverClass="hover:ring-[#663399]"
         iconGroupHoverClass="group-hover:text-white"
       >
@@ -120,7 +117,6 @@
       <TechPills
         text="React / Preact"
         web="https://reactjs.org"
-        icon="/icons/react.svg"
         ringHoverClass="hover:ring-[#61DAFB]"
         iconGroupHoverClass="group-hover:text-[#61DAFB]"
       >
@@ -129,7 +125,6 @@
       <TechPills
         text="Typescript"
         web="https://typescriptlang.org"
-        icon="/icons/typescript.svg"
         ringHoverClass="hover:ring-[#3178C6]"
         iconGroupHoverClass="group-hover:text-[#3178C6]"
       >
@@ -138,7 +133,6 @@
       <TechPills
         text="Tailwind"
         web="https://tailwindcss.com"
-        icon="/icons/tailwindcss.svg"
         ringHoverClass="hover:ring-[#38B2AC]"
         iconGroupHoverClass="group-hover:text-[#38B2AC]"
       >
@@ -147,7 +141,6 @@
       <TechPills
         text="Golang"
         web="https://golang.org"
-        icon="/icons/go.svg"
         ringHoverClass="hover:ring-[#00ADD8]"
         iconGroupHoverClass="group-hover:text-[#00ADD8]"
       >
@@ -156,7 +149,6 @@
       <TechPills
         text="Prisma"
         web="https://www.prisma.io/"
-        icon="/icons/prisma.svg"
         ringHoverClass="hover:ring-white"
         iconGroupHoverClass="group-hover:text-white"
       >
@@ -165,7 +157,6 @@
       <TechPills
         text="Postgres"
         web="https://www.postgresql.org/"
-        icon="/icons/postgresql.svg"
         ringHoverClass="hover:ring-[#4169E1]"
         iconGroupHoverClass="group-hover:text-white]"
       >
@@ -174,7 +165,6 @@
       <TechPills
         text="Kotlin"
         web="https://kotlinlang.org/"
-        icon="/icons/kotlin.svg"
         ringHoverClass="hover:ring-[#0095D5]"
         iconGroupHoverClass="group-hover:text-[#0095D5]"
       >
@@ -183,7 +173,6 @@
       <TechPills
         text="Android"
         web="https://developer.android.com/"
-        icon="/icons/android.svg"
         ringHoverClass="hover:ring-[#3DDC84]"
         iconGroupHoverClass="group-hover:text-[#3DDC84]"
       >

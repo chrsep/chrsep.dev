@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import "@fontsource/inter/variable.css";
   import GithubIcon from "$icons/github.svg";
   import StackOverflowIcon from "$icons/stackoverflow.svg";
