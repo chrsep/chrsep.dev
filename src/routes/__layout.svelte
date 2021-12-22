@@ -1,12 +1,12 @@
 <script lang="ts">
-  import "@fontsource/inter/variable.css";
-  import GithubIcon from "$icons/github.svg";
-  import StackOverflowIcon from "$icons/stackoverflow.svg";
-  import TwitterIcon from "$icons/twitter.svg";
-  import LinkedinIcon from "$icons/linkedin.svg";
-  import Button from "$lib/button.svelte";
+  import "@fontsource/inter/variable.css"
+  import GithubIcon from "$icons/github.svg"
+  import StackOverflowIcon from "$icons/stackoverflow.svg"
+  import TwitterIcon from "$icons/twitter.svg"
+  import LinkedinIcon from "$icons/linkedin.svg"
+  import Button from "$lib/button.svelte"
 
-  import "virtual:windi.css";
+  import "virtual:windi.css"
 </script>
 
 <nav
@@ -58,7 +58,8 @@
         <Button class="w-full sm:w-auto group text-sm">
           Get in touch
           <span
-            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3">
+            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          >
             ->
           </span>
         </Button>
@@ -66,9 +67,7 @@
     </div>
 
     <div class="sm:ml-auto mt-12 mx-2">
-      <h2 class="mb-5 font-bold text-default-700">
-        Chrisando Eka Pramudhita
-      </h2>
+      <h2 class="mb-5 font-bold text-default-700">Chrisando Eka Pramudhita</h2>
 
       <a
         href="mailto:hi@chrsep.dev"

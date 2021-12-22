@@ -8,12 +8,12 @@ declare module "cobe" {
 
 declare module "*.svg" {
   import { SvelteComponentTyped } from "svelte"
-  export default class extends SvelteComponentTyped<{class: string}> {}
+  export default class extends SvelteComponentTyped<{ class: string }> {}
 }
 
 declare module "*.svg?component" {
   import { SvelteComponentTyped } from "svelte"
-  export default class extends SvelteComponentTyped<{class: string}> {}
+  export default class extends SvelteComponentTyped<{ class: string }> {}
 }
 
 declare module "*.svg?src" {

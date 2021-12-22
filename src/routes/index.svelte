@@ -1,29 +1,29 @@
 <script lang="ts" context="module">
-  import { fade } from "svelte/transition";
+  import { fade } from "svelte/transition"
 
-  import TechPills from "$lib/tech-pills.svelte";
-  import SocialLink from "$lib/social-link.svelte";
-  import Project from "$lib/projects.svelte";
-  import Button from "$lib/button.svelte";
+  import TechPills from "$lib/tech-pills.svelte"
+  import SocialLink from "$lib/social-link.svelte"
+  import Project from "$lib/projects.svelte"
+  import Button from "$lib/button.svelte"
 
-  import GithubIcon from "$icons/github.svg";
-  import StackOverflowIcon from "$icons/stackoverflow.svg";
-  import TwitterIcon from "$icons/twitter.svg";
-  import LinkedinIcon from "$icons/linkedin.svg";
-  import NextIcon from "$icons/nextdotjs.svg";
-  import GatsbyIcon from "$icons/gatsby.svg";
-  import ReactIcon from "$icons/react.svg";
-  import TypeScriptIcon from "$icons/typescript.svg";
-  import TailwindIcon from "$icons/tailwindcss.svg";
-  import GoIcon from "$icons/go.svg";
-  import PrismaIcon from "$icons/prisma.svg";
-  import PostgresqlIcon from "$icons/postgresql.svg";
-  import KotlinIcon from "$icons/kotlin.svg";
-  import AndroidIcon from "$icons/android.svg";
+  import GithubIcon from "$icons/github.svg"
+  import StackOverflowIcon from "$icons/stackoverflow.svg"
+  import TwitterIcon from "$icons/twitter.svg"
+  import LinkedinIcon from "$icons/linkedin.svg"
+  import NextIcon from "$icons/nextdotjs.svg"
+  import GatsbyIcon from "$icons/gatsby.svg"
+  import ReactIcon from "$icons/react.svg"
+  import TypeScriptIcon from "$icons/typescript.svg"
+  import TailwindIcon from "$icons/tailwindcss.svg"
+  import GoIcon from "$icons/go.svg"
+  import PrismaIcon from "$icons/prisma.svg"
+  import PostgresqlIcon from "$icons/postgresql.svg"
+  import KotlinIcon from "$icons/kotlin.svg"
+  import AndroidIcon from "$icons/android.svg"
 
-  const globe = import("$lib/globe.svelte");
+  const globe = import("$lib/globe.svelte")
 
-  export const prerender = true;
+  export const prerender = true
 </script>
 
 <div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
@@ -193,8 +193,8 @@
     <div class="mb-8 max-w-lg">
       <h2 class="font-black text-3xl leading-tight">Recent Projects</h2>
       <p class="text-base sm:text-lg max-xs my-4 text-default-800">
-        I build webapps, marketing sites, and e-commerce. I've worked across the stack from CI/CD and backend to
-        frontend and design.
+        I build webapps, marketing sites, and e-commerce. I've worked across the
+        stack from CI/CD and backend to frontend and design.
       </p>
     </div>
   </article>

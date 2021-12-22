@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   import { fade } from "svelte/transition"
 
-  export let prerender = true
+  export const prerender = true
 </script>
 
 <header
