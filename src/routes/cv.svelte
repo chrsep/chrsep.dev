@@ -32,7 +32,7 @@
 </header>
 
 <div class="px-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
-  <article class="prose prose-sm sm:prose-base max-w-xl" in:fade={{ delay: 100 }}>
+  <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
     <section>
       <h2 id="experience" class="!mt-8">
         Experiences
@@ -51,9 +51,7 @@
           Redesigned internal CRM for managing magazine subscriptions and
           printing shipping addresses for a publishing company.
         </li>
-        <li>
-          Helped develop analytic dashboard using React.
-        </li>
+        <li>Helped develop analytic dashboard using React.</li>
         <li>
           Developed android app for internal reporting of offsite maintenance
           result for a building automation company.
@@ -77,15 +75,15 @@
       </h2>
       <h3>Atreus</h3>
       <p>
-        Open-source automated asset discovery service built for bug bounty built
-        with NextJS and Go.
+        Open-source automated asset discovery service to experiment with bug
+        bounty. Built with NextJS and Go.
         <a
           href="https://play.google.com/store/apps/details?id=com.directdev.portal"
         >
           GitHub.
         </a>
       </p>
-      <p class="text-sm">Web Application, Open-source | 2021</p>
+      <p class="text-sm">Web Application, Open-source | 2021-Today</p>
 
       <h3>Obserfy</h3>
       <p>

@@ -91,11 +91,9 @@
   </header>
 
   <article
-    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
+    class="px-6 pt-8 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
   >
-    <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
-      Some Techs I work with
-    </h2>
+    <h2 class="font-bold mb-4 text-gray-300">Some techs I work with</h2>
 
     <ul class="flex flex-wrap max-w-2xl gap-2">
       <TechPills
