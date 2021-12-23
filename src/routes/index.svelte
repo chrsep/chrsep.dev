@@ -65,7 +65,7 @@
     <div class="mt-8">
       <a
         href="mailto:hi@chrsep.dev"
-        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4"
+        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2"
       >
         <Button class="w-full sm:w-auto group">
           Let's work together!

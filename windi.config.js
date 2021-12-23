@@ -14,6 +14,7 @@ export default {
       },
       backgroundColor: {
         default: {
+          700: "#282828",
           800: "#1e1e1e",
           900: "#181818",
         },
