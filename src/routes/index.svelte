@@ -28,7 +28,7 @@
 
 <div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
   <header
-    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-18 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
   >
     <ul class="flex mb-6 gap-4">
       <SocialLink text="@chrsep" href="https://github.com/chrsep">
