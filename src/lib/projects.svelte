@@ -55,10 +55,12 @@
     {/if}
   </ul>
 
-  <h3 class="mb-1 text-lg font-bold">{title}</h3>
-  <p class="text-default-800 max-w-md text-sm sm:text-base mt-2">
-    {description}
-  </p>
+  <div class="prose prose-sm">
+    <h3>{title}</h3>
+    <p>
+      {description}
+    </p>
+  </div>
 
   <ul class="flex items-center gap-x-4 mt-4">
     {#if lighthouse}

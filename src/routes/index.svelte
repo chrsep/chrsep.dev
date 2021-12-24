@@ -188,9 +188,9 @@
   <article
     class="px-6 sm:px-8 md:px-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <div class="mb-8 max-w-lg">
-      <h2 class="font-black text-3xl leading-tight">Recent Projects</h2>
-      <p class="text-base sm:text-lg max-xs my-4 text-default-800">
+    <div class="mb-8 max-w-lg prose">
+      <h2>Recent Projects</h2>
+      <p>
         I build webapps, marketing sites, and e-commerce. I've worked across the
         stack from CI/CD and backend to frontend and design.
       </p>
@@ -256,7 +256,7 @@
     <!--      </div>-->
     <Project
       title="Atreus"
-      description="Automated asset discovery service built for bug bounty."
+      description="Automated asset discovery service built for trying out bug bounty."
       openSource
       webApp
       githubLink="https://github.com/chrsep/atreus"
@@ -295,8 +295,9 @@
         <div class="max-w-md prose prose-sm">
           <h2>Open Source</h2>
           <p>
-            I try to keep all of my personal projects open-sourced and I try to
-            contribute back to the tools that I use when I can.
+            I keep all of my personal projects open-sourced and I try to
+            contribute back to the tools that I use when I can. You can explore
+            more of my work/contributions on GitHub.
           </p>
         </div>
 
