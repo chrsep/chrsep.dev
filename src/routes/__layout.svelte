@@ -67,8 +67,6 @@
     </div>
 
     <div class="sm:ml-auto mt-12">
-      <h2 class="mb-5 font-bold text-default-700">Chrisando Eka Pramudhita</h2>
-
       <a
         href="mailto:hi@chrsep.dev"
         class="flex items-center text-default-900 opacity-40 font-medium hover:opacity-100 transition"
