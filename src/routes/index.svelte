@@ -279,4 +279,39 @@
     <!--        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"-->
     <!--      />-->
   </section>
+
+  <section class="flex items-center mt-8">
+    <div class="mx-auto relative inline-block">
+      <div
+        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-1 filter blur-3xl opacity-80"
+      />
+      <div
+        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-1 filter blur-3xl bottom-0 right-0 opacity-80"
+      />
+
+      <div
+        class="z-1 bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-[#ffffff0D]"
+      >
+        <div class="max-w-md prose prose-sm">
+          <h2>Open Source</h2>
+          <p>
+            I try to keep all of my personal projects open-sourced and I try to
+            contribute back to the tools that I use when I can.
+          </p>
+        </div>
+
+        <a
+          href="https://github.com/chrsep"
+          target="_blank"
+          rel="noreferrer"
+          class="ml-0 lg:ml-8 "
+        >
+          <Button class="!px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full">
+            Explore GitHub
+            <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>

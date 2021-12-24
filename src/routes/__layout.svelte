@@ -66,7 +66,7 @@
       </a>
     </div>
 
-    <div class="sm:ml-auto mt-12 mx-2">
+    <div class="sm:ml-auto mt-12">
       <h2 class="mb-5 font-bold text-default-700">Chrisando Eka Pramudhita</h2>
 
       <a
