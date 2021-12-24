@@ -5,7 +5,7 @@
 </script>
 
 <header
-  class="border-b border-black pb-12 sm:pb-24 w-full block pt-18 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
+  class="border-b border-black pb-12 sm:pb-24 w-full block pt-24 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
   in:fade
 >
   <p
