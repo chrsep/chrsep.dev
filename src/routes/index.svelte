@@ -1,25 +1,14 @@
 <script lang="ts" context="module">
   import { fade } from "svelte/transition"
-
-  import TechPills from "$lib/tech-pills.svelte"
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
   import Button from "$lib/button.svelte"
+  import TechStacks from "$lib/tech-stacks.svelte"
 
   import GithubIcon from "$icons/github.svg"
   import StackOverflowIcon from "$icons/stackoverflow.svg"
   import TwitterIcon from "$icons/twitter.svg"
   import LinkedinIcon from "$icons/linkedin.svg"
-  import NextIcon from "$icons/nextdotjs.svg"
-  import GatsbyIcon from "$icons/gatsby.svg"
-  import ReactIcon from "$icons/react.svg"
-  import TypeScriptIcon from "$icons/typescript.svg"
-  import TailwindIcon from "$icons/tailwindcss.svg"
-  import GoIcon from "$icons/go.svg"
-  import PrismaIcon from "$icons/prisma.svg"
-  import PostgresqlIcon from "$icons/postgresql.svg"
-  import KotlinIcon from "$icons/kotlin.svg"
-  import AndroidIcon from "$icons/android.svg"
 
   const globe = import("$lib/globe.svelte")
 
@@ -28,7 +17,7 @@
 
 <div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
   <header
-    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-18 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-18 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto md:h-[720px]"
   >
     <ul class="flex mb-6 gap-4">
       <SocialLink text="@chrsep" href="https://github.com/chrsep">
@@ -88,96 +77,11 @@
         </Button>
       </a>
     </div>
+
+    <div class="flex items-center">
+      <TechStacks />
+    </div>
   </header>
-
-  <article
-    class="px-6 pt-8 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
-  >
-    <h2 class="font-bold mb-4 text-gray-300">Some techs I work with</h2>
-
-    <ul class="flex flex-wrap max-w-2xl gap-2">
-      <TechPills
-        text="Next"
-        web="https://nextjs.org"
-        ringHoverClass="hover:ring-white"
-        iconGroupHoverClass="group-hover:text-white"
-      >
-        <NextIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Gatsby"
-        web="https://gatsbyjs.com"
-        ringHoverClass="hover:ring-[#663399]"
-        iconGroupHoverClass="group-hover:text-white"
-      >
-        <GatsbyIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="React / Preact"
-        web="https://reactjs.org"
-        ringHoverClass="hover:ring-[#61DAFB]"
-        iconGroupHoverClass="group-hover:text-[#61DAFB]"
-      >
-        <ReactIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Typescript"
-        web="https://typescriptlang.org"
-        ringHoverClass="hover:ring-[#3178C6]"
-        iconGroupHoverClass="group-hover:text-[#3178C6]"
-      >
-        <TypeScriptIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Tailwind"
-        web="https://tailwindcss.com"
-        ringHoverClass="hover:ring-[#38B2AC]"
-        iconGroupHoverClass="group-hover:text-[#38B2AC]"
-      >
-        <TailwindIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Golang"
-        web="https://golang.org"
-        ringHoverClass="hover:ring-[#00ADD8]"
-        iconGroupHoverClass="group-hover:text-[#00ADD8]"
-      >
-        <GoIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Prisma"
-        web="https://www.prisma.io/"
-        ringHoverClass="hover:ring-white"
-        iconGroupHoverClass="group-hover:text-white"
-      >
-        <PrismaIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Postgres"
-        web="https://www.postgresql.org/"
-        ringHoverClass="hover:ring-[#4169E1]"
-        iconGroupHoverClass="group-hover:text-white]"
-      >
-        <PostgresqlIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Kotlin"
-        web="https://kotlinlang.org/"
-        ringHoverClass="hover:ring-[#0095D5]"
-        iconGroupHoverClass="group-hover:text-[#0095D5]"
-      >
-        <KotlinIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Android"
-        web="https://developer.android.com/"
-        ringHoverClass="hover:ring-[#3DDC84]"
-        iconGroupHoverClass="group-hover:text-[#3DDC84]"
-      >
-        <AndroidIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-    </ul>
-  </article>
 
   {#await globe then module}
     <svelte:component this={module.default} />
@@ -191,8 +95,9 @@
     <div class="mb-8 max-w-lg prose">
       <h2>Recent Projects</h2>
       <p>
-        I build webapps, marketing sites, and e-commerce. I've worked across the
-        stack from CI/CD and backend to frontend and design.
+        I help businesses build webapps, marketing sites, and e-commerce sites.
+        I've worked across the stack from CI/CD and backend development to frontend and
+        design.
       </p>
     </div>
   </article>

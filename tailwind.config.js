@@ -19,6 +19,13 @@ export default {
           900: "#181818",
         },
       },
+      borderColor: {
+        "bg-default": {
+          700: "#282828",
+          800: "#1e1e1e",
+          900: "#181818",
+        },
+      },
       gradientColorStops: {
         default: {
           800: "#1e1e1e",
