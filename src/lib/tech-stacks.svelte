@@ -24,7 +24,7 @@
   ]
 </script>
 
-<div class="flex inline-block rounded-full p-2 mt-3 mb-16">
+<div class="flex inline-block rounded-full p-2 mt-2 mb-16">
   {#each techs as tech}
     <div class="-ml-3 flex hover:z-1 group">
       <div

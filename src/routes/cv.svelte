@@ -5,11 +5,11 @@
 </script>
 
 <header
-  class="border-b border-black pb-12 sm:pb-24 w-full block pt-24 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
+  class="border-b border-black pb-12 sm:pb-24 w-full block pt-6 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
   in:fade
 >
   <p
-    class="lg:text-lg 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-700 font-medium"
+    class="lg:text-lg 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-600 font-medium"
   >
     Curriculum Vitae
   </p>

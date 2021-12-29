@@ -10,31 +10,33 @@
 </script>
 
 <nav
-  class="text-sm h-12 sm:h-16 flex gap-4 sm:gap-8 text-default-900 w-full mx-auto max-w-[1920px] px-6 sm:px-8 md:px-32 fixed top-0 inset-x-0 z-10 border-b border-[#ffffff0D] blur bg-default-900 bg-opacity-80 backdrop-filter backdrop-blur-lg"
+  class="text-sm text-default-900 w-full px-6 sm:px-8 md:px-32 fixed top-0 inset-x-0 z-10 blur bg-default-900 bg-opacity-80 backdrop-filter backdrop-blur-lg h-12 sm:h-16 "
 >
-  <a href="/" class="flex items-center h-full font-bold mr-auto group">
-    <div class="overflow-hidden h-5">
-      <div
-        class="transform sm:group-hover:-translate-y-1/2 transition-transform duration-500 ease-in-out"
-      >
-        <span class="font-black text-xs sm:text-sm">
-          @chrsep
-          <span class="text-default-700 text-xs">(WIP)</span>
-        </span><br />
-        🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
+  <div class="max-w-[1920px] mx-auto flex gap-4 sm:gap-8 h-12 sm:h-16 ">
+    <a href="/" class="flex items-center h-full font-bold mr-auto group">
+      <div class="overflow-hidden h-5">
+        <div
+          class="transform sm:group-hover:-translate-y-1/2 transition-transform duration-500 ease-in-out"
+        >
+          <span class="font-black text-xs sm:text-sm">
+            @chrsep
+            <span class="text-default-700 text-xs">(WIP)</span>
+          </span><br />
+          🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
+        </div>
       </div>
-    </div>
-  </a>
+    </a>
 
-  <a
-    href="/cv"
-    class="font-medium text-default-700 hover:text-default-900 transition-colors h-full flex items-center"
-  >
-    CV
-  </a>
+    <a
+      href="/cv"
+      class="font-medium text-default-700 hover:text-default-900 transition-colors h-full flex items-center"
+    >
+      CV
+    </a>
+  </div>
 </nav>
 
-<main class="text-default-900 min-h-screen">
+<main class="text-default-900 min-h-screen mt-12 sm:mt-16">
   <slot />
 </main>
 
