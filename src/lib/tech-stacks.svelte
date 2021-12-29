@@ -26,13 +26,13 @@
 
 <div class="flex inline-block rounded-full p-2 mt-3 mb-16">
   {#each techs as tech}
-    <div class="-ml-3 flex hover:z-1 transition group">
+    <div class="-ml-3 flex hover:z-1 group">
       <div
         class="border-4 border-bg-default-900 rounded-full p-2 bg-default-900 bg-default-700"
       >
         <svelte:component
           this={tech.icon}
-          class="w-4 h-4 text-default-900 group-hover:opacity-100 opacity-30 {tech.hoverColor}"
+          class="w-4 h-4 text-default-600 {tech.hoverColor}"
         />
       </div>
     </div>
