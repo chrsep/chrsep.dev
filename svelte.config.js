@@ -24,6 +24,7 @@ const config = {
       resolve: {
         alias: {
           $icons: path.resolve("./src/icons"),
+          $images: path.resolve("./src/images"),
         },
       },
     },

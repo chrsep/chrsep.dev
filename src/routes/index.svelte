@@ -10,12 +10,17 @@
   import TwitterIcon from "$icons/twitter.svg"
   import LinkedinIcon from "$icons/linkedin.svg"
 
+  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700&format=avif;webp;jpg&srcset"
+
   const globe = import("$lib/globe.svelte")
 
   export const prerender = true
 </script>
 
-<div class="relative overflow-hidden hero-bg border-t border-[#ffffff0A]" in:fade={{ duration: 250 }}>
+<div
+  class="relative overflow-hidden hero-bg border-t border-[#ffffff0A]"
+  in:fade={{ duration: 250 }}
+>
   <header
     class="px-6 sm:px-8 pb-8 sm:pb-16 pt-6 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto md:h-[720px]"
   >
@@ -95,9 +100,9 @@
     <div class="mb-8 max-w-lg prose">
       <h2>Recent Projects</h2>
       <p>
-        I help businesses build webapps, marketing sites, and e-commerce sites.
-        I've worked across the stack, from CI/CD and backend development to
-        frontend and design.
+        I have experience building webapps, marketing sites, e-commerce sites
+        and I've worked across the stack, frontend and design to CI/CD and
+        backend development.
       </p>
     </div>
   </article>
@@ -112,23 +117,27 @@
       openSource
       githubLink="https://github.com/obserfy/obserfy"
       webLink="https://obserfy.com"
-      heroBg="bg-gradient-to-br from-teal-500 to-green-400"
+      heroBg="bg-default-700"
       lighthouse={{
         score: 95,
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
     />
+
     <Project
       title="Joyful Montessori"
       description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
       marketing
       webLink="https://www.joyfulmontessori.id"
-      heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
+      heroBg="bg-default-700"
       lighthouse={{
         score: 100,
         link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
       }}
-    />
+    >
+      <img srcset={JoyfulImage} alt="" slot="image" />
+    </Project>
+
     <Project
       title="Sekitarmu"
       description="A platform for discovering local small and medium businesses in a Community."
@@ -136,36 +145,20 @@
       openSource
       webLink="https://www.sekitarmu.id"
       githubLink="https://github.com/chrsep/grayson"
-      heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
+      heroBg="bg-default-700"
       lighthouse={{
         score: 92,
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
     />
-    <!--      <div class="w-100">-->
-    <!--        <a-->
-    <!--          href="/cv"-->
-    <!--          class="group block aspect-w-3 aspect-h-4 bg-default-800 mb-6 rounded-4xl shadow-lg hover:ring-4 ring-white transition duration-250"-->
-    <!--        >-->
-    <!--          <h2-->
-    <!--            class="flex flex-col items-center h-full w-full font-black justify-center text-xl text-default-800 group-hover:text-white transition-colors"-->
-    <!--          >-->
-    <!--            <div-->
-    <!--              class="rounded-full ring group-hover:ring-2 ring-white h-16 w-16 mb-6 group-hover:-translate-y-2 transform flex items-center justify-center ring-[#ffffff0D] group-hover:ring-white transition ease-in-out duration-250"-->
-    <!--            >-->
-    <!--              ->-->
-    <!--            </div>-->
-    <!--            Explore More-->
-    <!--          </h2>-->
-    <!--        </a>-->
-    <!--      </div>-->
+
     <Project
       title="Atreus"
       description="Automated asset discovery service built for trying out bug bounty."
       openSource
       webApp
       githubLink="https://github.com/chrsep/atreus"
-      heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
+      heroBg="bg-default-700"
     />
     <!--      <Project-->
     <!--        title="Portal"-->
@@ -201,7 +194,7 @@
           <h2>Open Source</h2>
           <p>
             Most of my projects are open-sourced and I try to contribute back to
-            the tools that I use when I can. Check out my work on GitHub!
+            the tools that I use when I can. Check out my contributions on GitHub!
           </p>
         </div>
 
