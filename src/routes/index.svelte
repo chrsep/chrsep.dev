@@ -1,20 +1,23 @@
 <script lang="ts" context="module">
-  import { fade } from "svelte/transition"
-  import SocialLink from "$lib/social-link.svelte"
-  import Project from "$lib/projects.svelte"
-  import Button from "$lib/button.svelte"
-  import TechStacks from "$lib/tech-stacks.svelte"
+  import { fade } from "svelte/transition";
+  import SocialLink from "$lib/social-link.svelte";
+  import Project from "$lib/projects.svelte";
+  import Button from "$lib/button.svelte";
+  import TechStacks from "$lib/tech-stacks.svelte";
 
-  import GithubIcon from "$icons/github.svg"
-  import StackOverflowIcon from "$icons/stackoverflow.svg"
-  import TwitterIcon from "$icons/twitter.svg"
-  import LinkedinIcon from "$icons/linkedin.svg"
+  import GithubIcon from "$icons/github.svg";
+  import StackOverflowIcon from "$icons/stackoverflow.svg";
+  import TwitterIcon from "$icons/twitter.svg";
+  import LinkedinIcon from "$icons/linkedin.svg";
 
-  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700&format=avif;webp;jpg&srcset"
+  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
 
-  const globe = import("$lib/globe.svelte")
+  const globe = import("$lib/globe.svelte");
 
-  export const prerender = true
+  export const prerender = true;
 </script>
 
 <div
@@ -122,7 +125,9 @@
         score: 95,
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
-    />
+    >
+      <img srcset={ObserfyImage} alt="" slot="image" />
+    </Project>
 
     <Project
       title="Joyful Montessori"
@@ -150,7 +155,9 @@
         score: 92,
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
-    />
+    >
+      <img srcset={SekitarmuImage} alt="" slot="image" />
+    </Project>
 
     <Project
       title="Atreus"
@@ -158,8 +165,9 @@
       openSource
       webApp
       githubLink="https://github.com/chrsep/atreus"
-      heroBg="bg-default-700"
-    />
+      heroBg="bg-default-700">
+      <img srcset={AtreusImage} alt="" slot="image" />
+    </Project>
     <!--      <Project-->
     <!--        title="Portal"-->
     <!--        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."-->
@@ -215,7 +223,7 @@
 </div>
 
 <style>
-  .hero-bg {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='24' viewBox='0 0 88 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='autumn' fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M10 0l30 15 2 1V2.18A10 10 0 0 0 41.76 0H39.7a8 8 0 0 1 .3 2.18v10.58L14.47 0H10zm31.76 24a10 10 0 0 0-5.29-6.76L4 1 2 0v13.82a10 10 0 0 0 5.53 8.94L10 24h4.47l-6.05-3.02A8 8 0 0 1 4 13.82V3.24l31.58 15.78A8 8 0 0 1 39.7 24h2.06zM78 24l2.47-1.24A10 10 0 0 0 86 13.82V0l-2 1-32.47 16.24A10 10 0 0 0 46.24 24h2.06a8 8 0 0 1 4.12-4.98L84 3.24v10.58a8 8 0 0 1-4.42 7.16L73.53 24H78zm0-24L48 15l-2 1V2.18A10 10 0 0 1 46.24 0h2.06a8 8 0 0 0-.3 2.18v10.58L73.53 0H78z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
+    .hero-bg {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='24' viewBox='0 0 88 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='autumn' fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M10 0l30 15 2 1V2.18A10 10 0 0 0 41.76 0H39.7a8 8 0 0 1 .3 2.18v10.58L14.47 0H10zm31.76 24a10 10 0 0 0-5.29-6.76L4 1 2 0v13.82a10 10 0 0 0 5.53 8.94L10 24h4.47l-6.05-3.02A8 8 0 0 1 4 13.82V3.24l31.58 15.78A8 8 0 0 1 39.7 24h2.06zM78 24l2.47-1.24A10 10 0 0 0 86 13.82V0l-2 1-32.47 16.24A10 10 0 0 0 46.24 24h2.06a8 8 0 0 1 4.12-4.98L84 3.24v10.58a8 8 0 0 1-4.42 7.16L73.53 24H78zm0-24L48 15l-2 1V2.18A10 10 0 0 1 46.24 0h2.06a8 8 0 0 0-.3 2.18v10.58L73.53 0H78z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
 </style>
