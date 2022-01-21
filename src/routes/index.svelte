@@ -1,34 +1,31 @@
 <script lang="ts" context="module">
-  import { fade } from "svelte/transition"
+  import { fade } from "svelte/transition";
+  import SocialLink from "$lib/social-link.svelte";
+  import Project from "$lib/projects.svelte";
+  import Button from "$lib/button.svelte";
+  import TechStacks from "$lib/tech-stacks.svelte";
 
-  import TechPills from "$lib/tech-pills.svelte"
-  import SocialLink from "$lib/social-link.svelte"
-  import Project from "$lib/projects.svelte"
-  import Button from "$lib/button.svelte"
+  import GithubIcon from "$icons/github.svg";
+  import StackOverflowIcon from "$icons/stackoverflow.svg";
+  import TwitterIcon from "$icons/twitter.svg";
+  import LinkedinIcon from "$icons/linkedin.svg";
 
-  import GithubIcon from "$icons/github.svg"
-  import StackOverflowIcon from "$icons/stackoverflow.svg"
-  import TwitterIcon from "$icons/twitter.svg"
-  import LinkedinIcon from "$icons/linkedin.svg"
-  import NextIcon from "$icons/nextdotjs.svg"
-  import GatsbyIcon from "$icons/gatsby.svg"
-  import ReactIcon from "$icons/react.svg"
-  import TypeScriptIcon from "$icons/typescript.svg"
-  import TailwindIcon from "$icons/tailwindcss.svg"
-  import GoIcon from "$icons/go.svg"
-  import PrismaIcon from "$icons/prisma.svg"
-  import PostgresqlIcon from "$icons/postgresql.svg"
-  import KotlinIcon from "$icons/kotlin.svg"
-  import AndroidIcon from "$icons/android.svg"
+  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
 
-  const globe = import("$lib/globe.svelte")
+  const globe = import("$lib/globe.svelte");
 
-  export const prerender = true
+  export const prerender = true;
 </script>
 
-<div class="relative overflow-hidden" in:fade={{ duration: 250 }}>
+<div
+  class="relative overflow-hidden hero-bg border-t border-[#ffffff0A]"
+  in:fade={{ duration: 250 }}
+>
   <header
-    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-28 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto"
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-6 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto md:h-[720px]"
   >
     <ul class="flex mb-6 gap-4">
       <SocialLink text="@chrsep" href="https://github.com/chrsep">
@@ -65,7 +62,7 @@
     <div class="mt-8">
       <a
         href="mailto:hi@chrsep.dev"
-        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4"
+        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2"
       >
         <Button class="w-full sm:w-auto group">
           Let's work together!
@@ -88,98 +85,11 @@
         </Button>
       </a>
     </div>
+
+    <div class="flex items-center">
+      <TechStacks />
+    </div>
   </header>
-
-  <article
-    class="px-6 pt-16 sm:px-8 md:px-32 pb-16 relative z-1 max-w-[1920px] mx-auto"
-  >
-    <h2 class="font-bold text-xl mb-4 sm:mb-6 text-gray-300">
-      Some Techs I work with
-    </h2>
-
-    <ul class="flex flex-wrap max-w-2xl gap-2">
-      <TechPills
-        text="Next"
-        web="https://nextjs.org"
-        ringHoverClass="hover:ring-white"
-        iconGroupHoverClass="group-hover:text-white"
-      >
-        <NextIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Gatsby"
-        web="https://gatsbyjs.com"
-        ringHoverClass="hover:ring-[#663399]"
-        iconGroupHoverClass="group-hover:text-white"
-      >
-        <GatsbyIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="React / Preact"
-        web="https://reactjs.org"
-        ringHoverClass="hover:ring-[#61DAFB]"
-        iconGroupHoverClass="group-hover:text-[#61DAFB]"
-      >
-        <ReactIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Typescript"
-        web="https://typescriptlang.org"
-        ringHoverClass="hover:ring-[#3178C6]"
-        iconGroupHoverClass="group-hover:text-[#3178C6]"
-      >
-        <TypeScriptIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Tailwind"
-        web="https://tailwindcss.com"
-        ringHoverClass="hover:ring-[#38B2AC]"
-        iconGroupHoverClass="group-hover:text-[#38B2AC]"
-      >
-        <TailwindIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Golang"
-        web="https://golang.org"
-        ringHoverClass="hover:ring-[#00ADD8]"
-        iconGroupHoverClass="group-hover:text-[#00ADD8]"
-      >
-        <GoIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Prisma"
-        web="https://www.prisma.io/"
-        ringHoverClass="hover:ring-white"
-        iconGroupHoverClass="group-hover:text-white"
-      >
-        <PrismaIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Postgres"
-        web="https://www.postgresql.org/"
-        ringHoverClass="hover:ring-[#4169E1]"
-        iconGroupHoverClass="group-hover:text-white]"
-      >
-        <PostgresqlIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Kotlin"
-        web="https://kotlinlang.org/"
-        ringHoverClass="hover:ring-[#0095D5]"
-        iconGroupHoverClass="group-hover:text-[#0095D5]"
-      >
-        <KotlinIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-      <TechPills
-        text="Android"
-        web="https://developer.android.com/"
-        ringHoverClass="hover:ring-[#3DDC84]"
-        iconGroupHoverClass="group-hover:text-[#3DDC84]"
-      >
-        <AndroidIcon let:class={className} class={className} slot="icon" />
-      </TechPills>
-    </ul>
-  </article>
 
   {#await globe then module}
     <svelte:component this={module.default} />
@@ -190,11 +100,12 @@
   <article
     class="px-6 sm:px-8 md:px-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
-    <div class="mb-8 max-w-lg">
-      <h2 class="font-black text-3xl leading-tight">Recent Projects</h2>
-      <p class="text-base sm:text-lg max-xs my-4 text-default-800">
-        I build webapps, marketing sites, and e-commerce. I've worked across the
-        stack from CI/CD and backend to frontend and design.
+    <div class="mb-8 max-w-lg prose">
+      <h2>Recent Projects</h2>
+      <p>
+        I have experience building webapps, marketing sites, e-commerce sites
+        and I've worked across the stack, frontend and design to CI/CD and
+        backend development.
       </p>
     </div>
   </article>
@@ -209,23 +120,29 @@
       openSource
       githubLink="https://github.com/obserfy/obserfy"
       webLink="https://obserfy.com"
-      heroBg="bg-gradient-to-br from-teal-500 to-green-400"
+      heroBg="bg-default-700"
       lighthouse={{
         score: 95,
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
-    />
+    >
+      <img srcset={ObserfyImage} alt="" slot="image" />
+    </Project>
+
     <Project
       title="Joyful Montessori"
       description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
       marketing
       webLink="https://www.joyfulmontessori.id"
-      heroBg="bg-gradient-to-br from-pink-600 to-fuchsia-600"
+      heroBg="bg-default-700"
       lighthouse={{
         score: 100,
         link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
       }}
-    />
+    >
+      <img srcset={JoyfulImage} alt="" slot="image" />
+    </Project>
+
     <Project
       title="Sekitarmu"
       description="A platform for discovering local small and medium businesses in a Community."
@@ -233,37 +150,24 @@
       openSource
       webLink="https://www.sekitarmu.id"
       githubLink="https://github.com/chrsep/grayson"
-      heroBg="bg-gradient-to-br from-blue-800 to-sky-600"
+      heroBg="bg-default-700"
       lighthouse={{
         score: 92,
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
-    />
-    <!--      <div class="w-100">-->
-    <!--        <a-->
-    <!--          href="/cv"-->
-    <!--          class="group block aspect-w-3 aspect-h-4 bg-default-800 mb-6 rounded-4xl shadow-lg hover:ring-4 ring-white transition duration-250"-->
-    <!--        >-->
-    <!--          <h2-->
-    <!--            class="flex flex-col items-center h-full w-full font-black justify-center text-xl text-default-800 group-hover:text-white transition-colors"-->
-    <!--          >-->
-    <!--            <div-->
-    <!--              class="rounded-full ring group-hover:ring-2 ring-white h-16 w-16 mb-6 group-hover:-translate-y-2 transform flex items-center justify-center ring-[#ffffff0D] group-hover:ring-white transition ease-in-out duration-250"-->
-    <!--            >-->
-    <!--              ->-->
-    <!--            </div>-->
-    <!--            Explore More-->
-    <!--          </h2>-->
-    <!--        </a>-->
-    <!--      </div>-->
+    >
+      <img srcset={SekitarmuImage} alt="" slot="image" />
+    </Project>
+
     <Project
       title="Atreus"
-      description="Automated asset discovery service built for bug bounty."
+      description="Automated asset discovery service built for trying out bug bounty."
       openSource
       webApp
       githubLink="https://github.com/chrsep/atreus"
-      heroBg="bg-gradient-to-br from-purple-500 to-indigo-600"
-    />
+      heroBg="bg-default-700">
+      <img srcset={AtreusImage} alt="" slot="image" />
+    </Project>
     <!--      <Project-->
     <!--        title="Portal"-->
     <!--        description="Offline-first android app for keeping track of campus info and activities with over 20k downloads."-->
@@ -281,4 +185,45 @@
     <!--        heroBg="bg-gradient-to-br from-yellow-400 to-orange-500"-->
     <!--      />-->
   </section>
+
+  <section class="flex items-center mt-8">
+    <div class="mx-auto relative inline-block">
+      <div
+        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-1 filter blur-3xl opacity-80"
+      />
+      <div
+        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-1 filter blur-3xl bottom-0 right-0 opacity-80"
+      />
+
+      <div
+        class="z-1 bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-[#ffffff0D]"
+      >
+        <div class="max-w-md prose prose-sm">
+          <h2>Open Source</h2>
+          <p>
+            Most of my projects are open-sourced and I try to contribute back to
+            the tools that I use when I can. Check out my contributions on GitHub!
+          </p>
+        </div>
+
+        <a
+          href="https://github.com/chrsep"
+          target="_blank"
+          rel="noreferrer"
+          class="ml-0 lg:ml-8 "
+        >
+          <Button class="!px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full">
+            Explore GitHub
+            <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
+
+<style>
+    .hero-bg {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='24' viewBox='0 0 88 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='autumn' fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M10 0l30 15 2 1V2.18A10 10 0 0 0 41.76 0H39.7a8 8 0 0 1 .3 2.18v10.58L14.47 0H10zm31.76 24a10 10 0 0 0-5.29-6.76L4 1 2 0v13.82a10 10 0 0 0 5.53 8.94L10 24h4.47l-6.05-3.02A8 8 0 0 1 4 13.82V3.24l31.58 15.78A8 8 0 0 1 39.7 24h2.06zM78 24l2.47-1.24A10 10 0 0 0 86 13.82V0l-2 1-32.47 16.24A10 10 0 0 0 46.24 24h2.06a8 8 0 0 1 4.12-4.98L84 3.24v10.58a8 8 0 0 1-4.42 7.16L73.53 24H78zm0-24L48 15l-2 1V2.18A10 10 0 0 1 46.24 0h2.06a8 8 0 0 0-.3 2.18v10.58L73.53 0H78z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+</style>

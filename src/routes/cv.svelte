@@ -5,16 +5,16 @@
 </script>
 
 <header
-  class="border-b border-black pb-12 sm:pb-24 w-full block pt-24 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
+  class="border-b border-black pb-12 sm:pb-24 w-full block pt-6 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
   in:fade
 >
   <p
-    class="lg:text-lg 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-700 font-bold"
+    class="lg:text-lg 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-600 font-medium"
   >
     Curriculum Vitae
   </p>
   <h1
-    class="font-black text-4xl !sm:text-5xl !xl:text-6xl 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4"
+    class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4"
   >
     Chrisando Eka <br /> Pramudhita
   </h1>
@@ -51,10 +51,7 @@
           Redesigned internal CRM for managing magazine subscriptions and
           printing shipping addresses for a publishing company.
         </li>
-        <li>
-          Helped develop analytic dashboard using React for a Singaporean
-          Company.
-        </li>
+        <li>Helped develop analytic dashboard using React.</li>
         <li>
           Developed android app for internal reporting of offsite maintenance
           result for a building automation company.
@@ -78,15 +75,15 @@
       </h2>
       <h3>Atreus</h3>
       <p>
-        Open-source automated asset discovery service built for bug bounty built
-        with NextJS and Go.
+        Open-source automated asset discovery service to experiment with bug
+        bounty. Built with NextJS and Go.
         <a
           href="https://play.google.com/store/apps/details?id=com.directdev.portal"
         >
           GitHub.
         </a>
       </p>
-      <p class="text-sm">Web Application, Open-source | 2021</p>
+      <p class="text-sm">Web Application, Open-source | 2021-Today</p>
 
       <h3>Obserfy</h3>
       <p>
