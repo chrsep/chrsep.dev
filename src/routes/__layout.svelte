@@ -6,11 +6,11 @@
   import LinkedinIcon from "$icons/linkedin.svg"
   import Button from "$lib/button.svelte"
 
-  import "virtual:windi.css"
+  import "../app.css"
 </script>
 
 <nav
-  class="text-sm text-default-900 w-full px-6 sm:px-8 md:px-32 fixed top-0 inset-x-0 z-10 blur bg-default-900 bg-opacity-80 backdrop-filter backdrop-blur-lg h-12 sm:h-16 "
+  class="text-sm text-default-900 w-full px-6 sm:px-8 md:px-32 fixed top-0 inset-x-0 z-10 bg-default-900 bg-opacity-80 backdrop-filter backdrop-blur-lg h-12 sm:h-16 "
 >
   <div class="max-w-[1920px] mx-auto flex gap-4 sm:gap-8 h-12 sm:h-16 ">
     <a href="/" class="flex items-center h-full font-bold mr-auto group">
@@ -96,34 +96,36 @@
             href="https://github.com/chrsep"
             class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
           >
-            <GithubIcon class="w-4 h-4" />
-          </a>
+            <GithubIcon class="w-4 h-4" /></a
+          >
         </li>
         <li>
           <a
             href="https://linkedin.com/in/chrsep"
             class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
           >
-            <LinkedinIcon class="w-4 h-4" />
-          </a>
+            <LinkedinIcon class="w-4 h-4" /></a
+          >
         </li>
         <li>
           <a
             href="https://twitter.com/_chrsep"
             class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
           >
-            <TwitterIcon class="w-4 h-4" />
-          </a>
+            <TwitterIcon class="w-4 h-4" /></a
+          >
         </li>
         <li>
           <a
             href="https://stackoverflow.com/users/story/6656573"
             class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
           >
-            <StackOverflowIcon class="w-4 h-4" />
-          </a>
+            <StackOverflowIcon class="w-4 h-4" /></a
+          >
         </li>
       </ul>
     </div>
   </div>
 </footer>
+
+<slot />
