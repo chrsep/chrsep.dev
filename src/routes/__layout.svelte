@@ -127,5 +127,3 @@
     </div>
   </div>
 </footer>
-
-<slot />
