@@ -189,14 +189,14 @@
   <section class="flex items-center mt-8">
     <div class="mx-auto relative inline-block">
       <div
-        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-1 filter blur-3xl opacity-80"
+        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-10 filter blur-3xl opacity-80"
       />
       <div
-        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-1 filter blur-3xl bottom-0 right-0 opacity-80"
+        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-10 filter blur-3xl bottom-0 right-0 opacity-80"
       />
 
       <div
-        class="z-1 bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-[#ffffff0D]"
+        class="bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-white border-opacity-10"
       >
         <div class="max-w-md prose prose-sm">
           <h2>Open Source</h2>
