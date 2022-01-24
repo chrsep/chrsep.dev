@@ -111,7 +111,7 @@
   </article>
 
   <section
-    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
+    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap-x snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
   >
     <Project
       title="Obserfy"
