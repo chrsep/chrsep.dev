@@ -10,12 +10,16 @@
   import TwitterIcon from "$icons/twitter.svg";
   import LinkedinIcon from "$icons/linkedin.svg";
 
-  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
-  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
-  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
-  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import Image from "$lib/image.svelte";
 
   const globe = import("$lib/globe.svelte");
+
+  console.log(SekitarmuImage);
+  
 
   export const prerender = true;
 </script>
@@ -126,7 +130,13 @@
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
     >
-      <img srcset={ObserfyImage} alt="" slot="image" />
+      <Image 
+        meta={ObserfyImage} 
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
+
     </Project>
 
     <Project
@@ -140,7 +150,13 @@
         link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
       }}
     >
-      <img srcset={JoyfulImage} alt="" slot="image" />
+      <Image 
+        meta={JoyfulImage} 
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
+
     </Project>
 
     <Project
@@ -156,7 +172,13 @@
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
     >
-      <img srcset={SekitarmuImage} alt="" slot="image" />
+      <Image 
+        meta={SekitarmuImage} 
+        loading="lazy"
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
     </Project>
 
     <Project
@@ -166,7 +188,13 @@
       webApp
       githubLink="https://github.com/chrsep/atreus"
       heroBg="bg-default-700">
-      <img srcset={AtreusImage} alt="" slot="image" />
+      <Image 
+        meta={AtreusImage} 
+        loading="lazy"
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
     </Project>
     <!--      <Project-->
     <!--        title="Portal"-->
