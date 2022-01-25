@@ -25,7 +25,7 @@
   in:fade={{ duration: 250 }}
 >
   <header
-    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-6 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto md:h-[720px]"
+    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-6 sm:pt-40 md:px-32 relative z-10 max-w-[1920px] mx-auto md:h-[720px]"
   >
     <ul class="flex mb-6 gap-4">
       <SocialLink text="@chrsep" href="https://github.com/chrsep">
