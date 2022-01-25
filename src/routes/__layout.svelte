@@ -7,6 +7,7 @@
   import Button from "$lib/button.svelte"
 
   import "../app.css"
+  import ButtonLink from "$lib/button-link.svelte"
 </script>
 
 <nav
@@ -53,19 +54,17 @@
       <p class="my-4 max-w-sm text-default-800 opacity-70 sm:mb-0">
         I would love to help you build faster and more accessible websites.
       </p>
-      <a
+      <ButtonLink
         href="mailto:hi@chrsep.dev"
-        class="mb-4 mt-2 inline-block w-full sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto"
+        class="group mb-4 mt-2 inline-block w-full text-sm sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto "
       >
-        <Button class="group w-full text-sm sm:w-auto">
-          Get in touch
-          <span
-            class="mr-1 ml-auto transform transition-transform duration-200 ease-in-out group-hover:translate-x-2 sm:ml-3"
-          >
-            ->
-          </span>
-        </Button>
-      </a>
+        Get in touch
+        <span
+          class="mr-1 ml-auto transform transition-transform duration-200 ease-in-out group-hover:translate-x-2 sm:ml-3"
+        >
+          ->
+        </span>
+      </ButtonLink>
     </div>
 
     <div class="mt-12 sm:ml-auto">

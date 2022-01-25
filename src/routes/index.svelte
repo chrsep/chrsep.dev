@@ -15,6 +15,7 @@
   import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
   import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
   import Image from "$lib/image.svelte";
+import ButtonLink from "$lib/button-link.svelte";
 
   const globe = import("$lib/globe.svelte");
 
@@ -64,30 +65,26 @@
     </h1>
 
     <div class="mt-8">
-      <a
+      <ButtonLink
         href="mailto:hi@chrsep.dev"
-        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2"
+        class="!inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2 group"
       >
-        <Button class="w-full sm:w-auto group">
-          Let's work together!
-          <span
-            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
-          >
-            ->
-          </span>
-        </Button>
-      </a>
+        Let's work together!
+        <span
+          class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+        >
+          ->
+        </span>
+      </ButtonLink>
 
-      <a href="/cv" class="inline-block w-full sm:w-auto ">
-        <Button variant="secondary" class="w-full sm:w-auto group">
-          More about me
-          <span
-            class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
-          >
-            👨‍💻
-          </span>
-        </Button>
-      </a>
+      <ButtonLink variant="secondary" href="/cv" class="!inline-block w-full sm:w-auto group">
+        More about me
+        <span
+          class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+        >
+          👨‍💻
+        </span>
+      </ButtonLink>
     </div>
 
     <div class="flex items-center">
@@ -234,17 +231,15 @@
           </p>
         </div>
 
-        <a
+        <ButtonLink
           href="https://github.com/chrsep"
           target="_blank"
           rel="noreferrer"
-          class="ml-0 lg:ml-8 "
+          class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full"
         >
-          <Button class="!px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full">
-            Explore GitHub
-            <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
-          </Button>
-        </a>
+          Explore GitHub
+          <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
+        </ButtonLink>
       </div>
     </div>
   </section>
