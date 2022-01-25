@@ -8,13 +8,13 @@
 <li class="flex-shrink-0">
   <a
     href={web}
-    class="text-default-800 border rounded-xl text-xs sm:px-4 px-3 sm:py-3 py-2 hover:ring-2 {ringHoverClass} transition flex items-center group bg-default-900 border-[#ffffff0D]"
+    class="rounded-xl border px-3 py-2 text-xs text-default-800 hover:ring-2 sm:px-4 sm:py-3 {ringHoverClass} group flex items-center border-[#ffffff0D] bg-default-900 transition"
     target="_blank"
     rel="noreferrer"
   >
     <slot
       name="icon"
-      class="mr-3 !w-[16px] !h-[16px] {iconGroupHoverClass} transition"
+      class="mr-3 !h-[16px] !w-[16px] {iconGroupHoverClass} transition"
     />
 
     {text}

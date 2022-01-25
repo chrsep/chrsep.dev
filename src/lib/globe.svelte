@@ -41,5 +41,5 @@
   bind:this={canvas}
   width="1500"
   height="1500"
-  class="absolute -z-0 -bottom-[110%] left-0 xl:-bottom-160 xl:left-auto xl:-right-160 hidden xl:block"
+  class="absolute -bottom-[110%] left-0 -z-0 hidden xl:-bottom-[95%] xl:left-auto xl:-right-[600px] xl:block"
 />

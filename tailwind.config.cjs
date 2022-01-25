@@ -1,5 +1,5 @@
-export default {
-  purge: ["./src/**/*.{html,js,svelte,ts}"],
+const config = {
+  content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
       fontFamily: {
@@ -85,8 +85,9 @@ export default {
     },
   },
   plugins: [
-    require("windicss/plugin/aspect-ratio"),
-    require("windicss/plugin/typography"),
-    require("windicss/plugin/scroll-snap"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/typography"),
   ],
 }
+
+module.exports = config

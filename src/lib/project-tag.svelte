@@ -7,7 +7,7 @@
 </script>
 
 <li
-  class="text-xs px-3 py-1 rounded-full text-blue-100 flex-shrink-0 {bgColor} {className}"
+  class="flex-shrink-0 rounded-full px-3 py-1 text-xs text-blue-100 {bgColor} {className}"
 >
   {name}
 </li>

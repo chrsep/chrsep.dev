@@ -10,12 +10,17 @@
   import TwitterIcon from "$icons/twitter.svg";
   import LinkedinIcon from "$icons/linkedin.svg";
 
-  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
-  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
-  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
-  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&srcset";
+  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
+  import Image from "$lib/image.svelte";
+import ButtonLink from "$lib/button-link.svelte";
 
   const globe = import("$lib/globe.svelte");
+
+  console.log(SekitarmuImage);
+  
 
   export const prerender = true;
 </script>
@@ -60,30 +65,26 @@
     </h1>
 
     <div class="mt-8">
-      <a
+      <ButtonLink
         href="mailto:hi@chrsep.dev"
-        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2"
+        class="!inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2 group"
       >
-        <Button class="w-full sm:w-auto group">
-          Let's work together!
-          <span
-            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
-          >
-            ->
-          </span>
-        </Button>
-      </a>
+        Let's work together!
+        <span
+          class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+        >
+          ->
+        </span>
+      </ButtonLink>
 
-      <a href="/cv" class="inline-block w-full sm:w-auto ">
-        <Button variant="secondary" class="w-full sm:w-auto group">
-          More about me
-          <span
-            class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
-          >
-            👨‍💻
-          </span>
-        </Button>
-      </a>
+      <ButtonLink variant="secondary" href="/cv" class="!inline-block w-full sm:w-auto group">
+        More about me
+        <span
+          class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+        >
+          👨‍💻
+        </span>
+      </ButtonLink>
     </div>
 
     <div class="flex items-center">
@@ -111,7 +112,7 @@
   </article>
 
   <section
-    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
+    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap-x snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
   >
     <Project
       title="Obserfy"
@@ -126,7 +127,13 @@
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
     >
-      <img srcset={ObserfyImage} alt="" slot="image" />
+      <Image 
+        meta={ObserfyImage} 
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
+
     </Project>
 
     <Project
@@ -140,7 +147,13 @@
         link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
       }}
     >
-      <img srcset={JoyfulImage} alt="" slot="image" />
+      <Image 
+        meta={JoyfulImage} 
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
+
     </Project>
 
     <Project
@@ -156,7 +169,13 @@
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
     >
-      <img srcset={SekitarmuImage} alt="" slot="image" />
+      <Image 
+        meta={SekitarmuImage} 
+        loading="lazy"
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
     </Project>
 
     <Project
@@ -166,7 +185,13 @@
       webApp
       githubLink="https://github.com/chrsep/atreus"
       heroBg="bg-default-700">
-      <img srcset={AtreusImage} alt="" slot="image" />
+      <Image 
+        meta={AtreusImage} 
+        loading="lazy"
+        slot="image" 
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+        alt="" 
+      />
     </Project>
     <!--      <Project-->
     <!--        title="Portal"-->
@@ -189,14 +214,14 @@
   <section class="flex items-center mt-8">
     <div class="mx-auto relative inline-block">
       <div
-        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-1 filter blur-3xl opacity-80"
+        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-10 filter blur-3xl opacity-80"
       />
       <div
-        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-1 filter blur-3xl bottom-0 right-0 opacity-80"
+        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-10 filter blur-3xl bottom-0 right-0 opacity-80"
       />
 
       <div
-        class="z-1 bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-[#ffffff0D]"
+        class="bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-white border-opacity-10"
       >
         <div class="max-w-md prose prose-sm">
           <h2>Open Source</h2>
@@ -206,17 +231,15 @@
           </p>
         </div>
 
-        <a
+        <ButtonLink
           href="https://github.com/chrsep"
           target="_blank"
           rel="noreferrer"
-          class="ml-0 lg:ml-8 "
+          class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full"
         >
-          <Button class="!px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full">
-            Explore GitHub
-            <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
-          </Button>
-        </a>
+          Explore GitHub
+          <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
+        </ButtonLink>
       </div>
     </div>
   </section>
