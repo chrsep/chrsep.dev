@@ -5,16 +5,16 @@
 </script>
 
 <header
-  class="sm:skew-y-4 relative block w-full skew-y-6 transform border-b border-black px-6 pb-12 pt-6 sm:pb-24 md:px-32 lg:pt-40 2xl:px-0"
+  class="sm:skew-y-4 relative block w-full skew-y-6 transform border-b border-black px-6 pb-12 pt-16 sm:pb-16 lg:pb-32 md:px-32 lg:pt-24 2xl:px-0"
   in:fade
 >
   <p
-    class="z-1 sm:-skew-y-4 relative max-w-7xl -skew-y-6 transform pb-2 font-medium text-default-600 lg:text-lg 2xl:mx-auto"
+    class="z-10 sm:-skew-y-4 relative max-w-7xl -skew-y-6 transform pb-2 font-medium text-default-600 lg:text-lg 2xl:mx-auto"
   >
     Curriculum Vitae
   </p>
   <h1
-    class="!sm:text-5xl z-1 sm:-skew-y-4 relative max-w-7xl -skew-y-6 transform text-4xl font-black 2xl:mx-auto"
+    class="sm:text-5xl lg:text-6xl z-10 sm:-skew-y-4 relative max-w-7xl -skew-y-6 transform text-4xl font-black 2xl:mx-auto"
   >
     Chrisando Eka <br /> Pramudhita
   </h1>
@@ -23,10 +23,10 @@
     class="absolute inset-0 flex items-center justify-center overflow-hidden"
   >
     <div
-      class="top-70 md:right-1/6 absolute flex animate-spin-slow blur-3xl filter md:top-80"
+      class="top-[300px] md:right-1/6 absolute flex animate-spin-slow blur-3xl filter sm:top-[300px] lg:top-[490px]"
     >
-      <div class="w-200 h-200 rounded-full bg-green-700 opacity-90" />
-      <div class="w-200 h-200 -ml-160 rounded-full bg-blue-700 opacity-90" />
+      <div class="w-[800px] h-[800px] rounded-full bg-green-700 opacity-90" />
+      <div class="w-[800px] h-[800px] -ml-[600px] rounded-full bg-blue-700 opacity-90" />
     </div>
   </div>
 </header>
