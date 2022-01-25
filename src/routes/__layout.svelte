@@ -10,17 +10,17 @@
 </script>
 
 <nav
-  class="text-sm text-default-900 w-full px-6 sm:px-8 md:px-32 fixed top-0 inset-x-0 z-10 bg-default-900 bg-opacity-80 backdrop-filter backdrop-blur-lg h-12 sm:h-16 "
+  class="fixed inset-x-0 top-0 z-10 h-12 w-full bg-default-900 bg-opacity-80 px-6 text-sm text-default-900 backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32 "
 >
-  <div class="max-w-[1920px] mx-auto flex gap-4 sm:gap-8 h-12 sm:h-16 ">
-    <a href="/" class="flex items-center h-full font-bold mr-auto group">
-      <div class="overflow-hidden h-5">
+  <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8 ">
+    <a href="/" class="group mr-auto flex h-full items-center font-bold">
+      <div class="h-5 overflow-hidden">
         <div
-          class="transform sm:group-hover:-translate-y-1/2 transition-transform duration-500 ease-in-out"
+          class="transform transition-transform duration-500 ease-in-out sm:group-hover:-translate-y-1/2"
         >
-          <span class="font-black text-xs sm:text-sm">
+          <span class="text-xs font-black sm:text-sm">
             @chrsep
-            <span class="text-default-700 text-xs">(WIP)</span>
+            <span class="text-xs text-default-700">(WIP)</span>
           </span><br />
           🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
         </div>
@@ -29,38 +29,38 @@
 
     <a
       href="/cv"
-      class="font-medium text-default-700 hover:text-default-900 transition-colors h-full flex items-center"
+      class="flex h-full items-center font-medium text-default-700 transition-colors hover:text-default-900"
     >
       CV
     </a>
   </div>
 </nav>
 
-<main class="text-default-900 min-h-screen mt-12 sm:mt-16">
+<main class="mt-12 min-h-screen text-default-900 sm:mt-16">
   <slot />
 </main>
 
 <footer
-  class="border-t pb-6 pt-12 sm:py-12 sm:py-16 border-[#ffffff0D] text-default-900 mt-32"
+  class="mt-32 border-t border-[#ffffff0D] pb-6 pt-12 text-default-900 sm:py-12 sm:py-16"
 >
   <div
-    class="mx-auto max-w-[1920px] px-6 sm:px-8 md:px-32 flex flex-col sm:flex-row sm:items-end"
+    class="mx-auto flex max-w-[1920px] flex-col px-6 sm:flex-row sm:items-end sm:px-8 md:px-32"
   >
     <div>
-      <h1 class="font-black leading-tight text-xl md:text-2xl">
+      <h1 class="text-xl font-black leading-tight md:text-2xl">
         Let's work together!
       </h1>
-      <p class="text-default-800 my-4 sm:mb-0 max-w-sm opacity-70">
+      <p class="my-4 max-w-sm text-default-800 opacity-70 sm:mb-0">
         I would love to help you build faster and more accessible websites.
       </p>
       <a
         href="mailto:hi@chrsep.dev"
-        class="inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4 mt-2 sm:mt-6"
+        class="mb-4 mt-2 inline-block w-full sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto"
       >
-        <Button class="w-full sm:w-auto group text-sm">
+        <Button class="group w-full text-sm sm:w-auto">
           Get in touch
           <span
-            class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+            class="mr-1 ml-auto transform transition-transform duration-200 ease-in-out group-hover:translate-x-2 sm:ml-3"
           >
             ->
           </span>
@@ -68,13 +68,13 @@
       </a>
     </div>
 
-    <div class="sm:ml-auto mt-12">
+    <div class="mt-12 sm:ml-auto">
       <a
         href="mailto:hi@chrsep.dev"
-        class="flex items-center text-default-900 opacity-40 font-medium hover:opacity-100 transition"
+        class="flex items-center font-medium text-default-900 opacity-40 transition hover:opacity-100"
       >
         <svg
-          class="w-4 h-4 mr-3"
+          class="mr-3 h-4 w-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -90,37 +90,37 @@
         hi@chrsep.dev
       </a>
 
-      <ul class="mt-4 flex gap-4 items-center -ml-2">
+      <ul class="mt-4 -ml-2 flex items-center gap-4">
         <li>
           <a
             href="https://github.com/chrsep"
-            class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
+            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <GithubIcon class="w-4 h-4" /></a
+            <GithubIcon class="h-4 w-4" /></a
           >
         </li>
         <li>
           <a
             href="https://linkedin.com/in/chrsep"
-            class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
+            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <LinkedinIcon class="w-4 h-4" /></a
+            <LinkedinIcon class="h-4 w-4" /></a
           >
         </li>
         <li>
           <a
             href="https://twitter.com/_chrsep"
-            class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
+            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <TwitterIcon class="w-4 h-4" /></a
+            <TwitterIcon class="h-4 w-4" /></a
           >
         </li>
         <li>
           <a
             href="https://stackoverflow.com/users/story/6656573"
-            class="flex items-center opacity-40 hover:opacity-100 hover:ring-2 ring-white rounded-lg p-2 transition ease-in-out duration-200"
+            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <StackOverflowIcon class="w-4 h-4" /></a
+            <StackOverflowIcon class="h-4 w-4" /></a
           >
         </li>
       </ul>

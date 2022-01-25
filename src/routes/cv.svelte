@@ -5,38 +5,38 @@
 </script>
 
 <header
-  class="border-b border-black pb-12 sm:pb-24 w-full block pt-6 lg:pt-40 md:px-32 2xl:px-0 px-6 relative transform skew-y-6 sm:skew-y-4"
+  class="sm:skew-y-4 relative block w-full skew-y-6 transform border-b border-black px-6 pb-12 pt-6 sm:pb-24 md:px-32 lg:pt-40 2xl:px-0"
   in:fade
 >
   <p
-    class="lg:text-lg 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4 pb-2 text-default-600 font-medium"
+    class="z-1 sm:-skew-y-4 relative max-w-7xl -skew-y-6 transform pb-2 font-medium text-default-600 lg:text-lg 2xl:mx-auto"
   >
     Curriculum Vitae
   </p>
   <h1
-    class="font-black text-4xl !sm:text-5xl 2xl:mx-auto max-w-7xl z-1 relative transform -skew-y-6 sm:-skew-y-4"
+    class="!sm:text-5xl z-1 sm:-skew-y-4 relative max-w-7xl -skew-y-6 transform text-4xl font-black 2xl:mx-auto"
   >
     Chrisando Eka <br /> Pramudhita
   </h1>
 
   <div
-    class="flex items-center justify-center absolute inset-0 overflow-hidden"
+    class="absolute inset-0 flex items-center justify-center overflow-hidden"
   >
     <div
-      class="absolute top-70 md:top-80 md:right-1/6 flex animate-spin-slow filter blur-3xl"
+      class="top-70 md:right-1/6 absolute flex animate-spin-slow blur-3xl filter md:top-80"
     >
-      <div class="w-200 h-200 bg-green-700 rounded-full opacity-90" />
-      <div class="w-200 h-200 bg-blue-700 rounded-full -ml-160 opacity-90" />
+      <div class="w-200 h-200 rounded-full bg-green-700 opacity-90" />
+      <div class="w-200 h-200 -ml-160 rounded-full bg-blue-700 opacity-90" />
     </div>
   </div>
 </header>
 
-<div class="px-6 md:px-32 2xl:px-0 2xl:mx-auto max-w-7xl">
+<div class="max-w-7xl px-6 md:px-32 2xl:mx-auto 2xl:px-0">
   <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
     <section>
       <h2 id="experience" class="!mt-8">
         Experiences
-        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
       </h2>
 
       <h3>Independent Software Developer</h3>
@@ -71,7 +71,7 @@
     <section>
       <h2 id="projects">
         Personal Projects
-        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
       </h2>
       <h3>Atreus</h3>
       <p>
@@ -111,7 +111,7 @@
     <section>
       <h2 id="education">
         Education
-        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
       </h2>
 
       <h3>Binus University</h3>
@@ -134,7 +134,7 @@
     <section>
       <h2 id="courses">
         Courses
-        <span class="block w-12 h-1 bg-blue-500 rounded-full mt-2" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
       </h2>
 
       <h3>Deep Learning Specialization</h3>

@@ -25,15 +25,15 @@
 </script>
 
 <article
-  class="sm:mb-4 w-[70vw] sm:w-auto sm:basis-1/2 xl:basis-1/4 flex-shrink-0 snap-center first:ml-6 last:mr-6 sm:first:ml-0 sm:last:mr-0"
+  class="w-[70vw] flex-shrink-0 snap-center first:ml-6 last:mr-6 sm:mb-4 sm:w-auto sm:basis-1/2 sm:first:ml-0 sm:last:mr-0 xl:basis-1/4"
 >
   <div
-    class="aspect-w-3 aspect-h-4 mb-6 rounded-2xl shadow-lg overflow-hidden {heroBg}"
+    class="aspect-w-3 aspect-h-4 mb-6 overflow-hidden rounded-2xl shadow-lg {heroBg}"
   >
     <slot name="image" />
   </div>
 
-  <ul class="flex flex-wrap mb-4 gap-2">
+  <ul class="mb-4 flex flex-wrap gap-2">
     {#if saas}
       <ProjectTag name="SaaS" bgColor="bg-red-50 text-red-900" />
     {/if}
@@ -64,12 +64,12 @@
     </p>
   </div>
 
-  <ul class="flex items-center gap-x-4 mt-4">
+  <ul class="mt-4 flex items-center gap-x-4">
     {#if lighthouse}
-      <li class="relative w-[36px] h-[36px]">
+      <li class="relative h-[36px] w-[36px]">
         <a href={lighthouse.link} target="_blank" rel="noreferrer">
           <p
-            class="flex items-center justify-center absolute inset-0 text-xs text-green-50 shadow-sm border-3 border-[#34D399] rounded-full"
+            class="border-3 absolute inset-0 flex items-center justify-center rounded-full border-[#34D399] text-xs text-green-50 shadow-sm"
           >
             {lighthouse.score}
           </p>

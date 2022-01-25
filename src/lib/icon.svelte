@@ -4,7 +4,7 @@
   export { className as class }
 </script>
 
-<div role="img" aria-hidden="true" class="w-5 h-5 bg-white icon {className}" />
+<div role="img" aria-hidden="true" class="icon h-5 w-5 bg-white {className}" />
 
 <style>
   .icon {
