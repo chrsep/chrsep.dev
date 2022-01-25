@@ -69,7 +69,7 @@
       <li class="relative h-[36px] w-[36px]">
         <a href={lighthouse.link} target="_blank" rel="noreferrer">
           <p
-            class="border-3 absolute inset-0 flex items-center justify-center rounded-full border-[#34D399] text-xs text-green-50 shadow-sm"
+            class="border-2 absolute inset-0 flex items-center justify-center rounded-full border-[#34D399] text-xs text-green-50 shadow-sm"
           >
             {lighthouse.score}
           </p>
