@@ -56,7 +56,7 @@
       </p>
       <ButtonLink
         href="mailto:hi@chrsep.dev"
-        class="group mb-4 mt-2 inline-block w-full text-sm sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto "
+        class="group mb-4 mt-2 !inline-block w-full text-sm sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto"
       >
         Get in touch
         <span
