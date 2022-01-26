@@ -235,7 +235,7 @@ import ButtonLink from "$lib/button-link.svelte";
           href="https://github.com/chrsep"
           target="_blank"
           rel="noreferrer"
-          class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full"
+          class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full sm:w-auto"
         >
           Explore GitHub
           <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
