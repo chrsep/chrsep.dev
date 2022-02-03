@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@poppanator/sveltekit-svg": "0.2.3",
-    "@sveltejs/adapter-vercel": "1.0.0-next.39",
+    "@sveltejs/adapter-vercel": "1.0.0-next.40",
     "@sveltejs/kit": "1.0.0-next.236",
     "@tailwindcss/aspect-ratio": "0.4.0",
     "@tailwindcss/typography": "0.5.1",
