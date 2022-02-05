@@ -1120,10 +1120,10 @@ mdn-data@2.0.14:
   resolved "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.14.tgz"
   integrity sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==
 
-mdsvex@0.9.8:
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/mdsvex/-/mdsvex-0.9.8.tgz#f430988b86c4d9080381de2fbe54326c046487bc"
-  integrity sha512-5QvThjRKoKkGH00qdHxLZ5ROd80RgGiJvM2B9opeFreaiGFTLoKKFUgEBCslLrwM24cVGJLmIM3rR83OFDf3tQ==
+mdsvex@0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/mdsvex/-/mdsvex-0.10.5.tgz#a8b905d2ff8fbff17fc3c8cfa8c4475ec6d8fb24"
+  integrity sha512-/B23WZn5Vjrjh7Qp2YsOXLkU9YFm59IEylKNXC10o05ZaCP4LNv32tGXKP6aEssss6hk/LdISJuneELHFIS2pQ==
   dependencies:
     "@types/unist" "^2.0.3"
     prism-svelte "^0.4.7"
