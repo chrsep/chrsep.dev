@@ -21,7 +21,6 @@
         >
           <span class="text-xs font-black sm:text-sm">
             @chrsep
-            <span class="text-xs text-default-700">(WIP)</span>
           </span><br />
           🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
         </div>
@@ -95,7 +94,8 @@
             href="https://github.com/chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <GithubIcon class="h-4 w-4" /></a
+            <GithubIcon class="h-4 w-4" />
+          </a
           >
         </li>
         <li>
@@ -103,7 +103,8 @@
             href="https://linkedin.com/in/chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <LinkedinIcon class="h-4 w-4" /></a
+            <LinkedinIcon class="h-4 w-4" />
+          </a
           >
         </li>
         <li>
@@ -111,7 +112,8 @@
             href="https://twitter.com/_chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <TwitterIcon class="h-4 w-4" /></a
+            <TwitterIcon class="h-4 w-4" />
+          </a
           >
         </li>
         <li>
@@ -119,7 +121,8 @@
             href="https://stackoverflow.com/users/story/6656573"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <StackOverflowIcon class="h-4 w-4" /></a
+            <StackOverflowIcon class="h-4 w-4" />
+          </a
           >
         </li>
       </ul>
