@@ -1,28 +1,24 @@
 <script lang="ts" context="module">
-  import { fade } from "svelte/transition";
-  import SocialLink from "$lib/social-link.svelte";
-  import Project from "$lib/projects.svelte";
-  import Button from "$lib/button.svelte";
-  import TechStacks from "$lib/tech-stacks.svelte";
+  import { fade } from "svelte/transition"
+  import SocialLink from "$lib/social-link.svelte"
+  import Project from "$lib/projects.svelte"
+  import TechStacks from "$lib/tech-stacks.svelte"
 
-  import GithubIcon from "$icons/github.svg";
-  import StackOverflowIcon from "$icons/stackoverflow.svg";
-  import TwitterIcon from "$icons/twitter.svg";
-  import LinkedinIcon from "$icons/linkedin.svg";
+  import GithubIcon from "$icons/github.svg"
+  import StackOverflowIcon from "$icons/stackoverflow.svg"
+  import TwitterIcon from "$icons/twitter.svg"
+  import LinkedinIcon from "$icons/linkedin.svg"
 
-  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
-  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
-  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
-  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta";
-  import Image from "$lib/image.svelte";
-import ButtonLink from "$lib/button-link.svelte";
+  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
+  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
+  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
+  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
+  import Image from "$lib/image.svelte"
+  import ButtonLink from "$lib/button-link.svelte"
 
-  const globe = import("$lib/globe.svelte");
+  const globe = import("$lib/globe.svelte")
 
-  console.log(SekitarmuImage);
-  
-
-  export const prerender = true;
+  export const prerender = true
 </script>
 
 <div
@@ -44,7 +40,7 @@ import ButtonLink from "$lib/button-link.svelte";
       </SocialLink>
       <SocialLink
         text="@chrsep"
-        href="https://stackoverflow.com/users/story/6656573"
+        href="https://stackoverflow.com/users/6656573/chrsep"
         class="hidden sm:flex"
       >
         <StackOverflowIcon
@@ -104,9 +100,9 @@ import ButtonLink from "$lib/button-link.svelte";
     <div class="mb-8 max-w-lg prose">
       <h2>Recent Projects</h2>
       <p>
-        I have experience building webapps, marketing sites, e-commerce sites
-        and I've worked across the stack, frontend and design to CI/CD and
-        backend development.
+        I love building and shipping products, so I try to learn things
+        that allows me to fully ship a product on my own. Below are some recent
+        projects I've been working on.
       </p>
     </div>
   </article>
@@ -127,13 +123,12 @@ import ButtonLink from "$lib/button-link.svelte";
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
     >
-      <Image 
-        meta={ObserfyImage} 
-        slot="image" 
+      <Image
+        meta={ObserfyImage}
+        slot="image"
         sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt="" 
+        alt=""
       />
-
     </Project>
 
     <Project
@@ -147,13 +142,12 @@ import ButtonLink from "$lib/button-link.svelte";
         link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
       }}
     >
-      <Image 
-        meta={JoyfulImage} 
-        slot="image" 
+      <Image
+        meta={JoyfulImage}
+        slot="image"
         sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt="" 
+        alt=""
       />
-
     </Project>
 
     <Project
@@ -169,12 +163,12 @@ import ButtonLink from "$lib/button-link.svelte";
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
     >
-      <Image 
-        meta={SekitarmuImage} 
+      <Image
+        meta={SekitarmuImage}
         loading="lazy"
-        slot="image" 
+        slot="image"
         sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt="" 
+        alt=""
       />
     </Project>
 
@@ -185,12 +179,12 @@ import ButtonLink from "$lib/button-link.svelte";
       webApp
       githubLink="https://github.com/chrsep/atreus"
       heroBg="bg-default-700">
-      <Image 
-        meta={AtreusImage} 
+      <Image
+        meta={AtreusImage}
         loading="lazy"
-        slot="image" 
+        slot="image"
         sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt="" 
+        alt=""
       />
     </Project>
     <!--      <Project-->
