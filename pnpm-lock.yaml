@@ -54,6 +54,7 @@ importers:
   studio:
     specifiers:
       '@sanity/base': ^2.27.0
+      '@sanity/cli': ^2.27.0
       '@sanity/core': ^2.27.0
       '@sanity/data-aspects': ^2.27.0
       '@sanity/default-layout': ^2.27.0
@@ -82,6 +83,8 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+    devDependencies:
+      '@sanity/cli': 2.27.0
 
 packages:
 
@@ -2540,6 +2543,12 @@ packages:
       get-random-values: 1.2.2
       lodash: 4.17.21
     dev: false
+
+  /@sanity/cli/2.27.0:
+    resolution: {integrity: sha512-hx2/z1oBnAo+aA+h3Zz3dQgLEJi693/CJJSq3Pt9CdDN5zXz8g5C923nXJ3gNnTh+npwu5gIr7I68n9VKkj59Q==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dev: true
 
   /@sanity/client/3.0.6:
     resolution: {integrity: sha512-UzFCV7Wj5yL/FRlPrTM2yVpmJU//E3jevxhFPnO7OsfpEuTscDREPEdV/Fc873JL5PAm+uAATAK/Hx/zGCxctw==}

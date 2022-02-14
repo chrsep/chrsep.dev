@@ -32,5 +32,8 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:chrsep/chrsep.dev.git"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^2.27.0"
   }
 }
