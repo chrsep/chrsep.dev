@@ -6,3 +6,4 @@ node_modules
 .idea/workspace.xml
 .idea/misc.xml
 .vercel_build_output
+static/studio
