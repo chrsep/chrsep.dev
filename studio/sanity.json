@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "chrsep.dev"
+    "name": "chrsep.dev",
+    "basePath": "/studio"
   },
   "api": {
     "projectId": "31qyaxrb",
