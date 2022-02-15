@@ -1,0 +1,32 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Extended from https://github.com/posquit0/Awesome-CV
+% License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4/letterpaper
+\documentclass[11pt, letterpaper]{awesome-cv}
+
+% Define colors
+\definecolor{awesome}{HTML}{EB5F07}
+\definecolor{darktext}{HTML}{232F3E}
+
+\input{meta/format.tex}
+\input{meta/personal-info.tex}
+\begin{document}
+    \makecvheader
+    \input{meta/footer.tex}
+
+    %-------------------------------------------------------------------------------
+    %	CONTENT
+    %-------------------------------------------------------------------------------
+    \input{sections/skills.tex}
+    \input{sections/experience.tex}
+    \input{sections/projects.tex}
+    \input{sections/education.tex}
+    \input{sections/courses.tex}
+    %-------------------------------------------------------------------------------
+
+\end{document}

@@ -79,9 +79,7 @@
       <p>
         Open-source automated asset discovery service to experiment with bug
         bounty. Built with NextJS and Go.
-        <a
-          href="https://play.google.com/store/apps/details?id=com.directdev.portal"
-        >
+        <a href="https://github.com/chrsep/atreus">
           GitHub.
         </a>
       </p>
@@ -124,7 +122,7 @@
       </p>
       <p class="text-sm">Jakarta, Indonesia | 2014-2018</p>
 
-      <h3>National Sun-Yat Sen University</h3>
+      <h3>National Sun Yat-sen University</h3>
       <h4>Student Exchange</h4>
       <p>
         Learned Python and UNIX through building and debugging various unix
@@ -149,7 +147,7 @@
           </a>
         </li>
         <li>
-          Learned how to structuring machine learning projects.
+          Learned how to structure machine learning projects.
           <a href="https://coursera.org/share/228b975f5d801b33f02680a0be0dfcb2">
             Certificate.
           </a>

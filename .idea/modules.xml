@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/chrsep.dev.iml" filepath="$PROJECT_DIR$/chrsep.dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cv/cv.iml" filepath="$PROJECT_DIR$/cv/cv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/studio/studio.iml" filepath="$PROJECT_DIR$/studio/studio.iml" />
     </modules>
   </component>
 </project>

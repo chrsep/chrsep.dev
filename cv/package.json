@@ -1,0 +1,10 @@
+{
+  "name": "cv",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:cv": "xelatex --output-directory=out cv.tex"
+  },
+  "author": "Chrisando Eka Pramudhita",
+  "license": "CC BY-SA 4.0"
+}
