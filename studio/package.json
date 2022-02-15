@@ -14,29 +14,29 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.27.0",
-    "@sanity/core": "^2.27.0",
-    "@sanity/data-aspects": "^2.27.0",
-    "@sanity/default-layout": "^2.27.0",
-    "@sanity/default-login": "^2.27.0",
-    "@sanity/desk-tool": "^2.27.0",
-    "@sanity/eslint-config-studio": "^2.0.0",
-    "@sanity/form-builder": "^2.27.0",
-    "@sanity/vision": "^2.27.0",
-    "eslint": "^8.9.0",
-    "prop-types": "^15.8.1",
+    "@sanity/base": "2.27.0",
+    "@sanity/core": "2.27.0",
+    "@sanity/data-aspects": "2.27.0",
+    "@sanity/default-layout": "2.27.0",
+    "@sanity/default-login": "2.27.0",
+    "@sanity/desk-tool": "2.27.0",
+    "@sanity/eslint-config-studio": "2.0.0",
+    "@sanity/form-builder": "2.27.0",
+    "@sanity/vision": "2.27.0",
+    "eslint": "8.9.0",
+    "prop-types": "15.8.1",
     "preact": "10.6.5",
     "react": "npm:@preact/compat@17.0.2",
     "react-dom": "npm:@preact/compat@17.0.2",
     "react-ssr-prepass": "npm:preact-ssr-prepass@1.2.0",
     "preact-render-to-string": "5.1.19",
-    "styled-components": "^5.3.3"
+    "styled-components": "5.3.3"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:chrsep/chrsep.dev.git"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.27.0"
+    "@sanity/cli": "2.27.0"
   }
 }
