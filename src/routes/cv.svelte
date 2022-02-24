@@ -169,7 +169,7 @@
       <h3>Machine Learning</h3>
       <h4>Coursera</h4>
       <p>
-        Learned various Machine Learning methodology such as SVM and neural
+        Learned various Machine Learning methodologies such as SVM and neural
         networks using Matlab.
         <a href="https://coursera.org/share/9747c18a12fd68667db0001980a8ab26">
           Certificate.
