@@ -13,7 +13,7 @@
     "postinstall": "npx pnpm build:sanity -r"
   },
   "devDependencies": {
-    "@poppanator/sveltekit-svg": "0.2.3",
+    "@poppanator/sveltekit-svg": "0.3.1",
     "@sveltejs/adapter-vercel": "1.0.0-next.43",
     "@sveltejs/kit": "1.0.0-next.276",
     "@tailwindcss/aspect-ratio": "0.4.0",
