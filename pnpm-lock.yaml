@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@fontsource/inter': 4.5.4
-      '@poppanator/sveltekit-svg': 0.2.3
+      '@poppanator/sveltekit-svg': 0.3.1
       '@sveltejs/adapter-vercel': 1.0.0-next.43
       '@sveltejs/kit': 1.0.0-next.276
       '@tailwindcss/aspect-ratio': 0.4.0
@@ -30,7 +30,7 @@ importers:
       '@fontsource/inter': 4.5.4
       cobe: 0.4.1
     devDependencies:
-      '@poppanator/sveltekit-svg': 0.2.3_svelte@3.46.4
+      '@poppanator/sveltekit-svg': 0.3.1_svelte@3.46.4
       '@sveltejs/adapter-vercel': 1.0.0-next.43
       '@sveltejs/kit': 1.0.0-next.276_svelte@3.46.4
       '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.0.23
@@ -2381,8 +2381,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@poppanator/sveltekit-svg/0.2.3_svelte@3.46.4:
-    resolution: {integrity: sha512-dA0kfApVYd5S0Yw9z1syp+CeK7ec10O8dL0FtjSoFxPuSOq/CqLgJ9Rq6iPm635cp+SSNIjjfPXfthygdaofwA==}
+  /@poppanator/sveltekit-svg/0.3.1_svelte@3.46.4:
+    resolution: {integrity: sha512-atwGnEYD3S18hrwvM4S55sAB2EKzbvLPVBWoL9KSVqPgbSfRvKQb6aBrA7gWOQVz3uoCwDujUvvlbxvzYxmthw==}
     peerDependencies:
       svelte: 3.x
     dependencies:
