@@ -12,7 +12,7 @@ importers:
       '@tailwindcss/typography': 0.5.2
       autoprefixer: 10.4.2
       cobe: 0.4.1
-      cssnano: 5.1.0
+      cssnano: 5.1.4
       mdsvex: 0.10.5
       postcss: 8.4.8
       postcss-load-config: 3.1.3
@@ -36,7 +36,7 @@ importers:
       '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.0.23
       '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.23
       autoprefixer: 10.4.2_postcss@8.4.8
-      cssnano: 5.1.0_postcss@8.4.8
+      cssnano: 5.1.4_postcss@8.4.8
       mdsvex: 0.10.5_svelte@3.46.4
       postcss: 8.4.8
       postcss-load-config: 3.1.3
@@ -5325,8 +5325,8 @@ packages:
       postcss: 7.0.39
     dev: false
 
-  /cssnano/5.1.0_postcss@8.4.8:
-    resolution: {integrity: sha512-wWxave1wMlThGg4ueK98jFKaNqXnQd1nVZpSkQ9XvR+YymlzP1ofWqES1JkHtI250LksP9z5JH+oDcrKDJezAg==}
+  /cssnano/5.1.4_postcss@8.4.8:
+    resolution: {integrity: sha512-hbfhVZreEPyzl+NbvRsjNo54JOX80b+j6nqG2biLVLaZHJEiqGyMh4xDGHtwhUKd5p59mj2GlDqlUBwJUuIu5A==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
