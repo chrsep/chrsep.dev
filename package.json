@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "@fontsource/inter": "4.5.4",
-    "cobe": "0.4.1"
+    "cobe": "0.4.2"
   }
 }
