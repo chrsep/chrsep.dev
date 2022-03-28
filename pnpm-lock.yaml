@@ -11,7 +11,7 @@ importers:
       '@tailwindcss/aspect-ratio': 0.4.0
       '@tailwindcss/typography': 0.5.2
       autoprefixer: 10.4.4
-      cobe: 0.4.1
+      cobe: 0.4.2
       cssnano: 5.1.5
       mdsvex: 0.10.5
       postcss: 8.4.12
@@ -28,7 +28,7 @@ importers:
       vite-imagetools: 4.0.3
     dependencies:
       '@fontsource/inter': 4.5.4
-      cobe: 0.4.1
+      cobe: 0.4.2
     devDependencies:
       '@poppanator/sveltekit-svg': 0.3.1_svelte@3.46.4
       '@sveltejs/adapter-vercel': 1.0.0-next.43
@@ -4734,8 +4734,8 @@ packages:
       q: 1.5.1
     dev: false
 
-  /cobe/0.4.1:
-    resolution: {integrity: sha512-hXVsSFXUisSQONxkBD5YC+z73ucBCbI/0Jw1h7OOwjo001X93HpSSGkYfoidCruxbNYYss/tpT40RZ8N1VIwhw==}
+  /cobe/0.4.2:
+    resolution: {integrity: sha512-EHHCAWUom+dm1p5l/uy8pUiKnxzKyHXVWr4ky3Qk0Fav6Z0iW4iPMf7+nblF6uDYnd9Lk/ghbjDhwPc6b6EteA==}
     dependencies:
       phenomenon: 1.6.0
     dev: false
