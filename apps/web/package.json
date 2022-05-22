@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev --host 0.0.0.0",
-    "build": "mkdir ./static/studio && cp -R ../studio/dist/* ./static/studio && svelte-kit build",
+    "build": "rm -rf ./static/studio && mkdir ./static/studio && cp -R ../studio/dist/* ./static/studio && svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
