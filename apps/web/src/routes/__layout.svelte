@@ -1,13 +1,10 @@
 <script lang="ts">
   import "@fontsource/inter/variable.css"
-  import GithubIcon from "$icons/github.svg"
-  import StackOverflowIcon from "$icons/stackoverflow.svg"
-  import TwitterIcon from "$icons/twitter.svg"
-  import LinkedinIcon from "$icons/linkedin.svg"
   import Button from "$lib/button.svelte"
 
   import "../app.css"
   import ButtonLink from "$lib/button-link.svelte"
+  import Icon from "$lib/icon.svelte"
 </script>
 
 <nav
@@ -19,9 +16,7 @@
         <div
           class="transform transition-transform duration-500 ease-in-out sm:group-hover:-translate-y-1/2"
         >
-          <span class="text-xs font-black sm:text-sm">
-            @chrsep
-          </span><br />
+          <span class="text-xs font-black sm:text-sm"> @chrsep </span><br />
           🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
         </div>
       </div>
@@ -94,36 +89,32 @@
             href="https://github.com/chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <GithubIcon class="h-4 w-4" />
-          </a
-          >
+            <Icon --src="url(/icons/github.svg)" class="h-4 w-4" />
+          </a>
         </li>
         <li>
           <a
             href="https://linkedin.com/in/chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <LinkedinIcon class="h-4 w-4" />
-          </a
-          >
+            <Icon --src="url(/icons/linkedin.svg)" class="h-4 w-4" />
+          </a>
         </li>
         <li>
           <a
             href="https://twitter.com/_chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <TwitterIcon class="h-4 w-4" />
-          </a
-          >
+            <Icon --src="url(/icons/twitter.svg)" class="h-4 w-4" />
+          </a>
         </li>
         <li>
           <a
             href="https://stackoverflow.com/users/story/6656573"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
-            <StackOverflowIcon class="h-4 w-4" />
-          </a
-          >
+            <Icon --src="url(/icons/stackoverflow.svg)" class="h-4 w-4" />
+          </a>
         </li>
       </ul>
     </div>

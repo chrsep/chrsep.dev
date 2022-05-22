@@ -1,62 +1,69 @@
 <script lang="ts">
-  import NextIcon from "$icons/nextdotjs.svg"
-  import GatsbyIcon from "$icons/gatsby.svg"
-  import ReactIcon from "$icons/react.svg"
-  import TypeScriptIcon from "$icons/typescript.svg"
-  import TailwindIcon from "$icons/tailwindcss.svg"
-  import GoIcon from "$icons/go.svg"
-  import PrismaIcon from "$icons/prisma.svg"
-  import PostgresqlIcon from "$icons/postgresql.svg"
-  import KotlinIcon from "$icons/kotlin.svg"
-  import AndroidIcon from "$icons/android.svg"
+  import Icon from "./icon.svelte"
 
   const techs = [
     {
-      icon: ReactIcon,
+      icon: "/icons/react.svg",
       name: "React",
-      hoverColor: "group-hover:text-[#61DAFB]",
+      hoverColor: "group-hover:bg-[#61DAFB]",
     },
-    { icon: NextIcon, name: "NextJS", hoverColor: "group-hover:text-white" },
-    { icon: GatsbyIcon, name: "Gatsby", hoverColor: "group-hover:text-white" },
     {
-      icon: TypeScriptIcon,
+      icon: "/icons/nextdotjs.svg",
+      name: "NextJS",
+      hoverColor: "group-hover:bg-white",
+    },
+    {
+      icon: "/icons/gatsby.svg",
+      name: "Gatsby",
+      hoverColor: "group-hover:bg-white",
+    },
+    {
+      icon: "/icons/typescript.svg",
       name: "TypeScript",
-      hoverColor: "group-hover:text-[#3178C6]",
+      hoverColor: "group-hover:bg-[#3178C6]",
     },
     {
-      icon: TailwindIcon,
+      icon: "/icons/tailwindcss.svg",
       name: "TailwindCSS",
-      hoverColor: "group-hover:text-[#38B2AC]",
+      hoverColor: "group-hover:bg-[#38B2AC]",
     },
-    { icon: GoIcon, name: "Go", hoverColor: "group-hover:text-[#00ADD8]" },
-    { icon: PrismaIcon, name: "Prisma", hoverColor: "group-hover:text-white" },
     {
-      icon: PostgresqlIcon,
+      icon: "/icons/go.svg",
+      name: "Go",
+      hoverColor: "group-hover:bt-[#00ADD8]",
+    },
+    {
+      icon: "/icons/prisma.svg",
+      name: "Prisma",
+      hoverColor: "group-hover:bg-white",
+    },
+    {
+      icon: "/icons/postgresql.svg",
       name: "PostgreSQL",
-      hoverColor: "group-hover:text-[#D9D9D9]",
+      hoverColor: "group-hover:bg-[#D9D9D9]",
     },
     {
-      icon: KotlinIcon,
+      icon: "/icons/kotlin.svg",
       name: "Kotlin",
-      hoverColor: "group-hover:text-[#0095D5]",
+      hoverColor: "group-hover:bg-[#0095D5]",
     },
     {
-      icon: AndroidIcon,
+      icon: "/icons/android.svg",
       name: "Android",
-      hoverColor: "group-hover:text-[#3DDC84]",
+      hoverColor: "group-hover:bg-[#3DDC84]",
     },
   ]
 </script>
 
-<div class="mt-2 mb-16 inline-block flex rounded-full p-2">
+<div class="mt-2 mb-16 flex rounded-full p-2">
   {#each techs as tech}
     <div class="hover:z-1 group -ml-3 flex">
       <div
-        class="rounded-full border-4 border-bg-default-900 bg-default-900 bg-default-700 p-2"
+        class="rounded-full border-4 border-bg-default-900 bg-default-800 p-2"
       >
-        <svelte:component
-          this={tech.icon}
-          class="h-4 w-4 text-default-600 {tech.hoverColor}"
+        <Icon
+          --src="url({tech.icon})"
+          class="h-4 w-4 bg-default-500 {tech.hoverColor} transition-colors"
         />
       </div>
     </div>

@@ -6,6 +6,6 @@
 
 <li class="text-sm font-bold opacity-60 transition-opacity hover:opacity-100">
   <a href={link} class="flex items-center" rel="noreferrer" target="_blank">
-    <Icon --icon-src="url('/icons/link.svg')" class="mr-1" />{name}
+    <Icon --src="url('/icons/link.svg')" class="mr-1" />{name}
   </a>
 </li>

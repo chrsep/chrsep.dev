@@ -3,7 +3,6 @@
   "license": "MIT",
   "name": "chrsep.dev",
   "devDependencies": {
-    "prettier": "2.6.2",
     "turbo": "^1.2.11"
   },
   "scripts": {

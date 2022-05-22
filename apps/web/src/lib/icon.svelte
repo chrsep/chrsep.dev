@@ -8,7 +8,7 @@
 
 <style>
   .icon {
-    mask-image: var(--icon-src);
+    mask-image: var(--src);
     mask-size: 100%;
     mask-repeat: no-repeat;
   }

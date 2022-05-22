@@ -1,13 +1,9 @@
 <script lang="ts" context="module">
   import { fade } from "svelte/transition"
+
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
   import TechStacks from "$lib/tech-stacks.svelte"
-
-  import GithubIcon from "$icons/github.svg"
-  import StackOverflowIcon from "$icons/stackoverflow.svg"
-  import TwitterIcon from "$icons/twitter.svg"
-  import LinkedinIcon from "$icons/linkedin.svg"
 
   import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
   import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
@@ -15,6 +11,7 @@
   import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
   import Image from "$lib/image.svelte"
   import ButtonLink from "$lib/button-link.svelte"
+  import Icon from "$lib/icon.svelte"
 
   const globe = import("$lib/globe.svelte")
 
@@ -29,26 +26,27 @@
     class="px-6 sm:px-8 pb-8 sm:pb-16 pt-6 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto md:h-[720px]"
   >
     <ul class="flex mb-6 gap-4">
-      <SocialLink text="@chrsep" href="https://github.com/chrsep">
-        <GithubIcon slot="icon" let:class={className} class={className} />
-      </SocialLink>
-      <SocialLink text="Chrisando" href="https://linkedin.com/in/chrsep">
-        <LinkedinIcon slot="icon" let:class={className} class={className} />
-      </SocialLink>
-      <SocialLink text="@_chrsep" href="https://twitter.com/_chrsep">
-        <TwitterIcon slot="icon" let:class={className} class={className} />
-      </SocialLink>
+      <SocialLink
+        text="@chrsep"
+        href="https://github.com/chrsep"
+        icon="/icons/github.svg"
+      />
+      <SocialLink
+        text="Chrisando"
+        href="https://linkedin.com/in/chrsep"
+        icon="/icons/linkedin.svg"
+      />
+      <SocialLink
+        text="@_chrsep"
+        href="https://twitter.com/_chrsep"
+        icon="/icons/twitter.svg"
+      />
       <SocialLink
         text="@chrsep"
         href="https://stackoverflow.com/users/6656573/chrsep"
         class="hidden sm:flex"
-      >
-        <StackOverflowIcon
-          slot="icon"
-          let:class={className}
-          class={className}
-        />
-      </SocialLink>
+        icon="/icons/stackoverflow.svg"
+      />
     </ul>
 
     <h1 class="text-xl sm:text-2xl max-w-md">
@@ -73,7 +71,11 @@
         </span>
       </ButtonLink>
 
-      <ButtonLink variant="secondary" href="/cv" class="!inline-block w-full sm:w-auto group">
+      <ButtonLink
+        variant="secondary"
+        href="/cv"
+        class="!inline-block w-full sm:w-auto group"
+      >
         More about me
         <span
           class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
@@ -100,8 +102,8 @@
     <div class="mb-8 max-w-lg prose">
       <h2>Recent Projects</h2>
       <p>
-        I love building and shipping products, so I try to learn things
-        that allows me to fully ship a product on my own. Below are some recent
+        I love building and shipping products, so I try to learn things that
+        allows me to fully ship a product on my own. Below are some recent
         projects I've been working on.
       </p>
     </div>
@@ -178,7 +180,8 @@
       openSource
       webApp
       githubLink="https://github.com/chrsep/atreus"
-      heroBg="bg-default-700">
+      heroBg="bg-default-700"
+    >
       <Image
         meta={AtreusImage}
         loading="lazy"
@@ -221,7 +224,8 @@
           <h2>Open Source</h2>
           <p>
             Most of my projects are open-sourced and I try to contribute back to
-            the tools that I use when I can. Check out my contributions on GitHub!
+            the tools that I use when I can. Check out my contributions on
+            GitHub!
           </p>
         </div>
 
@@ -232,7 +236,10 @@
           class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full sm:w-auto"
         >
           Explore GitHub
-          <GithubIcon class={"w-4 h-4 ml-auto sm:ml-2"} />
+          <Icon
+            --src="url(/icons/github.svg)"
+            class={"w-4 h-4 ml-auto lg:ml-4 bg-black"}
+          />
         </ButtonLink>
       </div>
     </div>
@@ -240,7 +247,7 @@
 </div>
 
 <style>
-    .hero-bg {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='24' viewBox='0 0 88 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='autumn' fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M10 0l30 15 2 1V2.18A10 10 0 0 0 41.76 0H39.7a8 8 0 0 1 .3 2.18v10.58L14.47 0H10zm31.76 24a10 10 0 0 0-5.29-6.76L4 1 2 0v13.82a10 10 0 0 0 5.53 8.94L10 24h4.47l-6.05-3.02A8 8 0 0 1 4 13.82V3.24l31.58 15.78A8 8 0 0 1 39.7 24h2.06zM78 24l2.47-1.24A10 10 0 0 0 86 13.82V0l-2 1-32.47 16.24A10 10 0 0 0 46.24 24h2.06a8 8 0 0 1 4.12-4.98L84 3.24v10.58a8 8 0 0 1-4.42 7.16L73.53 24H78zm0-24L48 15l-2 1V2.18A10 10 0 0 1 46.24 0h2.06a8 8 0 0 0-.3 2.18v10.58L73.53 0H78z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
+  .hero-bg {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='24' viewBox='0 0 88 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='autumn' fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M10 0l30 15 2 1V2.18A10 10 0 0 0 41.76 0H39.7a8 8 0 0 1 .3 2.18v10.58L14.47 0H10zm31.76 24a10 10 0 0 0-5.29-6.76L4 1 2 0v13.82a10 10 0 0 0 5.53 8.94L10 24h4.47l-6.05-3.02A8 8 0 0 1 4 13.82V3.24l31.58 15.78A8 8 0 0 1 39.7 24h2.06zM78 24l2.47-1.24A10 10 0 0 0 86 13.82V0l-2 1-32.47 16.24A10 10 0 0 0 46.24 24h2.06a8 8 0 0 1 4.12-4.98L84 3.24v10.58a8 8 0 0 1-4.42 7.16L73.53 24H78zm0-24L48 15l-2 1V2.18A10 10 0 0 1 46.24 0h2.06a8 8 0 0 0-.3 2.18v10.58L73.53 0H78z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
 </style>
