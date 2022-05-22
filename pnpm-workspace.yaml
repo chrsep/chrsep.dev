@@ -1,3 +1,2 @@
-package:
-  - 'studio/**'
-  - 'cv/**'
+packages:
+  - './**'
