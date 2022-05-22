@@ -23,6 +23,7 @@ const config = {
     // hydrate the <div id="svelte"> element in src/app.html
     adapter: vercel({
       edge: true,
+      split: true,
     }),
     vite: {
       plugins: [svg(), imagetools()],
