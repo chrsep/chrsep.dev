@@ -4,59 +4,13 @@ importers:
 
   .:
     specifiers:
-      '@fontsource/inter': 4.5.10
-      '@poppanator/sveltekit-svg': 0.3.2
-      '@sveltejs/adapter-vercel': 1.0.0-next.53
-      '@sveltejs/kit': 1.0.0-next.338
-      '@tailwindcss/aspect-ratio': 0.4.0
-      '@tailwindcss/typography': 0.5.2
-      autoprefixer: 10.4.7
-      cobe: 0.5.0
-      cssnano: 5.1.9
-      mdsvex: 0.10.5
-      postcss: 8.4.14
-      postcss-load-config: 3.1.4
       prettier: 2.6.2
-      prettier-plugin-svelte: 2.7.0
-      prettier-plugin-tailwindcss: 0.1.11
-      svelte: 3.48.0
-      svelte-check: 2.7.1
-      svelte-preprocess: 4.10.6
-      tailwindcss: 3.0.24
-      tslib: 2.4.0
       turbo: ^1.2.11
-      typescript: 4.6.4
-      vite-imagetools: 4.0.3
-    dependencies:
-      '@fontsource/inter': 4.5.10
-      cobe: 0.5.0
     devDependencies:
-      '@poppanator/sveltekit-svg': 0.3.2_svelte@3.48.0
-      '@sveltejs/adapter-vercel': 1.0.0-next.53
-      '@sveltejs/kit': 1.0.0-next.338_svelte@3.48.0
-      '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.0.24
-      '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
-      autoprefixer: 10.4.7_postcss@8.4.14
-      cssnano: 5.1.9_postcss@8.4.14
-      mdsvex: 0.10.5_svelte@3.48.0
-      postcss: 8.4.14
-      postcss-load-config: 3.1.4_postcss@8.4.14
       prettier: 2.6.2
-      prettier-plugin-svelte: 2.7.0_kkjbqzpydplecjtkxrgomroeru
-      prettier-plugin-tailwindcss: 0.1.11_prettier@2.6.2
-      svelte: 3.48.0
-      svelte-check: 2.7.1_bwfybwdzwmlevsatlte2x4gwcy
-      svelte-preprocess: 4.10.6_kwmypdju4ysizxi7azib3bf22y
-      tailwindcss: 3.0.24
-      tslib: 2.4.0
       turbo: 1.2.11
-      typescript: 4.6.4
-      vite-imagetools: 4.0.3
 
-  cv:
-    specifiers: {}
-
-  studio:
+  apps/studio:
     specifiers:
       '@babel/core': 7.18.0
       '@sanity/base': 2.30.0
@@ -102,6 +56,60 @@ importers:
       webpack: 5.72.1
     devDependencies:
       '@sanity/cli': 2.30.0
+
+  apps/web:
+    specifiers:
+      '@fontsource/inter': 4.5.10
+      '@poppanator/sveltekit-svg': 0.3.2
+      '@sveltejs/adapter-vercel': 1.0.0-next.53
+      '@sveltejs/kit': 1.0.0-next.338
+      '@tailwindcss/aspect-ratio': 0.4.0
+      '@tailwindcss/typography': 0.5.2
+      autoprefixer: 10.4.7
+      cobe: 0.5.0
+      cssnano: 5.1.9
+      mdsvex: 0.10.5
+      postcss: 8.4.14
+      postcss-load-config: 3.1.4
+      prettier: 2.6.2
+      prettier-plugin-svelte: 2.7.0
+      prettier-plugin-tailwindcss: 0.1.11
+      studio: workspace:1.0.0
+      svelte: 3.48.0
+      svelte-check: 2.7.1
+      svelte-preprocess: 4.10.6
+      tailwindcss: 3.0.24
+      tslib: 2.4.0
+      typescript: 4.6.4
+      vite-imagetools: 4.0.3
+    dependencies:
+      '@fontsource/inter': 4.5.10
+      cobe: 0.5.0
+      studio: link:../studio
+    devDependencies:
+      '@poppanator/sveltekit-svg': 0.3.2_svelte@3.48.0
+      '@sveltejs/adapter-vercel': 1.0.0-next.53
+      '@sveltejs/kit': 1.0.0-next.338_svelte@3.48.0
+      '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.0.24
+      '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
+      autoprefixer: 10.4.7_postcss@8.4.14
+      cssnano: 5.1.9_postcss@8.4.14
+      mdsvex: 0.10.5_svelte@3.48.0
+      postcss: 8.4.14
+      postcss-load-config: 3.1.4_postcss@8.4.14
+      prettier: 2.6.2
+      prettier-plugin-svelte: 2.7.0_kkjbqzpydplecjtkxrgomroeru
+      prettier-plugin-tailwindcss: 0.1.11_prettier@2.6.2
+      svelte: 3.48.0
+      svelte-check: 2.7.1_bwfybwdzwmlevsatlte2x4gwcy
+      svelte-preprocess: 4.10.6_kwmypdju4ysizxi7azib3bf22y
+      tailwindcss: 3.0.24
+      tslib: 2.4.0
+      typescript: 4.6.4
+      vite-imagetools: 4.0.3
+
+  packages/cv:
+    specifiers: {}
 
 packages:
 

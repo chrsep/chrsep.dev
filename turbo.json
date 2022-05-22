@@ -4,13 +4,9 @@
     "dev": {
       "cache": false
     },
-    "build:sanity": {
-      "inputs": ["./studio/**"],
-      "outputs": ["./static/studio/**"]
-    },
     "build": {
-      "dependsOn": ["build:sanity"],
-      "outputs": ["./.svelte-kit", ".vercel_build_output", ".vercel/output"]
+      "dependsOn": ["^build"],
+      "outputs": [".svelte-kit/**", ".vercel/**"]
     }
   }
 }

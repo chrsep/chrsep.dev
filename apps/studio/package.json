@@ -7,8 +7,8 @@
   "author": "Chrisando Pramudhita <chrsep@pm.me>",
   "license": "UNLICENSED",
   "scripts": {
-    "start:sanity": "sanity start",
-    "build:sanity": "sanity build ../static/studio/ -y"
+    "start": "sanity start",
+    "build": "sanity build ./dist -y"
   },
   "keywords": [
     "sanity"
