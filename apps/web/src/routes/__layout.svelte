@@ -10,7 +10,9 @@
 <nav
   class="fixed inset-x-0 top-0 z-10 h-12 w-full bg-default-900 bg-opacity-80 px-6 text-sm text-default-900 backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32 "
 >
-  <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8 ">
+  <div
+    class="mx-auto flex items-center h-12 max-w-[1920px] gap-2 sm:h-16 sm:gap-4"
+  >
     <a href="/" class="group mr-auto flex h-full items-center font-bold">
       <div class="h-5 overflow-hidden">
         <div
@@ -23,8 +25,15 @@
     </a>
 
     <a
+      href="/blog"
+      class="flex items-center font-medium text-default-700 transition-colors hover:text-default-900 bg-default-900 bg-opacity-70 py-2 px-3 text-xs md:text-base rounded-lg"
+    >
+      Blog
+    </a>
+
+    <a
       href="/cv"
-      class="flex h-full items-center font-medium text-default-700 transition-colors hover:text-default-900"
+      class="flex items-center font-medium text-default-700 transition-colors hover:text-default-900 bg-default-900 bg-opacity-70 py-2 px-3 text-xs md:text-base rounded-lg"
     >
       CV
     </a>
@@ -36,7 +45,7 @@
 </main>
 
 <footer
-  class="mt-32 border-t border-[#ffffff0D] pb-6 pt-12 text-default-900 sm:py-12 sm:py-16"
+  class="mt-32 border-t border-[#ffffff0D] pb-6 pt-12 text-default-900 sm:py-12" 
 >
   <div
     class="mx-auto flex max-w-[1920px] flex-col px-6 sm:flex-row sm:items-end sm:px-8 md:px-32"

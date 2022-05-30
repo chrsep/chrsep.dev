@@ -6,6 +6,7 @@
     "turbo": "^1.2.11"
   },
   "scripts": {
+    "dev": "turbo run dev",
     "build": "turbo run build"
   }
 }
