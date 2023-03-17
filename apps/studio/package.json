@@ -22,7 +22,7 @@
     "@sanity/default-layout": "2.30.0",
     "@sanity/default-login": "2.30.0",
     "@sanity/desk-tool": "2.30.0",
-    "@sanity/eslint-config-studio": "2.0.0",
+    "@sanity/eslint-config-studio": "2.0.1",
     "@sanity/form-builder": "2.30.0",
     "@sanity/vision": "2.30.0",
     "caniuse-lite": "^1.0.30001341",
