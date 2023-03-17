@@ -57,7 +57,7 @@ importers:
 
   apps/web:
     specifiers:
-      '@fontsource/inter': 4.5.10
+      '@fontsource/inter': 4.5.15
       '@poppanator/sveltekit-svg': 0.3.2
       '@sveltejs/adapter-vercel': 1.0.0-next.53
       '@sveltejs/kit': 1.0.0-next.338
@@ -81,7 +81,7 @@ importers:
       typescript: 4.6.4
       vite-imagetools: 4.0.3
     dependencies:
-      '@fontsource/inter': 4.5.10
+      '@fontsource/inter': 4.5.15
       cobe: 0.5.0
       studio: link:../studio
     devDependencies:
@@ -1461,8 +1461,8 @@ packages:
       - supports-color
     dev: false
 
-  /@fontsource/inter/4.5.10:
-    resolution: {integrity: sha512-YOt2/K8yo25MVBjrTImHxVimmyZEt0GcrWp2w7O29sdFX9SJqbGlOqjFJ1wI5yBbP6AmTeimyPE0UC/jjFRoIA==}
+  /@fontsource/inter/4.5.15:
+    resolution: {integrity: sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==}
     dev: false
 
   /@hot-loader/react-dom/16.14.0_react@17.0.2:
