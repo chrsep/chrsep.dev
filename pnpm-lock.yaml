@@ -63,7 +63,7 @@ importers:
       '@sveltejs/kit': 1.0.0-next.338
       '@tailwindcss/aspect-ratio': 0.4.2
       '@tailwindcss/typography': 0.5.9
-      autoprefixer: 10.4.7
+      autoprefixer: 10.4.14
       cobe: 0.5.0
       cssnano: 5.1.15
       mdsvex: 0.10.6
@@ -90,7 +90,7 @@ importers:
       '@sveltejs/kit': 1.0.0-next.338_svelte@3.49.0
       '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.0.24
       '@tailwindcss/typography': 0.5.9_tailwindcss@3.0.24
-      autoprefixer: 10.4.7_postcss@8.4.14
+      autoprefixer: 10.4.14_postcss@8.4.14
       cssnano: 5.1.15_postcss@8.4.14
       mdsvex: 0.10.6_svelte@3.49.0
       postcss: 8.4.14
@@ -4629,15 +4629,15 @@ packages:
       core-js: 2.6.12
     dev: false
 
-  /autoprefixer/10.4.7_postcss@8.4.14:
-    resolution: {integrity: sha512-ypHju4Y2Oav95SipEcCcI5J7CGPuvz8oat7sUtYj3ClK44bldfvtvcxK6IEK++7rqB7YchDGzweZIBG+SD0ZAA==}
+  /autoprefixer/10.4.14_postcss@8.4.14:
+    resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      browserslist: 4.20.3
-      caniuse-lite: 1.0.30001341
+      browserslist: 4.21.5
+      caniuse-lite: 1.0.30001466
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -5075,6 +5075,7 @@ packages:
       escalade: 3.1.1
       node-releases: 2.0.10
       picocolors: 1.0.0
+    dev: false
 
   /browserslist/4.21.5:
     resolution: {integrity: sha512-tUkiguQGW7S3IhB7N+c2MV/HZPSCPAAiYBZXLsBhFB/PCy6ZKKsZrmBayHV9fdGV/ARIfJ14NkxKzRDjvp7L6w==}
@@ -5231,6 +5232,7 @@ packages:
 
   /caniuse-lite/1.0.30001341:
     resolution: {integrity: sha512-2SodVrFFtvGENGCv0ChVJIDQ0KPaS1cg7/qtfMaICgeMolDdo/Z2OD32F0Aq9yl6F4YFwGPBS5AaPqNYiW4PoA==}
+    dev: false
 
   /caniuse-lite/1.0.30001466:
     resolution: {integrity: sha512-ewtFBSfWjEmxUgNBSZItFSmVtvk9zkwkl1OfRZlKA8slltRN+/C/tuGVrF9styXkN36Yu3+SeJ1qkXxDEyNZ5w==}
@@ -9751,7 +9753,7 @@ packages:
     engines: {node: '>=0.10.0'}
 
   /normalize-range/0.1.2:
-    resolution: {integrity: sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=}
+    resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
 
   /normalize-url/3.3.0:
