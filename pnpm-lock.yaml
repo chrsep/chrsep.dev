@@ -64,7 +64,7 @@ importers:
       '@tailwindcss/aspect-ratio': 0.4.2
       '@tailwindcss/typography': 0.5.9
       autoprefixer: 10.4.14
-      cobe: 0.5.0
+      cobe: 0.6.3
       cssnano: 5.1.15
       mdsvex: 0.10.6
       postcss: 8.4.21
@@ -82,7 +82,7 @@ importers:
       vite-imagetools: 4.0.18
     dependencies:
       '@fontsource/inter': 4.5.15
-      cobe: 0.5.0
+      cobe: 0.6.3
       studio: link:../studio
     devDependencies:
       '@poppanator/sveltekit-svg': 0.3.4_svelte@3.49.0
@@ -4304,8 +4304,8 @@ packages:
       q: 1.5.1
     dev: false
 
-  /cobe/0.5.0:
-    resolution: {integrity: sha512-iutLGC4FU0WyruiF0Rlq/iKsDtuM3GtsTd/bNi4gjT0eSOT9Mrpp/dGV46HYPaAYmebMsUFFdhQ5hqZZEChnPQ==}
+  /cobe/0.6.3:
+    resolution: {integrity: sha512-WHr7X4o1ym94GZ96h7b1pNemZJacbOzd02dZtnVwuC4oWBaLg96PBmp2rIS1SAhUDhhC/QyS9WEqkpZIs/ZBTg==}
     dependencies:
       phenomenon: 1.6.0
     dev: false
