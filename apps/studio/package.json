@@ -15,16 +15,16 @@
   ],
   "dependencies": {
     "@babel/core": "7.21.0",
-    "@sanity/base": "2.30.0",
+    "@sanity/base": "2.35.7",
     "@sanity/color": "^2.1.10",
-    "@sanity/core": "2.30.0",
-    "@sanity/data-aspects": "2.29.3",
-    "@sanity/default-layout": "2.30.0",
-    "@sanity/default-login": "2.30.0",
-    "@sanity/desk-tool": "2.30.0",
+    "@sanity/core": "2.35.7",
+    "@sanity/data-aspects": "2.35.3",
+    "@sanity/default-layout": "2.35.7",
+    "@sanity/default-login": "2.35.7",
+    "@sanity/desk-tool": "2.35.7",
     "@sanity/eslint-config-studio": "2.0.1",
-    "@sanity/form-builder": "2.30.0",
-    "@sanity/vision": "2.30.0",
+    "@sanity/form-builder": "2.35.7",
+    "@sanity/vision": "2.35.7",
     "caniuse-lite": "^1.0.30001341",
     "eslint": "8.36.0",
     "prop-types": "15.8.1",
@@ -40,6 +40,6 @@
     "url": "git@github.com:chrsep/chrsep.dev.git"
   },
   "devDependencies": {
-    "@sanity/cli": "2.30.0"
+    "@sanity/cli": "2.36.0"
   }
 }
