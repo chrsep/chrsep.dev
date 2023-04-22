@@ -145,8 +145,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       vite-imagetools:
-        specifier: 4.0.18
-        version: 4.0.18
+        specifier: 4.0.19
+        version: 4.0.19
 
   packages/cv: {}
 
@@ -13279,8 +13279,8 @@ packages:
     resolution: {integrity: sha512-94JqlKxEP4m7WO+N3rm4tFRGXZmXXwSPQCoV+EPxDnn8YAGiLU3T+Ha1imLreAjXsHl0K+ELnIqv64i1XZHLFQ==}
     dev: false
 
-  /vite-imagetools@4.0.18:
-    resolution: {integrity: sha512-PpvOy7eDQadfuJNarwPU9X8nK0AjtRsyxhfMjqg/wrAyssNgeaZWMGlWQK/U3YhV9+wpdV5Mep8FZvGa31IY1Q==}
+  /vite-imagetools@4.0.19:
+    resolution: {integrity: sha512-vZaPsjLDgEqZrbj+ZsniRKthmoj4mvVrMOK/FZhRAbrVB4LOsil0BO2Gcq20e/JRlom4DzqtLw1UQUkfcqgCrA==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@rollup/pluginutils': 5.0.2
