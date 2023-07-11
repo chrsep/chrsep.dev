@@ -14,7 +14,7 @@
     "sanity"
   ],
   "dependencies": {
-    "@babel/core": "7.22.6",
+    "@babel/core": "7.22.8",
     "@sanity/base": "2.36.1",
     "@sanity/color": "^2.1.10",
     "@sanity/core": "2.36.1",
