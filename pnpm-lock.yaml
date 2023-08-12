@@ -92,8 +92,8 @@ importers:
         version: link:../studio
     devDependencies:
       '@poppanator/sveltekit-svg':
-        specifier: 4.0.1
-        version: 4.0.1(svelte@4.1.2)(svgo@3.0.2)(vite@4.2.1)
+        specifier: 4.1.0
+        version: 4.1.0(svelte@4.1.2)(svgo@3.0.2)(vite@4.2.1)
       '@sveltejs/adapter-vercel':
         specifier: 1.0.0-next.53
         version: 1.0.0-next.53
@@ -1925,8 +1925,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@poppanator/sveltekit-svg@4.0.1(svelte@4.1.2)(svgo@3.0.2)(vite@4.2.1):
-    resolution: {integrity: sha512-y1gcl9mPjONKaKcCKaXcAhAxJI0w2ehLu5B2Lriho3Qngg2cbhIrEqLWywYF+Tf8OSpShtkZfCi6Rt/HofBITw==}
+  /@poppanator/sveltekit-svg@4.1.0(svelte@4.1.2)(svgo@3.0.2)(vite@4.2.1):
+    resolution: {integrity: sha512-LlZxtqw5kAnWB3oj5IL1CKfwt/sJFqa1mIWJ9ayuVJZ4gZ4o1o3fOTkXDMDHYa2EE+CvxVT2kUgL/BpBqwlOtA==}
     peerDependencies:
       svelte: '>=4.x'
       svgo: '>=3.x'
