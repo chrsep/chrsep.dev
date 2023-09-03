@@ -33,7 +33,7 @@
     "react-is": "^18.1.0",
     "styled-components": "6.0.7",
     "typescript": "5.2.2",
-    "webpack": "^5.72.1"
+    "webpack": "^5.76.0"
   },
   "repository": {
     "type": "git",
