@@ -26,7 +26,7 @@
     "@sanity/form-builder": "2.36.2",
     "@sanity/vision": "2.36.2",
     "caniuse-lite": "^1.0.30001341",
-    "eslint": "8.48.0",
+    "eslint": "8.49.0",
     "prop-types": "15.8.1",
     "react": "17",
     "react-dom": "17",
