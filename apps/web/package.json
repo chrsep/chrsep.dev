@@ -21,7 +21,7 @@
     "cssnano": "6.0.1",
     "mdsvex": "0.11.0",
     "postcss": "8.4.32",
-    "postcss-load-config": "4.0.2",
+    "postcss-load-config": "5.0.2",
     "prettier": "3.1.1",
     "prettier-plugin-svelte": "3.1.2",
     "prettier-plugin-tailwindcss": "0.5.9",
