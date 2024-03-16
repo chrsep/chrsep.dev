@@ -25,7 +25,7 @@ importers:
         version: 2.2.5
       '@sanity/core':
         specifier: 2.36.2
-        version: 2.36.2(@babel/core@7.24.0)(caniuse-lite@1.0.30001596)(react-dom@17.0.2)(react@17.0.2)(webpack@5.90.3)
+        version: 2.36.2(@babel/core@7.24.0)(caniuse-lite@1.0.30001597)(react-dom@17.0.2)(react@17.0.2)(webpack@5.90.3)
       '@sanity/data-aspects':
         specifier: 2.35.3
         version: 2.35.3
@@ -49,7 +49,7 @@ importers:
         version: 2.36.2(@sanity/base@2.36.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)(styled-components@6.1.8)
       caniuse-lite:
         specifier: ^1.0.30001341
-        version: 1.0.30001596
+        version: 1.0.30001597
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -2256,7 +2256,7 @@ packages:
     resolution: {integrity: sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==}
     dev: false
 
-  /@sanity/core@2.36.2(@babel/core@7.24.0)(caniuse-lite@1.0.30001596)(react-dom@17.0.2)(react@17.0.2)(webpack@5.90.3):
+  /@sanity/core@2.36.2(@babel/core@7.24.0)(caniuse-lite@1.0.30001597)(react-dom@17.0.2)(react@17.0.2)(webpack@5.90.3):
     resolution: {integrity: sha512-szqVoKiP6fl+ffTPt1m0n3Qq4Dc4qnF927hQuP+OOazkJxnYPHchU387iSuCZbI3ZScifCxtusJLO5bd7xPRyQ==}
     engines: {node: '>=12.0.0'}
     dependencies:
@@ -2269,13 +2269,13 @@ packages:
       '@sanity/export': 2.35.5
       '@sanity/generate-help-url': 3.0.0
       '@sanity/import': 2.36.1
-      '@sanity/plugin-loader': 2.36.2(caniuse-lite@1.0.30001596)(webpack@5.90.3)
+      '@sanity/plugin-loader': 2.36.2(caniuse-lite@1.0.30001597)(webpack@5.90.3)
       '@sanity/resolver': 2.36.2
       '@sanity/schema': 2.36.2
-      '@sanity/server': 2.36.2(caniuse-lite@1.0.30001596)(react-dom@17.0.2)(react@17.0.2)
+      '@sanity/server': 2.36.2(caniuse-lite@1.0.30001597)(react-dom@17.0.2)(react@17.0.2)
       '@sanity/util': 2.36.2
       '@sanity/uuid': 3.0.1
-      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001596)(webpack@5.90.3)
+      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001597)(webpack@5.90.3)
       chalk: 2.4.2
       chokidar: 3.5.3
       configstore: 5.0.1
@@ -2697,13 +2697,13 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/plugin-loader@2.36.2(caniuse-lite@1.0.30001596)(webpack@5.90.3):
+  /@sanity/plugin-loader@2.36.2(caniuse-lite@1.0.30001597)(webpack@5.90.3):
     resolution: {integrity: sha512-bSbdpgUucdgAu38OvKbz0PkxqlDQVfxaRBHnPgtOxy88UUhR6iORQ03/TBs5jM5Gd13cF1JgBL4NGgTAcfs6pw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@sanity/resolver': 2.36.2
       '@sanity/util': 2.36.2
-      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001596)(webpack@5.90.3)
+      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001597)(webpack@5.90.3)
       css-modules-require-hook: 4.1.0
       interop-require: 1.0.0
     transitivePeerDependencies:
@@ -2795,7 +2795,7 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/server@2.36.2(caniuse-lite@1.0.30001596)(react-dom@17.0.2)(react@17.0.2):
+  /@sanity/server@2.36.2(caniuse-lite@1.0.30001597)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-myOFuyy7E0zAqJbsbvtsoO+PfeRmrmNdl/SmECOn+ON085L16XXuekvuwTdhTeFUYeRrKjg/Ub244aKMw+Ltzg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -2815,7 +2815,7 @@ packages:
       '@sanity/resolver': 2.36.2
       '@sanity/util': 2.36.2
       '@sanity/webpack-dev-middleware': 2.0.6(webpack@3.12.0)
-      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001596)(webpack@3.12.0)
+      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001597)(webpack@3.12.0)
       babel-loader: 8.2.5(@babel/core@7.24.0)(webpack@3.12.0)
       eventsource-polyfill: 0.9.6
       express: 4.18.1
@@ -3043,7 +3043,7 @@ packages:
       webpack-log: 1.2.0
     dev: false
 
-  /@sanity/webpack-integration@2.36.2(caniuse-lite@1.0.30001596)(webpack@3.12.0):
+  /@sanity/webpack-integration@2.36.2(caniuse-lite@1.0.30001597)(webpack@3.12.0):
     resolution: {integrity: sha512-oO+dzzfYeW1WH88Kwebjwno3vcjQKGaFhKX+Z/FbE97jdk56Qh+ZH+9hfGDlL1RSBy2wJnf5UGjggv1ap1mAMg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3058,7 +3058,7 @@ packages:
       postcss: 8.4.35
       postcss-calc: 7.0.5
       postcss-color-function: 4.1.0
-      postcss-cssnext: 3.1.1(caniuse-lite@1.0.30001596)
+      postcss-cssnext: 3.1.1(caniuse-lite@1.0.30001597)
       postcss-custom-properties: 6.3.1
       postcss-import: 11.1.0
       postcss-url: 7.3.2
@@ -3069,7 +3069,7 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/webpack-integration@2.36.2(caniuse-lite@1.0.30001596)(webpack@5.90.3):
+  /@sanity/webpack-integration@2.36.2(caniuse-lite@1.0.30001597)(webpack@5.90.3):
     resolution: {integrity: sha512-oO+dzzfYeW1WH88Kwebjwno3vcjQKGaFhKX+Z/FbE97jdk56Qh+ZH+9hfGDlL1RSBy2wJnf5UGjggv1ap1mAMg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3084,7 +3084,7 @@ packages:
       postcss: 8.4.35
       postcss-calc: 7.0.5
       postcss-color-function: 4.1.0
-      postcss-cssnext: 3.1.1(caniuse-lite@1.0.30001596)
+      postcss-cssnext: 3.1.1(caniuse-lite@1.0.30001597)
       postcss-custom-properties: 6.3.1
       postcss-import: 11.1.0
       postcss-url: 7.3.2
@@ -3962,7 +3962,7 @@ packages:
     hasBin: true
     dependencies:
       browserslist: 2.11.3
-      caniuse-lite: 1.0.30001596
+      caniuse-lite: 1.0.30001597
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       postcss: 6.0.23
@@ -4306,7 +4306,7 @@ packages:
     deprecated: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001596
+      caniuse-lite: 1.0.30001597
       electron-to-chromium: 1.4.681
     dev: false
 
@@ -4315,7 +4315,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001596
+      caniuse-lite: 1.0.30001597
       electron-to-chromium: 1.4.681
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
@@ -4451,7 +4451,7 @@ packages:
     resolution: {integrity: sha512-425yJRcUDCCMKc0Zga2KSUe7Qp7nCtL8H0BJIsDxF9yMzG2eSYvOggi5U1wXzxgcSgDGnzVLvZ8dZGMBrA6Ltg==}
     dependencies:
       browserslist: 2.11.3
-      caniuse-lite: 1.0.30001596
+      caniuse-lite: 1.0.30001597
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: false
@@ -4463,9 +4463,6 @@ packages:
       caniuse-lite: 1.0.30001597
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
-
-  /caniuse-lite@1.0.30001596:
-    resolution: {integrity: sha512-zpkZ+kEr6We7w63ORkoJ2pOfBwBkY/bJrG/UZ90qNb45Isblu8wzDgevEOrRL1r9dWayHjYiiyCMEXPn4DweGQ==}
 
   /caniuse-lite@1.0.30001597:
     resolution: {integrity: sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==}
@@ -9832,7 +9829,7 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-cssnext@3.1.1(caniuse-lite@1.0.30001596):
+  /postcss-cssnext@3.1.1(caniuse-lite@1.0.30001597):
     resolution: {integrity: sha512-u9e0CYE7zudnr/LK+FL02cwli8cQEwwmzzN3JVeOEZiDs0q8IDfGdI6C9FCkHtIKEEjY3AATW3dqCCvqDK+Sfg==}
     deprecated: '''postcss-cssnext'' has been deprecated in favor of ''postcss-preset-env''. Read more at https://moox.io/blog/deprecating-cssnext/'
     peerDependencies:
@@ -9840,7 +9837,7 @@ packages:
     dependencies:
       autoprefixer: 7.2.6
       caniuse-api: 2.0.0
-      caniuse-lite: 1.0.30001596
+      caniuse-lite: 1.0.30001597
       chalk: 2.4.2
       pixrem: 4.0.1
       pleeease-filters: 4.0.0
