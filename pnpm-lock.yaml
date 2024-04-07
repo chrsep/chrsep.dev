@@ -92,8 +92,8 @@ importers:
         version: link:../studio
     devDependencies:
       '@poppanator/sveltekit-svg':
-        specifier: 4.1.3
-        version: 4.1.3(svelte@4.2.12)(svgo@3.2.0)(vite@5.2.8)
+        specifier: 4.2.1
+        version: 4.2.1(svelte@4.2.12)(svgo@3.2.0)(vite@5.2.8)
       '@sveltejs/adapter-vercel':
         specifier: 1.0.0-next.53
         version: 1.0.0-next.53
@@ -1886,16 +1886,19 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@poppanator/sveltekit-svg@4.1.3(svelte@4.2.12)(svgo@3.2.0)(vite@5.2.8):
-    resolution: {integrity: sha512-cKdFxFPPzS470xy2XFQ2m/URa9On4fw7n5wvBqAwVO4sY8dmski+2N3GKFELt4tvzM3JPjAqz76Ex7U5IpKeIg==}
+  /@poppanator/sveltekit-svg@4.2.1(svelte@4.2.12)(svgo@3.2.0)(vite@5.2.8):
+    resolution: {integrity: sha512-w7jl4EVOOF+X+uv2BEUiMDJwds+GfbczwGpcS0+rsjIsKYmqmwMi4ts3bVZR9ZvdFHWy5rS84U+pSBClz6cbBg==}
     peerDependencies:
       svelte: '>=4.x'
       svgo: '>=3.x'
       vite: '>=4.x'
     dependencies:
+      '@rollup/pluginutils': 5.1.0
       svelte: 4.2.12
       svgo: 3.2.0
       vite: 5.2.8
+    transitivePeerDependencies:
+      - rollup
     dev: true
 
   /@popperjs/core@2.11.5:
@@ -1989,6 +1992,20 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.5
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    dev: true
+
+  /@rollup/pluginutils@5.1.0:
+    resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
