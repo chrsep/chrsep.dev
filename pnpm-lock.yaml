@@ -113,8 +113,8 @@ importers:
         specifier: 6.1.2
         version: 6.1.2(postcss@8.4.38)
       mdsvex:
-        specifier: 0.11.0
-        version: 0.11.0(svelte@4.2.12)
+        specifier: 0.11.2
+        version: 0.11.2(svelte@4.2.12)
       postcss:
         specifier: 8.4.38
         version: 8.4.38
@@ -8678,10 +8678,10 @@ packages:
     resolution: {integrity: sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==}
     dev: false
 
-  /mdsvex@0.11.0(svelte@4.2.12):
-    resolution: {integrity: sha512-gJF1s0N2nCmdxcKn8HDn0LKrN8poStqAicp6bBcsKFd/zkUBGLP5e7vnxu+g0pjBbDFOscUyI1mtHz+YK2TCDw==}
+  /mdsvex@0.11.2(svelte@4.2.12):
+    resolution: {integrity: sha512-Y4ab+vLvTJS88196Scb/RFNaHMHVSWw6CwfsgWIQP8f42D57iDII0/qABSu530V4pkv8s6T2nx3ds0MC1VwFLA==}
     peerDependencies:
-      svelte: '>=3 <5'
+      svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
     dependencies:
       '@types/unist': 2.0.6
       prism-svelte: 0.4.7
