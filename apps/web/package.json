@@ -34,7 +34,7 @@
     "vite-imagetools": "4.0.19"
   },
   "dependencies": {
-    "@fontsource/inter": "4.5.15",
+    "@fontsource/inter": "5.1.0",
     "cobe": "0.6.3",
     "studio": "workspace:1.0.0"
   }
