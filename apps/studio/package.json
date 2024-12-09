@@ -24,7 +24,7 @@
     "@sanity/desk-tool": "2.36.2",
     "@sanity/eslint-config-studio": "3.0.1",
     "@sanity/form-builder": "2.36.2",
-    "@sanity/vision": "2.36.2",
+    "@sanity/vision": "2.36.6",
     "caniuse-lite": "^1.0.30001341",
     "eslint": "8.57.1",
     "prop-types": "15.8.1",

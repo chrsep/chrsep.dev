@@ -45,8 +45,8 @@ importers:
         specifier: 2.36.2
         version: 2.36.2(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)(styled-components@6.1.13)
       '@sanity/vision':
-        specifier: 2.36.2
-        version: 2.36.2(@sanity/base@2.36.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)(styled-components@6.1.13)
+        specifier: 2.36.6
+        version: 2.36.6(@sanity/base@2.36.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)(styled-components@6.1.13)
       caniuse-lite:
         specifier: ^1.0.30001341
         version: 1.0.30001686
@@ -3154,8 +3154,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/vision@2.36.2(@sanity/base@2.36.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)(styled-components@6.1.13):
-    resolution: {integrity: sha512-5yfQPFWUwasejrEXFTZ7Y+22JndpctRA3NTjP/xr3M8S7N8QU60IGoygS2HbGbrhCOUNBjK+J67mI/B9EKFkuA==}
+  /@sanity/vision@2.36.6(@sanity/base@2.36.2)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)(styled-components@6.1.13):
+    resolution: {integrity: sha512-b7COLLcsiendKgLD/IQlTqwP8M6XPFf8ljtI8gvV5GoXhS0dhzbf/pSdUsU6/OewMDRLOQycT6xCVDdgS5dsIg==}
     peerDependencies:
       '@sanity/base': ^2.21.0
       prop-types: ^15.6 || ^16
