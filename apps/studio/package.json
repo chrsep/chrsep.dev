@@ -28,9 +28,9 @@
     "caniuse-lite": "^1.0.30001341",
     "eslint": "8.57.1",
     "prop-types": "15.8.1",
-    "react": "17",
-    "react-dom": "17",
-    "react-is": "^18.1.0",
+    "react": "19",
+    "react-dom": "19",
+    "react-is": "^19.0.0",
     "styled-components": "6.1.13",
     "typescript": "5.4.3",
     "webpack": "^5.72.1"
