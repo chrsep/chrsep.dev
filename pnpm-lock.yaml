@@ -25,7 +25,7 @@ importers:
         version: 2.2.5
       '@sanity/core':
         specifier: 2.36.2
-        version: 2.36.2(@babel/core@7.26.0)(caniuse-lite@1.0.30001686)(react-dom@17.0.2)(react@17.0.2)(webpack@5.97.0)
+        version: 2.36.2(@babel/core@7.26.0)(caniuse-lite@1.0.30001686)(react-dom@17.0.2)(react@17.0.2)(webpack@5.97.1)
       '@sanity/data-aspects':
         specifier: 2.35.3
         version: 2.35.3
@@ -73,7 +73,7 @@ importers:
         version: 5.4.3
       webpack:
         specifier: ^5.72.1
-        version: 5.97.0
+        version: 5.97.1
     devDependencies:
       '@sanity/cli':
         specifier: 2.36.2
@@ -2441,7 +2441,7 @@ packages:
     resolution: {integrity: sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==}
     dev: false
 
-  /@sanity/core@2.36.2(@babel/core@7.26.0)(caniuse-lite@1.0.30001686)(react-dom@17.0.2)(react@17.0.2)(webpack@5.97.0):
+  /@sanity/core@2.36.2(@babel/core@7.26.0)(caniuse-lite@1.0.30001686)(react-dom@17.0.2)(react@17.0.2)(webpack@5.97.1):
     resolution: {integrity: sha512-szqVoKiP6fl+ffTPt1m0n3Qq4Dc4qnF927hQuP+OOazkJxnYPHchU387iSuCZbI3ZScifCxtusJLO5bd7xPRyQ==}
     engines: {node: '>=12.0.0'}
     dependencies:
@@ -2454,13 +2454,13 @@ packages:
       '@sanity/export': 2.35.5
       '@sanity/generate-help-url': 3.0.0
       '@sanity/import': 2.36.1
-      '@sanity/plugin-loader': 2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.0)
+      '@sanity/plugin-loader': 2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.1)
       '@sanity/resolver': 2.36.2
       '@sanity/schema': 2.36.2
       '@sanity/server': 2.36.2(caniuse-lite@1.0.30001686)(react-dom@17.0.2)(react@17.0.2)
       '@sanity/util': 2.36.2
       '@sanity/uuid': 3.0.1
-      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.0)
+      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.1)
       chalk: 2.4.2
       chokidar: 3.5.3
       configstore: 5.0.1
@@ -2882,13 +2882,13 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/plugin-loader@2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.0):
+  /@sanity/plugin-loader@2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.1):
     resolution: {integrity: sha512-bSbdpgUucdgAu38OvKbz0PkxqlDQVfxaRBHnPgtOxy88UUhR6iORQ03/TBs5jM5Gd13cF1JgBL4NGgTAcfs6pw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@sanity/resolver': 2.36.2
       '@sanity/util': 2.36.2
-      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.0)
+      '@sanity/webpack-integration': 2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.1)
       css-modules-require-hook: 4.1.0
       interop-require: 1.0.0
     transitivePeerDependencies:
@@ -3254,7 +3254,7 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/webpack-integration@2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.0):
+  /@sanity/webpack-integration@2.36.2(caniuse-lite@1.0.30001686)(webpack@5.97.1):
     resolution: {integrity: sha512-oO+dzzfYeW1WH88Kwebjwno3vcjQKGaFhKX+Z/FbE97jdk56Qh+ZH+9hfGDlL1RSBy2wJnf5UGjggv1ap1mAMg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3274,7 +3274,7 @@ packages:
       postcss-import: 11.1.0
       postcss-url: 7.3.2
       resolve: 1.22.2
-      webpack: 5.97.0
+      webpack: 5.97.1
     transitivePeerDependencies:
       - caniuse-lite
       - supports-color
@@ -13182,7 +13182,7 @@ packages:
       unique-string: 1.0.0
     dev: false
 
-  /terser-webpack-plugin@5.3.10(webpack@5.97.0):
+  /terser-webpack-plugin@5.3.10(webpack@5.97.1):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -13203,7 +13203,7 @@ packages:
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.37.0
-      webpack: 5.97.0
+      webpack: 5.97.1
     dev: false
 
   /terser@5.16.6:
@@ -14114,8 +14114,8 @@ packages:
       yargs: 8.0.2
     dev: false
 
-  /webpack@5.97.0:
-    resolution: {integrity: sha512-CWT8v7ShSfj7tGs4TLRtaOLmOCPWhoKEvp+eA7FVx8Xrjb3XfT0aXdxDItnRZmE8sHcH+a8ayDrJCOjXKxVFfQ==}
+  /webpack@5.97.1:
+    resolution: {integrity: sha512-EksG6gFY3L1eFMROS/7Wzgrii5mBAFe4rIr3r2BTfo7bcc+DWwFZ4OJ/miOuHJO/A85HwyI4eQ0F6IKXesO7Fg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -14144,7 +14144,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.97.0)
+      terser-webpack-plugin: 5.3.10(webpack@5.97.1)
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     transitivePeerDependencies:
