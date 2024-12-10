@@ -82,8 +82,8 @@ importers:
   apps/web:
     dependencies:
       '@fontsource/inter':
-        specifier: 4.5.15
-        version: 4.5.15
+        specifier: 5.1.0
+        version: 5.1.0
       cobe:
         specifier: 0.6.3
         version: 0.6.3
@@ -1931,8 +1931,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: false
 
-  /@fontsource/inter@4.5.15:
-    resolution: {integrity: sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==}
+  /@fontsource/inter@5.1.0:
+    resolution: {integrity: sha512-zKZR3kf1G0noIes1frLfOHP5EXVVm0M7sV/l9f/AaYf+M/DId35FO4LkigWjqWYjTJZGgplhdv4cB+ssvCqr5A==}
     dev: false
 
   /@humanwhocodes/config-array@0.13.0:
