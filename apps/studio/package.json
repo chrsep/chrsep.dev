@@ -24,7 +24,7 @@
     "@sanity/desk-tool": "2.36.2",
     "@sanity/eslint-config-studio": "4.0.0",
     "@sanity/form-builder": "2.36.2",
-    "@sanity/vision": "2.36.6",
+    "@sanity/vision": "3.67.1",
     "caniuse-lite": "^1.0.30001341",
     "eslint": "8.57.1",
     "prop-types": "15.8.1",
@@ -40,6 +40,6 @@
     "url": "git@github.com:chrsep/chrsep.dev.git"
   },
   "devDependencies": {
-    "@sanity/cli": "2.36.2"
+    "@sanity/cli": "3.67.1"
   }
 }
