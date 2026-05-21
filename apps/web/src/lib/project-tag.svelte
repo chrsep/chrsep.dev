@@ -1,9 +1,9 @@
 <script lang="ts">
-  let className = ""
-  export { className as class }
-
-  export let name: string
-  export let bgColor: string = "bg-blue-700"
+  let {
+    name,
+    bgColor = "bg-blue-700",
+    class: className = "",
+  }: { name: string; bgColor?: string; class?: string } = $props()
 </script>
 
 <li

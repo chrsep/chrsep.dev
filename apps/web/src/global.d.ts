@@ -1,27 +1,31 @@
-/// <reference path="@sveltejs/kit" />
-declare module "cobe" {
-  export default function createGlobe(
-    canvas: HTMLCanvasElement,
-    options?: any
-  ): any
-}
+/// <reference types="@sveltejs/kit" />
 
 declare module "*.svg" {
-  import { SvelteComponentTyped } from "svelte"
-  export default class extends SvelteComponentTyped<{ class: string }> {}
+  import type { Component } from "svelte"
+  const Svg: Component<{ class?: string }>
+  export default Svg
 }
 
 declare module "*.svg?component" {
-  import { SvelteComponentTyped } from "svelte"
-  export default class extends SvelteComponentTyped<{ class: string }> {}
+  import type { Component } from "svelte"
+  const SvgComponent: Component<{ class?: string }>
+  export default SvgComponent
 }
 
 declare module "*.svg?src" {
-  const content: string
-  export default content
+  const svgSrc: string
+  export default svgSrc
 }
 
 declare module "*.svg?url" {
-  const content: string
-  export default content
+  const svgUrl: string
+  export default svgUrl
 }
+
+declare module "*&as=metadata" {
+  type ImageMeta = { src: string; width: number; format: string }
+  const meta: ImageMeta | ImageMeta[]
+  export default meta
+}
+
+declare module "@fontsource-variable/inter"

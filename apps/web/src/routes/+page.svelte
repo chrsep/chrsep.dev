@@ -1,21 +1,19 @@
-<script lang="ts" context="module">
+<script lang="ts">
   import { fade } from "svelte/transition"
 
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
   import TechStacks from "$lib/tech-stacks.svelte"
 
-  import JoyfulImage from "$images/portofolio/joyful.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
-  import ObserfyImage from "$images/portofolio/obserfy.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
-  import AtreusImage from "$images/portofolio/atreus.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
-  import SekitarmuImage from "$images/portofolio/sekitarmu.png?width=300;500;700;1200&format=avif;webp;jpg&meta"
+  import JoyfulImage from "$images/portofolio/joyful.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
+  import ObserfyImage from "$images/portofolio/obserfy.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
+  import AtreusImage from "$images/portofolio/atreus.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
+  import SekitarmuImage from "$images/portofolio/sekitarmu.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import Image from "$lib/image.svelte"
   import ButtonLink from "$lib/button-link.svelte"
   import Icon from "$lib/icon.svelte"
 
-  const globe = import("$lib/globe.svelte")
-
-  export const prerender = true
+  const globeModule = import("$lib/globe.svelte")
 </script>
 
 <div
@@ -50,11 +48,11 @@
     </ul>
 
     <h1 class="text-xl sm:text-2xl max-w-md">
-      <span class="font-black text-default-900">👋 Hi there, I'm Chris!</span>
-      <span class="text-default-700">
+      <span class="font-black text-ink-900">👋 Hi there, I'm Chris!</span>
+      <span class="text-ink-700">
         I'm a fullstack software developer from Indonesia. I help businesses
-        build <b class="text-default-900">fast</b> and
-        <b class="text-default-900">beautiful</b> websites and web-apps.
+        build <b class="text-ink-900">fast</b> and
+        <b class="text-ink-900">beautiful</b> websites and web-apps.
       </span>
     </h1>
 
@@ -90,8 +88,9 @@
     </div>
   </header>
 
-  {#await globe then module}
-    <svelte:component this={module.default} />
+  {#await globeModule then m}
+    {@const Globe = m.default}
+    <Globe />
   {/await}
 </div>
 
@@ -125,12 +124,13 @@
         link: "https://lighthouse-metrics.com/checks/e60a7390-4ae2-4bad-9117-5c45592c4875",
       }}
     >
-      <Image
-        meta={ObserfyImage}
-        slot="image"
-        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt=""
-      />
+      {#snippet image()}
+        <Image
+          meta={ObserfyImage}
+          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+          alt=""
+        />
+      {/snippet}
     </Project>
 
     <Project
@@ -144,12 +144,13 @@
         link: "https://lighthouse-metrics.com/checks/94428dfe-3b2f-4f97-8210-086b73c5ddfe",
       }}
     >
-      <Image
-        meta={JoyfulImage}
-        slot="image"
-        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt=""
-      />
+      {#snippet image()}
+        <Image
+          meta={JoyfulImage}
+          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+          alt=""
+        />
+      {/snippet}
     </Project>
 
     <Project
@@ -165,13 +166,14 @@
         link: "https://lighthouse-metrics.com/checks/271a1f5e-6f0a-425a-86d1-d50600008b18",
       }}
     >
-      <Image
-        meta={SekitarmuImage}
-        loading="lazy"
-        slot="image"
-        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt=""
-      />
+      {#snippet image()}
+        <Image
+          meta={SekitarmuImage}
+          loading="lazy"
+          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+          alt=""
+        />
+      {/snippet}
     </Project>
 
     <Project
@@ -182,13 +184,14 @@
       githubLink="https://github.com/chrsep/atreus"
       heroBg="bg-default-700"
     >
-      <Image
-        meta={AtreusImage}
-        loading="lazy"
-        slot="image"
-        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
-        alt=""
-      />
+      {#snippet image()}
+        <Image
+          meta={AtreusImage}
+          loading="lazy"
+          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
+          alt=""
+        />
+      {/snippet}
     </Project>
     <!--      <Project-->
     <!--        title="Portal"-->
@@ -212,10 +215,10 @@
     <div class="mx-auto relative inline-block">
       <div
         class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-10 filter blur-3xl opacity-80"
-      />
+      ></div>
       <div
         class="w-40 h-40 absolute bg-blue-800 rounded-full -z-10 filter blur-3xl bottom-0 right-0 opacity-80"
-      />
+      ></div>
 
       <div
         class="bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-white border-opacity-10"

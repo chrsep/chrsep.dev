@@ -56,10 +56,10 @@
 </script>
 
 <div class="mt-2 mb-16 flex rounded-full p-2">
-  {#each techs as tech}
+  {#each techs as tech (tech.name)}
     <div class="hover:z-1 group -ml-3 flex">
       <div
-        class="rounded-full border-4 border-bg-default-900 bg-default-800 p-2"
+        class="rounded-full border-4 border-default-900 bg-default-800 p-2"
       >
         <Icon
           --src="url({tech.icon})"

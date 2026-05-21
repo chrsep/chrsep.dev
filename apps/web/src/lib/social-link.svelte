@@ -1,12 +1,17 @@
 <script lang="ts">
   import Icon from "./icon.svelte"
 
-  export let href: string
-  export let text: string
-  export let icon: string
-
-  let className: string = ""
-  export { className as class }
+  let {
+    href,
+    text,
+    icon,
+    class: className = "",
+  }: {
+    href: string
+    text: string
+    icon: string
+    class?: string
+  } = $props()
 </script>
 
 <li>
