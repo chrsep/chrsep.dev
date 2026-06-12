@@ -1,7 +1,5 @@
-<script lang="ts" context="module">
+<script lang="ts">
   import { fade } from "svelte/transition"
-
-  export const prerender = true
 </script>
 
 <header
@@ -9,7 +7,7 @@
   in:fade
 >
   <p
-    class="sm:-skew-y-4 relative z-10 max-w-7xl -skew-y-6 transform pb-2 font-medium text-default-600 lg:text-lg 2xl:mx-auto"
+    class="sm:-skew-y-4 relative z-10 max-w-7xl -skew-y-6 transform pb-2 font-medium text-ink-600 lg:text-lg 2xl:mx-auto"
   >
     Curriculum Vitae
   </p>
@@ -25,10 +23,10 @@
     <div
       class="md:right-1/6 absolute top-[300px] flex animate-spin-slow blur-3xl filter sm:top-[300px] lg:top-[490px]"
     >
-      <div class="h-[800px] w-[800px] rounded-full bg-green-700 opacity-90" />
+      <div class="h-[800px] w-[800px] rounded-full bg-green-700 opacity-90"></div>
       <div
         class="-ml-[600px] h-[800px] w-[800px] rounded-full bg-blue-700 opacity-90"
-      />
+      ></div>
     </div>
   </div>
 </header>
@@ -38,7 +36,7 @@
     <section>
       <h2 id="experience" class="!mt-8">
         Experiences
-        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
 
       <h3>Independent Software Developer</h3>
@@ -73,7 +71,7 @@
     <section>
       <h2 id="projects">
         Personal Projects
-        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
       <h3>Atreus</h3>
       <p>
@@ -111,7 +109,7 @@
     <section>
       <h2 id="education">
         Education
-        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
 
       <h3>Binus University</h3>
@@ -134,7 +132,7 @@
     <section>
       <h2 id="courses">
         Courses
-        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500" />
+        <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
 
       <h3>Deep Learning Specialization</h3>

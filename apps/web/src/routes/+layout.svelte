@@ -1,14 +1,16 @@
 <script lang="ts">
-  import "@fontsource/inter/variable.css"
-  import Button from "$lib/button.svelte"
+  import "@fontsource-variable/inter"
 
   import "../app.css"
   import ButtonLink from "$lib/button-link.svelte"
   import Icon from "$lib/icon.svelte"
+  import type { Snippet } from "svelte"
+
+  let { children }: { children?: Snippet } = $props()
 </script>
 
 <nav
-  class="fixed inset-x-0 top-0 z-10 h-12 w-full bg-default-900 bg-opacity-80 px-6 text-sm text-default-900 backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32 "
+  class="fixed inset-x-0 top-0 z-10 h-12 w-full bg-default-900 bg-opacity-80 px-6 text-sm text-ink-900 backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32 "
 >
   <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8 ">
     <a href="/" class="group mr-auto flex h-full items-center font-bold">
@@ -24,19 +26,19 @@
 
     <a
       href="/cv"
-      class="flex h-full items-center font-medium text-default-700 transition-colors hover:text-default-900"
+      class="flex h-full items-center font-medium text-ink-700 transition-colors hover:text-ink-900"
     >
       CV
     </a>
   </div>
 </nav>
 
-<main class="mt-12 min-h-screen text-default-900 sm:mt-16">
-  <slot />
+<main class="mt-12 min-h-screen text-ink-900 sm:mt-16">
+  {@render children?.()}
 </main>
 
 <footer
-  class="mt-32 border-t border-[#ffffff0D] pb-6 pt-12 text-default-900 sm:py-12 sm:py-16"
+  class="mt-32 border-t border-[#ffffff0D] pb-6 pt-12 text-ink-900 sm:py-12 sm:py-16"
 >
   <div
     class="mx-auto flex max-w-[1920px] flex-col px-6 sm:flex-row sm:items-end sm:px-8 md:px-32"
@@ -45,7 +47,7 @@
       <h1 class="text-xl font-black leading-tight md:text-2xl">
         Let's work together!
       </h1>
-      <p class="my-4 max-w-sm text-default-800 opacity-70 sm:mb-0">
+      <p class="my-4 max-w-sm text-ink-800 opacity-70 sm:mb-0">
         I would love to help you build faster and more accessible websites.
       </p>
       <ButtonLink
@@ -64,7 +66,7 @@
     <div class="mt-12 sm:ml-auto">
       <a
         href="mailto:hi@chrsep.dev"
-        class="flex items-center font-medium text-default-900 opacity-40 transition hover:opacity-100"
+        class="flex items-center font-medium text-ink-900 opacity-40 transition hover:opacity-100"
       >
         <svg
           class="mr-3 h-4 w-4"

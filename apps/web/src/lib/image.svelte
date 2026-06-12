@@ -1,34 +1,47 @@
 <script lang="ts">
-  /**
-   * the output of a vite-imagetools import, using the `meta` query for output
-   * format
-   */
-  export let meta: { src: string; width: number; format: string }[]
-  // if there is only one, vite-imagetools won't wrap the object in an array
-  if (!(meta instanceof Array)) meta = [meta]
+  type Meta = { src: string; width: number; format: string }
 
-  // all images by format
-  let sources = new Map<string, typeof meta>()
-  meta.map((m) => sources.set(m.format, []))
-  meta.map((m) => sources.get(m.format).push(m))
+  let {
+    meta,
+    sizes,
+    alt,
+    loading,
+    class: className,
+  }: {
+    meta: Meta[] | Meta
+    sizes?: string
+    alt: string
+    loading?: "lazy" | "eager"
+    class?: string
+  } = $props()
 
-  // fallback image: first resolution of last format
-  let image = sources.get([...sources.keys()].slice(-1)[0])[0]
+  const metaArray = $derived<Meta[]>(Array.isArray(meta) ? meta : [meta])
 
-  export let sizes = `${image.width}px`
-  export let alt: string
-  export let loading: string = undefined
-  let clazz: string = undefined
-  export { clazz as class }
+  const sources = $derived.by(() => {
+    const map = new Map<string, Meta[]>()
+    for (const m of metaArray) {
+      const list = map.get(m.format) ?? []
+      list.push(m)
+      map.set(m.format, list)
+    }
+    return map
+  })
+
+  const fallback = $derived.by(() => {
+    const format = [...sources.keys()].slice(-1)[0]
+    return sources.get(format)![0]
+  })
+
+  const resolvedSizes = $derived(sizes ?? `${fallback.width}px`)
 </script>
 
 <picture>
-  {#each [...sources.entries()] as [format, meta]}
+  {#each [...sources.entries()] as [format, list] (format)}
     <source
-      {sizes}
+      sizes={resolvedSizes}
       type="image/{format}"
-      srcset={meta.map((m) => `${m.src} ${m.width}w`).join(", ")}
+      srcset={list.map((m) => `${m.src} ${m.width}w`).join(", ")}
     />
   {/each}
-  <img src={image.src} {alt} {loading} class={clazz} />
+  <img src={fallback.src} {alt} {loading} class={className} />
 </picture>

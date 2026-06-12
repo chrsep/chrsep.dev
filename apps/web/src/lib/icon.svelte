@@ -1,10 +1,8 @@
 <script lang="ts">
-  let className: string
-
-  export { className as class }
+  let { class: className = "" }: { class?: string } = $props()
 </script>
 
-<div role="img" aria-hidden="true" class="icon h-5 w-5 bg-white {className}" />
+<div role="img" aria-hidden="true" class="icon h-5 w-5 bg-white {className}"></div>
 
 <style>
   .icon {

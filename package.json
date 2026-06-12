@@ -2,10 +2,12 @@
   "private": true,
   "license": "MIT",
   "name": "chrsep.dev",
+  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
-    "turbo": "^1.2.11"
+    "turbo": "^2.9.14"
   },
   "scripts": {
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "dev": "turbo run dev"
   }
 }

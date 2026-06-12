@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "$lib/icon.svelte"
-  export let link: string
-  export let name: string
+
+  let { link, name }: { link: string; name: string } = $props()
 </script>
 
 <li class="text-sm font-bold opacity-60 transition-opacity hover:opacity-100">

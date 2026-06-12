@@ -1,27 +1,39 @@
 <script lang="ts">
   import ProjectTag from "$lib/project-tag.svelte"
   import ProjectLink from "$lib/project-link.svelte"
+  import type { Snippet } from "svelte"
 
-  export let title: string
-  export let description: string
-
-  export let githubLink: string = null
-  export let webLink: string = null
-  export let googlePlayLink: string = null
-
-  export let saas: boolean = false
-  export let ecommerce: boolean = false
-  export let marketing: boolean = false
-  export let openSource: boolean = false
-  export let android: boolean = false
-  export let webApp: boolean = false
-
-  export let lighthouse: {
-    score: number
-    link: string
-  } = null
-
-  export let heroBg: string
+  let {
+    title,
+    description,
+    githubLink = null,
+    webLink = null,
+    googlePlayLink = null,
+    saas = false,
+    ecommerce = false,
+    marketing = false,
+    openSource = false,
+    android = false,
+    webApp = false,
+    lighthouse = null,
+    heroBg,
+    image,
+  }: {
+    title: string
+    description: string
+    githubLink?: string | null
+    webLink?: string | null
+    googlePlayLink?: string | null
+    saas?: boolean
+    ecommerce?: boolean
+    marketing?: boolean
+    openSource?: boolean
+    android?: boolean
+    webApp?: boolean
+    lighthouse?: { score: number; link: string } | null
+    heroBg: string
+    image?: Snippet
+  } = $props()
 </script>
 
 <article
@@ -30,7 +42,7 @@
   <div
     class="aspect-w-3 aspect-h-4 mb-6 overflow-hidden rounded-2xl shadow-lg {heroBg}"
   >
-    <slot name="image" />
+    {@render image?.()}
   </div>
 
   <ul class="mb-4 flex flex-wrap gap-2">

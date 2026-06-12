@@ -1,11 +1,21 @@
 <script lang="ts">
-  export let variant: "primary" | "secondary" = "primary"
+  import type { Snippet } from "svelte"
 
-  let className = ""
-  export { className as class }
-  export let href = ""
-  export let target = ""
-  export let rel = ""
+  let {
+    variant = "primary",
+    class: className = "",
+    href = "",
+    target = "",
+    rel = "",
+    children,
+  }: {
+    variant?: "primary" | "secondary"
+    class?: string
+    href?: string
+    target?: string
+    rel?: string
+    children?: Snippet
+  } = $props()
 </script>
 
 {#if variant === "primary"}
@@ -15,7 +25,7 @@
     {rel}
     {target}
   >
-    <slot />
+    {@render children?.()}
   </a>
 {:else}
   <a
@@ -24,6 +34,6 @@
     {rel}
     {target}
   >
-    <slot />
+    {@render children?.()}
   </a>
 {/if}
