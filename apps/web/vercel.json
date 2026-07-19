@@ -1,4 +1,12 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/vibe-coding",
+      "destination": "/resources/vibecoding-demo",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/studio/(.*)", "destination": "/studio/index.html" }
   ]
