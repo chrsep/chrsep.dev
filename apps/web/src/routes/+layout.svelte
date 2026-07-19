@@ -5,15 +5,50 @@
   import ButtonLink from "$lib/button-link.svelte"
   import Icon from "$lib/icon.svelte"
   import type { Snippet } from "svelte"
+  import { page } from "$app/state"
+  import { m } from "$lib/paraglide/messages"
+  import {
+    deLocalizeHref,
+    getLocale,
+    locales,
+    localizeHref,
+  } from "$lib/paraglide/runtime"
 
   let { children }: { children?: Snippet } = $props()
+
+  const localeNames: Record<string, string> = {
+    en: "English",
+    id: "Bahasa Indonesia",
+  }
+
+  const canonicalPath = $derived(deLocalizeHref(page.url.pathname))
+
+  function localizedPath(path: string, locale: (typeof locales)[number]) {
+    const href = localizeHref(path, { locale })
+    return href !== "/" && href.endsWith("/") ? href.slice(0, -1) : href
+  }
 </script>
+
+<svelte:head>
+  <link rel="canonical" href={`https://chrsep.dev${page.url.pathname}`} />
+  {#each locales as locale}
+    <link
+      rel="alternate"
+      hreflang={locale}
+      href={`https://chrsep.dev${localizedPath(canonicalPath, locale)}`}
+    />
+  {/each}
+  <link rel="alternate" hreflang="x-default" href={`https://chrsep.dev${canonicalPath}`} />
+</svelte:head>
 
 <nav
   class="fixed inset-x-0 top-0 z-10 h-12 w-full bg-default-900 bg-opacity-80 px-6 text-sm text-ink-900 backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32 "
 >
   <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8 ">
-    <a href="/" class="group mr-auto flex h-full items-center font-bold">
+    <a
+      href={localizedPath("/", getLocale())}
+      class="group mr-auto flex h-full items-center font-bold"
+    >
       <div class="h-5 overflow-hidden">
         <div
           class="transform transition-transform duration-500 ease-in-out sm:group-hover:-translate-y-1/2"
@@ -25,11 +60,36 @@
     </a>
 
     <a
-      href="/cv"
+      href={localizeHref("/cv")}
       class="flex h-full items-center font-medium text-ink-700 transition-colors hover:text-ink-900"
     >
-      CV
+      {m.nav_cv()}
     </a>
+
+    <ul
+      class="flex h-full items-center gap-1 text-xs font-medium"
+      aria-label={m.language_switcher_label()}
+    >
+      {#each locales as locale, i}
+        {#if i > 0}
+          <li aria-hidden="true" class="text-ink-700 opacity-40">/</li>
+        {/if}
+        <li>
+          <a
+            href={localizedPath(canonicalPath, locale)}
+            hreflang={locale}
+            aria-label={localeNames[locale]}
+            aria-current={locale === getLocale() ? "page" : undefined}
+            data-sveltekit-reload
+            class="transition-colors {locale === getLocale()
+              ? 'text-ink-900'
+              : 'text-ink-700 hover:text-ink-900'}"
+          >
+            {locale.toUpperCase()}
+          </a>
+        </li>
+      {/each}
+    </ul>
   </div>
 </nav>
 
@@ -45,16 +105,16 @@
   >
     <div>
       <h1 class="text-xl font-black leading-tight md:text-2xl">
-        Let's work together!
+        {m.lets_work_together()}
       </h1>
       <p class="my-4 max-w-sm text-ink-800 opacity-70 sm:mb-0">
-        I would love to help you build faster and more accessible websites.
+        {m.footer_body()}
       </p>
       <ButtonLink
         href="mailto:hi@chrsep.dev"
         class="group mb-4 mt-2 !inline-block w-full text-sm sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto"
       >
-        Get in touch
+        {m.footer_cta()}
         <span
           class="mr-1 ml-auto transform transition-transform duration-200 ease-in-out group-hover:translate-x-2 sm:ml-3"
         >

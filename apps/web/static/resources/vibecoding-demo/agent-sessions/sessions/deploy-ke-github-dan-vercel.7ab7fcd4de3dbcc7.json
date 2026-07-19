@@ -1,0 +1,610 @@
+{
+  "schemaVersion": 1,
+  "slug": "deploy-ke-github-dan-vercel",
+  "title": "Deploy ke GitHub dan Vercel",
+  "entries": [
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>Deployin ke github trus konekin ke vercel</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Aku akan publish repo ini ke GitHub dengan workflow <code>github:yeet</code>, lalu sambungkan project-nya ke Vercel dan verifikasi deployment live. Sebelum mengubah apa pun, aku cek instruksi repo, status Git, serta konfigurasi build/deploy yang sudah ada.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 10s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Repo ini belum punya commit maupun remote GitHub, jadi aku akan membuat repository baru dari checkout ini (bukan PR ke repo yang sudah ada). Karena tahap berikutnya memakai Vercel CLI, aku juga memakai skill <code>find-docs</code>/Context7 untuk memastikan alur login, link, env, dan deploy sesuai dokumentasi terbaru.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 7s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Ada satu blocker operasional: GitHub CLI terpasang, tetapi token akun <code>chrsep</code> sudah tidak valid. Aku lanjutkan dulu verifikasi build dan konfigurasi Vercel; setelah itu login GitHub perlu diotorisasi ulang lewat device/browser flow sebelum repo bisa dibuat dan dipush.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 43s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Dokumentasi terbaru mengonfirmasi alurnya: <code>vercel link</code>, cek/tarik env bila perlu, deploy preview, lalu <code>vercel deploy --prod</code>. Aplikasi ini masih memakai mock data, jadi <code>DATABASE_URL</code> belum diperlukan untuk tampilan demo; sekarang aku jalankan quality gates lokal sambil menyiapkan re-autentikasi GitHub.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 10s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>bikin public reponya</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Siap—repository GitHub-nya akan dibuat sebagai <strong>public</strong>. Aku lanjutkan login, lalu commit seluruh source app saat ini, push, dan hubungkan repo public tersebut ke Vercel.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 26s · 4 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 4 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>GitHub meminta device authorization dengan kode <strong>AE76-71D8</strong>. Aku buka halaman otorisasinya sekarang; kalau browser meminta konfirmasi, approve akun GitHub yang akan memiliki repo public ini.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 1m 26s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>GitHub sudah terautentikasi sebagai <code>chrsep</code>. Lint dan TypeScript sudah lolos; build produksi masih berjalan lebih lama dari normal, jadi aku cek prosesnya sebelum commit agar deployment tidak membawa build yang bermasalah. Repo public akan memakai nama <code>inventory</code> dan branch default <code>main</code>.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 9s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>dah gw approve, dpt kan?</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Iya, approval-nya sudah masuk dan GitHub berhasil login sebagai <code>chrsep</code>. Repo <code>chrsep/inventory</code> juga masih tersedia; aku lanjut bikin sebagai public, push ke <code>main</code>, lalu deploy ke Vercel.</p>"
+    },
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>ok go</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Gas. Aku lanjut dari kondisi yang sudah login: selesaikan build check, commit initial app ke <code>main</code>, buat repo public <code>chrsep/inventory</code>, push, lalu link dan production deploy ke Vercel.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 33s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Quality check menemukan satu proses <code>next build</code> lama yang yatim dan masih memegang lock—bukan error source code. Aku hentikan hanya PID build tersebut, lalu jalankan ulang build produksi dengan koneksi yang dibutuhkan font Google.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 31s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Build produksi sekarang lolos penuh. Aku akan stage seluruh source project baru ini (env asli tetap ter-ignore; hanya <code>.env.example</code> yang masuk), rename branch ke <code>main</code>, lalu buat initial commit.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 21s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Initial commit <code>2640a03</code> sudah dibuat di <code>main</code>. Sekarang aku membuat <code>github.com/chrsep/inventory</code> sebagai public dan push commit tersebut.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 28s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Vercel CLI juga sudah login sebagai <code>chrsep</code>. Agar bukan sekadar deploy CLI tetapi benar-benar terhubung ke repo GitHub untuk auto-deploy berikutnya, aku verifikasi perintah Git integration terbaru lalu membuat/link project Vercel.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 32s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Vercel punya tiga scope. Karena repo ini milik akun personal <code>chrsep</code>, aku pakai scope personal <strong><code>chrisando-pramudhitas-projects</code></strong>—bukan workspace <code>svalbard</code> atau <code>dizlog</code>.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 18s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Project Vercel sudah berhasil dibuat dan direktori sudah linked. Koneksi GitHub otomatis gagal di langkah izin Vercel GitHub App—repo-nya public dan URL benar, jadi aku cek perintah connect eksplisit dan status integrasinya sebelum production deploy.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 46s · 6 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 6 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>CLI mengonfirmasi blocker-nya memang izin GitHub App di akun Vercel, bukan source atau build. Aku akan memakai skill browser untuk membuka pengaturan integrasi Vercel/GitHub dan menyelesaikan authorization yang tidak bisa dilakukan CLI; setelah itu aku ulangi <code>git connect</code> dan deploy production.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 1m 8s · 14 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 8 commands"
+        },
+        {
+          "category": "Deploy",
+          "label": "Open Vercel project settings"
+        },
+        {
+          "category": "Browser",
+          "label": "Read browser controls"
+        },
+        {
+          "category": "Browser",
+          "label": "Finish browser controls"
+        },
+        {
+          "category": "Deploy",
+          "label": "Inspect Vercel session"
+        },
+        {
+          "category": "Deploy",
+          "label": "Inspect Vercel Git integration"
+        },
+        {
+          "category": "Deploy",
+          "label": "Sign in to Vercel with GitHub"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Git integration memang meminta login GitHub di browser. Sambil menunggu itu, aku lanjutkan production deploy lewat CLI supaya aplikasinya sudah live; sesudah deploy selesai, tinggal satu authorization browser untuk mengaktifkan auto-deploy dari <code>main</code>.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 1m 43s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Production deploy sudah <strong>READY</strong> dan mendapat alias <code>https://inventory-wine-five.vercel.app/</code>. Aku cek respons publik dan tampilan live sekarang; setelah itu hanya authorization GitHub di browser yang masih perlu kamu selesaikan agar setiap push ke <code>main</code> otomatis deploy.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 35s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Verifikasi menemukan dua hal penting: URL live saat ini mengembalikan <strong>500</strong>, dan checkout lokal berubah di luar langkah deployment (<code>main</code> berganti ke <code>codex/new</code>, <code>package.json</code> termodifikasi, plus <code>.playwright-cli/</code>). Aku tidak akan menimpa perubahan itu. Aku audit diff serta log runtime dulu, lalu memperbaiki 500 secara sempit tanpa menyentuh perubahan yang bukan milikku.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 37s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Error 500 ternyata bukan sekadar env kosong: runtime mencoba koneksi Neon lalu crash di WebSocket polyfill (<code>mask is not a function</code>). Aku cek dokumentasi <code>@neondatabase/serverless</code> terbaru karena Vercel menjalankan Node 22, yang sudah punya WebSocket bawaan; kemungkinan konfigurasi <code>ws</code> manual yang dipakai source justru bentrok saat dibundle.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 48s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Dokumentasi Neon mengonfirmasi fix-nya: <code>ws</code> manual hanya dibutuhkan sampai Node 21; Vercel memakai Node 22, sehingga polyfill itu harus dilepas. Sebelum patch, aku cek apakah <code>DATABASE_URL</code> sudah tersimpan aman sebagai Vercel environment variable atau cuma ikut ter-upload dari file <code>.env</code> lokal.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 30s · 1 action · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p><code>DATABASE_URL</code> belum tersimpan di project settings; deployment pertama hanya membacanya dari <code>.env</code> lokal yang ikut dalam upload CLI. Aku akan:</p>\n<ul>\n<li>hapus polyfill <code>ws</code> yang crash di Node 22,</li>\n<li>tambahkan <code>.vercelignore</code> agar file env lokal tidak pernah ikut upload lagi,</li>\n<li>simpan <code>DATABASE_URL</code> sebagai encrypted Vercel env untuk Production dan Preview,</li>\n<li>rebuild, commit, push, lalu redeploy.</li>\n</ul>\n<p>Perubahan <code>build: next build --webpack</code> yang sudah ada akan tetap dipertahankan.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 47s · 5 actions · 3 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        },
+        {
+          "category": "Edit",
+          "label": "Updated package.json"
+        },
+        {
+          "category": "Edit",
+          "label": "Updated src/lib/prisma.ts"
+        },
+        {
+          "category": "Edit",
+          "label": "Added .vercelignore"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Vercel menolak upload credential sampai kamu memberi persetujuan eksplisit setelah risikonya dijelaskan. Aku tetap menyelesaikan patch dan quality checks dulu; nilai rahasia tidak dibaca atau ditampilkan. Setelah itu aku akan minta satu konfirmasi spesifik untuk menyimpan connection string Neon sebagai encrypted Vercel env.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 1m 18s · 4 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 4 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Quality gate menangkap satu penggunaan <code>ws</code> kedua di script seed. Aku hapus juga konfigurasi itu; setelah dependency tree sudah tersinkron, lint/TypeScript/build akan dijalankan ulang.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 31s · 3 actions · 1 file",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        },
+        {
+          "category": "Edit",
+          "label": "Updated prisma/seed.ts"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Patch sekarang lolos lint, TypeScript, dan production build. Aku commit hanya lima file deploy/runtime terkait (<code>.vercelignore</code>, package + lockfile, Prisma runtime, dan seed), lalu fast-forward remote <code>main</code>; <code>.playwright-cli</code> atau file lain tidak akan ikut.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 39s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>GitHub <code>main</code> sudah ter-update ke commit <code>e86a862</code>. Untuk lanjut sampai live sehat, aku butuh dua approval manual yang memang tidak boleh kuambil alih: login GitHub di browser untuk Vercel Git integration, dan persetujuan eksplisit untuk mengirim <code>DATABASE_URL</code> lokal ke encrypted Vercel environment. Aku tampilkan tab login GitHub sekarang.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 14s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 1 command"
+        },
+        {
+          "category": "Git",
+          "label": "Hand off GitHub login"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Repo public sudah dibuat dan pushed: <a href=\"https://github.com/chrsep/inventory\" rel=\"nofollow noopener noreferrer\">github.com/chrsep/inventory</a>. Vercel project juga sudah dibuat, tetapi deployment masih HTTP 500 sampai database dikonfigurasi.</p>\n<p>Tolong lakukan dua hal:</p>\n<ol>\n<li>Selesaikan login GitHub pada tab browser yang sudah kubuka untuk mengizinkan Vercel Git integration.</li>\n<li>Balas: <strong>“approve upload DATABASE_URL ke Vercel”</strong>.</li>\n</ol>\n<p>Persetujuan kedua mengizinkan connection string Neon lokal disimpan sebagai encrypted Vercel environment untuk Production dan Preview. Secret tidak akan ditampilkan atau masuk Git, tetapi Vercel dan aplikasi production akan mendapat akses ke database tersebut.</p>\n<p>::git-stage{cwd=\"Inventory project\"}\n::git-commit{cwd=\"Inventory project\"}\n::git-push{cwd=\"Inventory project\" branch=\"main\"}</p>"
+    },
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>approve upload DATABASE_URL ke Vercel</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Persetujuan diterima. Aku akan mengirim nilai <code>DATABASE_URL</code> dari <code>.env</code> lokal langsung ke encrypted Vercel env untuk Production dan Preview tanpa menampilkan nilainya, lalu redeploy commit <code>e86a862</code> dan cek endpoint serta log runtime.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 1m 27s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Redeploy kedua sudah <strong>READY</strong> dan alias production tetap <code>inventory-wine-five.vercel.app</code>. Sekarang aku hit semua route utama dan cek error log baru untuk memastikan bukan hanya build yang sukses, tetapi aplikasinya benar-benar bisa dipakai.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 51s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Aplikasinya sekarang sehat: semua empat route utama HTTP 200, <code>DATABASE_URL</code> tercatat encrypted untuk Production/Preview, dan tidak ada error runtime baru. Aku cek sekali lagi apakah login GitHub di tab tadi sudah selesai; jika sudah, aku langsung aktifkan auto-deploy GitHub → Vercel.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 16s · 6 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        },
+        {
+          "category": "Verify",
+          "label": "Check GitHub authorization"
+        },
+        {
+          "category": "Verify",
+          "label": "Check browser handoff"
+        },
+        {
+          "category": "Git",
+          "label": "Keep GitHub login open"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Deployment sudah live dan sehat: <a href=\"https://inventory-wine-five.vercel.app/\" rel=\"nofollow noopener noreferrer\">inventory-wine-five.vercel.app</a>.</p>\n<ul>\n<li>Semua route utama HTTP 200.</li>\n<li><code>DATABASE_URL</code> tersimpan encrypted untuk Production dan Preview.</li>\n<li>Tidak ada error runtime terbaru.</li>\n<li>GitHub repo public: <a href=\"https://github.com/chrsep/inventory\" rel=\"nofollow noopener noreferrer\">chrsep/inventory</a>.</li>\n</ul>\n<p>Sisa satu langkah: login GitHub pada tab yang masih terbuka. Setelah selesai, balas <strong>“done login”</strong> agar aku aktifkan auto-deploy GitHub → Vercel.</p>"
+    },
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>generate qr buat link</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Aku buat QR code yang scannable untuk link production <code>https://inventory-wine-five.vercel.app/</code>, lalu verifikasi isi QR-nya sebelum dikirim.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 2m 55s · 17 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 17 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>QR code sudah dibuat dan diverifikasi mengarah ke <a href=\"https://inventory-wine-five.vercel.app/\" rel=\"nofollow noopener noreferrer\">inventory-wine-five.vercel.app</a>.</p>\n<p>QR Inventory Vercel (image omitted)</p>\n<p>Download PNG QR code</p>"
+    }
+  ]
+}

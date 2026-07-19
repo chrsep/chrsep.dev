@@ -1,6 +1,10 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
+  import Seo from "$lib/seo.svelte"
+  import { m } from "$lib/paraglide/messages"
 </script>
+
+<Seo title={m.cv_title()} description={m.cv_description()} />
 
 <header
   class="sm:skew-y-4 relative block w-full skew-y-6 transform border-b border-black px-6 pb-12 pt-16 sm:pb-16 md:px-32 lg:pb-32 lg:pt-24 2xl:px-0"
@@ -9,7 +13,7 @@
   <p
     class="sm:-skew-y-4 relative z-10 max-w-7xl -skew-y-6 transform pb-2 font-medium text-ink-600 lg:text-lg 2xl:mx-auto"
   >
-    Curriculum Vitae
+    {m.cv_label()}
   </p>
   <h1
     class="sm:-skew-y-4 relative z-10 max-w-7xl -skew-y-6 transform text-4xl font-black sm:text-5xl lg:text-6xl 2xl:mx-auto"
@@ -35,67 +39,53 @@
   <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
     <section>
       <h2 id="experience" class="!mt-8">
-        Experiences
+        {m.cv_experiences()}
         <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
 
-      <h3>Independent Software Developer</h3>
-      <h4>Fullstack Web Developer</h4>
-      <p class="text-sm">2018-Today</p>
+      <h3>{m.cv_exp_independent_title()}</h3>
+      <h4>{m.cv_exp_independent_role()}</h4>
+      <p class="text-sm">{m.cv_period_2018_today()}</p>
       <ul>
-        <li>
-          Designed and deployed e-commerce and marketing sites for SMEs using
-          NextJS and Gatsby.
-        </li>
-        <li>
-          Redesigned internal CRM for managing magazine subscriptions and
-          printing shipping addresses for a publishing company.
-        </li>
-        <li>Helped develop analytic dashboard using React.</li>
-        <li>
-          Developed android app for internal reporting of offsite maintenance
-          result for a building automation company.
-        </li>
+        <li>{m.cv_exp_independent_1()}</li>
+        <li>{m.cv_exp_independent_2()}</li>
+        <li>{m.cv_exp_independent_3()}</li>
+        <li>{m.cv_exp_independent_4()}</li>
       </ul>
 
       <h3>PT. Bank Central Asia Tbk</h3>
-      <h4>Software Engineering Intern</h4>
+      <h4>{m.cv_exp_bca_role()}</h4>
       <p class="text-sm">2017</p>
       <ul>
-        <li>Implemented new business rules on IBM z/OS.</li>
-        <li>Helped test and monitor new codes to be deployed.</li>
-        <li>Explored, experimented, and benchmarked technologies to adopt.</li>
+        <li>{m.cv_exp_bca_1()}</li>
+        <li>{m.cv_exp_bca_2()}</li>
+        <li>{m.cv_exp_bca_3()}</li>
       </ul>
     </section>
 
     <section>
       <h2 id="projects">
-        Personal Projects
+        {m.cv_personal_projects()}
         <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
       <h3>Atreus</h3>
       <p>
-        Open-source automated asset discovery service to experiment with bug
-        bounty. Built with NextJS and Go.
-        <a href="https://github.com/chrsep/atreus">
-          GitHub.
-        </a>
+        {m.cv_project_atreus_body()}
+        <a href="https://github.com/chrsep/atreus"> GitHub. </a>
       </p>
-      <p class="text-sm">Web Application, Open-source | 2021-Today</p>
+      <p class="text-sm">{m.cv_project_atreus_meta()}</p>
 
       <h3>Obserfy</h3>
       <p>
-        Open-source record keeping and parent communication tool for Montessori
-        Schools.
+        {m.cv_project_obserfy_body()}
         <a href="https://github.com/chrsep/obserfy"> GitHub </a>
         <a href="https://obserfy.com">Web</a>
       </p>
-      <p class="text-sm">SaaS, Open-source | 2020-Today</p>
+      <p class="text-sm">{m.cv_project_obserfy_meta()}</p>
 
       <h3>Portal</h3>
       <p>
-        Open-source, offline-first android app for keeping track of campus info
-        and activities with over 20k downloads.
+        {m.cv_project_portal_body()}
         <a href="https://github.com/chrsep/Kingfish"> GitHub. </a>
         <a
           href="https://play.google.com/store/apps/details?id=com.directdev.portal"
@@ -103,35 +93,33 @@
           Google Play.
         </a>
       </p>
-      <p class="text-sm">Android, Open-source | 2014-2018</p>
+      <p class="text-sm">{m.cv_project_portal_meta()}</p>
     </section>
 
     <section>
       <h2 id="education">
-        Education
+        {m.cv_education()}
         <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
 
       <h3>Binus University</h3>
-      <h4>Bachelor's Degree in Computer Science</h4>
+      <h4>{m.cv_edu_binus_degree()}</h4>
       <p>
-        Graduated with GPA of 3.4 and enrolled in the "Global Class" that uses
-        an internationalized curriculum delivered in english.
+        {m.cv_edu_binus_body()}
       </p>
       <p class="text-sm">Jakarta, Indonesia | 2014-2018</p>
 
       <h3>National Sun Yat-sen University</h3>
-      <h4>Student Exchange</h4>
+      <h4>{m.cv_edu_nsysu_degree()}</h4>
       <p>
-        Learned Python and UNIX through building and debugging various unix
-        based text games.
+        {m.cv_edu_nsysu_body()}
       </p>
       <p class="text-sm">Kaohsiung, Taiwan | 2017</p>
     </section>
 
     <section>
       <h2 id="courses">
-        Courses
+        {m.cv_courses()}
         <span class="mt-2 block h-1 w-12 rounded-full bg-blue-500"></span>
       </h2>
 
@@ -139,27 +127,27 @@
       <h4>Coursera</h4>
       <ul>
         <li>
-          Learned how convolutional neural networks work.
+          {m.cv_course_dl_1()}
           <a href="https://coursera.org/share/7e2e1b6c4be6fe5b187aee64362ba4a8">
-            Certificate.
+            {m.cv_certificate()}
           </a>
         </li>
         <li>
-          Learned how to structure machine learning projects.
+          {m.cv_course_dl_2()}
           <a href="https://coursera.org/share/228b975f5d801b33f02680a0be0dfcb2">
-            Certificate.
+            {m.cv_certificate()}
           </a>
         </li>
         <li>
-          Learned about neural networks and deep learning.
+          {m.cv_course_dl_3()}
           <a href="https://coursera.org/share/5ebb9114286e6700c399a0f9a90f43cb">
-            Certificate.
+            {m.cv_certificate()}
           </a>
         </li>
         <li>
-          Learned how to optimize deep neural networks.
+          {m.cv_course_dl_4()}
           <a href="https://coursera.org/share/0449290a2a586775031187ee0876f2ec">
-            Certificate.
+            {m.cv_certificate()}
           </a>
         </li>
       </ul>
@@ -167,18 +155,16 @@
       <h3>Machine Learning</h3>
       <h4>Coursera</h4>
       <p>
-        Learned various Machine Learning methodologies such as SVM and neural
-        networks using Matlab.
+        {m.cv_course_ml_body()}
         <a href="https://coursera.org/share/9747c18a12fd68667db0001980a8ab26">
-          Certificate.
+          {m.cv_certificate()}
         </a>
       </p>
 
       <h3>Global Leadership Experience</h3>
       <h4>Common Purpose</h4>
       <p>
-        Leadership development program focused on brainstorming about real world
-        problems.
+        {m.cv_course_gle_body()}
       </p>
     </section>
   </article>

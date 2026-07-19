@@ -12,9 +12,14 @@
   import Image from "$lib/image.svelte"
   import ButtonLink from "$lib/button-link.svelte"
   import Icon from "$lib/icon.svelte"
+  import Seo from "$lib/seo.svelte"
+  import { m } from "$lib/paraglide/messages"
+  import { localizeHref } from "$lib/paraglide/runtime"
 
   const globeModule = import("$lib/globe.svelte")
 </script>
+
+<Seo title={m.site_title()} description={m.site_description()} />
 
 <div
   class="relative overflow-hidden hero-bg border-t border-[#ffffff0A]"
@@ -48,11 +53,10 @@
     </ul>
 
     <h1 class="text-xl sm:text-2xl max-w-md">
-      <span class="font-black text-ink-900">👋 Hi there, I'm Chris!</span>
+      <span class="font-black text-ink-900">{m.home_hero_greeting()}</span>
       <span class="text-ink-700">
-        I'm a fullstack software developer from Indonesia. I help businesses
-        build <b class="text-ink-900">fast</b> and
-        <b class="text-ink-900">beautiful</b> websites and web-apps.
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -- static, developer-authored message -->
+        {@html m.home_hero_pitch()}
       </span>
     </h1>
 
@@ -61,7 +65,7 @@
         href="mailto:hi@chrsep.dev"
         class="!inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2 group"
       >
-        Let's work together!
+        {m.lets_work_together()}
         <span
           class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
         >
@@ -71,10 +75,10 @@
 
       <ButtonLink
         variant="secondary"
-        href="/cv"
+        href={localizeHref("/cv")}
         class="!inline-block w-full sm:w-auto group"
       >
-        More about me
+        {m.home_more_about_me()}
         <span
           class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
         >
@@ -99,11 +103,9 @@
     class="px-6 sm:px-8 md:px-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
   >
     <div class="mb-8 max-w-lg prose">
-      <h2>Recent Projects</h2>
+      <h2>{m.home_projects_heading()}</h2>
       <p>
-        I love building and shipping products, so I try to learn things that
-        allows me to fully ship a product on my own. Below are some recent
-        projects I've been working on.
+        {m.home_projects_body()}
       </p>
     </div>
   </article>
@@ -113,7 +115,7 @@
   >
     <Project
       title="Obserfy"
-      description="Record keeping and parent communication tool for Montessori Schools."
+      description={m.home_project_obserfy_description()}
       saas
       openSource
       githubLink="https://github.com/obserfy/obserfy"
@@ -135,7 +137,7 @@
 
     <Project
       title="Joyful Montessori"
-      description="Marketing site and blog for a Montessori Preschool. Built for speed and high conversion."
+      description={m.home_project_joyful_description()}
       marketing
       webLink="https://www.joyfulmontessori.id"
       heroBg="bg-default-700"
@@ -155,7 +157,7 @@
 
     <Project
       title="Sekitarmu"
-      description="A platform for discovering local small and medium businesses in a Community."
+      description={m.home_project_sekitarmu_description()}
       ecommerce
       openSource
       webLink="https://www.sekitarmu.id"
@@ -178,7 +180,7 @@
 
     <Project
       title="Atreus"
-      description="Automated asset discovery service built for trying out bug bounty."
+      description={m.home_project_atreus_description()}
       openSource
       webApp
       githubLink="https://github.com/chrsep/atreus"
@@ -224,11 +226,9 @@
         class="bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-white border-opacity-10"
       >
         <div class="max-w-md prose prose-sm">
-          <h2>Open Source</h2>
+          <h2>{m.home_open_source_heading()}</h2>
           <p>
-            Most of my projects are open-sourced and I try to contribute back to
-            the tools that I use when I can. Check out my contributions on
-            GitHub!
+            {m.home_open_source_body()}
           </p>
         </div>
 
@@ -238,7 +238,7 @@
           rel="noreferrer"
           class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full sm:w-auto"
         >
-          Explore GitHub
+          {m.home_open_source_cta()}
           <Icon
             --src="url(/icons/github.svg)"
             class={"w-4 h-4 ml-auto lg:ml-4 bg-black"}

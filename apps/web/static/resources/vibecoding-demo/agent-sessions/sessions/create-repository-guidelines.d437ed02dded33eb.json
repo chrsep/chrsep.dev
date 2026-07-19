@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "slug": "create-repository-guidelines",
+  "title": "Create repository guidelines",
+  "entries": [
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>Generate a file named AGENTS.md that serves as a contributor guide for this repository.\nYour goal is to produce a clear, concise, and well-structured document with descriptive headings and actionable explanations for each section.\nFollow the outline below, but adapt as needed — add sections if relevant, and omit those that do not apply to this project.</p>\n<p>Document Requirements</p>\n<ul>\n<li>Title the document \"Repository Guidelines\".</li>\n<li>Use Markdown headings (#, ##, etc.) for structure.</li>\n<li>Keep the document concise. 200-400 words is optimal.</li>\n<li>Keep explanations short, direct, and specific to this repository.</li>\n<li>Provide examples where helpful (commands, directory paths, naming patterns).</li>\n<li>Maintain a professional, instructional tone.</li>\n</ul>\n<p>Recommended Sections</p>\n<p>Project Structure &amp; Module Organization</p>\n<ul>\n<li>Outline the project structure, including where the source code, tests, and assets are located.</li>\n</ul>\n<p>Build, Test, and Development Commands</p>\n<ul>\n<li>List key commands for building, testing, and running locally (e.g., npm test, make build).</li>\n<li>Briefly explain what each command does.</li>\n</ul>\n<p>Coding Style &amp; Naming Conventions</p>\n<ul>\n<li>Specify indentation rules, language-specific style preferences, and naming patterns.</li>\n<li>Include any formatting or linting tools used.</li>\n</ul>\n<p>Testing Guidelines</p>\n<ul>\n<li>Identify testing frameworks and coverage requirements.</li>\n<li>State test naming conventions and how to run tests.</li>\n</ul>\n<p>Commit &amp; Pull Request Guidelines</p>\n<ul>\n<li>Summarize commit message conventions found in the project’s Git history.</li>\n<li>Outline pull request requirements (descriptions, linked issues, screenshots, etc.).</li>\n</ul>\n<p>(Optional) Add other sections if relevant, such as Security &amp; Configuration Tips, Architecture Overview, or Agent-Specific Instructions.</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>I’ll inspect the repository layout, existing contributor instructions, package scripts, test setup, and recent commit history, then write a concise root <code>AGENTS.md</code> grounded in the actual project.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 14s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>The governing parent guide requires <code>pnpm</code> and favors simple, data-backed implementation. This repository has no existing root guide, so I’m now extracting the concrete scripts, conventions, and test patterns that the new file should document.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 21s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>The repository has no automated test framework yet, so the guide will state that plainly and make lint, type-check, build, and focused manual inventory/loan-flow checks the current acceptance gate. It will also capture Prisma/Neon safety and the repository’s observed short commit style.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 18s · 3 actions · 1 file",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        },
+        {
+          "category": "Edit",
+          "label": "Added AGENTS.md"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>The first draft landed at 401 words—just over the requested optimal range. I’m tightening it slightly and doing a final Markdown/diff check.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 21s · 4 actions · 1 file",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        },
+        {
+          "category": "Edit",
+          "label": "Updated AGENTS.md"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Created <span>AGENTS.md</span> with repository-specific guidance covering structure, pnpm commands, TypeScript conventions, testing expectations, Prisma/Neon security, and PR practices.</p>\n<p>The document is 399 words and passes <code>git diff --check</code>.</p>"
+    },
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>add note to it to remember we deploy to vercel using github integration</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>I’ll add the deployment convention to the existing repository guide, keeping the note explicit about Vercel’s GitHub integration and avoiding unrelated changes.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 25s · 7 actions · 1 file",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 5 commands"
+        },
+        {
+          "category": "Edit",
+          "label": "Updated AGENTS.md"
+        },
+        {
+          "category": "Edit",
+          "label": "Updated AGENTS.md"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Updated <span>AGENTS.md</span> to note that deployments use Vercel’s GitHub integration and manual deployments should only happen when requested. The guide remains exactly 400 words.</p>"
+    }
+  ]
+}

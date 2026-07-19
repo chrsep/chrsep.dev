@@ -1,9 +1,14 @@
 <script lang="ts">
+  import { onMount } from "svelte"
   import { fade } from "svelte/transition"
+  import AgentSessionViewer from "$lib/vibecoding/agent-sessions/agent-session-viewer.svelte"
+  import Seo from "$lib/seo.svelte"
+  import { m } from "$lib/paraglide/messages"
 
   type TabId = "links" | "agent-sessions" | "summary" | "qa"
 
   type LinkGroup = {
+    id: string
     title: string
     description: string
     links: readonly {
@@ -15,68 +20,70 @@
   }
 
   const tabs = [
-    { id: "links", label: "Links" },
-    { id: "agent-sessions", label: "Agent Sessions" },
-    { id: "summary", label: "Summary" },
-    { id: "qa", label: "Q&A" },
+    { id: "links", label: m.vibe_tab_links() },
+    { id: "agent-sessions", label: m.vibe_tab_sessions() },
+    { id: "summary", label: m.vibe_tab_summary() },
+    { id: "qa", label: m.vibe_tab_qa() },
   ] as const satisfies readonly { id: TabId; label: string }[]
 
   const linkGroups = [
     {
-      title: "Resources",
-      description: "Explore the workshop materials and the app built live.",
+      id: "resources",
+      title: m.vibe_group_resources_title(),
+      description: m.vibe_group_resources_description(),
       links: [
         {
           label: "Skills.sh",
-          description: "Discover reusable skills for AI agents.",
+          description: m.vibe_link_skills_description(),
           domain: "skills.sh",
           href: "https://www.skills.sh/",
         },
         {
           label: "chrsep/inventory",
-          description: "Browse the source code from the live demo.",
+          description: m.vibe_link_inventory_repo_description(),
           domain: "github.com",
           href: "https://github.com/chrsep/inventory",
         },
         {
-          label: "Inventory live demo",
-          description: "Open the deployed inventory application.",
+          label: m.vibe_link_inventory_demo_label(),
+          description: m.vibe_link_inventory_demo_description(),
           domain: "inventory-wine-five.vercel.app",
           href: "https://inventory-wine-five.vercel.app/",
         },
         {
           label: "chrsep/vibecoding-workshop",
-          description: "See the slides and workshop source.",
+          description: m.vibe_link_workshop_repo_description(),
           domain: "github.com",
           href: "https://github.com/chrsep/vibecoding-workshop",
         },
       ],
     },
     {
-      title: "Tools",
-      description: "The services used to build, store, and ship the demo.",
+      id: "tools",
+      title: m.vibe_group_tools_title(),
+      description: m.vibe_group_tools_description(),
       links: [
         {
           label: "Vercel",
-          description: "Deploy and host the application.",
+          description: m.vibe_link_vercel_description(),
           domain: "vercel.com",
           href: "https://vercel.com/",
         },
         {
           label: "GitHub",
-          description: "Store the code and its history.",
+          description: m.vibe_link_github_description(),
           domain: "github.com",
           href: "https://github.com/",
         },
         {
           label: "Neon",
-          description: "Run the Postgres database behind the app.",
+          description: m.vibe_link_neon_description(),
           domain: "neon.com",
           href: "https://neon.com/",
         },
         {
           label: "Codex",
-          description: "Build and iterate with an AI coding agent.",
+          description: m.vibe_link_codex_description(),
           domain: "openai.com/codex",
           href: "https://openai.com/codex/",
         },
@@ -85,9 +92,11 @@
   ] as const satisfies readonly LinkGroup[]
 
   let activeTab: TabId = "links"
+  let agentSessionsVisited = false
 
   function selectTab(tabId: TabId, moveFocus = false) {
     activeTab = tabId
+    if (tabId === "agent-sessions") agentSessionsVisited = true
 
     if (moveFocus) {
       requestAnimationFrame(() => {
@@ -114,16 +123,15 @@
     event.preventDefault()
     selectTab(tabs[nextIndex].id, true)
   }
+
+  onMount(() => {
+    if (new URL(window.location.href).searchParams.has("session")) {
+      selectTab("agent-sessions")
+    }
+  })
 </script>
 
-<svelte:head>
-  <title>Vibe Coding | Chrisando E. Pramudhita</title>
-  <meta
-    name="description"
-    content="Vibe Coding workshop presentation, live demo, repositories, and tools by Chrisando."
-  />
-  <link rel="canonical" href="https://chrsep.dev/resources/vibecoding-demo" />
-</svelte:head>
+<Seo title={m.vibe_title()} description={m.vibe_description()} />
 
 <section
   class="mx-auto min-h-[70vh] max-w-[1920px] px-6 pt-12 pb-8 sm:px-8 sm:pt-20 sm:pb-12 md:px-32"
@@ -145,7 +153,8 @@
         target="_blank"
         rel="noreferrer"
       >
-        Open presentation <span class="ml-1.5" aria-hidden="true">↗</span>
+        {m.vibe_open_presentation()}
+        <span class="ml-1.5" aria-hidden="true">↗</span>
       </a>
 
       <a
@@ -153,7 +162,8 @@
         href="/resources/vibecoding-workshop.pdf"
         download="vibecoding-workshop.pdf"
       >
-        Download <span class="ml-1.5" aria-hidden="true">↓</span>
+        {m.vibe_download()}
+        <span class="ml-1.5" aria-hidden="true">↓</span>
       </a>
     </div>
   </header>
@@ -164,15 +174,14 @@
     <iframe
       class="block aspect-video w-full"
       src="https://vibecoding-workshop-gilt.vercel.app/"
-      title="Interactive Vibe Coding workshop presentation"
+      title={m.vibe_iframe_title()}
       allow="fullscreen"
       allowfullscreen
     ></iframe>
   </div>
 
   <p class="text-ink-700 mt-3 text-xs sm:text-sm">
-    Click the presentation, then use the arrow keys or Slidev controls to
-    navigate.
+    {m.vibe_presentation_hint()}
   </p>
 
   <section class="mt-16 border-t border-[#ffffff14] pt-9 sm:mt-20 sm:pt-12">
@@ -180,11 +189,10 @@
       <h2
         class="text-ink-900 text-3xl leading-tight font-black tracking-tight sm:text-4xl md:text-5xl"
       >
-        Workshop resources
+        {m.vibe_resources_heading()}
       </h2>
       <p class="text-ink-700 mt-3 max-w-2xl text-base leading-7 sm:text-lg">
-        Revisit the demo, explore the source, and find every tool used during
-        the workshop.
+        {m.vibe_resources_body()}
       </p>
     </div>
 
@@ -194,7 +202,7 @@
       <div
         class="-ml-2.5 flex min-w-max sm:-ml-3"
         role="tablist"
-        aria-label="Vibe Coding resources"
+        aria-label={m.vibe_tablist_label()}
       >
         {#each tabs as tab, index}
           <button
@@ -233,10 +241,10 @@
     >
       <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
         {#each linkGroups as group}
-          <section aria-labelledby={`link-group-${group.title.toLowerCase()}`}>
+          <section aria-labelledby={`link-group-${group.id}`}>
             <div class="min-h-24 border-b border-[#ffffff1f] pb-5">
               <h3
-                id={`link-group-${group.title.toLowerCase()}`}
+                id={`link-group-${group.id}`}
                 class="text-ink-900 text-lg font-bold"
               >
                 {group.title}
@@ -283,20 +291,15 @@
 
     <div
       id="panel-agent-sessions"
-      class="flex min-h-72 max-w-2xl items-center py-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:py-16"
+      class="pt-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
       role="tabpanel"
       aria-labelledby="tab-agent-sessions"
       tabindex="0"
       hidden={activeTab !== "agent-sessions"}
     >
-      <div>
-        <h3 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
-          Agent Sessions are almost ready.
-        </h3>
-        <p class="text-ink-700 mt-4 max-w-xl text-base leading-7">
-          The full agent sessions will be published here in a couple of days.
-        </p>
-      </div>
+      {#if agentSessionsVisited}
+        <AgentSessionViewer />
+      {/if}
     </div>
 
     <div
@@ -473,11 +476,10 @@
     >
       <div>
         <h3 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
-          Q&amp;A is coming next.
+          {m.vibe_qa_heading()}
         </h3>
         <p class="text-ink-700 mt-4 max-w-xl text-base leading-7">
-          Answers to audience questions will be published here in a couple of
-          days.
+          {m.vibe_qa_body()}
         </p>
       </div>
     </div>

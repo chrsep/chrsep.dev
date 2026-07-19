@@ -2,6 +2,7 @@
   import ProjectTag from "$lib/project-tag.svelte"
   import ProjectLink from "$lib/project-link.svelte"
   import type { Snippet } from "svelte"
+  import { m } from "$lib/paraglide/messages"
 
   let {
     title,
@@ -47,25 +48,25 @@
 
   <ul class="mb-4 flex flex-wrap gap-2">
     {#if saas}
-      <ProjectTag name="SaaS" bgColor="bg-red-50 text-red-900" />
+      <ProjectTag name={m.tag_saas()} bgColor="bg-red-50 text-red-900" />
     {/if}
     {#if ecommerce}
-      <ProjectTag name="E-commerce" bgColor="bg-green-50 text-green-900" />
+      <ProjectTag name={m.tag_ecommerce()} bgColor="bg-green-50 text-green-900" />
     {/if}
     {#if marketing}
       <ProjectTag
-        name="Marketing Site"
+        name={m.tag_marketing()}
         bgColor="bg-yellow-50 !text-yellow-900"
       />
     {/if}
     {#if openSource}
-      <ProjectTag name="Open Source" bgColor="bg-blue-50 text-blue-900" />
+      <ProjectTag name={m.tag_open_source()} bgColor="bg-blue-50 text-blue-900" />
     {/if}
     {#if android}
-      <ProjectTag name="Android" bgColor="bg-teal-50 text-teal-900" />
+      <ProjectTag name={m.tag_android()} bgColor="bg-teal-50 text-teal-900" />
     {/if}
     {#if webApp}
-      <ProjectTag name="Web Application" bgColor="bg-teal-50 text-teal-900" />
+      <ProjectTag name={m.tag_web_app()} bgColor="bg-teal-50 text-teal-900" />
     {/if}
   </ul>
 
