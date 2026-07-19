@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "slug": "ubah-ke-dark-theme",
+  "title": "Ubah ke dark theme",
+  "entries": [
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>coba ubah jadi dark theme. plan dulu. kasi buat review</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Saya akan meninjau struktur UI, aturan repo, dan styling yang sekarang, lalu menyusun rencana dark theme yang spesifik untuk direview—belum mengubah file. Saya memakai skill <code>frontend-design</code> karena perubahan ini menyangkut arah visual dan sistem warna, bukan sekadar mengganti background.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 22s · 4 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 4 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Aturannya sudah jelas: ini aplikasi demo yang datanya harus nyata dan tetap refresh setelah perubahan; belum ada instruksi repo yang lebih sempit. Berikutnya saya petakan halaman, komponen, serta token warna saat ini supaya rencananya tidak generik.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 25s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Saya juga akan cek tampilan yang benar-benar berjalan pada desktop dan mobile. Ini penting karena dark theme harus menjaga hierarki tabel, status, modal, dan navigasi—bukan hanya mengganti hex di source. Untuk itu saya memakai skill browser testing secara read-only; tetap tidak ada file yang diubah.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 4m 20s · 20 actions · 2 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 18 commands"
+        },
+        {
+          "category": "Edit",
+          "label": "Deleted .playwright-cli/console-2026-07-18T03-40-55-472Z.log"
+        },
+        {
+          "category": "Edit",
+          "label": "Deleted .playwright-cli/page-2026-07-18T03-40-57-181Z.yml"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Rencana dark theme siap direview. Belum ada file UI yang diubah.</p>\n<h2>Arah visual</h2>\n<p>Tema: <strong>night inventory control room</strong> — gelap, tenang, dan mudah dipindai lama-lama.</p>\n<p>Palet inti:</p>\n<ul>\n<li>Canvas <code>#0B0D12</code></li>\n<li>Surface <code>#151A23</code></li>\n<li>Raised surface <code>#202736</code></li>\n<li>Primary text <code>#F4F2F8</code></li>\n<li>Muted text <code>#9FA4B3</code></li>\n<li>Brand violet <code>#8B7CFF</code></li>\n</ul>\n<p>Hijau, biru, dan coral tetap dipakai secara terbatas untuk status stok dan peminjaman. Elemen khasnya adalah indikator status seperti lampu rak: warna lembut dengan sedikit glow, sementara card dan tabel tetap netral.</p>\n<pre><code>┌──────── sidebar ────────┬──────────────── main canvas ────────────────┐\n│ active nav: violet tint │ heading                         primary CTA │\n│                         │ [stat] [stat] [stat] [stat]                 │\n│ muted navigation        │ [dark table surface] [stock indicators]    │\n│ account status          │ [recent activity surface]                   │\n└─────────────────────────┴─────────────────────────────────────────────┘\n</code></pre>\n<p>Struktur, spacing, radius, dan copy tetap seperti sekarang. Fokusnya murni mengganti sistem warna dan kedalaman visual.</p>\n<h2>Rencana implementasi</h2>\n<ol>\n<li><p><strong>Buat token dark theme global</strong></p>\n<p>Tambahkan token semantik untuk canvas, surface, border, text, brand, focus, dan status di <span>globals.css</span>. Form input, placeholder, selection, dan <code>color-scheme: dark</code> ikut ditangani di sini.</p>\n</li>\n<li><p><strong>Ubah application shell</strong></p>\n<p>Sesuaikan sidebar, mobile header, navigasi aktif, profil, dan help card di <span>app-shell.tsx</span>. Sidebar sedikit lebih terang dari canvas agar kedalamannya terbaca tanpa shadow berat.</p>\n</li>\n<li><p><strong>Konversi semua surface utama</strong></p>\n<p>Terapkan token ke:</p>\n<ul>\n<li><span>dashboard-page.tsx</span></li>\n<li><span>inventory-page.tsx</span></li>\n<li><span>loan-page.tsx</span></li>\n<li><span>history-page.tsx</span></li>\n</ul>\n<p>Ini mencakup card, tabel, filter, empty state, progress bar, modal, dan feedback banner.</p>\n</li>\n<li><p><strong>Kalibrasi warna status</strong></p>\n<p>Perbarui <span>status-pill.tsx</span> agar <code>Aktif</code>, <code>Selesai</code>, <code>Terlambat</code>, dan <code>Stok rendah</code> tetap langsung terbaca di permukaan gelap—tidak mengandalkan warna teks saja.</p>\n</li>\n<li><p><strong>State interaksi dan aksesibilitas</strong></p>\n<p>Pastikan hover, active, disabled, keyboard focus, autofill, dan native date/select controls konsisten. Target minimal WCAG AA untuk teks dan kontrol utama.</p>\n</li>\n<li><p><strong>Verifikasi</strong></p>\n<ul>\n<li>Preview seluruh empat halaman.</li>\n<li>Cek desktop 1440px dan mobile 390px.</li>\n<li>Cek modal peminjaman, horizontal table scroll, filter, serta empty state.</li>\n<li>Jalankan <code>pnpm lint</code> dan <code>pnpm build</code>.</li>\n<li>Pastikan tidak ada perubahan pada database, server action, atau mekanisme refresh data.</li>\n</ul>\n</li>\n</ol>\n<p>Asumsi rencana ini: aplikasi menjadi <strong>dark-only sebagai tema default</strong>, tanpa tombol pergantian light/dark. Kalau arahnya sudah cocok, saya bisa lanjut implementasi persis dengan scope ini.</p>"
+    },
+    {
+      "type": "media",
+      "src": "/resources/vibecoding-demo/agent-sessions/media/a7996074a7a2d04c.webp",
+      "width": 1440,
+      "height": 1038,
+      "alt": "Inventory dashboard before the dark theme update",
+      "caption": "Current dashboard review"
+    },
+    {
+      "type": "media",
+      "src": "/resources/vibecoding-demo/agent-sessions/media/95ab268f7e33360b.webp",
+      "width": 1440,
+      "height": 1053,
+      "alt": "Inventory item list before the dark theme update",
+      "caption": "Inventory screen review"
+    },
+    {
+      "type": "media",
+      "src": "/resources/vibecoding-demo/agent-sessions/media/86434fe2d7bc645b.webp",
+      "width": 1440,
+      "height": 1006,
+      "alt": "New loan dialog before the dark theme update",
+      "caption": "Loan dialog review"
+    },
+    {
+      "type": "media",
+      "src": "/resources/vibecoding-demo/agent-sessions/media/7d4c4d5bf3f1ab2b.webp",
+      "width": 390,
+      "height": 2295,
+      "alt": "Inventory dashboard on a mobile viewport before the dark theme update",
+      "caption": "Mobile dashboard review"
+    }
+  ]
+}

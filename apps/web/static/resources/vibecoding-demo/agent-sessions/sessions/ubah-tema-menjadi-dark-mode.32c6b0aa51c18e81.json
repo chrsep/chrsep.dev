@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "slug": "ubah-tema-menjadi-dark-mode",
+  "title": "Ubah tema menjadi dark mode",
+  "entries": [
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>coba ubah jadi dark theme. plan dulu. kasi buat review</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Aku akan audit tampilan yang sekarang dulu, lalu susun rencana dark theme yang spesifik per file/komponen—belum mengubah kode. Aku juga memakai skill <code>frontend-design</code> supaya arah visualnya konsisten dan hasil plan-nya cukup konkret untuk kamu review.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 13s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Instruksi repo sudah terbaca. Tidak ada konteks lama yang relevan di memory, jadi plan akan berdasar pada kondisi proyek saat ini. Berikutnya aku petakan seluruh permukaan UI, token warna yang sudah ada, dan kondisi working tree agar rencana tidak menabrak perubahan lain.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 19s · 3 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 3 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Dari kode, tema terang saat ini memakai banyak hex langsung di komponen (bukan token), mencakup empat halaman, tabel, filter, kartu, feedback, dan dua modal. Supaya dark theme nanti tidak jadi sekadar “background hitam”, aku akan cek render aktual desktop/mobile dan kontras state interaktif sebelum memfinalkan proposal. Ini masih audit; belum ada file yang diubah.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 3m 42s · 53 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 31 commands"
+        },
+        {
+          "category": "Browser",
+          "label": "Menghubungkan ke preview lokal"
+        },
+        {
+          "category": "Browser",
+          "label": "Menyelesaikan panduan browser"
+        },
+        {
+          "category": "Inspect",
+          "label": "Membuka dashboard lokal"
+        },
+        {
+          "category": "Inspect",
+          "label": "Memeriksa dashboard lokal"
+        },
+        {
+          "category": "Browser",
+          "label": "Membuka preview melalui jaringan lokal"
+        },
+        {
+          "category": "Inspect",
+          "label": "Menyiapkan pemeriksaan responsif"
+        },
+        {
+          "category": "Browser",
+          "label": "Membaca kontrol viewport"
+        },
+        {
+          "category": "Browser",
+          "label": "Mengambil tampilan dashboard desktop"
+        },
+        {
+          "category": "Browser",
+          "label": "Memeriksa dashboard mobile"
+        },
+        {
+          "category": "Browser",
+          "label": "Memeriksa dashboard mobile"
+        },
+        {
+          "category": "Browser",
+          "label": "Memeriksa viewport mobile"
+        },
+        {
+          "category": "Browser",
+          "label": "Memeriksa ukuran viewport"
+        },
+        {
+          "category": "Browser",
+          "label": "Menguji breakpoint mobile"
+        },
+        {
+          "category": "Browser",
+          "label": "Menangkap dashboard mobile"
+        },
+        {
+          "category": "Inspect",
+          "label": "Memeriksa halaman inventory"
+        },
+        {
+          "category": "Browser",
+          "label": "Memeriksa modal peminjaman"
+        },
+        {
+          "category": "Browser",
+          "label": "Meninjau state modal"
+        },
+        {
+          "category": "Browser",
+          "label": "Membuka state modal"
+        },
+        {
+          "category": "Browser",
+          "label": "Mencari kontrol modal yang terlihat"
+        },
+        {
+          "category": "Browser",
+          "label": "Membuka modal peminjaman"
+        },
+        {
+          "category": "Browser",
+          "label": "Membuka modal peminjaman"
+        },
+        {
+          "category": "Browser",
+          "label": "Memeriksa error preview"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Audit visualnya cukup jelas: struktur dan hierarchy sekarang sudah kuat, jadi aku tidak akan mengubah layout besar. Arah yang paling masuk akal adalah “night operations console”: charcoal kebiruan, surface bertingkat, violet tetap jadi identitas, dan warna status dibuat seperti lampu indikator—bukan versi pastel terang yang sekadar dibalik. Skill <code>frontend-design</code> membuat scope plan tetap pada sistem warna, depth, dan state; tipografi/layout inti dipertahankan.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 2m 8s · 5 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 4 commands"
+        },
+        {
+          "category": "Browser",
+          "label": "Menyelesaikan audit visual"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<h2>Plan dark theme — untuk review</h2>\n<p>Belum ada kode yang diubah. Audit menemukan <strong>116 warna hex unik dalam 286 penggunaan</strong>, jadi pendekatannya perlu memakai semantic color tokens agar hasilnya konsisten.</p>\n<p>Asumsi scope: <strong>dark-only</strong>, tanpa theme toggle atau penyimpanan preferensi.</p>\n<h3>Arah visual</h3>\n<p>“Night operations console” untuk staf yang perlu memantau stok dan peminjaman dengan cepat. Layout dan hierarchy yang sekarang dipertahankan.</p>\n<table>\n<thead>\n<tr>\n<th>Token</th>\n<th>Warna</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Canvas</td>\n<td><code>#0D1016</code></td>\n</tr>\n<tr>\n<td>Surface</td>\n<td><code>#151A23</code></td>\n</tr>\n<tr>\n<td>Elevated card</td>\n<td><code>#1C2330</code></td>\n</tr>\n<tr>\n<td>Border</td>\n<td><code>#2B3442</code></td>\n</tr>\n<tr>\n<td>Primary text</td>\n<td><code>#F4F6FB</code></td>\n</tr>\n<tr>\n<td>Accent lavender</td>\n<td><code>#8B7CF6</code></td>\n</tr>\n</tbody></table>\n<p>Teks sekunder memakai opacity dari primary text. Hijau, biru, dan merah tetap digunakan sebagai warna status dengan background transparan gelap.</p>\n<p>Signature visualnya berupa <strong>“inventory signal edge”</strong>: pencahayaan tipis hanya pada active navigation, focus ring, progress stok, dan status penting. Tidak memakai glow di semua kartu.</p>\n<p>Self-review: konsep awal hitam pekat dengan ungu terang terasa terlalu generik, sehingga direvisi menjadi blue-charcoal bertingkat dengan lavender lembut dan surface matte.</p>\n<h3>Rencana implementasi</h3>\n<ol>\n<li><p><strong>Bangun fondasi token</strong></p>\n<p>Tambahkan semantic colors, <code>color-scheme: dark</code>, form states, selection, scrollbar, dan focus ring di <span>globals.css</span>. Geist Sans akan benar-benar digunakan—sekarang <code>body</code> masih memaksa Arial—sementara Geist Mono hanya untuk SKU, loan ID, dan metadata.</p>\n</li>\n<li><p><strong>Ubah application shell</strong></p>\n<p>Terapkan canvas, sidebar, mobile header, active navigation, help card, dan user profile ke <span>app-shell.tsx</span>. Struktur sidebar 248px dan breakpoint tetap sama.</p>\n</li>\n<li><p><strong>Migrasikan seluruh surface</strong></p>\n<p>Ganti warna hard-coded pada:</p>\n<ul>\n<li><span>dashboard-page.tsx</span></li>\n<li><span>inventory-page.tsx</span></li>\n<li><span>history-page.tsx</span></li>\n<li><span>loan-page.tsx</span></li>\n</ul>\n<p>Termasuk cards, tables, filters, empty states, hover rows, stock bars, dan activity items.</p>\n</li>\n<li><p><strong>Lengkapi state operasional</strong></p>\n<p>Retune <span>status-pill.tsx</span>, success/error feedback, disabled buttons, overlay, form fields, native date/select controls, modal peminjaman, dan modal pembatalan pengembalian.</p>\n</li>\n<li><p><strong>Verifikasi</strong></p>\n<ul>\n<li>Visual QA <code>/</code>, <code>/inventory</code>, <code>/peminjaman</code>, <code>/history</code></li>\n<li>Desktop dan mobile 390px</li>\n<li>Modal, hover, focus, disabled, empty, success, dan error states</li>\n<li>Kontras minimum WCAG AA</li>\n<li><code>pnpm lint</code></li>\n<li><code>pnpm exec tsc --noEmit</code></li>\n<li><code>pnpm build</code></li>\n<li>Smoke-check create, return, dan revert loan</li>\n</ul>\n</li>\n</ol>\n<p>Tidak ada perubahan database, business logic, dependency, atau deployment. Kalau arah ini sudah cocok, aku lanjut implement persis berdasarkan plan ini.</p>"
+    }
+  ]
+}

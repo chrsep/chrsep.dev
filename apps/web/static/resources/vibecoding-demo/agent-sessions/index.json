@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "project": "Inventory",
+  "defaultSession": "setup-inventory-tracking-app",
+  "sessions": [
+    {
+      "slug": "ubah-tema-menjadi-dark-mode",
+      "title": "Ubah tema menjadi dark mode",
+      "startedAt": "2026-07-18T04:33:03.722Z",
+      "durationMs": 400137,
+      "messageCount": 6,
+      "actionCount": 63,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/ubah-tema-menjadi-dark-mode.32c6b0aa51c18e81.json"
+    },
+    {
+      "slug": "plan-dark-theme-update",
+      "title": "Plan dark theme update",
+      "startedAt": "2026-07-18T04:31:42.580Z",
+      "durationMs": 280658,
+      "messageCount": 5,
+      "actionCount": 46,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/plan-dark-theme-update.2d6999e84cd92652.json"
+    },
+    {
+      "slug": "create-repository-guidelines",
+      "title": "Create repository guidelines",
+      "startedAt": "2026-07-18T04:16:55.006Z",
+      "durationMs": 115363,
+      "messageCount": 9,
+      "actionCount": 18,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/create-repository-guidelines.d437ed02dded33eb.json"
+    },
+    {
+      "slug": "tambah-fitur-revert-pengembalian",
+      "title": "Tambah fitur revert pengembalian",
+      "startedAt": "2026-07-18T04:06:09.222Z",
+      "durationMs": 552916,
+      "messageCount": 21,
+      "actionCount": 54,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/tambah-fitur-revert-pengembalian.e705dd3e62cc26b5.json"
+    },
+    {
+      "slug": "ubah-ke-dark-theme",
+      "title": "Ubah ke dark theme",
+      "startedAt": "2026-07-18T03:38:53.818Z",
+      "durationMs": 313984,
+      "messageCount": 5,
+      "actionCount": 27,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/ubah-ke-dark-theme.ad22a9b76298076b.json"
+    },
+    {
+      "slug": "deploy-ke-github-dan-vercel",
+      "title": "Deploy ke GitHub dan Vercel",
+      "startedAt": "2026-07-18T03:32:04.675Z",
+      "durationMs": 1304796,
+      "messageCount": 39,
+      "actionCount": 100,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/deploy-ke-github-dan-vercel.7ab7fcd4de3dbcc7.json"
+    },
+    {
+      "slug": "setup-inventory-tracking-app",
+      "title": "Setup inventory tracking app",
+      "startedAt": "2026-07-18T02:59:54.389Z",
+      "durationMs": 2449643,
+      "messageCount": 35,
+      "actionCount": 264,
+      "dataUrl": "/resources/vibecoding-demo/agent-sessions/sessions/setup-inventory-tracking-app.7f768b19da8de430.json"
+    }
+  ]
+}

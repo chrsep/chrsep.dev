@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-dark-theme-update",
+  "title": "Plan dark theme update",
+  "entries": [
+    {
+      "type": "message",
+      "role": "user",
+      "html": "<p>/plan coba ubah jadi dark theme. plan dulu. kasi buat review</p>"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Saya akan memetakan dulu struktur UI, sumber warna/theme, dan halaman utama yang terdampak—tanpa mengubah file. Saya juga memakai skill <code>frontend-design</code> supaya rencana dark theme-nya punya arah visual yang spesifik, bukan sekadar membalik warna.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 22s · 2 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 2 commands"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Baseline repo sudah jelas: theme saat ini tampaknya sepenuhnya hard-coded di CSS/komponen dan belum ada sistem theme. Saya lanjutkan dengan inspeksi visual di preview lokal agar rencana nanti menyebut elemen dan file yang benar-benar perlu diubah; skill browser dipakai khusus untuk membandingkan tampilan desktop/mobile saat ini.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 2m 59s · 39 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 23 commands"
+        },
+        {
+          "category": "Browser",
+          "label": "Connect to local preview"
+        },
+        {
+          "category": "Browser",
+          "label": "Inspect browser controls"
+        },
+        {
+          "category": "Browser",
+          "label": "Read browser guidance"
+        },
+        {
+          "category": "Browser",
+          "label": "Read browser guidance"
+        },
+        {
+          "category": "Browser",
+          "label": "Read browser guidance"
+        },
+        {
+          "category": "Browser",
+          "label": "Read browser guidance"
+        },
+        {
+          "category": "Browser",
+          "label": "Read browser guidance"
+        },
+        {
+          "category": "Inspect",
+          "label": "Review current dashboard"
+        },
+        {
+          "category": "Inspect",
+          "label": "Review current dashboard"
+        },
+        {
+          "category": "Browser",
+          "label": "Review inventory screens"
+        },
+        {
+          "category": "Browser",
+          "label": "Review loan dialog"
+        },
+        {
+          "category": "Browser",
+          "label": "Prepare mobile review"
+        },
+        {
+          "category": "Browser",
+          "label": "Prepare mobile review"
+        },
+        {
+          "category": "Browser",
+          "label": "Review mobile layout"
+        },
+        {
+          "category": "Verify",
+          "label": "Check mobile viewport"
+        },
+        {
+          "category": "Verify",
+          "label": "Check mobile layout"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "progress",
+      "html": "<p>Temuan utamanya: dark theme ini bukan perubahan satu file. Ada banyak warna terang yang ditanam langsung di enam komponen utama, termasuk tabel, status pill, filter, modal, dan form. Arah rencana saya adalah dark theme permanen dengan identitas ungu yang tetap dipertahankan; toggle light/dark saya anggap di luar scope supaya perubahan tetap fokus.</p>"
+    },
+    {
+      "type": "activity",
+      "summary": "Worked for 1m 6s · 5 actions · 0 files",
+      "status": "completed",
+      "details": [
+        {
+          "category": "Run",
+          "label": "Ran 4 commands"
+        },
+        {
+          "category": "Browser",
+          "label": "Finish visual review"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "variant": "final",
+      "html": "<p>Plan siap untuk direview. Belum ada file yang diubah.</p>\n<h2>Arah desain</h2>\n<p>Konsep: <strong>night-shift inventory console</strong> — gelap, tenang, dan operasional. Tetap mempertahankan identitas ungu aplikasi tanpa memakai gaya hitam-neon yang terlalu mencolok.</p>\n<table>\n<thead>\n<tr>\n<th>Peran</th>\n<th>Warna</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Canvas utama</td>\n<td><code>#0D1017</code></td>\n</tr>\n<tr>\n<td>Sidebar/surface</td>\n<td><code>#151A24</code></td>\n</tr>\n<tr>\n<td>Card terangkat</td>\n<td><code>#1C2330</code></td>\n</tr>\n<tr>\n<td>Border/divider</td>\n<td><code>#2B3444</code></td>\n</tr>\n<tr>\n<td>Teks utama</td>\n<td><code>#F4F6FA</code></td>\n</tr>\n<tr>\n<td>Accent ungu</td>\n<td><code>#8B7CF6</code></td>\n</tr>\n</tbody></table>\n<p>Status memakai emerald, amber, coral, dan cyan yang disesuaikan agar terbaca di permukaan gelap. Geist tetap menjadi font utama; Geist Mono dapat dipakai secara terbatas untuk SKU dan loan ID.</p>\n<h2>Scope yang disarankan</h2>\n<ul>\n<li>Dark theme permanen sebagai tampilan default.</li>\n<li>Tidak menambahkan theme toggle atau penyimpanan preferensi.</li>\n<li>Tidak mengubah layout, data, database, navigasi, maupun business logic.</li>\n<li>Tidak menambah dependency.</li>\n<li>Semua form dan native control menggunakan <code>color-scheme: dark</code>.</li>\n</ul>\n<p>Saat ini terdapat <strong>286 penggunaan warna hex dengan 116 warna unik</strong>, jadi implementasinya perlu menggunakan semantic color tokens, bukan mengganti warna secara acak satu per satu.</p>\n<h2>Rencana implementasi</h2>\n<ol>\n<li><p>Buat fondasi token di <span>globals.css</span>.</p>\n<ul>\n<li>Tambahkan token canvas, surface, border, text, muted, accent, dan status.</li>\n<li>Perbarui body, input, select, textarea, placeholder, focus ring, dan disabled state.</li>\n<li>Hubungkan token ke Tailwind theme agar komponen tidak kembali memakai hex hard-coded.</li>\n</ul>\n</li>\n<li><p>Ubah kerangka aplikasi di <span>app-shell.tsx</span>.</p>\n<ul>\n<li>Canvas gelap, sidebar sedikit lebih dalam, dan mobile header konsisten.</li>\n<li>Active navigation memakai violet-tinted surface.</li>\n<li>Sesuaikan help card, avatar, divider, hover, dan branding.</li>\n<li>Pertahankan hierarki sidebar sebagai “storage rail” visual utama.</li>\n</ul>\n</li>\n<li><p>Konversi seluruh surface halaman.</p>\n<ul>\n<li><span>dashboard-page.tsx</span>: stat card, tabel, low-stock panel, progress bar, activity.</li>\n<li><span>inventory-page.tsx</span>: filter, search, product card, stock badge, empty state.</li>\n<li><span>loan-page.tsx</span>: tabel, action button, feedback banner, modal, backdrop, form.</li>\n<li><span>history-page.tsx</span>: filter pill, search, activity row, status dan empty state.</li>\n</ul>\n</li>\n<li><p>Rapikan semantic states di <span>status-pill.tsx</span>.</p>\n<ul>\n<li>Aktif tetap hijau, terlambat tetap coral, selesai tetap netral.</li>\n<li>Gunakan tinted dark backgrounds dengan kontras teks yang cukup.</li>\n<li>Pastikan status tidak hanya dibedakan oleh warna.</li>\n</ul>\n</li>\n<li><p>Verifikasi.</p>\n<ul>\n<li>Periksa semua empat route pada desktop dan viewport 390px.</li>\n<li>Periksa modal peminjaman, hover, focus keyboard, disabled, feedback, filter, search, empty state, dan horizontal table scrolling.</li>\n<li>Jalankan <code>pnpm lint</code>, <code>pnpm exec tsc --noEmit</code>, dan <code>pnpm build</code>.</li>\n<li>Bandingkan screenshot agar tidak ada card putih atau teks abu-abu yang kehilangan kontras.</li>\n</ul>\n</li>\n</ol>\n<p>Rekomendasi saya: lanjut dengan <strong>fixed dark theme tanpa toggle</strong>, lalu theme toggle dijadikan pekerjaan terpisah jika memang diperlukan. Worktree saat ini hanya memiliki <code>AGENTS.md</code> yang sudah untracked; file tersebut tidak akan disentuh.</p>"
+    }
+  ]
+}
