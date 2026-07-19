@@ -96,16 +96,16 @@
     {
       id: "what-is-vibe-coding",
       heading: m.vibe_summary_what_heading(),
-      paragraphs: [
-        m.vibe_summary_what_p1(),
-        m.vibe_summary_what_p2(),
-        m.vibe_summary_what_p3(),
-      ],
+      paragraphs: [m.vibe_summary_what_p1(), m.vibe_summary_what_p2()],
     },
     {
       id: "why-learn-it",
       heading: m.vibe_summary_why_heading(),
-      paragraphs: [m.vibe_summary_why_p1(), m.vibe_summary_why_p2()],
+      paragraphs: [
+        m.vibe_summary_why_p1(),
+        m.vibe_summary_why_p2(),
+        m.vibe_summary_why_p3(),
+      ],
     },
     {
       id: "how-fast-ai-models-improve",
@@ -130,16 +130,6 @@
       id: "what-is-an-ai-agent",
       heading: m.vibe_summary_agent_heading(),
       paragraphs: [m.vibe_summary_agent_p1(), m.vibe_summary_agent_p2()],
-    },
-    {
-      id: "tools-and-architecture",
-      heading: m.vibe_summary_tools_heading(),
-      paragraphs: [m.vibe_summary_tools_p1()],
-    },
-    {
-      id: "live-demo-and-next-steps",
-      heading: m.vibe_summary_demo_heading(),
-      paragraphs: [m.vibe_summary_demo_p1(), m.vibe_summary_demo_p2()],
     },
   ] as const
 
