@@ -21,9 +21,9 @@
   }
 
   const tabs = [
+    { id: "summary", label: m.vibe_tab_summary() },
     { id: "links", label: m.vibe_tab_links() },
     { id: "agent-sessions", label: m.vibe_tab_sessions() },
-    { id: "summary", label: m.vibe_tab_summary() },
     { id: "qa", label: m.vibe_tab_qa() },
   ] as const satisfies readonly { id: TabId; label: string }[]
 
@@ -143,7 +143,7 @@
     },
   ] as const
 
-  let activeTab: TabId = "links"
+  let activeTab: TabId = "summary"
   let agentSessionsVisited = false
   let activeSectionId: string | null = null
 
@@ -327,6 +327,60 @@
     </div>
 
     <div
+      id="panel-summary"
+      class="pt-8 pb-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
+      role="tabpanel"
+      aria-labelledby="tab-summary"
+      tabindex="0"
+      hidden={activeTab !== "summary"}
+    >
+      <div class="flex gap-16">
+        <article class="prose max-w-2xl min-w-0">
+          <h3 class="text-2xl leading-tight font-black sm:text-3xl">
+            {m.vibe_summary_heading()}
+          </h3>
+
+          {#each summarySections as section}
+            <h4 id={section.id} class="scroll-mt-24 text-lg font-bold">
+              {section.heading}
+            </h4>
+            {#each section.paragraphs as paragraph}
+              <p>{paragraph}</p>
+            {/each}
+          {/each}
+        </article>
+
+        <nav
+          class="sticky top-28 hidden max-h-[calc(100vh-9rem)] w-56 shrink-0 self-start overflow-y-auto xl:block"
+          aria-label={m.vibe_summary_toc_label()}
+        >
+          <p class="text-ink-900 text-sm font-semibold">
+            {m.vibe_summary_toc_label()}
+          </p>
+          <ul class="mt-3 border-l border-[#ffffff1f]">
+            {#each summarySections as section}
+              <li>
+                <a
+                  href={`#${section.id}`}
+                  class="-ml-px block border-l py-1.5 pl-4 text-sm leading-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white {activeSectionId ===
+                  section.id
+                    ? 'text-ink-900 border-white'
+                    : 'text-ink-700 hover:text-ink-900 border-transparent'}"
+                  aria-current={activeSectionId === section.id
+                    ? "true"
+                    : undefined}
+                  onclick={(event) => scrollToSection(event, section.id)}
+                >
+                  {section.heading}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div
       id="panel-links"
       class="pt-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
       role="tabpanel"
@@ -395,60 +449,6 @@
       {#if agentSessionsVisited}
         <AgentSessionViewer />
       {/if}
-    </div>
-
-    <div
-      id="panel-summary"
-      class="pt-8 pb-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
-      role="tabpanel"
-      aria-labelledby="tab-summary"
-      tabindex="0"
-      hidden={activeTab !== "summary"}
-    >
-      <div class="flex gap-16">
-        <article class="prose max-w-2xl min-w-0">
-          <h3 class="text-2xl leading-tight font-black sm:text-3xl">
-            {m.vibe_summary_heading()}
-          </h3>
-
-          {#each summarySections as section}
-            <h4 id={section.id} class="scroll-mt-24 text-lg font-bold">
-              {section.heading}
-            </h4>
-            {#each section.paragraphs as paragraph}
-              <p>{paragraph}</p>
-            {/each}
-          {/each}
-        </article>
-
-        <nav
-          class="sticky top-28 hidden max-h-[calc(100vh-9rem)] w-56 shrink-0 self-start overflow-y-auto xl:block"
-          aria-label={m.vibe_summary_toc_label()}
-        >
-          <p class="text-ink-900 text-sm font-semibold">
-            {m.vibe_summary_toc_label()}
-          </p>
-          <ul class="mt-3 border-l border-[#ffffff1f]">
-            {#each summarySections as section}
-              <li>
-                <a
-                  href={`#${section.id}`}
-                  class="-ml-px block border-l py-1.5 pl-4 text-sm leading-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white {activeSectionId ===
-                  section.id
-                    ? 'text-ink-900 border-white'
-                    : 'text-ink-700 hover:text-ink-900 border-transparent'}"
-                  aria-current={activeSectionId === section.id
-                    ? "true"
-                    : undefined}
-                  onclick={(event) => scrollToSection(event, section.id)}
-                >
-                  {section.heading}
-                </a>
-              </li>
-            {/each}
-          </ul>
-        </nav>
-      </div>
     </div>
 
     <div
