@@ -176,11 +176,13 @@
   </p>
 
   <section class="mt-16 border-t border-[#ffffff14] pt-9 sm:mt-20 sm:pt-12">
-    <div class="mb-8 max-w-2xl sm:mb-10">
-      <h2 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
+    <div class="mb-5 max-w-3xl sm:mb-6">
+      <h2
+        class="text-ink-900 text-3xl leading-tight font-black tracking-tight sm:text-4xl md:text-5xl"
+      >
         Workshop resources
       </h2>
-      <p class="text-ink-700 mt-3 max-w-xl text-sm leading-6 sm:text-base">
+      <p class="text-ink-700 mt-3 max-w-2xl text-base leading-7 sm:text-lg">
         Revisit the demo, explore the source, and find every tool used during
         the workshop.
       </p>
@@ -190,14 +192,14 @@
       class="tab-scroll -mx-6 overflow-x-auto border-b border-[#ffffff1f] px-6 sm:mx-0 sm:px-0"
     >
       <div
-        class="flex min-w-max"
+        class="-ml-2.5 flex min-w-max sm:-ml-3"
         role="tablist"
         aria-label="Vibe Coding resources"
       >
         {#each tabs as tab, index}
           <button
             id={`tab-${tab.id}`}
-            class="relative min-h-11 shrink-0 px-4 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white sm:px-5 {activeTab ===
+            class="relative min-h-11 shrink-0 px-2.5 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white sm:px-3 {activeTab ===
             tab.id
               ? 'text-ink-900'
               : 'text-ink-700 hover:text-ink-900'}"
@@ -212,7 +214,7 @@
             {tab.label}
             {#if activeTab === tab.id}
               <span
-                class="absolute inset-x-4 -bottom-px h-0.5 bg-white sm:inset-x-5"
+                class="absolute inset-x-2.5 -bottom-px h-0.5 bg-white sm:inset-x-3"
                 aria-hidden="true"
               ></span>
             {/if}
