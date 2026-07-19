@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
+  import { replaceState } from "$app/navigation"
   import AgentSessionViewer from "$lib/vibecoding/agent-sessions/agent-session-viewer.svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
@@ -91,8 +92,60 @@
     },
   ] as const satisfies readonly LinkGroup[]
 
+  const summarySections = [
+    {
+      id: "what-is-vibe-coding",
+      heading: m.vibe_summary_what_heading(),
+      paragraphs: [
+        m.vibe_summary_what_p1(),
+        m.vibe_summary_what_p2(),
+        m.vibe_summary_what_p3(),
+      ],
+    },
+    {
+      id: "why-learn-it",
+      heading: m.vibe_summary_why_heading(),
+      paragraphs: [m.vibe_summary_why_p1(), m.vibe_summary_why_p2()],
+    },
+    {
+      id: "how-fast-ai-models-improve",
+      heading: m.vibe_summary_pace_heading(),
+      paragraphs: [
+        m.vibe_summary_pace_p1(),
+        m.vibe_summary_pace_p2(),
+        m.vibe_summary_pace_p3(),
+      ],
+    },
+    {
+      id: "start-without-code",
+      heading: m.vibe_summary_spectrum_heading(),
+      paragraphs: [
+        m.vibe_summary_spectrum_p1(),
+        m.vibe_summary_spectrum_p2(),
+        m.vibe_summary_spectrum_p3(),
+        m.vibe_summary_spectrum_p4(),
+      ],
+    },
+    {
+      id: "what-is-an-ai-agent",
+      heading: m.vibe_summary_agent_heading(),
+      paragraphs: [m.vibe_summary_agent_p1(), m.vibe_summary_agent_p2()],
+    },
+    {
+      id: "tools-and-architecture",
+      heading: m.vibe_summary_tools_heading(),
+      paragraphs: [m.vibe_summary_tools_p1()],
+    },
+    {
+      id: "live-demo-and-next-steps",
+      heading: m.vibe_summary_demo_heading(),
+      paragraphs: [m.vibe_summary_demo_p1(), m.vibe_summary_demo_p2()],
+    },
+  ] as const
+
   let activeTab: TabId = "summary"
   let agentSessionsVisited = false
+  let activeSectionId: string | null = null
 
   function selectTab(tabId: TabId, moveFocus = false) {
     activeTab = tabId
@@ -124,10 +177,52 @@
     selectTab(tabs[nextIndex].id, true)
   }
 
+  function scrollToSection(event: MouseEvent, id: string) {
+    event.preventDefault()
+    const target = document.getElementById(id)
+    if (!target) return
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
+    activeSectionId = id
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })
+    replaceState(`#${id}`, {})
+  }
+
   onMount(() => {
-    if (new URL(window.location.href).searchParams.has("session")) {
+    const url = new URL(window.location.href)
+    if (url.searchParams.has("session")) {
       selectTab("agent-sessions")
     }
+
+    const hash = url.hash.slice(1)
+    if (summarySections.some((section) => section.id === hash)) {
+      selectTab("summary")
+      activeSectionId = hash
+      requestAnimationFrame(() => {
+        document.getElementById(hash)?.scrollIntoView()
+      })
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          )[0]
+        if (visible) activeSectionId = visible.target.id
+      },
+      { rootMargin: "-80px 0px -60% 0px" },
+    )
+
+    for (const section of summarySections) {
+      const heading = document.getElementById(section.id)
+      if (heading) observer.observe(heading)
+    }
+
+    return () => observer.disconnect()
   })
 </script>
 
@@ -233,19 +328,55 @@
 
     <div
       id="panel-summary"
-      class="flex min-h-72 max-w-2xl items-center py-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:py-16"
+      class="pt-8 pb-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
       role="tabpanel"
       aria-labelledby="tab-summary"
       tabindex="0"
       hidden={activeTab !== "summary"}
     >
-      <div>
-        <h3 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
-          {m.vibe_summary_heading()}
-        </h3>
-        <p class="text-ink-700 mt-4 max-w-xl text-base leading-7">
-          {m.vibe_summary_body()}
-        </p>
+      <div class="flex gap-16">
+        <article class="prose max-w-2xl min-w-0">
+          <h3 class="text-2xl leading-tight font-black sm:text-3xl">
+            {m.vibe_summary_heading()}
+          </h3>
+
+          {#each summarySections as section}
+            <h4 id={section.id} class="scroll-mt-24 text-lg font-bold">
+              {section.heading}
+            </h4>
+            {#each section.paragraphs as paragraph}
+              <p>{paragraph}</p>
+            {/each}
+          {/each}
+        </article>
+
+        <nav
+          class="sticky top-28 hidden max-h-[calc(100vh-9rem)] w-56 shrink-0 self-start overflow-y-auto xl:block"
+          aria-label={m.vibe_summary_toc_label()}
+        >
+          <p class="text-ink-900 text-sm font-semibold">
+            {m.vibe_summary_toc_label()}
+          </p>
+          <ul class="mt-3 border-l border-[#ffffff1f]">
+            {#each summarySections as section}
+              <li>
+                <a
+                  href={`#${section.id}`}
+                  class="-ml-px block border-l py-1.5 pl-4 text-sm leading-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white {activeSectionId ===
+                  section.id
+                    ? 'text-ink-900 border-white'
+                    : 'text-ink-700 hover:text-ink-900 border-transparent'}"
+                  aria-current={activeSectionId === section.id
+                    ? "true"
+                    : undefined}
+                  onclick={(event) => scrollToSection(event, section.id)}
+                >
+                  {section.heading}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </nav>
       </div>
     </div>
 
