@@ -312,157 +312,39 @@
     >
       <article class="prose max-w-2xl">
         <h3 class="text-2xl leading-tight font-black sm:text-3xl">
-          Workshop summary
+          {m.vibe_summary_heading()}
         </h3>
 
-        <h4 class="text-lg font-bold">What is vibe coding</h4>
-        <p>
-          Vibe coding means building working software by describing what you
-          want in everyday language and letting an AI agent, a program that can
-          carry out a task on its own, write and run the code for you. Instead
-          of typing code yourself, you describe the outcome you want in plain
-          sentences, and the agent produces it.
-        </p>
-        <p>
-          The term itself is very new. It was coined in February 2025, when
-          Andrej Karpathy, a founding member of OpenAI, described on Twitter how
-          he now codes. He explained that he hands the details over to the agent
-          entirely: "give in to the vibes, embrace exponentials, and forget that
-          the code even exists." He was describing a new way of working with
-          software, one where the person directs and the AI agent executes.
-        </p>
-        <p>
-          Because the term and the practice are this new, almost everyone
-          learning vibe coding today started at roughly the same time. There is
-          no group of people with a ten year head start. That makes this a
-          genuinely good moment to begin.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_what_heading()}</h4>
+        <p>{m.vibe_summary_what_p1()}</p>
+        <p>{m.vibe_summary_what_p2()}</p>
+        <p>{m.vibe_summary_what_p3()}</p>
 
-        <h4 class="text-lg font-bold">Why learn it</h4>
-        <p>
-          AI is changing how software gets made, and the change is already
-          visible in how long things take. A prototype, meaning a rough working
-          version of an idea, used to take weeks to build. With an AI agent, the
-          same prototype can often take shape in hours. People working this way
-          report moving something like ten times faster, and the resulting
-          software is often higher quality while requiring less manual effort.
-        </p>
-        <p>
-          This is not limited to writing code. The same kind of AI agent is
-          useful for research, planning, reporting, analysis, and monitoring,
-          essentially most of the work that happens on a computer. Learning to
-          work well with an agent today is learning the future of work.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_why_heading()}</h4>
+        <p>{m.vibe_summary_why_p1()}</p>
+        <p>{m.vibe_summary_why_p2()}</p>
 
-        <h4 class="text-lg font-bold">How fast the models improved</h4>
-        <p>
-          It helps to see the actual pace of change rather than take it on
-          faith. A research group called METR (metr.org) measures this in a
-          concrete way. They measure the length of the task an AI model can
-          complete successfully about half of the time. That duration has been
-          doubling roughly every six months.
-        </p>
-        <p>
-          Here is what that progression has looked like in practice. GPT-2
-          reached about 3 seconds. GPT-3 reached about 9 seconds. This was the
-          era of the Bing chat box: fast answers, but heavy hallucination
-          (confidently stated wrong answers) and no real independent work.
-          GPT-3.5 reached about 36 seconds, good enough that it started powering
-          code autocomplete, the suggestions that appear as a programmer types.
-          GPT-4 reached about 4 minutes and could write whole files of code on
-          request, but this was still code generation: a system producing text,
-          not yet a system managing its own work. GPT-4o, in early 2024, reached
-          about 7 minutes.
-        </p>
-        <p>
-          Close to the start of 2025, a model called o3 reached about 2 hours,
-          and this is when AI agents in the modern sense appeared: systems that
-          can try something, look at the result, plan a next step, and try again
-          on their own, until a task is done. This is also the moment Karpathy
-          named vibe coding. The improvement has kept going since: GPT-5 reached
-          about 3.4 hours, GPT-5.2 about 5.9 hours, and GPT-5.6 Sol is projected
-          to reach around 16 hours sometime in 2026. The growth has stayed
-          exponential, and there is no sign yet of it slowing down.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_pace_heading()}</h4>
+        <p>{m.vibe_summary_pace_p1()}</p>
+        <p>{m.vibe_summary_pace_p2()}</p>
+        <p>{m.vibe_summary_pace_p3()}</p>
 
-        <h4 class="text-lg font-bold">You do not need to know code to start</h4>
-        <p>
-          There is a spectrum of how deeply a person needs to understand code to
-          build with AI agents, and it is worth being honest about where each
-          end sits.
-        </p>
-        <p>
-          At one end is pure vibe coding: you describe what you want in plain
-          words, and the agent handles everything, from writing the code to
-          getting it running. This is where this workshop sits, and it is a
-          real, working way to build software today, not a toy version of the
-          real thing.
-        </p>
-        <p>
-          At the other end is what is sometimes called agentic engineering:
-          treating the AI agent as a highly capable coworker that you consult
-          and direct, while you personally verify what it produces, plan what it
-          should do next, and understand what is happening underneath. Getting
-          an application to a production level, meaning stable and reliable
-          enough to run for real users and to grow as more people use it, means
-          gradually learning those underlying details.
-        </p>
-        <p>
-          What you can build grows with what you understand, and that growth
-          happens over time, not all at once. You can start from zero today.
-          That is enough to begin, and there is room to grow from there for as
-          long as you want to keep going.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_spectrum_heading()}</h4>
+        <p>{m.vibe_summary_spectrum_p1()}</p>
+        <p>{m.vibe_summary_spectrum_p2()}</p>
+        <p>{m.vibe_summary_spectrum_p3()}</p>
+        <p>{m.vibe_summary_spectrum_p4()}</p>
 
-        <h4 class="text-lg font-bold">What an AI agent actually is</h4>
-        <p>
-          An AI agent is an AI system that works on its own to complete a task,
-          using tools such as a web browser, a command-line terminal (a
-          text-based way of controlling a computer), or your files. It works in
-          a loop: it tries something, checks the result, adjusts its approach,
-          and tries again, repeating until the task is done. Over time it can
-          also learn about you and your work and carry that context forward,
-          building up a kind of memory.
-        </p>
-        <p>
-          This is different from a chatbot. A chatbot is a single back and
-          forth: you send a message, it replies within seconds, and the exchange
-          ends there. An agent keeps working after your initial instruction,
-          taking multiple steps toward the goal without you supervising every
-          one of them. Claude and Codex are both examples of AI agents in this
-          sense.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_agent_heading()}</h4>
+        <p>{m.vibe_summary_agent_p1()}</p>
+        <p>{m.vibe_summary_agent_p2()}</p>
 
-        <h4 class="text-lg font-bold">The tools and the architecture</h4>
-        <p>
-          The live demo used four tools, and seeing how they connect explains
-          how a vibe coded application actually reaches the internet. GitHub is
-          where the code lives, along with the complete history of every change
-          ever made to it. Vercel is the server, meaning the computer that keeps
-          the application running around the clock so anyone can reach it at any
-          time. Neon is the database, built on a widely used database system
-          called Postgres. It is effectively the application's memory, the place
-          where its information is stored. Codex is the AI agent that wrote the
-          code itself, based on plain language instructions. Put together,
-          Vercel pulls the latest code from GitHub and runs it, the running
-          application pulls whatever data it needs from Neon, and the finished
-          page is sent out to anyone, anywhere, on whatever device they open it
-          with.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_tools_heading()}</h4>
+        <p>{m.vibe_summary_tools_p1()}</p>
 
-        <h4 class="text-lg font-bold">The live demo, and where to go next</h4>
-        <p>
-          During the workshop, an inventory application was built live from
-          plain language prompts and deployed to the internet, meaning published
-          and made reachable by anyone with the link. The source code, the live
-          application, and the workshop slides are all in the Links tab of this
-          same page.
-        </p>
-        <p>
-          That is really the point of everything above: open an agent such as
-          Claude or Codex, and start describing what you want to build. You can
-          do that today.
-        </p>
+        <h4 class="text-lg font-bold">{m.vibe_summary_demo_heading()}</h4>
+        <p>{m.vibe_summary_demo_p1()}</p>
+        <p>{m.vibe_summary_demo_p2()}</p>
       </article>
     </div>
 
