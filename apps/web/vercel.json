@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/vibe-coding",
-      "destination": "/resources/vibecoding-demo",
+      "destination": "/id/resources/vibecoding-demo",
       "permanent": true
     }
   ],
