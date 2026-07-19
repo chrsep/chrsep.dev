@@ -20,9 +20,9 @@
   }
 
   const tabs = [
+    { id: "summary", label: m.vibe_tab_summary() },
     { id: "links", label: m.vibe_tab_links() },
     { id: "agent-sessions", label: m.vibe_tab_sessions() },
-    { id: "summary", label: m.vibe_tab_summary() },
     { id: "qa", label: m.vibe_tab_qa() },
   ] as const satisfies readonly { id: TabId; label: string }[]
 
@@ -91,7 +91,7 @@
     },
   ] as const satisfies readonly LinkGroup[]
 
-  let activeTab: TabId = "links"
+  let activeTab: TabId = "summary"
   let agentSessionsVisited = false
 
   function selectTab(tabId: TabId, moveFocus = false) {
@@ -232,6 +232,24 @@
     </div>
 
     <div
+      id="panel-summary"
+      class="flex min-h-72 max-w-2xl items-center py-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:py-16"
+      role="tabpanel"
+      aria-labelledby="tab-summary"
+      tabindex="0"
+      hidden={activeTab !== "summary"}
+    >
+      <div>
+        <h3 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
+          {m.vibe_summary_heading()}
+        </h3>
+        <p class="text-ink-700 mt-4 max-w-xl text-base leading-7">
+          {m.vibe_summary_body()}
+        </p>
+      </div>
+    </div>
+
+    <div
       id="panel-links"
       class="pt-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
       role="tabpanel"
@@ -300,24 +318,6 @@
       {#if agentSessionsVisited}
         <AgentSessionViewer />
       {/if}
-    </div>
-
-    <div
-      id="panel-summary"
-      class="flex min-h-72 max-w-2xl items-center py-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:py-16"
-      role="tabpanel"
-      aria-labelledby="tab-summary"
-      tabindex="0"
-      hidden={activeTab !== "summary"}
-    >
-      <div>
-        <h3 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
-          {m.vibe_summary_heading()}
-        </h3>
-        <p class="text-ink-700 mt-4 max-w-xl text-base leading-7">
-          {m.vibe_summary_body()}
-        </p>
-      </div>
     </div>
 
     <div
