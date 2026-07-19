@@ -21,24 +21,26 @@
   --color-ink-900: #ffffff;
 
   --animate-spin-slow: spin 20s linear infinite;
+}
 
-  /* Typography plugin overrides (dark-on-dark prose) */
-  --color-prose-body: #bbbbbb;
-  --color-prose-headings: #ffffff;
-  --color-prose-lead: #d0d0d0;
-  --color-prose-links: #bbbbbb;
-  --color-prose-bold: #ffffff;
-  --color-prose-counters: #737373;
-  --color-prose-bullets: #737373;
-  --color-prose-hr: #444444;
-  --color-prose-quotes: #bbbbbb;
-  --color-prose-quote-borders: #444444;
-  --color-prose-captions: #737373;
-  --color-prose-code: #ffffff;
-  --color-prose-pre-code: #d0d0d0;
-  --color-prose-pre-bg: #1e1e1e;
-  --color-prose-th-borders: #444444;
-  --color-prose-td-borders: #444444;
+/* Typography plugin overrides for the site's dark surfaces */
+.prose {
+  --tw-prose-body: var(--color-ink-700);
+  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-lead: var(--color-ink-800);
+  --tw-prose-links: var(--color-ink-700);
+  --tw-prose-bold: var(--color-ink-900);
+  --tw-prose-counters: var(--color-ink-600);
+  --tw-prose-bullets: var(--color-ink-600);
+  --tw-prose-hr: var(--color-default-500);
+  --tw-prose-quotes: var(--color-ink-700);
+  --tw-prose-quote-borders: var(--color-default-500);
+  --tw-prose-captions: var(--color-ink-600);
+  --tw-prose-code: var(--color-ink-900);
+  --tw-prose-pre-code: var(--color-ink-800);
+  --tw-prose-pre-bg: var(--color-default-800);
+  --tw-prose-th-borders: var(--color-default-500);
+  --tw-prose-td-borders: var(--color-default-500);
 }
 
 @layer base {
