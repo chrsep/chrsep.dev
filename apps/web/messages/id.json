@@ -89,6 +89,7 @@
   "vibe_sessions_heading": "Sesi Agent segera hadir.",
   "vibe_sessions_body": "Sesi agent lengkap akan dipublikasikan di sini dalam beberapa hari.",
   "vibe_summary_heading": "Ringkasan workshop",
+  "vibe_summary_toc_label": "Di halaman ini",
   "vibe_summary_what_heading": "Apa itu vibe coding",
   "vibe_summary_what_p1": "Vibe coding berarti membangun software yang benar-benar berjalan dengan cara mendeskripsikan apa yang Anda inginkan dalam bahasa sehari-hari, lalu membiarkan AI agent, program yang bisa menjalankan tugas secara mandiri, menuliskan dan menjalankan kodenya untuk Anda. Alih-alih mengetik kode sendiri, Anda cukup menjelaskan hasil yang diinginkan dalam kalimat biasa, dan agent tersebut yang mewujudkannya.",
   "vibe_summary_what_p2": "Istilah ini sendiri masih sangat baru, pertama kali dicetuskan pada Februari 2025, ketika Andrej Karpathy, salah satu pendiri OpenAI, menjelaskan di Twitter bagaimana ia sekarang menulis kode. Ia mengatakan bahwa ia menyerahkan seluruh detailnya kepada agent: \"give in to the vibes, embrace exponentials, and forget that the code even exists.\" Ia sedang menggambarkan cara kerja baru dengan software, yaitu manusia yang mengarahkan dan AI agent yang mengeksekusi.",

@@ -89,6 +89,7 @@
   "vibe_sessions_heading": "Agent Sessions are almost ready.",
   "vibe_sessions_body": "The full agent sessions will be published here in a couple of days.",
   "vibe_summary_heading": "Workshop summary",
+  "vibe_summary_toc_label": "On this page",
   "vibe_summary_what_heading": "What is vibe coding",
   "vibe_summary_what_p1": "Vibe coding means building working software by describing what you want in everyday language and letting an AI agent, a program that can carry out a task on its own, write and run the code for you. Instead of typing code yourself, you describe the outcome you want in plain sentences, and the agent produces it.",
   "vibe_summary_what_p2": "The term itself is very new. It was coined in February 2025, when Andrej Karpathy, a founding member of OpenAI, described on Twitter how he now codes. He explained that he hands the details over to the agent entirely: \"give in to the vibes, embrace exponentials, and forget that the code even exists.\" He was describing a new way of working with software, one where the person directs and the AI agent executes.",
