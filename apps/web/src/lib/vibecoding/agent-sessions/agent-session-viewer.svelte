@@ -1,6 +1,6 @@
 <script lang="ts">
   import { replaceState } from "$app/navigation"
-  import { onMount, tick } from "svelte"
+  import { onMount } from "svelte"
   import { isSessionManifest, isSessionTranscript } from "./guards"
   import type {
     SessionManifest,
@@ -25,7 +25,6 @@
   let selectedSlug = ""
   let invalidSlugMessage = ""
   let liveMessage = ""
-  let transcriptScroller: HTMLDivElement | undefined
   let manifestController: AbortController | null = null
   let sessionRequestId = 0
   let destroyed = false
@@ -33,12 +32,6 @@
   const transcriptCache = new Map<string, SessionTranscript>()
   const inflightTranscripts = new Map<string, Promise<SessionTranscript>>()
   const transcriptControllers = new Map<string, AbortController>()
-
-  const dateFormatter = new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  })
 
   let selectedSession: SessionSummary | null = null
   $: selectedSession =
@@ -175,7 +168,6 @@
         data.entries.length === 0
           ? `${session.title} has no published messages`
           : `${session.title} loaded`
-      await scrollTranscriptToStart(requestId)
     } catch (error) {
       if (destroyed || requestId !== sessionRequestId) return
       transcript = null
@@ -233,31 +225,6 @@
     selectSession(slug)
   }
 
-  function handleTranscriptKeydown(event: KeyboardEvent) {
-    if (!transcriptScroller) return
-
-    const pageDistance = Math.max(80, transcriptScroller.clientHeight * 0.85)
-    const distances: Partial<Record<string, number>> = {
-      ArrowDown: 48,
-      ArrowUp: -48,
-      PageDown: pageDistance,
-      PageUp: -pageDistance,
-    }
-
-    if (event.key === "Home" || event.key === "End") {
-      event.preventDefault()
-      transcriptScroller.scrollTop =
-        event.key === "Home" ? 0 : transcriptScroller.scrollHeight
-      return
-    }
-
-    const distance = distances[event.key]
-    if (distance !== undefined) {
-      event.preventDefault()
-      transcriptScroller.scrollTop += distance
-    }
-  }
-
   function getSessionSlugFromUrl() {
     return new URL(window.location.href).searchParams.get("session")
   }
@@ -278,17 +245,6 @@
     if (nextUrl !== currentUrl) {
       replaceState(nextUrl, {})
     }
-  }
-
-  async function scrollTranscriptToStart(requestId: number) {
-    await tick()
-    if (requestId === sessionRequestId && transcriptScroller) {
-      transcriptScroller.scrollTop = 0
-    }
-  }
-
-  function formatDate(value: string) {
-    return dateFormatter.format(new Date(value))
   }
 
   function formatDuration(durationMs: number | null) {
@@ -352,7 +308,6 @@
                 onclick={(event) => handleSessionLink(event, session.slug)}
               >
                 <span>{session.title}</span>
-                <small>{formatDate(session.startedAt)}</small>
               </a>
             </li>
           {/each}
@@ -366,13 +321,9 @@
       <header class="conversation-heading">
         <div>
           <h3 id="agent-session-heading">{selectedSession.title}</h3>
-          <p>
-            {formatDate(selectedSession.startedAt)}
-            {#if formatDuration(selectedSession.durationMs)}
-              <span aria-hidden="true"> · </span>
-              {formatDuration(selectedSession.durationMs)}
-            {/if}
-          </p>
+          {#if formatDuration(selectedSession.durationMs)}
+            <p>{formatDuration(selectedSession.durationMs)}</p>
+          {/if}
         </div>
         <p class="session-counts">
           {selectedSession.messageCount}
@@ -393,17 +344,12 @@
       <p class="notice" role="status">{invalidSlugMessage}</p>
     {/if}
 
-    <!-- svelte-ignore a11y_no_noninteractive_tabindex (the independently scrollable transcript needs a keyboard focus target) -->
-    <!-- svelte-ignore a11y_no_noninteractive_element_interactions (the transcript handles native scroll keys while focused) -->
     <div
       class="transcript"
       class:centered={manifestState !== "ready" || transcriptState !== "ready"}
-      bind:this={transcriptScroller}
       role="region"
       aria-labelledby={selectedSession ? "agent-session-heading" : undefined}
       aria-label={selectedSession ? undefined : "Session viewer status"}
-      tabindex="0"
-      onkeydown={handleTranscriptKeydown}
     >
       {#if manifestState === "loading"}
         <div class="transcript-skeleton" aria-label="Loading sessions">
@@ -529,15 +475,11 @@
 
     color-scheme: dark;
     display: grid;
-    grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+    grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr);
+    column-gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
     width: 100%;
-    height: min(76vh, 52rem);
-    min-height: 34rem;
-    overflow: hidden;
     color: var(--color-ink-900);
-    background: var(--color-default-900);
-    border: 1px solid rgb(255 255 255 / 12%);
-    border-radius: 0.75rem;
   }
 
   .mobile-picker {
@@ -545,25 +487,27 @@
   }
 
   .session-rail {
+    position: sticky;
+    top: 5rem;
+    align-self: start;
     min-width: 0;
+    max-height: calc(100vh - 6rem);
     overflow-y: auto;
+    padding: 0.5rem;
     background: var(--color-default-800);
-    border-right: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 28%);
+    scrollbar-gutter: stable;
   }
 
   .rail-heading {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    padding: 1.15rem 1rem 0.9rem;
+    padding: 0.5rem 0.75rem 0.75rem;
     font-size: 0.95rem;
-    font-weight: 700;
-    background: var(--color-default-800);
-    border-bottom: 1px solid rgb(255 255 255 / 8%);
+    font-weight: 500;
   }
 
   nav {
-    padding: 0.5rem;
+    padding: 0;
   }
 
   nav ul {
@@ -576,8 +520,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 3.5rem;
-    padding: 0.65rem 0.75rem;
+    min-height: 2.75rem;
+    padding: 0.75rem;
     color: var(--color-ink-700);
     text-decoration: none;
     border-radius: 0.5rem;
@@ -599,34 +543,28 @@
   nav a span {
     overflow: hidden;
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.35;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  nav a small {
-    margin-top: 0.25rem;
-    color: var(--viewer-muted);
-    font-size: 0.72rem;
-  }
-
   .conversation {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 65ch);
+    justify-content: center;
+    align-content: start;
+    width: 100%;
     min-width: 0;
-    min-height: 0;
-    flex-direction: column;
-    background: #151515;
   }
 
   .conversation-heading {
     display: flex;
-    min-height: 4.75rem;
-    flex: none;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    padding: 0.9rem 1.25rem;
+    padding: 0 0 1rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid rgb(255 255 255 / 9%);
   }
 
@@ -635,7 +573,7 @@
     margin: 0;
     overflow-wrap: anywhere;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.35;
     text-wrap: balance;
   }
@@ -653,35 +591,31 @@
   }
 
   .notice {
-    flex: none;
-    padding: 0.65rem 1.25rem;
-    margin: 0;
+    padding: 0.75rem 1rem;
+    margin: 0 0 1.5rem;
     color: var(--color-ink-800);
     font-size: 0.8rem;
     line-height: 1.45;
     background: rgb(255 255 255 / 5%);
-    border-bottom: 1px solid rgb(255 255 255 / 8%);
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 0.5rem;
   }
 
   .transcript {
+    width: 100%;
     min-width: 0;
-    min-height: 0;
-    flex: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 2rem clamp(1rem, 4vw, 3.5rem) 3rem;
-    scroll-behavior: smooth;
+    padding: 0 0 4rem;
   }
 
   .transcript.centered {
     display: flex;
+    min-height: 20rem;
     align-items: center;
     justify-content: center;
   }
 
   .entry-list {
-    width: min(100%, 54rem);
-    margin: 0 auto;
+    width: 100%;
   }
 
   article {
@@ -690,8 +624,8 @@
 
   .user-message {
     width: fit-content;
-    max-width: min(82%, 38rem);
-    padding: 0.7rem 0.95rem;
+    max-width: min(70%, 32rem);
+    padding: 0.75rem 1rem;
     margin: 0 0 2.5rem auto;
     color: var(--color-ink-900);
     font-size: 0.875rem;
@@ -701,7 +635,7 @@
   }
 
   .assistant-message {
-    max-width: 72ch;
+    width: 100%;
     margin: 0 0 2rem;
     color: var(--color-ink-700);
     font-size: 0.9rem;
@@ -732,7 +666,7 @@
     margin: 1.5em 0 0.55em;
     color: var(--color-ink-900);
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.4;
     text-wrap: pretty;
   }
@@ -798,7 +732,7 @@
   }
 
   .activity {
-    max-width: 72ch;
+    width: 100%;
     margin: 0 0 2rem;
     color: var(--viewer-muted);
     font-size: 0.78rem;
@@ -849,7 +783,7 @@
     display: block;
     color: var(--color-ink-800);
     font-size: 0.76rem;
-    font-weight: 600;
+    font-weight: 500;
     overflow-wrap: anywhere;
   }
 
@@ -865,7 +799,7 @@
   }
 
   .session-media {
-    max-width: 48rem;
+    width: 100%;
     margin: 0 0 2rem;
   }
 
@@ -892,7 +826,7 @@
   .state-message h3 {
     margin: 0;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .state-message p {
@@ -910,7 +844,7 @@
     color: var(--color-default-900);
     font: inherit;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
     background: var(--color-ink-900);
     border: 0;
@@ -954,8 +888,7 @@
   }
 
   .transcript-skeleton {
-    width: min(100%, 54rem);
-    margin: 0 auto;
+    width: 100%;
   }
 
   .transcript-skeleton span {
@@ -981,7 +914,7 @@
     margin: 2rem 0;
   }
 
-  :is(a, button, select, summary, .transcript):focus-visible {
+  :is(a, button, select, summary):focus-visible {
     outline: 2px solid var(--color-ink-900);
     outline-offset: 2px;
   }
@@ -1007,28 +940,22 @@
     }
   }
 
-  @media (max-width: 47.99rem) {
+  @media (max-width: 63.99rem) {
     .viewer {
-      display: flex;
-      height: min(76vh, 46rem);
-      min-height: 31rem;
-      flex-direction: column;
+      display: block;
     }
 
     .mobile-picker {
       display: block;
-      flex: none;
-      padding: 0.75rem;
-      background: var(--color-default-800);
-      border-bottom: 1px solid rgb(255 255 255 / 10%);
+      padding: 0 0 1.5rem;
     }
 
     .mobile-picker label {
       display: block;
-      margin: 0 0 0.35rem 0.15rem;
+      margin: 0 0 0.5rem;
       color: var(--color-ink-700);
       font-size: 0.72rem;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .mobile-picker select {
@@ -1047,14 +974,9 @@
       display: none;
     }
 
-    .conversation {
-      flex: 1;
-    }
-
     .conversation-heading {
-      min-height: auto;
       align-items: flex-start;
-      padding: 0.85rem 1rem;
+      padding: 0 0 1rem;
     }
 
     .conversation-heading .session-counts {
@@ -1062,22 +984,16 @@
     }
 
     .notice {
-      padding-right: 1rem;
-      padding-left: 1rem;
+      padding: 0.75rem 1rem;
     }
 
     .transcript {
-      padding: 1.35rem 1rem 2.5rem;
+      padding: 0 0 3rem;
     }
 
     .user-message {
-      max-width: 88%;
+      max-width: 82%;
       margin-bottom: 2rem;
-    }
-
-    .assistant-message,
-    .activity {
-      max-width: 100%;
     }
 
     .activity li {
