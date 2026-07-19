@@ -1,6 +1,7 @@
 <script lang="ts">
   import { replaceState } from "$app/navigation"
   import { onMount } from "svelte"
+  import { m } from "$lib/paraglide/messages"
   import { isSessionManifest, isSessionTranscript } from "./guards"
   import type {
     SessionManifest,
@@ -28,6 +29,10 @@
   let manifestController: AbortController | null = null
   let sessionRequestId = 0
   let destroyed = false
+  let transcriptEl: HTMLDivElement | null = null
+  let switchEl: HTMLButtonElement | null = null
+  let isMobile = false
+  let menuOpen = false
 
   const transcriptCache = new Map<string, SessionTranscript>()
   const inflightTranscripts = new Map<string, Promise<SessionTranscript>>()
@@ -41,11 +46,20 @@
     void loadManifest()
     window.addEventListener("popstate", handlePopState)
 
+    const mediaQuery = window.matchMedia("(max-width: 63.99rem)")
+    isMobile = mediaQuery.matches
+    const handleMediaChange = (event: MediaQueryListEvent) => {
+      isMobile = event.matches
+      menuOpen = false
+    }
+    mediaQuery.addEventListener("change", handleMediaChange)
+
     return () => {
       destroyed = true
       manifestController?.abort()
       transcriptControllers.forEach((controller) => controller.abort())
       window.removeEventListener("popstate", handlePopState)
+      mediaQuery.removeEventListener("change", handleMediaChange)
     }
   })
 
@@ -136,6 +150,8 @@
     const session = manifest?.sessions.find((item) => item.slug === slug)
     if (!session) return
 
+    menuOpen = false
+    transcriptEl?.scrollTo({ top: 0 })
     if (selectedSlug !== slug) invalidSlugMessage = ""
     selectedSlug = slug
     if (updateUrl) syncSessionUrl(slug)
@@ -215,9 +231,10 @@
     if (selectedSession) void loadTranscript(selectedSession)
   }
 
-  function handleSessionSelect(event: Event) {
-    const select = event.currentTarget as HTMLSelectElement
-    selectSession(select.value)
+  function handleWindowKeydown(event: KeyboardEvent) {
+    if (!menuOpen || event.key !== "Escape") return
+    menuOpen = false
+    switchEl?.focus()
   }
 
   function handleSessionLink(event: MouseEvent, slug: string) {
@@ -265,28 +282,51 @@
   }
 </script>
 
+{#snippet sessionList()}
+  <ul class="session-list">
+    {#each manifest?.sessions ?? [] as session}
+      <li>
+        <a
+          class:active={selectedSlug === session.slug}
+          href={sessionHref(session.slug)}
+          aria-current={selectedSlug === session.slug ? "page" : undefined}
+          onclick={(event) => handleSessionLink(event, session.slug)}
+        >
+          <span>{session.title}</span>
+        </a>
+      </li>
+    {/each}
+  </ul>
+{/snippet}
+
+<svelte:window onkeydown={handleWindowKeydown} />
+
 <section
   class="viewer"
   aria-label="Inventory agent sessions"
   aria-busy={manifestState === "loading" || transcriptState === "loading"}
 >
-  {#if manifestState === "ready"}
-    <div class="mobile-picker">
-      <label for="inventory-session-select">Inventory session</label>
-      <select
-        id="inventory-session-select"
-        value={selectedSlug}
-        onchange={handleSessionSelect}
-      >
-        {#each manifest?.sessions ?? [] as session}
-          <option value={session.slug}>{session.title}</option>
-        {/each}
-      </select>
-    </div>
-  {/if}
-
+  <div class="frame">
   <aside class="session-rail">
-    <div class="rail-heading">Inventory</div>
+    <div class="rail-title">{m.vibe_sessions_title()}</div>
+    <div class="rail-project">
+      <svg
+        class="rail-folder"
+        viewBox="0 0 16 16"
+        width="16"
+        height="16"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M1.75 4.25c0-.55.45-1 1-1h3.06c.3 0 .59.14.78.37l.82.99c.19.23.47.36.77.36h5.07c.55 0 1 .45 1 1v6.28c0 .55-.45 1-1 1H2.75c-.55 0-1-.45-1-1V4.25Z"
+        />
+      </svg>
+      <span>{manifest?.project ?? "Inventory"}</span>
+    </div>
 
     {#if manifestState === "loading"}
       <div class="rail-skeleton" aria-hidden="true">
@@ -296,22 +336,7 @@
       </div>
     {:else if manifestState === "ready"}
       <nav aria-label="Inventory sessions">
-        <ul>
-          {#each manifest?.sessions ?? [] as session}
-            <li>
-              <a
-                class:active={selectedSlug === session.slug}
-                href={sessionHref(session.slug)}
-                aria-current={selectedSlug === session.slug
-                  ? "page"
-                  : undefined}
-                onclick={(event) => handleSessionLink(event, session.slug)}
-              >
-                <span>{session.title}</span>
-              </a>
-            </li>
-          {/each}
-        </ul>
+        {@render sessionList()}
       </nav>
     {/if}
   </aside>
@@ -320,7 +345,36 @@
     {#if selectedSession}
       <header class="conversation-heading">
         <div>
-          <h3 id="agent-session-heading">{selectedSession.title}</h3>
+          {#if isMobile}
+            <h3 id="agent-session-heading">
+              <button
+                type="button"
+                class="session-switch"
+                aria-expanded={menuOpen}
+                aria-controls="session-menu"
+                bind:this={switchEl}
+                onclick={() => (menuOpen = !menuOpen)}
+              >
+                <span class="sr-only">{m.vibe_sessions_picker_label()}: </span>
+                <span class="switch-title">{selectedSession.title}</span>
+                <svg
+                  viewBox="0 0 16 16"
+                  width="14"
+                  height="14"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m4.5 6.5 3.5 3.5 3.5-3.5" />
+                </svg>
+              </button>
+            </h3>
+          {:else}
+            <h3 id="agent-session-heading">{selectedSession.title}</h3>
+          {/if}
           {#if formatDuration(selectedSession.durationMs)}
             <p>{formatDuration(selectedSession.durationMs)}</p>
           {/if}
@@ -332,7 +386,36 @@
           {selectedSession.actionCount}
           {selectedSession.actionCount === 1 ? "action" : "actions"}
         </p>
+        {#if isMobile && menuOpen}
+          <div class="session-menu" id="session-menu">
+            <div class="rail-project">
+              <svg
+                class="rail-folder"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M1.75 4.25c0-.55.45-1 1-1h3.06c.3 0 .59.14.78.37l.82.99c.19.23.47.36.77.36h5.07c.55 0 1 .45 1 1v6.28c0 .55-.45 1-1 1H2.75c-.55 0-1-.45-1-1V4.25Z"
+                />
+              </svg>
+              <span>{manifest?.project ?? "Inventory"}</span>
+            </div>
+            <nav aria-label="Inventory sessions">
+              {@render sessionList()}
+            </nav>
+          </div>
+        {/if}
       </header>
+      {#if isMobile && menuOpen}
+        <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+        <div class="menu-backdrop" onclick={() => (menuOpen = false)}></div>
+      {/if}
     {:else if manifestState === "loading"}
       <header class="conversation-heading heading-skeleton" aria-hidden="true">
         <span></span>
@@ -344,9 +427,12 @@
       <p class="notice" role="status">{invalidSlugMessage}</p>
     {/if}
 
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <div
       class="transcript"
       class:centered={manifestState !== "ready" || transcriptState !== "ready"}
+      bind:this={transcriptEl}
+      tabindex="0"
       role="region"
       aria-labelledby={selectedSession ? "agent-session-heading" : undefined}
       aria-label={selectedSession ? undefined : "Session viewer status"}
@@ -465,6 +551,7 @@
       {/if}
     </div>
   </div>
+  </div>
 
   <p class="sr-only" aria-live="polite" aria-atomic="true">{liveMessage}</p>
 </section>
@@ -472,56 +559,82 @@
 <style>
   .viewer {
     --viewer-muted: #929292;
+    --hairline: #ffffff14;
+    --viewer-canvas: #141414;
 
     color-scheme: dark;
-    display: grid;
-    grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr);
-    column-gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
     width: 100%;
     color: var(--color-ink-900);
   }
 
-  .mobile-picker {
-    display: none;
+  .frame {
+    display: grid;
+    grid-template-columns: clamp(15rem, 22vw, 17rem) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: min(46rem, calc(100vh - 9rem));
+    height: min(46rem, calc(100dvh - 9rem));
+    min-height: 30rem;
+    overflow: hidden;
+    background: var(--viewer-canvas);
+    border: 1px solid var(--hairline);
+    border-radius: 0.75rem;
   }
 
   .session-rail {
-    position: sticky;
-    top: 5rem;
-    align-self: start;
     min-width: 0;
-    max-height: calc(100vh - 6rem);
     overflow-y: auto;
-    padding: 0.5rem;
+    padding: 1.1rem 0.75rem 1.25rem;
     background: var(--color-default-800);
-    border-radius: 0.75rem;
-    box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 28%);
     scrollbar-gutter: stable;
   }
 
-  .rail-heading {
-    padding: 0.5rem 0.75rem 0.75rem;
-    font-size: 0.95rem;
+  .rail-title {
+    padding: 0 0.5rem 0.85rem;
+    color: var(--color-ink-600);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .rail-project {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+    color: var(--color-ink-800);
+    font-size: 0.85rem;
     font-weight: 500;
   }
 
-  nav {
-    padding: 0;
+  .rail-project svg {
+    flex: none;
+    color: var(--color-ink-600);
   }
 
-  nav ul {
+  .rail-project span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  nav {
+    padding: 0.15rem 0 0 1.5rem;
+  }
+
+  .session-list {
     padding: 0;
     margin: 0;
     list-style: none;
   }
 
-  nav a {
+  .session-list a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.75rem;
+    min-height: 2.25rem;
+    padding: 0.45rem 0.5rem;
     color: var(--color-ink-700);
     text-decoration: none;
     border-radius: 0.5rem;
@@ -530,19 +643,19 @@
       background-color 160ms ease-out;
   }
 
-  nav a:hover {
+  .session-list a:hover {
     color: var(--color-ink-900);
     background: rgb(255 255 255 / 5%);
   }
 
-  nav a.active {
+  .session-list a.active {
     color: var(--color-ink-900);
     background: rgb(255 255 255 / 9%);
   }
 
-  nav a span {
+  .session-list a span {
     overflow: hidden;
-    font-size: 0.875rem;
+    font-size: 0.83rem;
     font-weight: 500;
     line-height: 1.35;
     text-overflow: ellipsis;
@@ -550,22 +663,24 @@
   }
 
   .conversation {
-    display: grid;
-    grid-template-columns: minmax(0, 65ch);
-    justify-content: center;
-    align-content: start;
-    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
+    min-height: 0;
+    border-left: 1px solid var(--hairline);
   }
 
   .conversation-heading {
+    position: relative;
+    z-index: 2;
     display: flex;
+    flex: none;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    padding: 0 0 1rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgb(255 255 255 / 9%);
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--hairline);
   }
 
   .conversation-heading h3 {
@@ -590,9 +705,70 @@
     white-space: nowrap;
   }
 
+  .session-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: calc(100% + 1rem);
+    padding: 0.35rem 0.5rem;
+    margin: -0.35rem -0.5rem;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: 0.5rem;
+  }
+
+  .session-switch .switch-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .session-switch svg {
+    flex: none;
+    color: var(--color-ink-600);
+    transition: transform 160ms ease-out;
+  }
+
+  .session-switch[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .menu-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .session-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 3;
+    max-height: min(24rem, 60vh);
+    max-height: min(24rem, 60dvh);
+    overflow-y: auto;
+    padding: 0.6rem 0.5rem 0.9rem;
+    background: var(--color-default-800);
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: 0 18px 32px rgb(0 0 0 / 45%);
+    animation: menu-in 140ms ease-out;
+  }
+
+  .session-menu nav {
+    padding: 0.25rem 0 0;
+  }
+
   .notice {
+    flex: none;
     padding: 0.75rem 1rem;
-    margin: 0 0 1.5rem;
+    margin: 1rem 1.5rem 0;
     color: var(--color-ink-800);
     font-size: 0.8rem;
     line-height: 1.45;
@@ -602,20 +778,24 @@
   }
 
   .transcript {
-    width: 100%;
+    flex: 1;
     min-width: 0;
-    padding: 0 0 4rem;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 2rem 1.5rem 3rem;
+    scrollbar-gutter: stable;
   }
 
   .transcript.centered {
     display: flex;
-    min-height: 20rem;
     align-items: center;
     justify-content: center;
   }
 
   .entry-list {
     width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
   }
 
   article {
@@ -889,6 +1069,8 @@
 
   .transcript-skeleton {
     width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
   }
 
   .transcript-skeleton span {
@@ -914,9 +1096,15 @@
     margin: 2rem 0;
   }
 
-  :is(a, button, select, summary):focus-visible {
+  :is(a, button, summary):focus-visible {
     outline: 2px solid var(--color-ink-900);
     outline-offset: 2px;
+  }
+
+  .session-list a:focus-visible,
+  .transcript:focus-visible {
+    outline: 2px solid var(--color-ink-900);
+    outline-offset: -2px;
   }
 
   .sr-only {
@@ -940,43 +1128,49 @@
     }
   }
 
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @media (max-width: 63.99rem) {
-    .viewer {
-      display: block;
-    }
-
-    .mobile-picker {
-      display: block;
-      padding: 0 0 1.5rem;
-    }
-
-    .mobile-picker label {
-      display: block;
-      margin: 0 0 0.5rem;
-      color: var(--color-ink-700);
-      font-size: 0.72rem;
-      font-weight: 500;
-    }
-
-    .mobile-picker select {
-      width: 100%;
-      min-height: 2.75rem;
-      padding: 0.5rem 2.25rem 0.5rem 0.65rem;
-      color: var(--color-ink-900);
-      font: inherit;
-      font-size: 0.875rem;
-      background: var(--color-default-700);
-      border: 1px solid rgb(255 255 255 / 14%);
-      border-radius: 0.5rem;
+    .frame {
+      display: flex;
+      flex-direction: column;
+      height: min(44rem, calc(100vh - 7rem));
+      height: min(44rem, calc(100dvh - 7rem));
+      min-height: 26rem;
     }
 
     .session-rail {
       display: none;
     }
 
+    .conversation {
+      flex: 1;
+      min-height: 0;
+      border-left: 0;
+    }
+
     .conversation-heading {
       align-items: flex-start;
-      padding: 0 0 1rem;
+      padding: 0.9rem 1rem;
+    }
+
+    .conversation-heading > div {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .conversation-heading h3 {
+      max-width: none;
+      text-wrap: wrap;
     }
 
     .conversation-heading .session-counts {
@@ -985,10 +1179,11 @@
 
     .notice {
       padding: 0.75rem 1rem;
+      margin: 1rem 1rem 0;
     }
 
     .transcript {
-      padding: 0 0 3rem;
+      padding: 1.5rem 1rem 2.5rem;
     }
 
     .user-message {
