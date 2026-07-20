@@ -5,6 +5,7 @@
   import AgentSessionViewer from "$lib/vibecoding/agent-sessions/agent-session-viewer.svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
+  import { posthog } from "$lib/posthog"
 
   type TabId = "links" | "agent-sessions" | "summary" | "qa"
 
@@ -138,6 +139,7 @@
   let activeSectionId: string | null = null
 
   function selectTab(tabId: TabId, moveFocus = false) {
+    posthog.capture("vibecoding tab switched", { tab: tabId })
     activeTab = tabId
     if (tabId === "agent-sessions") agentSessionsVisited = true
 
@@ -237,6 +239,7 @@
         href="https://vibecoding-workshop-gilt.vercel.app/"
         target="_blank"
         rel="noreferrer"
+        onclick={() => posthog.capture("vibecoding presentation opened")}
       >
         {m.vibe_open_presentation()}
         <span class="ml-1.5" aria-hidden="true">↗</span>
@@ -246,6 +249,7 @@
         class="text-ink-700 hover:text-ink-900 inline-flex min-h-11 items-center text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
         href="/resources/vibecoding-workshop.pdf"
         download="vibecoding-workshop.pdf"
+        onclick={() => posthog.capture("vibecoding pdf downloaded")}
       >
         {m.vibe_download()}
         <span class="ml-1.5" aria-hidden="true">↓</span>
@@ -401,6 +405,12 @@
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
+                    onclick={() =>
+                      posthog.capture("vibecoding resource link clicked", {
+                        link_label: link.label,
+                        link_group: group.id,
+                        link_href: link.href,
+                      })}
                   >
                     <span class="min-w-0">
                       <span class="text-ink-900 block font-semibold">

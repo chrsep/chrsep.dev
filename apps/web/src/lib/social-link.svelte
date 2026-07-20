@@ -6,11 +6,13 @@
     text,
     icon,
     class: className = "",
+    onclick,
   }: {
     href: string
     text: string
     icon: string
     class?: string
+    onclick?: (event: MouseEvent) => void
   } = $props()
 </script>
 
@@ -20,6 +22,7 @@
     class="flex items-center text-sm font-medium opacity-40 transition-opacity hover:opacity-100 {className}"
     target="_blank"
     rel="noreferrer"
+    {onclick}
   >
     <Icon class="mr-1 h-4 w-4 object-cover" --src="url({icon})" />
     {text}
