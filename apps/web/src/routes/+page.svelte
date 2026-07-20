@@ -15,6 +15,7 @@
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
   import { localizeHref } from "$lib/paraglide/runtime"
+  import { posthog } from "$lib/posthog"
 
   const globeModule = import("$lib/globe.svelte")
 </script>
@@ -22,38 +23,46 @@
 <Seo title={m.site_title()} description={m.site_description()} />
 
 <div
-  class="relative overflow-hidden hero-bg border-t border-[#ffffff0A]"
+  class="hero-bg relative overflow-hidden border-t border-[#ffffff0A]"
   in:fade={{ duration: 250 }}
 >
   <header
-    class="px-6 sm:px-8 pb-8 sm:pb-16 pt-6 sm:pt-40 md:px-32 relative z-1 max-w-[1920px] mx-auto md:h-[720px]"
+    class="relative z-1 mx-auto max-w-[1920px] px-6 pt-6 pb-8 sm:px-8 sm:pt-40 sm:pb-16 md:h-[720px] md:px-32"
   >
-    <ul class="flex mb-6 gap-4">
+    <ul class="mb-6 flex gap-4">
       <SocialLink
         text="@chrsep"
         href="https://github.com/chrsep"
         icon="/icons/github.svg"
+        onclick={() =>
+          posthog.capture("social link clicked", { platform: "github" })}
       />
       <SocialLink
         text="Chrisando"
         href="https://linkedin.com/in/chrsep"
         icon="/icons/linkedin.svg"
+        onclick={() =>
+          posthog.capture("social link clicked", { platform: "linkedin" })}
       />
       <SocialLink
         text="@_chrsep"
         href="https://twitter.com/_chrsep"
         icon="/icons/twitter.svg"
+        onclick={() =>
+          posthog.capture("social link clicked", { platform: "twitter" })}
       />
       <SocialLink
         text="@chrsep"
         href="https://stackoverflow.com/users/6656573/chrsep"
         class="hidden sm:flex"
         icon="/icons/stackoverflow.svg"
+        onclick={() =>
+          posthog.capture("social link clicked", { platform: "stackoverflow" })}
       />
     </ul>
 
-    <h1 class="text-xl sm:text-2xl max-w-md">
-      <span class="font-black text-ink-900">{m.home_hero_greeting()}</span>
+    <h1 class="max-w-md text-xl sm:text-2xl">
+      <span class="text-ink-900 font-black">{m.home_hero_greeting()}</span>
       <span class="text-ink-700">
         <!-- eslint-disable-next-line svelte/no-at-html-tags -- static, developer-authored message -->
         {@html m.home_hero_pitch()}
@@ -63,11 +72,13 @@
     <div class="mt-8">
       <ButtonLink
         href="mailto:hi@chrsep.dev"
-        class="!inline-block w-full sm:w-auto mb-4 sm:mb-0 sm:mr-2 group"
+        class="group mb-4 !inline-block w-full sm:mr-2 sm:mb-0 sm:w-auto"
+        onclick={() =>
+          posthog.capture("contact cta clicked", { location: "hero" })}
       >
         {m.lets_work_together()}
         <span
-          class="transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          class="mr-1 ml-auto transform transition-transform duration-200 ease-in-out group-hover:translate-x-2 sm:ml-3"
         >
           ->
         </span>
@@ -76,11 +87,11 @@
       <ButtonLink
         variant="secondary"
         href={localizeHref("/cv")}
-        class="!inline-block w-full sm:w-auto group"
+        class="group !inline-block w-full sm:w-auto"
       >
         {m.home_more_about_me()}
         <span
-          class="text-lg transition-transform transform mr-1 group-hover:translate-x-2 ease-in-out duration-200 ml-auto sm:ml-3"
+          class="mr-1 ml-auto transform text-lg transition-transform duration-200 ease-in-out group-hover:translate-x-2 sm:ml-3"
         >
           👨‍💻
         </span>
@@ -100,9 +111,9 @@
 
 <div class="border-t border-[#ffffff0D] pt-16">
   <article
-    class="px-6 sm:px-8 md:px-32 bg-default-900  z-1 relative max-w-[1920px] mx-auto"
+    class="bg-default-900 relative z-1 mx-auto max-w-[1920px] px-6 sm:px-8 md:px-32"
   >
-    <div class="mb-8 max-w-lg prose">
+    <div class="prose mb-8 max-w-lg">
       <h2>{m.home_projects_heading()}</h2>
       <p>
         {m.home_projects_body()}
@@ -111,7 +122,7 @@
   </article>
 
   <section
-    class="flex md:grid md:grid-cols-2 xl:grid-cols-4 overflow-auto md:px-32 sm:px-8 snap-x snap-mandatory gap-8 lg:gap-16 xl:gap-8 pb-8 max-w-[1920px] mx-auto"
+    class="mx-auto flex max-w-[1920px] snap-x snap-mandatory gap-8 overflow-auto pb-8 sm:px-8 md:grid md:grid-cols-2 md:px-32 lg:gap-16 xl:grid-cols-4 xl:gap-8"
   >
     <Project
       title="Obserfy"
@@ -213,19 +224,19 @@
     <!--      />-->
   </section>
 
-  <section class="flex items-center mt-8">
-    <div class="mx-auto relative inline-block">
+  <section class="mt-8 flex items-center">
+    <div class="relative mx-auto inline-block">
       <div
-        class="w-40 h-40 absolute bg-indigo-800 rounded-full -z-10 filter blur-3xl opacity-80"
+        class="absolute -z-10 h-40 w-40 rounded-full bg-indigo-800 opacity-80 blur-3xl filter"
       ></div>
       <div
-        class="w-40 h-40 absolute bg-blue-800 rounded-full -z-10 filter blur-3xl bottom-0 right-0 opacity-80"
+        class="absolute right-0 bottom-0 -z-10 h-40 w-40 rounded-full bg-blue-800 opacity-80 blur-3xl filter"
       ></div>
 
       <div
-        class="bg-default-700 bg-opacity-60 p-6 m-6 rounded-3xl lg:flex items-end border border-white border-opacity-10"
+        class="bg-default-700 bg-opacity-60 border-opacity-10 m-6 items-end rounded-3xl border border-white p-6 lg:flex"
       >
-        <div class="max-w-md prose prose-sm">
+        <div class="prose prose-sm max-w-md">
           <h2>{m.home_open_source_heading()}</h2>
           <p>
             {m.home_open_source_body()}
@@ -236,12 +247,13 @@
           href="https://github.com/chrsep"
           target="_blank"
           rel="noreferrer"
-          class="ml-0 lg:ml-8 !px-6 !py-4 text-xs flex-shrink-0 mt-6 w-full sm:w-auto"
+          class="mt-6 ml-0 w-full flex-shrink-0 !px-6 !py-4 text-xs sm:w-auto lg:ml-8"
+          onclick={() => posthog.capture("github cta clicked")}
         >
           {m.home_open_source_cta()}
           <Icon
             --src="url(/icons/github.svg)"
-            class={"w-4 h-4 ml-auto lg:ml-4 bg-black"}
+            class={"ml-auto h-4 w-4 bg-black lg:ml-4"}
           />
         </ButtonLink>
       </div>

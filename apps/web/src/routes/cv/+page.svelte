@@ -1,22 +1,28 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
+  import { onMount } from "svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
+  import { posthog } from "$lib/posthog"
+
+  onMount(() => {
+    posthog.capture("cv viewed")
+  })
 </script>
 
 <Seo title={m.cv_title()} description={m.cv_description()} />
 
 <header
-  class="sm:skew-y-4 relative block w-full skew-y-6 transform border-b border-black px-6 pb-12 pt-16 sm:pb-16 md:px-32 lg:pb-32 lg:pt-24 2xl:px-0"
+  class="relative block w-full skew-y-6 transform border-b border-black px-6 pt-16 pb-12 sm:skew-y-4 sm:pb-16 md:px-32 lg:pt-24 lg:pb-32 2xl:px-0"
   in:fade
 >
   <p
-    class="sm:-skew-y-4 relative z-10 max-w-7xl -skew-y-6 transform pb-2 font-medium text-ink-600 lg:text-lg 2xl:mx-auto"
+    class="text-ink-600 relative z-10 max-w-7xl -skew-y-6 transform pb-2 font-medium sm:-skew-y-4 lg:text-lg 2xl:mx-auto"
   >
     {m.cv_label()}
   </p>
   <h1
-    class="sm:-skew-y-4 relative z-10 max-w-7xl -skew-y-6 transform text-4xl font-black sm:text-5xl lg:text-6xl 2xl:mx-auto"
+    class="relative z-10 max-w-7xl -skew-y-6 transform text-4xl font-black sm:-skew-y-4 sm:text-5xl lg:text-6xl 2xl:mx-auto"
   >
     Chrisando Eka <br /> Pramudhita
   </h1>
@@ -25,9 +31,11 @@
     class="absolute inset-0 flex items-center justify-center overflow-hidden"
   >
     <div
-      class="md:right-1/6 absolute top-[300px] flex animate-spin-slow blur-3xl filter sm:top-[300px] lg:top-[490px]"
+      class="animate-spin-slow absolute top-[300px] flex blur-3xl filter sm:top-[300px] md:right-1/6 lg:top-[490px]"
     >
-      <div class="h-[800px] w-[800px] rounded-full bg-green-700 opacity-90"></div>
+      <div
+        class="h-[800px] w-[800px] rounded-full bg-green-700 opacity-90"
+      ></div>
       <div
         class="-ml-[600px] h-[800px] w-[800px] rounded-full bg-blue-700 opacity-90"
       ></div>

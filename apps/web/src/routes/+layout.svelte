@@ -13,6 +13,9 @@
     locales,
     localizeHref,
   } from "$lib/paraglide/runtime"
+  import { onMount } from "svelte"
+  import { afterNavigate } from "$app/navigation"
+  import { initPostHog, posthog } from "$lib/posthog"
 
   let { children }: { children?: Snippet } = $props()
 
@@ -20,6 +23,16 @@
     en: "English",
     id: "Bahasa Indonesia",
   }
+
+  onMount(() => {
+    initPostHog()
+  })
+
+  afterNavigate(({ to }) => {
+    posthog.capture("$pageview", {
+      $current_url: to?.url.href ?? window.location.href,
+    })
+  })
 
   const canonicalPath = $derived(deLocalizeHref(page.url.pathname))
 
@@ -38,13 +51,17 @@
       href={`https://chrsep.dev${localizedPath(canonicalPath, locale)}`}
     />
   {/each}
-  <link rel="alternate" hreflang="x-default" href={`https://chrsep.dev${canonicalPath}`} />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href={`https://chrsep.dev${canonicalPath}`}
+  />
 </svelte:head>
 
 <nav
-  class="fixed inset-x-0 top-0 z-10 h-12 w-full bg-default-900 bg-opacity-80 px-6 text-sm text-ink-900 backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32 "
+  class="bg-default-900 bg-opacity-80 text-ink-900 fixed inset-x-0 top-0 z-10 h-12 w-full px-6 text-sm backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32"
 >
-  <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8 ">
+  <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8">
     <a
       href={localizedPath("/", getLocale())}
       class="group mr-auto flex h-full items-center font-bold"
@@ -61,7 +78,7 @@
 
     <a
       href={localizeHref("/cv")}
-      class="flex h-full items-center font-medium text-ink-700 transition-colors hover:text-ink-900"
+      class="text-ink-700 hover:text-ink-900 flex h-full items-center font-medium transition-colors"
     >
       {m.nav_cv()}
     </a>
@@ -93,26 +110,26 @@
   </div>
 </nav>
 
-<main class="mt-12 min-h-screen text-ink-900 sm:mt-16">
+<main class="text-ink-900 mt-12 min-h-screen sm:mt-16">
   {@render children?.()}
 </main>
 
 <footer
-  class="mt-32 border-t border-[#ffffff0D] pb-6 pt-12 text-ink-900 sm:py-12 sm:py-16"
+  class="text-ink-900 mt-32 border-t border-[#ffffff0D] pt-12 pb-6 sm:py-12 sm:py-16"
 >
   <div
     class="mx-auto flex max-w-[1920px] flex-col px-6 sm:flex-row sm:items-end sm:px-8 md:px-32"
   >
     <div>
-      <h1 class="text-xl font-black leading-tight md:text-2xl">
+      <h1 class="text-xl leading-tight font-black md:text-2xl">
         {m.lets_work_together()}
       </h1>
-      <p class="my-4 max-w-sm text-ink-800 opacity-70 sm:mb-0">
+      <p class="text-ink-800 my-4 max-w-sm opacity-70 sm:mb-0">
         {m.footer_body()}
       </p>
       <ButtonLink
         href="mailto:hi@chrsep.dev"
-        class="group mb-4 mt-2 !inline-block w-full text-sm sm:mb-0 sm:mr-4 sm:mt-6 sm:w-auto"
+        class="group mt-2 mb-4 !inline-block w-full text-sm sm:mt-6 sm:mr-4 sm:mb-0 sm:w-auto"
       >
         {m.footer_cta()}
         <span
@@ -126,7 +143,7 @@
     <div class="mt-12 sm:ml-auto">
       <a
         href="mailto:hi@chrsep.dev"
-        class="flex items-center font-medium text-ink-900 opacity-40 transition hover:opacity-100"
+        class="text-ink-900 flex items-center font-medium opacity-40 transition hover:opacity-100"
       >
         <svg
           class="mr-3 h-4 w-4"

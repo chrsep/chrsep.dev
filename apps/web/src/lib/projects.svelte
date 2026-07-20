@@ -3,6 +3,7 @@
   import ProjectLink from "$lib/project-link.svelte"
   import type { Snippet } from "svelte"
   import { m } from "$lib/paraglide/messages"
+  import { posthog } from "$lib/posthog"
 
   let {
     title,
@@ -51,7 +52,10 @@
       <ProjectTag name={m.tag_saas()} bgColor="bg-red-50 text-red-900" />
     {/if}
     {#if ecommerce}
-      <ProjectTag name={m.tag_ecommerce()} bgColor="bg-green-50 text-green-900" />
+      <ProjectTag
+        name={m.tag_ecommerce()}
+        bgColor="bg-green-50 text-green-900"
+      />
     {/if}
     {#if marketing}
       <ProjectTag
@@ -60,7 +64,10 @@
       />
     {/if}
     {#if openSource}
-      <ProjectTag name={m.tag_open_source()} bgColor="bg-blue-50 text-blue-900" />
+      <ProjectTag
+        name={m.tag_open_source()}
+        bgColor="bg-blue-50 text-blue-900"
+      />
     {/if}
     {#if android}
       <ProjectTag name={m.tag_android()} bgColor="bg-teal-50 text-teal-900" />
@@ -90,13 +97,37 @@
       </li>
     {/if}
     {#if githubLink}
-      <ProjectLink name="GitHub" link={githubLink} />
+      <ProjectLink
+        name="GitHub"
+        link={githubLink}
+        onclick={() =>
+          posthog.capture("project link clicked", {
+            project_title: title,
+            link_type: "github",
+          })}
+      />
     {/if}
     {#if webLink}
-      <ProjectLink name="Web" link={webLink} />
+      <ProjectLink
+        name="Web"
+        link={webLink}
+        onclick={() =>
+          posthog.capture("project link clicked", {
+            project_title: title,
+            link_type: "web",
+          })}
+      />
     {/if}
     {#if googlePlayLink}
-      <ProjectLink name="Google Play" link={googlePlayLink} />
+      <ProjectLink
+        name="Google Play"
+        link={googlePlayLink}
+        onclick={() =>
+          posthog.capture("project link clicked", {
+            project_title: title,
+            link_type: "google_play",
+          })}
+      />
     {/if}
   </ul>
 </article>

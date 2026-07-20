@@ -42,6 +42,7 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "cobe": "^2.0.1",
+    "posthog-js": "^1.404.1",
     "studio": "workspace:1.0.0"
   }
 }
