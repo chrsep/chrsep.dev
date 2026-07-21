@@ -4,11 +4,13 @@
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
   import TechStacks from "$lib/tech-stacks.svelte"
+  import ContentListItem from "$lib/content-list-item.svelte"
 
   import JoyfulImage from "$images/portofolio/joyful.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import ObserfyImage from "$images/portofolio/obserfy.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import AtreusImage from "$images/portofolio/atreus.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import SekitarmuImage from "$images/portofolio/sekitarmu.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
+  import VibeCodingWorkshopImage from "$images/resources/vibecoding-workshop-cover.png?w=224;384;576;768&format=avif;webp;jpg&as=metadata"
   import Image from "$lib/image.svelte"
   import ButtonLink from "$lib/button-link.svelte"
   import Icon from "$lib/icon.svelte"
@@ -18,6 +20,17 @@
   import { posthog } from "$lib/posthog"
 
   const globeModule = import("$lib/globe.svelte")
+
+  const contentItems = [
+    {
+      id: "vibe-coding-workshop",
+      title: m.home_notes_vibe_coding_title(),
+      description: m.home_notes_vibe_coding_description(),
+      tag: m.home_notes_workshop_tag(),
+      href: localizeHref("/resources/vibecoding-demo"),
+      image: VibeCodingWorkshopImage,
+    },
+  ] as const
 </script>
 
 <Seo title={m.site_title()} description={m.site_description()} />
@@ -224,7 +237,33 @@
     <!--      />-->
   </section>
 
-  <section class="mt-8 flex items-center">
+  <section
+    class="mx-auto mt-16 max-w-[1920px] px-6 sm:mt-24 sm:px-8 md:px-32"
+    aria-labelledby="notes-resources-heading"
+  >
+    <h2
+      id="notes-resources-heading"
+      class="text-ink-900 text-2xl leading-tight font-black"
+    >
+      {m.home_notes_resources_heading()}
+    </h2>
+
+    <ul class="mt-6 sm:mt-8">
+      {#each contentItems as item (item.id)}
+        <ContentListItem
+          title={item.title}
+          description={item.description}
+          tag={item.tag}
+          href={item.href}
+          image={item.image}
+          imageAlt=""
+          analyticsId={item.id}
+        />
+      {/each}
+    </ul>
+  </section>
+
+  <section class="mt-16 flex items-center sm:mt-24">
     <div class="relative mx-auto inline-block">
       <div
         class="absolute -z-10 h-40 w-40 rounded-full bg-indigo-800 opacity-80 blur-3xl filter"
