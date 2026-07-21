@@ -9,10 +9,10 @@
     $props()
 </script>
 
-<li class="text-sm font-bold opacity-60 transition-opacity hover:opacity-100">
+<li class="text-sm font-bold opacity-70 transition-opacity hover:opacity-100">
   <a
     href={link}
-    class="flex items-center"
+    class="flex min-h-11 items-center"
     rel="noreferrer"
     target="_blank"
     {onclick}

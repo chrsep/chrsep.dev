@@ -22,8 +22,18 @@ declare module "*.svg?url" {
   export default svgUrl
 }
 
+declare module "*.woff2?url" {
+  const fontUrl: string
+  export default fontUrl
+}
+
 declare module "*&as=metadata" {
-  type ImageMeta = { src: string; width: number; format: string }
+  type ImageMeta = {
+    src: string
+    width: number
+    height: number
+    format: string
+  }
   const meta: ImageMeta | ImageMeta[]
   export default meta
 }

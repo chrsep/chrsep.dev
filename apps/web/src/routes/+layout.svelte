@@ -1,5 +1,6 @@
 <script lang="ts">
   import "@fontsource-variable/inter"
+  import interVariableLatinUrl from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url"
 
   import "../app.css"
   import ButtonLink from "$lib/button-link.svelte"
@@ -15,7 +16,7 @@
   } from "$lib/paraglide/runtime"
   import { onMount } from "svelte"
   import { afterNavigate } from "$app/navigation"
-  import { initPostHog, posthog } from "$lib/posthog"
+  import { capture } from "$lib/posthog"
 
   let { children }: { children?: Snippet } = $props()
 
@@ -25,11 +26,12 @@
   }
 
   onMount(() => {
-    initPostHog()
+    capture("$pageview", { $current_url: window.location.href })
   })
 
-  afterNavigate(({ to }) => {
-    posthog.capture("$pageview", {
+  afterNavigate(({ from, to }) => {
+    if (!from) return
+    capture("$pageview", {
       $current_url: to?.url.href ?? window.location.href,
     })
   })
@@ -43,32 +45,34 @@
 </script>
 
 <svelte:head>
-  <link rel="canonical" href={`https://chrsep.dev${page.url.pathname}`} />
-  {#each locales as locale}
-    <link
-      rel="alternate"
-      hreflang={locale}
-      href={`https://chrsep.dev${localizedPath(canonicalPath, locale)}`}
-    />
-  {/each}
   <link
-    rel="alternate"
-    hreflang="x-default"
-    href={`https://chrsep.dev${canonicalPath}`}
+    rel="preload"
+    href={interVariableLatinUrl}
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
   />
 </svelte:head>
 
-<nav
-  class="bg-default-900 bg-opacity-80 text-ink-900 fixed inset-x-0 top-0 z-10 h-12 w-full px-6 text-sm backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32"
+<a
+  href="#main-content"
+  class="bg-ink-900 text-default-900 fixed top-2 left-2 z-50 -translate-y-20 rounded-lg px-4 py-3 font-bold transition-transform focus:translate-y-0"
 >
-  <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8">
+  {m.skip_to_content()}
+</a>
+
+<nav
+  class="bg-default-900 bg-opacity-80 text-ink-900 fixed inset-x-0 top-0 z-40 h-12 w-full px-4 text-sm backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-12 lg:px-20 xl:px-32"
+>
+  <div class="mx-auto flex h-12 max-w-[1920px] gap-3 sm:h-16 sm:gap-6">
     <a
       href={localizedPath("/", getLocale())}
-      class="group mr-auto flex h-full items-center font-bold"
+      aria-current={canonicalPath === "/" ? "page" : undefined}
+      class="group mr-auto flex h-full min-w-0 items-center font-bold"
     >
-      <div class="h-5 overflow-hidden">
+      <div class="h-5 w-20 overflow-hidden sm:w-56">
         <div
-          class="transform transition-transform duration-500 ease-in-out sm:group-hover:-translate-y-1/2"
+          class="transform whitespace-nowrap transition-transform duration-500 ease-in-out sm:group-hover:-translate-y-1/2"
         >
           <span class="text-xs font-black sm:text-sm"> @chrsep </span><br />
           🏠 <span class="ml-1">Chrisando E. Pramudhita</span>
@@ -77,10 +81,29 @@
     </a>
 
     <a
+      href={localizeHref("/about")}
+      aria-current={canonicalPath === "/about" ? "page" : undefined}
+      class="text-ink-700 hover:text-ink-900 flex h-full items-center font-medium transition-colors"
+    >
+      {m.nav_about()}
+    </a>
+
+    <a
       href={localizeHref("/cv")}
+      aria-current={canonicalPath === "/cv" ? "page" : undefined}
       class="text-ink-700 hover:text-ink-900 flex h-full items-center font-medium transition-colors"
     >
       {m.nav_cv()}
+    </a>
+
+    <a
+      href={localizeHref("/resources/vibecoding-demo")}
+      aria-current={canonicalPath === "/resources/vibecoding-demo"
+        ? "page"
+        : undefined}
+      class="text-ink-700 hover:text-ink-900 hidden h-full items-center font-medium transition-colors lg:flex"
+    >
+      {m.nav_resources()}
     </a>
 
     <ul
@@ -98,7 +121,8 @@
             aria-label={localeNames[locale]}
             aria-current={locale === getLocale() ? "page" : undefined}
             data-sveltekit-reload
-            class="transition-colors {locale === getLocale()
+            class="flex min-h-11 min-w-8 items-center justify-center transition-colors {locale ===
+            getLocale()
               ? 'text-ink-900'
               : 'text-ink-700 hover:text-ink-900'}"
           >
@@ -110,20 +134,24 @@
   </div>
 </nav>
 
-<main class="text-ink-900 mt-12 min-h-screen sm:mt-16">
+<main
+  id="main-content"
+  tabindex="-1"
+  class="text-ink-900 mt-12 min-h-screen outline-none sm:mt-16"
+>
   {@render children?.()}
 </main>
 
 <footer
-  class="text-ink-900 mt-32 border-t border-[#ffffff0D] pt-12 pb-6 sm:py-12 sm:py-16"
+  class="text-ink-900 mt-32 border-t border-[#ffffff0D] pt-12 pb-6 sm:py-16"
 >
   <div
     class="mx-auto flex max-w-[1920px] flex-col px-6 sm:flex-row sm:items-end sm:px-8 md:px-32"
   >
     <div>
-      <h1 class="text-xl leading-tight font-black md:text-2xl">
+      <h2 class="text-xl leading-tight font-black md:text-2xl">
         {m.lets_work_together()}
-      </h1>
+      </h2>
       <p class="text-ink-800 my-4 max-w-sm opacity-70 sm:mb-0">
         {m.footer_body()}
       </p>
@@ -143,7 +171,7 @@
     <div class="mt-12 sm:ml-auto">
       <a
         href="mailto:hi@chrsep.dev"
-        class="text-ink-900 flex items-center font-medium opacity-40 transition hover:opacity-100"
+        class="text-ink-900 flex min-h-11 items-center font-medium opacity-70 transition hover:opacity-100"
       >
         <svg
           class="mr-3 h-4 w-4"
@@ -166,31 +194,43 @@
         <li>
           <a
             href="https://github.com/chrsep"
-            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            class="flex min-h-11 min-w-11 items-center justify-center rounded-lg opacity-70 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
             <Icon --src="url(/icons/github.svg)" class="h-4 w-4" />
           </a>
         </li>
         <li>
           <a
-            href="https://linkedin.com/in/chrsep"
-            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            href="https://www.linkedin.com/in/chrsep"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            class="flex min-h-11 min-w-11 items-center justify-center rounded-lg opacity-70 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
             <Icon --src="url(/icons/linkedin.svg)" class="h-4 w-4" />
           </a>
         </li>
         <li>
           <a
-            href="https://twitter.com/_chrsep"
-            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            href="https://x.com/_chrsep"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X"
+            class="flex min-h-11 min-w-11 items-center justify-center rounded-lg opacity-70 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
             <Icon --src="url(/icons/twitter.svg)" class="h-4 w-4" />
           </a>
         </li>
         <li>
           <a
-            href="https://stackoverflow.com/users/story/6656573"
-            class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            href="https://stackoverflow.com/users/6656573/chrsep"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Stack Overflow"
+            class="flex min-h-11 min-w-11 items-center justify-center rounded-lg opacity-70 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
           >
             <Icon --src="url(/icons/stackoverflow.svg)" class="h-4 w-4" />
           </a>

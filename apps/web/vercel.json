@@ -5,9 +5,48 @@
       "source": "/vibe-coding",
       "destination": "/id/resources/vibecoding-demo",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/resources/vibecoding-workshop.pdf",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/resources/vibecoding-demo/agent-sessions/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/studio",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/studio/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ],
   "rewrites": [
+    {
+      "source": "/static/favicon.ico",
+      "destination": "/studio/static/favicon.ico"
+    },
+    {
+      "source": "/static/favicon.svg",
+      "destination": "/studio/static/favicon.svg"
+    },
+    {
+      "source": "/static/apple-touch-icon.png",
+      "destination": "/studio/static/apple-touch-icon.png"
+    },
+    {
+      "source": "/static/manifest.webmanifest",
+      "destination": "/studio/static/manifest.webmanifest"
+    },
     { "source": "/studio/(.*)", "destination": "/studio/index.html" }
   ]
 }
