@@ -110,5 +110,11 @@
   "vibe_summary_agent_p1": "AI agent itu sistem AI yang kerja mandiri buat nyelesaiin tugas. Cara kerjanya loop: bertindak, evaluasi hasilnya, adaptasi, coba lagi, ngulang terus sampai tugasnya beres. Buat itu dia pakai tools kayak browser, terminal (cara berbasis teks buat ngontrol komputer), sampai file-file kita.",
   "vibe_summary_agent_p2": "Ini yang bedain agent sama ChatGPT dan chatbot lain. Chatbot cuma bolak-balik chat: kita kirim pesan, dia bales, selesai di situ. Agent terus kerja sendiri setelah dikasih instruksi, dan pada dasarnya bisa ngelakuin apa pun yang manusia bisa lakukan di komputer: edit dokumen, analisis data, sampai research. Claude dan Codex itu contoh AI agent yang kayak gini.",
   "vibe_qa_heading": "Q&A akan menyusul.",
-  "vibe_qa_body": "Jawaban atas pertanyaan audiens akan dipublikasikan di sini dalam beberapa hari."
+  "vibe_qa_body": "Jawaban atas pertanyaan audiens akan dipublikasikan di sini dalam beberapa hari.",
+  "vibe_links_seo_title": "Link | Vibe Coding | Chrisando E. Pramudhita",
+  "vibe_links_seo_description": "Semua repositori, demo live, dan tools dari workshop Vibe Coding oleh Chrisando.",
+  "vibe_session_seo_title": "{title} | Vibe Coding | Chrisando E. Pramudhita",
+  "vibe_session_seo_description": "Transcript lengkap chat agent \"{title}\" dari demo live workshop Vibe Coding.",
+  "vibe_qa_seo_title": "Q&A | Vibe Coding | Chrisando E. Pramudhita",
+  "vibe_qa_seo_description": "Jawaban pertanyaan audiens dari workshop Vibe Coding oleh Chrisando."
 }

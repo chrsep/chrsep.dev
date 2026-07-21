@@ -1,51 +1,30 @@
 <script lang="ts">
-  import { replaceState } from "$app/navigation"
   import { onMount } from "svelte"
+  import { afterNavigate } from "$app/navigation"
   import { m } from "$lib/paraglide/messages"
-  import { isSessionManifest, isSessionTranscript } from "./guards"
+  import { localizeHref } from "$lib/paraglide/runtime"
   import type {
     SessionManifest,
     SessionSummary,
     SessionTranscript,
   } from "./types"
 
-  type ManifestState = "loading" | "ready" | "error" | "empty"
-  type TranscriptState = "idle" | "loading" | "ready" | "error" | "empty"
+  let {
+    manifest,
+    session,
+    transcript,
+  }: {
+    manifest: SessionManifest
+    session: SessionSummary
+    transcript: SessionTranscript
+  } = $props()
 
-  class PublishedDataError extends Error {}
-
-  export let manifestUrl =
-    "/resources/vibecoding-demo/agent-sessions/index.json"
-
-  let manifest: SessionManifest | null = null
-  let manifestState: ManifestState = "loading"
-  let manifestErrorIsData = false
-  let transcript: SessionTranscript | null = null
-  let transcriptState: TranscriptState = "idle"
-  let transcriptErrorIsData = false
-  let selectedSlug = ""
-  let invalidSlugMessage = ""
-  let liveMessage = ""
-  let manifestController: AbortController | null = null
-  let sessionRequestId = 0
-  let destroyed = false
-  let transcriptEl: HTMLDivElement | null = null
-  let switchEl: HTMLButtonElement | null = null
-  let isMobile = false
-  let menuOpen = false
-
-  const transcriptCache = new Map<string, SessionTranscript>()
-  const inflightTranscripts = new Map<string, Promise<SessionTranscript>>()
-  const transcriptControllers = new Map<string, AbortController>()
-
-  let selectedSession: SessionSummary | null = null
-  $: selectedSession =
-    manifest?.sessions.find((session) => session.slug === selectedSlug) ?? null
+  let transcriptEl: HTMLDivElement | null = $state(null)
+  let switchEl: HTMLButtonElement | null = $state(null)
+  let isMobile = $state(false)
+  let menuOpen = $state(false)
 
   onMount(() => {
-    void loadManifest()
-    window.addEventListener("popstate", handlePopState)
-
     const mediaQuery = window.matchMedia("(max-width: 63.99rem)")
     isMobile = mediaQuery.matches
     const handleMediaChange = (event: MediaQueryListEvent) => {
@@ -55,213 +34,23 @@
     mediaQuery.addEventListener("change", handleMediaChange)
 
     return () => {
-      destroyed = true
-      manifestController?.abort()
-      transcriptControllers.forEach((controller) => controller.abort())
-      window.removeEventListener("popstate", handlePopState)
       mediaQuery.removeEventListener("change", handleMediaChange)
     }
   })
 
-  async function loadManifest() {
-    manifestController?.abort()
-    const controller = new AbortController()
-    manifestController = controller
-    manifestState = "loading"
-    manifestErrorIsData = false
-    transcriptState = "idle"
-    transcript = null
-    liveMessage = "Loading Inventory sessions"
-
-    try {
-      const response = await fetch(manifestUrl, { signal: controller.signal })
-      if (!response.ok) throw new Error("Manifest request failed")
-
-      const data: unknown = await response.json()
-      if (!isSessionManifest(data)) {
-        throw new PublishedDataError("Invalid session manifest")
-      }
-      if (destroyed || controller.signal.aborted) return
-
-      manifest = data
-      if (data.sessions.length === 0) {
-        manifestState = "empty"
-        liveMessage = "No Inventory sessions are available"
-        return
-      }
-
-      manifestState = "ready"
-      selectInitialSession(data)
-    } catch (error) {
-      if (controller.signal.aborted || destroyed) return
-      manifest = null
-      manifestState = "error"
-      manifestErrorIsData = error instanceof PublishedDataError
-      liveMessage = "Inventory sessions could not be loaded"
-    } finally {
-      if (manifestController === controller) manifestController = null
-    }
-  }
-
-  function selectInitialSession(data: SessionManifest) {
-    const requestedSlug = getSessionSlugFromUrl()
-    const requestedSession = data.sessions.find(
-      (session) => session.slug === requestedSlug,
-    )
-    const fallbackSession =
-      data.sessions.find((session) => session.slug === data.defaultSession) ??
-      data.sessions[0]
-
-    if (requestedSlug && !requestedSession) {
-      invalidSlugMessage = `That shared session isn't available. Showing ${fallbackSession.title}.`
-    } else {
-      invalidSlugMessage = ""
-    }
-
-    const nextSession = requestedSession ?? fallbackSession
-    selectedSlug = nextSession.slug
-    syncSessionUrl(nextSession.slug)
-    void loadTranscript(nextSession)
-  }
-
-  function handlePopState() {
-    if (!manifest || manifest.sessions.length === 0) return
-
-    const requestedSlug = getSessionSlugFromUrl()
-    const requestedSession = manifest.sessions.find(
-      (session) => session.slug === requestedSlug,
-    )
-    const fallbackSession =
-      manifest.sessions.find(
-        (session) => session.slug === manifest?.defaultSession,
-      ) ?? manifest.sessions[0]
-
-    if (requestedSlug && !requestedSession) {
-      invalidSlugMessage = `That shared session isn't available. Showing ${fallbackSession.title}.`
-    } else {
-      invalidSlugMessage = ""
-    }
-
-    const nextSession = requestedSession ?? fallbackSession
-    selectSession(nextSession.slug, !requestedSession)
-  }
-
-  function selectSession(slug: string, updateUrl = true) {
-    const session = manifest?.sessions.find((item) => item.slug === slug)
-    if (!session) return
-
+  afterNavigate(() => {
     menuOpen = false
     transcriptEl?.scrollTo({ top: 0 })
-    if (selectedSlug !== slug) invalidSlugMessage = ""
-    selectedSlug = slug
-    if (updateUrl) syncSessionUrl(slug)
+  })
 
-    if (
-      transcriptState === "ready" &&
-      transcript?.slug === slug &&
-      transcriptCache.has(slug)
-    ) {
-      return
-    }
-
-    void loadTranscript(session)
-  }
-
-  async function loadTranscript(session: SessionSummary) {
-    const requestId = ++sessionRequestId
-    transcriptState = "loading"
-    transcriptErrorIsData = false
-    transcript = null
-    liveMessage = `Loading ${session.title}`
-
-    try {
-      const data = await getTranscript(session)
-      if (destroyed || requestId !== sessionRequestId) return
-
-      transcript = data
-      transcriptState = data.entries.length === 0 ? "empty" : "ready"
-      liveMessage =
-        data.entries.length === 0
-          ? `${session.title} has no published messages`
-          : `${session.title} loaded`
-    } catch (error) {
-      if (destroyed || requestId !== sessionRequestId) return
-      transcript = null
-      transcriptState = "error"
-      transcriptErrorIsData = error instanceof PublishedDataError
-      liveMessage = `${session.title} could not be loaded`
-    }
-  }
-
-  function getTranscript(session: SessionSummary) {
-    const cached = transcriptCache.get(session.slug)
-    if (cached) return Promise.resolve(cached)
-
-    const inflight = inflightTranscripts.get(session.slug)
-    if (inflight) return inflight
-
-    const controller = new AbortController()
-    transcriptControllers.set(session.slug, controller)
-
-    const request = (async () => {
-      try {
-        const response = await fetch(session.dataUrl, {
-          signal: controller.signal,
-        })
-        if (!response.ok) throw new Error("Transcript request failed")
-
-        const data: unknown = await response.json()
-        if (!isSessionTranscript(data) || data.slug !== session.slug) {
-          throw new PublishedDataError("Invalid session transcript")
-        }
-
-        transcriptCache.set(session.slug, data)
-        return data
-      } finally {
-        inflightTranscripts.delete(session.slug)
-        transcriptControllers.delete(session.slug)
-      }
-    })()
-
-    inflightTranscripts.set(session.slug, request)
-    return request
-  }
-
-  function retryTranscript() {
-    if (selectedSession) void loadTranscript(selectedSession)
+  function sessionHref(slug: string) {
+    return localizeHref(`/resources/vibecoding-demo/agent-sessions/${slug}`)
   }
 
   function handleWindowKeydown(event: KeyboardEvent) {
     if (!menuOpen || event.key !== "Escape") return
     menuOpen = false
     switchEl?.focus()
-  }
-
-  function handleSessionLink(event: MouseEvent, slug: string) {
-    event.preventDefault()
-    selectSession(slug)
-  }
-
-  function getSessionSlugFromUrl() {
-    return new URL(window.location.href).searchParams.get("session")
-  }
-
-  function sessionHref(slug: string) {
-    if (typeof window === "undefined") {
-      return `?session=${encodeURIComponent(slug)}`
-    }
-
-    const url = new URL(window.location.href)
-    url.searchParams.set("session", slug)
-    return `${url.pathname}${url.search}${url.hash}`
-  }
-
-  function syncSessionUrl(slug: string) {
-    const nextUrl = sessionHref(slug)
-    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
-    if (nextUrl !== currentUrl) {
-      replaceState(nextUrl, {})
-    }
   }
 
   function formatDuration(durationMs: number | null) {
@@ -284,15 +73,15 @@
 
 {#snippet sessionList()}
   <ul class="session-list">
-    {#each manifest?.sessions ?? [] as session}
+    {#each manifest.sessions as item}
       <li>
         <a
-          class:active={selectedSlug === session.slug}
-          href={sessionHref(session.slug)}
-          aria-current={selectedSlug === session.slug ? "page" : undefined}
-          onclick={(event) => handleSessionLink(event, session.slug)}
+          class:active={session.slug === item.slug}
+          href={sessionHref(item.slug)}
+          aria-current={session.slug === item.slug ? "page" : undefined}
+          data-sveltekit-noscroll
         >
-          <span>{session.title}</span>
+          <span>{item.title}</span>
         </a>
       </li>
     {/each}
@@ -301,48 +90,35 @@
 
 <svelte:window onkeydown={handleWindowKeydown} />
 
-<section
-  class="viewer"
-  aria-label="Inventory agent sessions"
-  aria-busy={manifestState === "loading" || transcriptState === "loading"}
->
+<section class="viewer" aria-label="Inventory agent sessions">
   <div class="frame">
-  <aside class="session-rail">
-    <div class="rail-title">{m.vibe_sessions_title()}</div>
-    <div class="rail-project">
-      <svg
-        class="rail-folder"
-        viewBox="0 0 16 16"
-        width="16"
-        height="16"
-        aria-hidden="true"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.25"
-        stroke-linejoin="round"
-      >
-        <path
-          d="M1.75 4.25c0-.55.45-1 1-1h3.06c.3 0 .59.14.78.37l.82.99c.19.23.47.36.77.36h5.07c.55 0 1 .45 1 1v6.28c0 .55-.45 1-1 1H2.75c-.55 0-1-.45-1-1V4.25Z"
-        />
-      </svg>
-      <span>{manifest?.project ?? "Inventory"}</span>
-    </div>
-
-    {#if manifestState === "loading"}
-      <div class="rail-skeleton" aria-hidden="true">
-        {#each Array(5) as _}
-          <span></span>
-        {/each}
+    <aside class="session-rail">
+      <div class="rail-title">{m.vibe_sessions_title()}</div>
+      <div class="rail-project">
+        <svg
+          class="rail-folder"
+          viewBox="0 0 16 16"
+          width="16"
+          height="16"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M1.75 4.25c0-.55.45-1 1-1h3.06c.3 0 .59.14.78.37l.82.99c.19.23.47.36.77.36h5.07c.55 0 1 .45 1 1v6.28c0 .55-.45 1-1 1H2.75c-.55 0-1-.45-1-1V4.25Z"
+          />
+        </svg>
+        <span>{manifest.project}</span>
       </div>
-    {:else if manifestState === "ready"}
+
       <nav aria-label="Inventory sessions">
         {@render sessionList()}
       </nav>
-    {/if}
-  </aside>
+    </aside>
 
-  <div class="conversation">
-    {#if selectedSession}
+    <div class="conversation">
       <header class="conversation-heading">
         <div>
           {#if isMobile}
@@ -356,7 +132,7 @@
                 onclick={() => (menuOpen = !menuOpen)}
               >
                 <span class="sr-only">{m.vibe_sessions_picker_label()}: </span>
-                <span class="switch-title">{selectedSession.title}</span>
+                <span class="switch-title">{session.title}</span>
                 <svg
                   viewBox="0 0 16 16"
                   width="14"
@@ -373,18 +149,18 @@
               </button>
             </h3>
           {:else}
-            <h3 id="agent-session-heading">{selectedSession.title}</h3>
+            <h3 id="agent-session-heading">{session.title}</h3>
           {/if}
-          {#if formatDuration(selectedSession.durationMs)}
-            <p>{formatDuration(selectedSession.durationMs)}</p>
+          {#if formatDuration(session.durationMs)}
+            <p>{formatDuration(session.durationMs)}</p>
           {/if}
         </div>
         <p class="session-counts">
-          {selectedSession.messageCount}
-          {selectedSession.messageCount === 1 ? "message" : "messages"}
+          {session.messageCount}
+          {session.messageCount === 1 ? "message" : "messages"}
           <span aria-hidden="true"> · </span>
-          {selectedSession.actionCount}
-          {selectedSession.actionCount === 1 ? "action" : "actions"}
+          {session.actionCount}
+          {session.actionCount === 1 ? "action" : "actions"}
         </p>
         {#if isMobile && menuOpen}
           <div class="session-menu" id="session-menu">
@@ -404,7 +180,7 @@
                   d="M1.75 4.25c0-.55.45-1 1-1h3.06c.3 0 .59.14.78.37l.82.99c.19.23.47.36.77.36h5.07c.55 0 1 .45 1 1v6.28c0 .55-.45 1-1 1H2.75c-.55 0-1-.45-1-1V4.25Z"
                 />
               </svg>
-              <span>{manifest?.project ?? "Inventory"}</span>
+              <span>{manifest.project}</span>
             </div>
             <nav aria-label="Inventory sessions">
               {@render sessionList()}
@@ -416,144 +192,86 @@
         <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
         <div class="menu-backdrop" onclick={() => (menuOpen = false)}></div>
       {/if}
-    {:else if manifestState === "loading"}
-      <header class="conversation-heading heading-skeleton" aria-hidden="true">
-        <span></span>
-        <span></span>
-      </header>
-    {/if}
 
-    {#if invalidSlugMessage}
-      <p class="notice" role="status">{invalidSlugMessage}</p>
-    {/if}
-
-    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-    <div
-      class="transcript"
-      class:centered={manifestState !== "ready" || transcriptState !== "ready"}
-      bind:this={transcriptEl}
-      tabindex="0"
-      role="region"
-      aria-labelledby={selectedSession ? "agent-session-heading" : undefined}
-      aria-label={selectedSession ? undefined : "Session viewer status"}
-    >
-      {#if manifestState === "loading"}
-        <div class="transcript-skeleton" aria-label="Loading sessions">
-          <span class="user-line"></span>
-          <span></span>
-          <span></span>
-          <span class="short-line"></span>
-          <span class="activity-line"></span>
-          <span></span>
-          <span class="short-line"></span>
-        </div>
-      {:else if manifestState === "error"}
-        <div class="state-message" role="alert">
-          <h3>Sessions unavailable</h3>
-          <p>
-            {manifestErrorIsData
-              ? "The published session index couldn't be read safely."
-              : "The session index couldn't be loaded. Check your connection and try again."}
-          </p>
-          <button type="button" onclick={() => void loadManifest()}
-            >Retry</button
-          >
-        </div>
-      {:else if manifestState === "empty"}
-        <div class="state-message">
-          <h3>No published sessions</h3>
-          <p>Inventory transcripts will appear here after they are reviewed.</p>
-        </div>
-      {:else if transcriptState === "loading"}
-        <div class="transcript-skeleton" aria-label="Loading transcript">
-          <span class="user-line"></span>
-          <span></span>
-          <span></span>
-          <span class="short-line"></span>
-          <span class="activity-line"></span>
-          <span></span>
-          <span class="short-line"></span>
-        </div>
-      {:else if transcriptState === "error"}
-        <div class="state-message" role="alert">
-          <h3>Session unavailable</h3>
-          <p>
-            {transcriptErrorIsData
-              ? "This published transcript couldn't be read safely."
-              : "This transcript couldn't be loaded. Check your connection and try again."}
-          </p>
-          <button type="button" onclick={retryTranscript}>Retry</button>
-        </div>
-      {:else if transcriptState === "empty"}
-        <div class="state-message">
-          <h3>No published messages</h3>
-          <p>
-            This session does not contain any reviewed transcript entries yet.
-          </p>
-        </div>
-      {:else if transcriptState === "ready" && transcript}
-        <div class="entry-list">
-          {#each transcript.entries as entry}
-            {#if entry.type === "message"}
-              <article
-                class:user-message={entry.role === "user"}
-                class:assistant-message={entry.role === "assistant"}
-                class:progress-message={entry.variant === "progress"}
-                aria-label={messageLabel(entry.role, entry.variant)}
-              >
-                <div class="message-content">{@html entry.html}</div>
-              </article>
-            {:else if entry.type === "activity"}
-              {#if entry.details.length > 0}
-                <details class="activity">
-                  <summary>
-                    <span>{entry.summary}</span>
-                    {#if entry.status !== "completed"}
-                      <small class:error-status={entry.status === "failed"}
-                        >{entry.status}</small
-                      >
-                    {/if}
-                  </summary>
-                  <ol>
-                    {#each entry.details as detail}
-                      <li>
-                        <span class="activity-category">{detail.category}</span>
-                        <div>
-                          <strong>{detail.label}</strong>
-                          {#if detail.description}
-                            <p>{detail.description}</p>
-                          {/if}
-                        </div>
-                      </li>
-                    {/each}
-                  </ol>
-                </details>
-              {:else}
-                <div class="activity activity-static">{entry.summary}</div>
-              {/if}
-            {:else}
-              <figure class="session-media">
-                <img
-                  src={entry.src}
-                  width={entry.width}
-                  height={entry.height}
-                  alt={entry.alt}
-                  loading="lazy"
-                  decoding="async"
-                />
-                {#if entry.caption}
-                  <figcaption>{entry.caption}</figcaption>
+      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+      <div
+        class="transcript"
+        class:centered={transcript.entries.length === 0}
+        bind:this={transcriptEl}
+        tabindex="0"
+        role="region"
+        aria-labelledby="agent-session-heading"
+      >
+        {#if transcript.entries.length === 0}
+          <div class="state-message">
+            <h3>No published messages</h3>
+            <p>
+              This session does not contain any reviewed transcript entries yet.
+            </p>
+          </div>
+        {:else}
+          <div class="entry-list">
+            {#each transcript.entries as entry}
+              {#if entry.type === "message"}
+                <article
+                  class:user-message={entry.role === "user"}
+                  class:assistant-message={entry.role === "assistant"}
+                  class:progress-message={entry.variant === "progress"}
+                  aria-label={messageLabel(entry.role, entry.variant)}
+                >
+                  <div class="message-content">{@html entry.html}</div>
+                </article>
+              {:else if entry.type === "activity"}
+                {#if entry.details.length > 0}
+                  <details class="activity">
+                    <summary>
+                      <span>{entry.summary}</span>
+                      {#if entry.status !== "completed"}
+                        <small class:error-status={entry.status === "failed"}
+                          >{entry.status}</small
+                        >
+                      {/if}
+                    </summary>
+                    <ol>
+                      {#each entry.details as detail}
+                        <li>
+                          <span class="activity-category"
+                            >{detail.category}</span
+                          >
+                          <div>
+                            <strong>{detail.label}</strong>
+                            {#if detail.description}
+                              <p>{detail.description}</p>
+                            {/if}
+                          </div>
+                        </li>
+                      {/each}
+                    </ol>
+                  </details>
+                {:else}
+                  <div class="activity activity-static">{entry.summary}</div>
                 {/if}
-              </figure>
-            {/if}
-          {/each}
-        </div>
-      {/if}
+              {:else}
+                <figure class="session-media">
+                  <img
+                    src={entry.src}
+                    width={entry.width}
+                    height={entry.height}
+                    alt={entry.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {#if entry.caption}
+                    <figcaption>{entry.caption}</figcaption>
+                  {/if}
+                </figure>
+              {/if}
+            {/each}
+          </div>
+        {/if}
+      </div>
     </div>
   </div>
-  </div>
-
-  <p class="sr-only" aria-live="polite" aria-atomic="true">{liveMessage}</p>
 </section>
 
 <style>
@@ -763,18 +481,6 @@
 
   .session-menu nav {
     padding: 0.25rem 0 0;
-  }
-
-  .notice {
-    flex: none;
-    padding: 0.75rem 1rem;
-    margin: 1rem 1.5rem 0;
-    color: var(--color-ink-800);
-    font-size: 0.8rem;
-    line-height: 1.45;
-    background: rgb(255 255 255 / 5%);
-    border: 1px solid rgb(255 255 255 / 8%);
-    border-radius: 0.5rem;
   }
 
   .transcript {
@@ -1017,85 +723,6 @@
     text-wrap: pretty;
   }
 
-  .state-message button {
-    min-height: 2.75rem;
-    padding: 0.55rem 1rem;
-    margin-top: 1rem;
-    color: var(--color-default-900);
-    font: inherit;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    background: var(--color-ink-900);
-    border: 0;
-    border-radius: 0.5rem;
-  }
-
-  .rail-skeleton {
-    padding: 0.7rem 0.5rem;
-  }
-
-  .rail-skeleton span {
-    display: block;
-    height: 2.8rem;
-    margin-bottom: 0.55rem;
-    background: rgb(255 255 255 / 5%);
-    border-radius: 0.5rem;
-    animation: pulse 1.5s ease-in-out infinite alternate;
-  }
-
-  .heading-skeleton {
-    display: block;
-  }
-
-  .heading-skeleton span,
-  .transcript-skeleton span {
-    display: block;
-    background: rgb(255 255 255 / 7%);
-    border-radius: 0.3rem;
-    animation: pulse 1.5s ease-in-out infinite alternate;
-  }
-
-  .heading-skeleton span:first-child {
-    width: 14rem;
-    height: 0.9rem;
-  }
-
-  .heading-skeleton span:last-child {
-    width: 8rem;
-    height: 0.65rem;
-    margin-top: 0.6rem;
-  }
-
-  .transcript-skeleton {
-    width: 100%;
-    max-width: 48rem;
-    margin-inline: auto;
-  }
-
-  .transcript-skeleton span {
-    width: 88%;
-    height: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .transcript-skeleton .user-line {
-    width: min(48%, 20rem);
-    height: 2.75rem;
-    margin: 0 0 2.8rem auto;
-    border-radius: 0.7rem;
-  }
-
-  .transcript-skeleton .short-line {
-    width: 58%;
-  }
-
-  .transcript-skeleton .activity-line {
-    width: 72%;
-    height: 2.75rem;
-    margin: 2rem 0;
-  }
-
   :is(a, button, summary):focus-visible {
     outline: 2px solid var(--color-ink-900);
     outline-offset: 2px;
@@ -1117,15 +744,6 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-  }
-
-  @keyframes pulse {
-    from {
-      opacity: 0.45;
-    }
-    to {
-      opacity: 1;
-    }
   }
 
   @keyframes menu-in {
@@ -1175,11 +793,6 @@
 
     .conversation-heading .session-counts {
       display: none;
-    }
-
-    .notice {
-      padding: 0.75rem 1rem;
-      margin: 1rem 1rem 0;
     }
 
     .transcript {

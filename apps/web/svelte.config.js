@@ -13,6 +13,11 @@ const config = {
       $icons: "src/icons",
       $images: "src/images",
     },
+    prerender: {
+      // Localized alias of the agent-sessions redirect; nothing links to it,
+      // so the crawler can't discover it on its own.
+      entries: ["*", "/id/resources/vibecoding-demo/agent-sessions"],
+    },
   },
 }
 

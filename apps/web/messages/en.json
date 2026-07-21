@@ -110,5 +110,11 @@
   "vibe_summary_agent_p1": "An AI agent is an AI system that works on its own to finish a task. It runs in a loop: act, evaluate the result, adapt, try again, repeating until the task is done. To do that it uses tools such as a browser, a terminal (a text-based way of controlling a computer), and your files.",
   "vibe_summary_agent_p2": "This is what separates an agent from ChatGPT and other chatbots. A chatbot is just a chat exchange: you send a message, it replies, and that is it. An agent keeps working on its own after you give it an instruction, and it can essentially do anything a human can do on a computer: edit documents, analyze data, do research. Claude and Codex are both agents in this sense.",
   "vibe_qa_heading": "Q&A is coming next.",
-  "vibe_qa_body": "Answers to audience questions will be published here in a couple of days."
+  "vibe_qa_body": "Answers to audience questions will be published here in a couple of days.",
+  "vibe_links_seo_title": "Links | Vibe Coding | Chrisando E. Pramudhita",
+  "vibe_links_seo_description": "All repositories, live demos, and tools from the Vibe Coding workshop by Chrisando.",
+  "vibe_session_seo_title": "{title} | Vibe Coding | Chrisando E. Pramudhita",
+  "vibe_session_seo_description": "Full agent chat transcript of \"{title}\" from the Vibe Coding workshop live demo.",
+  "vibe_qa_seo_title": "Q&A | Vibe Coding | Chrisando E. Pramudhita",
+  "vibe_qa_seo_description": "Answers to audience questions from the Vibe Coding workshop by Chrisando."
 }
