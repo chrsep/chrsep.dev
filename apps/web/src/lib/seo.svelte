@@ -33,15 +33,8 @@
   {#if props.mode === "indexable" && route}
     <meta name="robots" content="max-image-preview:large" />
 
-    <link rel="canonical" href={route.canonicalUrl} />
-    <link rel="alternate" hreflang="en" href={route.alternateUrls.en} />
-    <link rel="alternate" hreflang="id" href={route.alternateUrls.id} />
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={route.alternateUrls.xDefault}
-    />
-
+    <!-- Canonical + hreflang are emitted once at the layout level (for every
+         known route) so they stay present even for pages that don't render Seo. -->
     <meta property="og:title" content={props.title} />
     <meta property="og:description" content={props.description} />
     <meta property="og:type" content="website" />

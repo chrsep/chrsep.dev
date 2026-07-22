@@ -1,7 +1,11 @@
 <script lang="ts">
   import { replaceState } from "$app/navigation"
   import { onMount } from "svelte"
-  import { capture, captureException } from "$lib/analytics"
+  import {
+    capture,
+    captureException,
+    captureOutboundLink,
+  } from "$lib/analytics"
   import { m } from "$lib/paraglide/messages"
   import { isSessionManifest, isSessionTranscript } from "./guards"
   import type {
@@ -602,14 +606,18 @@
             ? "inventory_demo"
             : "transcript_external"
 
-      capture("outbound link clicked", {
-        ...analyticsContext,
-        destination_id: destinationId,
-        destination_host: url.hostname,
-        placement: "agent_transcript",
-        category: "transcript_resource",
-        session_slug: selectedSlug,
-      })
+      captureOutboundLink(
+        {
+          destination_id: destinationId,
+          url: anchor.href,
+          placement: "agent_transcript",
+        },
+        {
+          ...analyticsContext,
+          category: "transcript_resource",
+          session_slug: selectedSlug,
+        },
+      )
     } catch {
       // Sanitized transcript links are expected to be valid absolute URLs.
     }
@@ -647,7 +655,8 @@
 
     const url = new URL(window.location.href)
     url.searchParams.set("session", slug)
-    return `${url.pathname}${url.search}${url.hash}`
+    url.hash = ""
+    return `${url.pathname}${url.search}`
   }
 
   function syncSessionUrl(slug: string) {

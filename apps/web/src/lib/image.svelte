@@ -5,6 +5,7 @@
 
   let {
     resourceId,
+    contentId = "home",
     meta,
     sizes,
     alt,
@@ -12,6 +13,7 @@
     class: className,
   }: {
     resourceId: string
+    contentId?: string
     meta: Meta[] | Meta
     sizes?: string
     alt: string
@@ -45,7 +47,7 @@
     loadFailureCaptured = true
 
     capture("resource load failed", {
-      content_id: "home",
+      content_id: contentId,
       operation: "load",
       resource_type: "image",
       asset_id: resourceId,

@@ -1,4 +1,9 @@
+import { isLocalizationExcludedPath } from "$lib/routes"
 import { SEO_ROUTE_IDS, SEO_ROUTES, type Locale } from "$lib/seo"
+
+// Re-exported from the shared route registry so the localization exclusions live
+// in one place while the request hooks keep importing them from here.
+export { isLocalizationExcludedPath }
 
 const canonicalLocalizedRoutes = new Map<string, string>(
   SEO_ROUTE_IDS.map((routeId) => {
@@ -10,18 +15,6 @@ const canonicalLocalizedRoutes = new Map<string, string>(
 
 const isLocale = (segment: string): segment is Locale =>
   segment === "en" || segment === "id"
-
-export function isLocalizationExcludedPath(pathname: string) {
-  return (
-    pathname === "/sitemap.xml" ||
-    pathname === "/robots.txt" ||
-    pathname === "/studio" ||
-    pathname.startsWith("/studio/") ||
-    pathname === "/resources/vibecoding-workshop.pdf" ||
-    pathname === "/resources/vibecoding-demo/agent-sessions" ||
-    pathname.startsWith("/resources/vibecoding-demo/agent-sessions/")
-  )
-}
 
 /**
  * Maps only real, canonical Indonesian page URLs to their unprefixed SvelteKit

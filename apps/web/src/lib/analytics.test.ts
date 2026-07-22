@@ -169,6 +169,25 @@ describe("safe analytics helpers", () => {
     )
   })
 
+  it("infers locale and route from the current pathname by default", async () => {
+    const { getSharedAnalyticsContext } = await import("./posthog")
+
+    expect(getSharedAnalyticsContext()).toEqual(
+      expect.objectContaining({ locale: "id", route: "cv" }),
+    )
+  })
+
+  it("prefers registered locale and route over inferred fallbacks", async () => {
+    const { getSharedAnalyticsContext, registerAnalyticsContext } =
+      await import("./posthog")
+
+    registerAnalyticsContext({ locale: "en", route: "home" })
+
+    expect(getSharedAnalyticsContext()).toEqual(
+      expect.objectContaining({ locale: "en", route: "home" }),
+    )
+  })
+
   it("redacts pageview query parameters and hashes", async () => {
     const { capturePageview } = await import("./analytics")
 

@@ -4,7 +4,7 @@
   import type { Snippet } from "svelte"
   import { onMount } from "svelte"
   import { m } from "$lib/paraglide/messages"
-  import { capture } from "$lib/analytics"
+  import { capture, captureOutboundLink } from "$lib/analytics"
 
   let {
     projectId,
@@ -77,15 +77,19 @@
       lighthouse: "project_performance",
     }[linkType]
 
-    capture("outbound link clicked", {
-      placement: "home_project_card",
-      destination_id: `${projectId}_${linkType}`,
-      destination_host: new URL(destinationUrl).hostname,
-      label: `${projectId}_${linkType}`,
-      category,
-      project_id: projectId,
-      project_title: title,
-    })
+    captureOutboundLink(
+      {
+        destination_id: `${projectId}_${linkType}`,
+        url: destinationUrl,
+        placement: "home_project_card",
+      },
+      {
+        label: `${projectId}_${linkType}`,
+        category,
+        project_id: projectId,
+        project_title: title,
+      },
+    )
   }
 </script>
 

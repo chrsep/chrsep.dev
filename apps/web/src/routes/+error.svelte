@@ -3,28 +3,13 @@
   import { onMount } from "svelte"
   import ButtonLink from "$lib/button-link.svelte"
   import { capture } from "$lib/analytics"
+  import { redactPathname } from "$lib/posthog"
   import { m } from "$lib/paraglide/messages"
   import { getLocale, localizeHref } from "$lib/paraglide/runtime"
   import Seo from "$lib/seo.svelte"
 
   const locale = getLocale()
   const isNotFound = $derived(page.status === 404)
-
-  function pathPattern(pathname: string) {
-    const segments = pathname.split("/").filter(Boolean)
-    const localeOffset = segments[0] === "id" ? 1 : 0
-    const knownRootSegments = new Set(["about", "cv", "resources"])
-
-    const normalized = segments.map((segment, index) => {
-      if (index === 0 && segment === "id") return "id"
-      if (index === localeOffset && knownRootSegments.has(segment)) {
-        return segment
-      }
-      return ":unknown"
-    })
-
-    return normalized.length > 0 ? `/${normalized.join("/")}` : "/"
-  }
 
   onMount(() => {
     if (page.status !== 404) return
@@ -40,7 +25,7 @@
 
     capture("page not found viewed", {
       status: 404,
-      path_pattern: pathPattern(page.url.pathname),
+      path_pattern: redactPathname(page.url.pathname),
       path_depth: segments.length,
       referrer_type: referrerType,
     })

@@ -132,6 +132,22 @@ export function capture<EventName extends AnalyticsEventName>(
   }
 }
 
+export function captureOutboundLink(
+  link: { destination_id: string; url: string; placement: string },
+  extra: EventProperties = {},
+) {
+  try {
+    capture("outbound link clicked", {
+      ...extra,
+      destination_id: link.destination_id,
+      destination_host: new URL(link.url).hostname,
+      placement: link.placement,
+    })
+  } catch {
+    // A malformed URL must never interrupt the navigation being measured.
+  }
+}
+
 export function capturePageview(
   currentUrl = typeof window === "undefined" ? undefined : window.location.href,
   context: PageviewContext = {},

@@ -1,7 +1,7 @@
-export const SITE_ORIGIN = "https://www.chrsep.dev" as const
-export const SITE_NAME = "Chrisando E. Pramudhita" as const
+import { ROUTE_DEFINITIONS, SEO_ROUTE_IDS, SITE_ORIGIN } from "$lib/routes"
 
-export const SEO_ROUTE_IDS = ["home", "about", "cv", "vibe"] as const
+export { SEO_ROUTE_IDS, SITE_ORIGIN }
+export const SITE_NAME = "Chrisando E. Pramudhita" as const
 
 export type Locale = "en" | "id"
 export type SeoRouteId = (typeof SEO_ROUTE_IDS)[number]
@@ -33,47 +33,20 @@ export type NoindexSeoProps = {
 
 export type SeoProps = IndexableSeoProps | NoindexSeoProps
 
-export const SEO_ROUTES = {
-  home: {
-    paths: { en: "/", id: "/id" },
-    socialImage: "/og/portfolio.png",
-    socialImageAlt: {
-      en: "Portfolio preview for Chrisando E. Pramudhita, full-stack software developer.",
-      id: "Pratinjau portofolio Chrisando E. Pramudhita, full-stack software developer.",
+// Reshaped from the shared route registry (the single source of truth for
+// pathnames and route ids) so SEO presentation data lives beside the analytics
+// and pathname classifications it must stay in sync with.
+export const SEO_ROUTES: Record<SeoRouteId, SeoRouteConfig> = Object.fromEntries(
+  ROUTE_DEFINITIONS.map((route): [SeoRouteId, SeoRouteConfig] => [
+    route.seoId,
+    {
+      paths: route.paths,
+      socialImage: route.socialImage,
+      socialImageAlt: route.socialImageAlt,
+      schemaKind: route.schemaKind,
     },
-    schemaKind: "home",
-  },
-  about: {
-    paths: { en: "/about", id: "/id/about" },
-    socialImage: "/og/portfolio.png",
-    socialImageAlt: {
-      en: "Portfolio preview for Chrisando E. Pramudhita, full-stack software developer.",
-      id: "Pratinjau portofolio Chrisando E. Pramudhita, full-stack software developer.",
-    },
-    schemaKind: "profile",
-  },
-  cv: {
-    paths: { en: "/cv", id: "/id/cv" },
-    socialImage: "/og/portfolio.png",
-    socialImageAlt: {
-      en: "Portfolio preview for Chrisando E. Pramudhita, full-stack software developer.",
-      id: "Pratinjau portofolio Chrisando E. Pramudhita, full-stack software developer.",
-    },
-    schemaKind: "cv",
-  },
-  vibe: {
-    paths: {
-      en: "/resources/vibecoding-demo",
-      id: "/id/resources/vibecoding-demo",
-    },
-    socialImage: "/og/vibecoding-workshop.png",
-    socialImageAlt: {
-      en: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
-      id: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
-    },
-    schemaKind: "workshop",
-  },
-} as const satisfies Record<SeoRouteId, SeoRouteConfig>
+  ]),
+) as Record<SeoRouteId, SeoRouteConfig>
 
 export function absoluteUrl(path: string) {
   return new URL(path, SITE_ORIGIN).href

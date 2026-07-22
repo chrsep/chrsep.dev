@@ -15,7 +15,9 @@
     localizeHref,
   } from "$lib/paraglide/runtime"
   import { afterNavigate } from "$app/navigation"
-  import { capture, capturePageview } from "$lib/analytics"
+  import { capture, captureOutboundLink, capturePageview } from "$lib/analytics"
+  import { inferAnalyticsRoute, matchRoute } from "$lib/routes"
+  import { getSeoRoute } from "$lib/seo"
 
   let { children }: { children?: Snippet } = $props()
 
@@ -27,25 +29,23 @@
   afterNavigate(({ to }) => {
     const url = to?.url ?? new URL(window.location.href)
     capturePageview(url.href, {
-      route_id: routeId(url.pathname),
+      route_id: inferAnalyticsRoute(url.pathname),
       locale: getLocale(),
     })
   })
 
   const canonicalPath = $derived(deLocalizeHref(page.url.pathname))
 
+  // Canonical + hreflang are emitted here at the layout level so EVERY known
+  // route gets them structurally, independent of whether a page wires up <Seo>.
+  const seoRoute = $derived.by(() => {
+    const match = matchRoute(page.url.pathname)
+    return match ? getSeoRoute(match.seoId, getLocale()) : null
+  })
+
   function localizedPath(path: string, locale: (typeof locales)[number]) {
     const href = localizeHref(path, { locale })
     return href !== "/" && href.endsWith("/") ? href.slice(0, -1) : href
-  }
-
-  function routeId(pathname: string) {
-    const path = deLocalizeHref(pathname)
-    if (path === "/") return "home"
-    if (path === "/cv") return "cv"
-    if (path === "/about") return "about"
-    if (path === "/resources/vibecoding-demo") return "vibecoding_demo"
-    return "unknown"
   }
 
   function captureLanguageChange(toLocale: (typeof locales)[number]) {
@@ -69,13 +69,14 @@
     label: "github" | "linkedin" | "twitter" | "stackoverflow",
     destinationUrl: string,
   ) {
-    capture("outbound link clicked", {
-      placement: "footer_social",
-      destination_id: label,
-      destination_host: new URL(destinationUrl).hostname,
-      label,
-      category: "social",
-    })
+    captureOutboundLink(
+      {
+        destination_id: label,
+        url: destinationUrl,
+        placement: "footer_social",
+      },
+      { label, category: "social" },
+    )
   }
 </script>
 
@@ -87,6 +88,17 @@
     type="font/woff2"
     crossorigin="anonymous"
   />
+
+  {#if seoRoute}
+    <link rel="canonical" href={seoRoute.canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={seoRoute.alternateUrls.en} />
+    <link rel="alternate" hreflang="id" href={seoRoute.alternateUrls.id} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={seoRoute.alternateUrls.xDefault}
+    />
+  {/if}
 </svelte:head>
 
 <a

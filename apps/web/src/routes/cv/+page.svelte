@@ -4,7 +4,7 @@
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
   import { getLocale } from "$lib/paraglide/runtime"
-  import { capture } from "$lib/analytics"
+  import { capture, captureOutboundLink } from "$lib/analytics"
 
   let cvArticle: HTMLElement | null = null
 
@@ -54,15 +54,15 @@
     projectId?: string
     projectTitle?: string
   }) {
-    capture("outbound link clicked", {
-      placement,
-      destination_id: label,
-      destination_host: new URL(destinationUrl).hostname,
-      label,
-      category,
-      ...(projectId ? { project_id: projectId } : {}),
-      ...(projectTitle ? { project_title: projectTitle } : {}),
-    })
+    captureOutboundLink(
+      { destination_id: label, url: destinationUrl, placement },
+      {
+        label,
+        category,
+        ...(projectId ? { project_id: projectId } : {}),
+        ...(projectTitle ? { project_title: projectTitle } : {}),
+      },
+    )
   }
 </script>
 

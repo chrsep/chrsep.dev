@@ -1,5 +1,10 @@
 import { browser, dev } from "$app/environment"
 import type { CaptureResult } from "posthog-js"
+import {
+  inferAnalyticsRoute,
+  isInternalHostname,
+  SITE_ORIGIN,
+} from "$lib/routes"
 
 type PostHogClient = (typeof import("posthog-js"))["default"]
 type AnalyticsProperties = Record<string, unknown>
@@ -50,13 +55,6 @@ type SharedAnalyticsContext = {
   route: string
 }
 
-const ROUTE_IDS: Record<string, string> = {
-  "/": "home",
-  "/about": "about",
-  "/cv": "cv",
-  "/resources/vibecoding-demo": "vibecoding_demo",
-}
-
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value)
 }
@@ -81,10 +79,7 @@ export function redactPathname(value: string) {
 export function redactUrl(value: string, maskPathname = false) {
   try {
     const isAbsolute = /^[a-z][a-z\d+.-]*:/i.test(value)
-    const url = new URL(
-      value,
-      browser ? window.location.origin : "https://chrsep.dev",
-    )
+    const url = new URL(value, browser ? window.location.origin : SITE_ORIGIN)
 
     url.username = ""
     url.password = ""
@@ -107,13 +102,13 @@ export function redactUrl(value: string, maskPathname = false) {
 function hasUnknownInternalPath(value: string) {
   try {
     const isAbsolute = /^[a-z][a-z\d+.-]*:/i.test(value)
-    const baseOrigin = browser ? window.location.origin : "https://chrsep.dev"
+    const baseOrigin = browser ? window.location.origin : SITE_ORIGIN
     const url = new URL(value, baseOrigin)
 
     if (
       isAbsolute &&
       url.origin !== baseOrigin &&
-      url.hostname !== "chrsep.dev"
+      !isInternalHostname(url.hostname)
     ) {
       return false
     }
@@ -247,24 +242,19 @@ function inferLocale(pathname = browser ? window.location.pathname : "/") {
 }
 
 function inferRoute(pathname = browser ? window.location.pathname : "/") {
-  const pathnameWithoutQuery = pathname.split(/[?#]/, 1)[0]
-  const withoutLocale = pathnameWithoutQuery.replace(/^\/id(?=\/|$)/, "") || "/"
-  const normalizedPath =
-    withoutLocale !== "/" && withoutLocale.endsWith("/")
-      ? withoutLocale.slice(0, -1)
-      : withoutLocale
-
-  return ROUTE_IDS[normalizedPath] ?? "unknown"
+  return inferAnalyticsRoute(pathname)
 }
 
 export function getSharedAnalyticsContext() {
+  // Inferred locale/route are fallbacks only; anything explicitly registered via
+  // registerAnalyticsContext (spread last) must win.
   return {
     environment: __APP_ENVIRONMENT__,
     release: __APP_RELEASE__,
     app_surface: APP_SURFACE,
-    ...pageContext,
     locale: inferLocale(),
     route: inferRoute(),
+    ...pageContext,
   }
 }
 
@@ -371,7 +361,27 @@ function startClientLoad(key: string, host: string) {
     .catch(() => {
       client = null
       initializationState = "failed"
-      operationQueue.length = 0
+
+      // Surface genuine application errors even when PostHog is blocked, and
+      // account for the analytics captures that can no longer be delivered.
+      let droppedAnalyticsOps = 0
+      for (const operation of operationQueue.splice(0)) {
+        if (operation.type === "capture_exception") {
+          if (operation.properties) {
+            console.error(operation.error, operation.properties)
+          } else {
+            console.error(operation.error)
+          }
+        } else {
+          droppedAnalyticsOps += 1
+        }
+      }
+      if (droppedAnalyticsOps > 0) {
+        console.warn(
+          `PostHog failed to load; dropped ${droppedAnalyticsOps} queued analytics event(s).`,
+        )
+      }
+
       return null
     })
 }
@@ -432,12 +442,4 @@ export const posthog = {
   captureException(error: unknown, properties?: AnalyticsProperties) {
     dispatch({ type: "capture_exception", error, properties })
   },
-}
-
-export function capture(event: string, properties?: AnalyticsProperties): void {
-  posthog.capture(event, properties)
-}
-
-export function isPostHogReady() {
-  return initializationState === "initialized"
 }

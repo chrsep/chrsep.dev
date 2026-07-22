@@ -2,7 +2,7 @@
   import { onMount, type Component } from "svelte"
   import { fade } from "svelte/transition"
   import { replaceState } from "$app/navigation"
-  import { capture } from "$lib/analytics"
+  import { capture, captureOutboundLink } from "$lib/analytics"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
   import { getLocale } from "$lib/paraglide/runtime"
@@ -151,19 +151,33 @@
 
   let activeTab: TabId = $state("summary")
   let agentSessionsVisited = $state(false)
+  let agentSessionsError = $state(false)
   let activeSectionId: string | null = $state(null)
   let AgentSessionViewer: Component | null = $state(null)
   let presentationLoaded = $state(false)
   let presentationLoadStartedAt: number | null = $state(null)
+  let presentationError = $state(false)
   const viewedSections = new Set<string>()
 
   async function loadAgentSessions() {
     agentSessionsVisited = true
     if (AgentSessionViewer) return
 
-    const module =
-      await import("$lib/vibecoding/agent-sessions/agent-session-viewer.svelte")
-    AgentSessionViewer = module.default
+    agentSessionsError = false
+    try {
+      const module =
+        await import("$lib/vibecoding/agent-sessions/agent-session-viewer.svelte")
+      AgentSessionViewer = module.default
+    } catch {
+      agentSessionsError = true
+      capture("resource load failed", {
+        ...analyticsContext,
+        operation: "load_agent_session_viewer",
+        resource_type: "script",
+        asset_id: "agent_session_viewer",
+        asset_host: "same_origin",
+      })
+    }
   }
 
   function selectTab(
@@ -241,6 +255,7 @@
   }
 
   function loadPresentation() {
+    presentationError = false
     presentationLoadStartedAt = performance.now()
     presentationLoaded = true
   }
@@ -268,17 +283,23 @@
       resource_type: "iframe",
       asset_id: "workshop_presentation",
     })
+    presentationLoaded = false
     presentationLoadStartedAt = null
+    presentationError = true
   }
 
   onMount(() => {
     const url = new URL(window.location.href)
-    if (url.searchParams.has("session")) {
+    const hasSessionParam = url.searchParams.has("session")
+    if (hasSessionParam) {
       selectTab("agent-sessions")
     }
 
     const hash = url.hash.slice(1)
-    if (summarySections.some((section) => section.id === hash)) {
+    if (
+      !hasSessionParam &&
+      summarySections.some((section) => section.id === hash)
+    ) {
       selectTab("summary")
       activeSectionId = hash
       requestAnimationFrame(() => {
@@ -340,12 +361,14 @@
         target="_blank"
         rel="noreferrer"
         onclick={() =>
-          capture("outbound link clicked", {
-            ...analyticsContext,
-            destination_id: "workshop_presentation",
-            destination_host: "vibecoding-workshop-gilt.vercel.app",
-            placement: "resource_header",
-          })}
+          captureOutboundLink(
+            {
+              destination_id: "workshop_presentation",
+              url: "https://vibecoding-workshop-gilt.vercel.app/",
+              placement: "resource_header",
+            },
+            { ...analyticsContext },
+          )}
       >
         {m.vibe_open_presentation()}
         <span class="ml-1.5" aria-hidden="true">↗</span>
@@ -418,6 +441,12 @@
   <p class="text-ink-700 mt-3 text-xs sm:text-sm">
     {m.vibe_presentation_hint()}
   </p>
+
+  {#if presentationError}
+    <p class="mt-1.5 text-xs text-[#f2a7a7] sm:text-sm" role="alert">
+      The presentation couldn't load. Try opening it in a new tab.
+    </p>
+  {/if}
 
   <section class="mt-16 border-t border-[#ffffff14] pt-9 sm:mt-20 sm:pt-12">
     <div class="mb-5 max-w-3xl sm:mb-6">
@@ -556,13 +585,14 @@
                     target="_blank"
                     rel="noreferrer"
                     onclick={() =>
-                      capture("outbound link clicked", {
-                        ...analyticsContext,
-                        destination_id: link.destinationId,
-                        destination_host: new URL(link.href).hostname,
-                        link_group: group.id,
-                        placement: "resource_list",
-                      })}
+                      captureOutboundLink(
+                        {
+                          destination_id: link.destinationId,
+                          url: link.href,
+                          placement: "resource_list",
+                        },
+                        { ...analyticsContext, link_group: group.id },
+                      )}
                   >
                     <span class="min-w-0">
                       <span class="text-ink-900 block font-semibold">
@@ -598,7 +628,22 @@
       tabindex="0"
       hidden={activeTab !== "agent-sessions"}
     >
-      {#if agentSessionsVisited && AgentSessionViewer}
+      {#if agentSessionsError}
+        <div class="max-w-md" role="alert">
+          <h3 class="text-ink-900 text-lg font-bold">Sessions unavailable</h3>
+          <p class="text-ink-700 mt-2 text-sm leading-6">
+            The session viewer couldn't be loaded. Check your connection and try
+            again.
+          </p>
+          <button
+            type="button"
+            class="mt-4 inline-flex min-h-11 items-center rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-black transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            onclick={loadAgentSessions}
+          >
+            Retry
+          </button>
+        </div>
+      {:else if agentSessionsVisited && AgentSessionViewer}
         <AgentSessionViewer />
       {/if}
     </div>

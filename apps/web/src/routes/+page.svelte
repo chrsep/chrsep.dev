@@ -15,7 +15,7 @@
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
   import { getLocale, localizeHref } from "$lib/paraglide/runtime"
-  import { capture, captureException } from "$lib/analytics"
+  import { capture, captureException, captureOutboundLink } from "$lib/analytics"
 
   let GlobeComponent: Component | null = $state(null)
   let showGlobe = $state(false)
@@ -54,13 +54,14 @@
     label: "github" | "linkedin" | "twitter" | "stackoverflow",
     destinationUrl: string,
   ) {
-    capture("outbound link clicked", {
-      placement: "home_hero_social",
-      destination_id: label,
-      destination_host: new URL(destinationUrl).hostname,
-      label,
-      category: "social",
-    })
+    captureOutboundLink(
+      {
+        destination_id: label,
+        url: destinationUrl,
+        placement: "home_hero_social",
+      },
+      { label, category: "social" },
+    )
   }
 </script>
 
@@ -311,13 +312,14 @@
           rel="noreferrer"
           class="mt-6 ml-0 w-full flex-shrink-0 !px-6 !py-4 text-xs sm:w-auto lg:ml-8"
           onclick={() =>
-            capture("outbound link clicked", {
-              placement: "home_open_source_cta",
-              destination_id: "github_profile",
-              destination_host: "github.com",
-              label: "github_profile",
-              category: "open_source",
-            })}
+            captureOutboundLink(
+              {
+                destination_id: "github_profile",
+                url: "https://github.com/chrsep",
+                placement: "home_open_source_cta",
+              },
+              { label: "github_profile", category: "open_source" },
+            )}
         >
           {m.home_open_source_cta()}
           <Icon

@@ -7,150 +7,81 @@ import { gzipSync } from "node:zlib"
 import { parse } from "parse5"
 import sharp from "sharp"
 
-const SITE_ORIGIN = "https://www.chrsep.dev"
+import {
+  LOCALIZATION_EXCLUSIONS,
+  ROUTE_DEFINITIONS,
+  SITE_ORIGIN,
+} from "../src/lib/routes.js"
+
 const ONE_MEGABYTE = 1024 * 1024
+const LOCALES = /** @type {const} */ (["en", "id"])
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url))
 const webDirectory = path.resolve(scriptDirectory, "..")
 const outputDirectory = path.join(webDirectory, ".vercel", "output")
 const staticOutputDirectory = path.join(outputDirectory, "static")
 
-const pages = [
-  {
-    path: "/",
-    output: "index.html",
-    locale: "en",
-    title: "Chrisando E. Pramudhita — Full-Stack Software Developer",
-    description:
-      "Full-stack software developer in South Tangerang, Indonesia, building fast, accessible websites and web apps for businesses.",
-    en: "/",
-    id: "/id",
-    ogLocale: "en_US",
-    ogAlternateLocale: "id_ID",
-    image: "/og/portfolio.png",
-    imageAlt:
-      "Portfolio preview for Chrisando E. Pramudhita, full-stack software developer.",
-    schemaTypes: ["WebSite", "WebPage", "Person"],
-  },
-  {
-    path: "/id",
-    output: "id.html",
-    locale: "id",
-    title: "Chrisando E. Pramudhita — Full-Stack Software Developer",
-    description:
-      "Full-stack software developer di Tangerang Selatan, Indonesia, membangun website dan aplikasi web cepat, aksesibel, dan ramah pengguna untuk bisnis.",
-    en: "/",
-    id: "/id",
-    ogLocale: "id_ID",
-    ogAlternateLocale: "en_US",
-    image: "/og/portfolio.png",
-    imageAlt:
-      "Pratinjau portofolio Chrisando E. Pramudhita, full-stack software developer.",
-    schemaTypes: ["WebPage"],
-  },
-  {
-    path: "/about",
-    output: "about.html",
-    locale: "en",
-    title: "About & Approach — Chrisando E. Pramudhita",
-    description:
-      "Learn about Chrisando’s background, product mindset, and practical approach to building fast, accessible websites and web apps.",
-    en: "/about",
-    id: "/id/about",
-    ogLocale: "en_US",
-    ogAlternateLocale: "id_ID",
-    image: "/og/portfolio.png",
-    imageAlt:
-      "Portfolio preview for Chrisando E. Pramudhita, full-stack software developer.",
-    schemaTypes: ["ProfilePage", "Person"],
-  },
-  {
-    path: "/id/about",
-    output: "id/about.html",
-    locale: "id",
-    title: "Profil dan Cara Kerja — Chrisando E. Pramudhita",
-    description:
-      "Kenali latar belakang, cara kerja, dan pendekatan praktis Chrisando dalam membangun website dan aplikasi web yang cepat dan aksesibel.",
-    en: "/about",
-    id: "/id/about",
-    ogLocale: "id_ID",
-    ogAlternateLocale: "en_US",
-    image: "/og/portfolio.png",
-    imageAlt:
-      "Pratinjau portofolio Chrisando E. Pramudhita, full-stack software developer.",
-    schemaTypes: ["ProfilePage", "Person"],
-  },
-  {
-    path: "/cv",
-    output: "cv.html",
-    locale: "en",
-    title: "CV & Experience — Chrisando E. Pramudhita",
-    description:
-      "Explore Chrisando E. Pramudhita’s full-stack software development experience, selected projects, education, and professional training.",
-    en: "/cv",
-    id: "/id/cv",
-    ogLocale: "en_US",
-    ogAlternateLocale: "id_ID",
-    image: "/og/portfolio.png",
-    imageAlt:
-      "Portfolio preview for Chrisando E. Pramudhita, full-stack software developer.",
-    schemaTypes: ["WebPage"],
-  },
-  {
-    path: "/id/cv",
-    output: "id/cv.html",
-    locale: "id",
-    title: "CV dan Pengalaman — Chrisando E. Pramudhita",
-    description:
-      "Lihat pengalaman Chrisando E. Pramudhita sebagai full-stack software developer, proyek pilihan, pendidikan, dan pelatihan profesionalnya.",
-    en: "/cv",
-    id: "/id/cv",
-    ogLocale: "id_ID",
-    ogAlternateLocale: "en_US",
-    image: "/og/portfolio.png",
-    imageAlt:
-      "Pratinjau portofolio Chrisando E. Pramudhita, full-stack software developer.",
-    schemaTypes: ["WebPage"],
-  },
-  {
-    path: "/resources/vibecoding-demo",
-    output: "resources/vibecoding-demo.html",
-    locale: "en",
-    title: "Vibe Coding Workshop Resources — Chrisando E. Pramudhita",
-    description:
-      "Explore Chrisando’s Vibe Coding workshop slides, live demo, AI agent chat transcripts, repositories, tools, and practical notes.",
-    en: "/resources/vibecoding-demo",
-    id: "/id/resources/vibecoding-demo",
-    ogLocale: "en_US",
-    ogAlternateLocale: "id_ID",
-    image: "/og/vibecoding-workshop.png",
-    imageAlt: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
-    schemaTypes: [
-      "CollectionPage",
-      "LearningResource",
-      "PresentationDigitalDocument",
-    ],
-  },
-  {
-    path: "/id/resources/vibecoding-demo",
-    output: "id/resources/vibecoding-demo.html",
-    locale: "id",
-    title: "Materi Workshop Vibe Coding — Chrisando E. Pramudhita",
-    description:
-      "Jelajahi slide, demo langsung, transkrip AI agent, repositori, tools, dan catatan praktis dari workshop Vibe Coding oleh Chrisando.",
-    en: "/resources/vibecoding-demo",
-    id: "/id/resources/vibecoding-demo",
-    ogLocale: "id_ID",
-    ogAlternateLocale: "en_US",
-    image: "/og/vibecoding-workshop.png",
-    imageAlt: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
-    schemaTypes: [
-      "CollectionPage",
-      "LearningResource",
-      "PresentationDigitalDocument",
-    ],
-  },
-]
+// Titles and descriptions live in the paraglide message catalogs (the same
+// source the pages render from), so the fixture cannot false-fail or false-pass
+// when copy is edited — the expectation moves with the content.
+const messageCatalogs = {
+  en: JSON.parse(
+    await fs.readFile(path.join(webDirectory, "messages", "en.json"), "utf8"),
+  ),
+  id: JSON.parse(
+    await fs.readFile(path.join(webDirectory, "messages", "id.json"), "utf8"),
+  ),
+}
+
+// Message keys for each route's <title>/description, keyed by the registry's
+// stable SEO id (home reuses the site-wide `site_*` keys).
+const SEO_MESSAGE_KEYS = {
+  home: { title: "site_title", description: "site_description" },
+  about: { title: "about_title", description: "about_description" },
+  cv: { title: "cv_title", description: "cv_description" },
+  vibe: { title: "vibe_title", description: "vibe_description" },
+}
+
+// Independent oracle for the JSON-LD @type set seo.ts is expected to emit per
+// schema kind. Kept separate from seo.ts on purpose so the audit catches drift.
+function expectedSchemaTypes(schemaKind, locale) {
+  switch (schemaKind) {
+    case "home":
+      return locale === "en" ? ["WebSite", "WebPage", "Person"] : ["WebPage"]
+    case "profile":
+      return ["ProfilePage", "Person"]
+    case "cv":
+      return ["WebPage"]
+    default:
+      return [
+        "CollectionPage",
+        "LearningResource",
+        "PresentationDigitalDocument",
+      ]
+  }
+}
+
+const pages = ROUTE_DEFINITIONS.flatMap((route) =>
+  LOCALES.map((locale) => {
+    const pathname = route.paths[locale]
+    const keys = SEO_MESSAGE_KEYS[route.seoId]
+
+    return {
+      path: pathname,
+      output: pathname === "/" ? "index.html" : `${pathname.slice(1)}.html`,
+      locale,
+      title: messageCatalogs[locale][keys.title],
+      description: messageCatalogs[locale][keys.description],
+      en: route.paths.en,
+      id: route.paths.id,
+      ogLocale: locale === "en" ? "en_US" : "id_ID",
+      ogAlternateLocale: locale === "en" ? "id_ID" : "en_US",
+      image: route.socialImage,
+      imageAlt: route.socialImageAlt[locale],
+      schemaTypes: expectedSchemaTypes(route.schemaKind, locale),
+    }
+  }),
+)
 
 const rasterAssets = [
   { path: "/favicon-48.png", width: 48, height: 48 },
@@ -663,6 +594,53 @@ function ruleHasHeader(rule, key, value) {
   )
 }
 
+// Drops a trailing Vercel catch-all segment (e.g. "/studio/(.*)" -> "/studio").
+function normalizeHeaderSource(source) {
+  return source.replace(/\/?\(\.\*\)$/, "") || "/"
+}
+
+// Asserts vercel.json's X-Robots-Tag headers stay in lockstep with the shared
+// localization exclusion list (routes.js): vercel.json is static JSON and cannot
+// import the list, so drift is caught here instead. Both directions are checked:
+// every noindex route must have a matching header, and every X-Robots-Tag header
+// must map back to a noindex route so a stale one cannot linger.
+function validateVercelExclusionHeaders(audit, vercelConfig) {
+  const headerRules = vercelConfig.headers ?? []
+  const noindexRoutes = LOCALIZATION_EXCLUSIONS.filter(
+    (route) => route.robotsTag,
+  )
+
+  for (const route of noindexRoutes) {
+    // Subtree routes are noindexed via a wildcard descendant source; exact files
+    // match directly. This mirrors the source strings vercel.json uses.
+    const source = route.subtree ? `${route.path}/(.*)` : route.path
+    audit.check(
+      ruleHasHeader(
+        findVercelRule(vercelConfig, "headers", source),
+        "X-Robots-Tag",
+        route.robotsTag,
+      ),
+      `Vercel config: ${source} serves X-Robots-Tag "${route.robotsTag}" from the shared exclusion list`,
+    )
+  }
+
+  for (const rule of headerRules) {
+    const carriesRobotsTag = rule.headers?.some(
+      (header) => header.key?.toLowerCase() === "x-robots-tag",
+    )
+    if (!carriesRobotsTag) continue
+    const base = normalizeHeaderSource(rule.source ?? "")
+    audit.check(
+      noindexRoutes.some(
+        (route) =>
+          base === route.path ||
+          (route.subtree && base.startsWith(`${route.path}/`)),
+      ),
+      `Vercel config: X-Robots-Tag header for ${rule.source} maps to a shared exclusion route`,
+    )
+  }
+}
+
 async function validateStudioBuild(audit, vercelConfig) {
   const studioPath = path.join(staticOutputDirectory, "studio", "index.html")
   const html = await readText(studioPath, audit, "Studio build")
@@ -887,38 +865,7 @@ async function runBuildAudit() {
     "Vercel source config",
   )
   if (vercelConfig) {
-    audit.check(
-      ruleHasHeader(
-        findVercelRule(
-          vercelConfig,
-          "headers",
-          "/resources/vibecoding-workshop.pdf",
-        ),
-        "X-Robots-Tag",
-        "noindex",
-      ),
-      "Vercel config: PDF has X-Robots-Tag noindex",
-    )
-    audit.check(
-      ruleHasHeader(
-        findVercelRule(
-          vercelConfig,
-          "headers",
-          "/resources/vibecoding-demo/agent-sessions/(.*)",
-        ),
-        "X-Robots-Tag",
-        "noindex",
-      ),
-      "Vercel config: transcript data has X-Robots-Tag noindex",
-    )
-    audit.check(
-      ruleHasHeader(
-        findVercelRule(vercelConfig, "headers", "/studio/(.*)"),
-        "X-Robots-Tag",
-        "noindex, nofollow",
-      ),
-      "Vercel config: Studio descendants have X-Robots-Tag noindex, nofollow",
-    )
+    validateVercelExclusionHeaders(audit, vercelConfig)
     for (const [source, destination] of [
       ["/static/favicon.ico", "/studio/static/favicon.ico"],
       ["/static/favicon.svg", "/studio/static/favicon.svg"],

@@ -6,6 +6,23 @@ import svg from "@poppanator/sveltekit-svg"
 import tailwindcss from "@tailwindcss/vite"
 import { paraglideVitePlugin } from "@inlang/paraglide-js"
 import posthogRollupPlugin from "@posthog/rollup-plugin"
+import { LOCALIZATION_EXCLUSIONS } from "./src/lib/routes.js"
+
+// A subtree route contributes both its exact match and a wildcard descendant
+// match; an exact route contributes only itself. Derived from the shared
+// exclusion list so paraglide, the request hooks and vercel.json stay aligned.
+// The annotation pins `exclude` to the literal `true` RouteStrategy requires
+// (a bare object literal would widen it to `boolean`).
+/** @type {NonNullable<import("@inlang/paraglide-js").CompilerOptions["routeStrategies"]>} */
+const localizationExcludedRouteStrategies = LOCALIZATION_EXCLUSIONS.flatMap(
+  (route) =>
+    route.subtree
+      ? [
+          { match: route.path, exclude: true },
+          { match: `${route.path}/:path(.*)?`, exclude: true },
+        ]
+      : [{ match: route.path, exclude: true }],
+)
 
 const webRoot = fileURLToPath(new URL(".", import.meta.url))
 
@@ -64,21 +81,7 @@ export default defineConfig(({ mode }) => {
         project: "./project.inlang",
         outdir: "./src/lib/paraglide",
         strategy: ["url", "baseLocale"],
-        routeStrategies: [
-          { match: "/sitemap.xml", exclude: true },
-          { match: "/robots.txt", exclude: true },
-          { match: "/studio", exclude: true },
-          { match: "/studio/:path(.*)?", exclude: true },
-          { match: "/resources/vibecoding-workshop.pdf", exclude: true },
-          {
-            match: "/resources/vibecoding-demo/agent-sessions",
-            exclude: true,
-          },
-          {
-            match: "/resources/vibecoding-demo/agent-sessions/:path(.*)?",
-            exclude: true,
-          },
-        ],
+        routeStrategies: localizationExcludedRouteStrategies,
       }),
       ...posthogPlugins,
     ],
