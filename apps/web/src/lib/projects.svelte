@@ -138,15 +138,17 @@
 
   <ul class="mt-4 flex items-center gap-x-4">
     {#if lighthouse}
-      <li class="relative h-[36px] w-[36px]">
+      <li class="relative h-11 w-11">
         <a
           href={lighthouse.link}
           target="_blank"
           rel="noreferrer"
+          aria-label={`${title} Lighthouse score: ${lighthouse.score}`}
+          class="block h-full w-full"
           onclick={() => captureProjectLink("lighthouse", lighthouse.link)}
         >
           <p
-            class="absolute inset-0 flex items-center justify-center rounded-full border-2 border-[#34D399] text-xs text-green-50 shadow-sm"
+            class="absolute inset-1 flex items-center justify-center rounded-full border-2 border-[#34D399] text-xs text-green-50 shadow-sm"
           >
             {lighthouse.score}
           </p>

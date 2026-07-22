@@ -5,13 +5,15 @@
 `chrsep.dev` is a fully prerendered SvelteKit site. The browser integration uses
 `posthog-js`; there is no server SDK because the site has no runtime API routes.
 
-PostHog initializes before hydration from `apps/web/src/hooks.client.ts`. The
-initializer is idempotent and reads `PUBLIC_POSTHOG_KEY` and
+`apps/web/src/hooks.client.ts` schedules PostHog before hydration, but the SDK
+itself is split from the initial bundle and imported at browser idle (with a
+bounded timer fallback). Events and handled exceptions raised before that load
+are queued in order. The idempotent initializer reads `PUBLIC_POSTHOG_KEY` and
 `PUBLIC_POSTHOG_HOST` from Vite's build-time public environment, so changes
-require a rebuild and redeploy. It disables itself in development, tests,
-Vercel previews, or when either required value is absent. Calls through
-`apps/web/src/lib/analytics.ts` are typed and fail closed so analytics cannot
-interrupt rendering or user actions.
+require a rebuild and redeploy without adding a client `/_app/env.js` request.
+It disables itself in development, tests, Vercel previews, or when either
+required value is absent. Calls through `apps/web/src/lib/analytics.ts` are typed
+and fail closed so analytics cannot interrupt rendering or user actions.
 
 Every helper event includes the deployment environment, release, application
 surface, locale, and normalized route. Pageview URLs and URL-like properties
@@ -97,10 +99,11 @@ event names should not be used for new insights:
 
 ## Environment variables
 
-The checked-in `apps/web/.env.example` documents placeholders only. Real values
-belong in Vercel or the developer's untracked environment. Scope the public
-variables to Vercel Production; preview deployments are also suppressed in
-code so they cannot pollute production analytics.
+The checked-in `apps/web/.env.example` uses inert local browser values and blank
+build-upload credentials. Real values belong in Vercel or the developer's
+untracked environment. Scope the public variables to Vercel Production; preview
+deployments are also suppressed in code so they cannot pollute production
+analytics.
 
 | Variable                     | Scope                  | Purpose                                            |
 | ---------------------------- | ---------------------- | -------------------------------------------------- |
@@ -127,7 +130,7 @@ plugin.
 ## Verification completed locally
 
 - [x] Installed `@posthog/rollup-plugin` and updated `pnpm-lock.yaml`.
-- [x] Ran 29 tests and `svelte-check` with zero errors and zero warnings.
+- [x] Ran 69 tests and `svelte-check` with zero errors and zero warnings.
 - [x] Built the production site without upload credentials and confirmed that
       neither `.vercel/output` nor `.svelte-kit/output` contains `.map` files.
 - [x] Confirmed the prerendered client has no `/_app/env.js` runtime dependency.

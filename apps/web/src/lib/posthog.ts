@@ -1,5 +1,19 @@
 import { browser, dev } from "$app/environment"
-import posthog, { type CaptureResult } from "posthog-js"
+import type { CaptureResult } from "posthog-js"
+
+type PostHogClient = (typeof import("posthog-js"))["default"]
+type AnalyticsProperties = Record<string, unknown>
+type QueuedOperation =
+  | {
+      type: "capture"
+      event: string
+      properties?: AnalyticsProperties
+    }
+  | {
+      type: "capture_exception"
+      error: unknown
+      properties?: AnalyticsProperties
+    }
 
 const APP_SURFACE = "website"
 const MASKED_CONTENT_SELECTOR =
@@ -15,9 +29,18 @@ const ELEMENT_CHAIN_URL_ATTRIBUTE_PATTERN =
   /((?:attr__)?(?:href|src)=")([^"]*)(")/gi
 const DIRECT_REFERRER = "$direct"
 
-let initializationState: "idle" | "initialized" | "suppressed" | "failed" =
-  "idle"
+let initializationState:
+  | "idle"
+  | "scheduled"
+  | "loading"
+  | "initialized"
+  | "suppressed"
+  | "failed" = "idle"
+let clientPromise: Promise<PostHogClient | null> | null = null
+let client: PostHogClient | null = null
+let entryRoute: string | null = null
 let pageContext: Partial<SharedAnalyticsContext> = {}
+const operationQueue: QueuedOperation[] = []
 
 type SharedAnalyticsContext = {
   environment: string
@@ -248,23 +271,129 @@ export function getSharedAnalyticsContext() {
 export function registerAnalyticsContext(
   context: Partial<SharedAnalyticsContext> = {},
 ) {
-  if (initializationState !== "initialized") return
+  pageContext = {
+    ...pageContext,
+    ...Object.fromEntries(
+      Object.entries(context).filter(([, value]) => value !== undefined),
+    ),
+  }
+
+  if (!client) return
 
   try {
-    pageContext = {
-      ...pageContext,
-      ...Object.fromEntries(
-        Object.entries(context).filter(([, value]) => value !== undefined),
-      ),
-    }
-    posthog.register(getSharedAnalyticsContext())
+    client.register(getSharedAnalyticsContext())
   } catch {
     // Analytics must never interrupt navigation or rendering.
   }
 }
 
+function executeOperation(
+  posthogClient: PostHogClient,
+  operation: QueuedOperation,
+) {
+  try {
+    if (operation.type === "capture") {
+      posthogClient.capture(operation.event, operation.properties)
+      return
+    }
+
+    posthogClient.captureException(operation.error, operation.properties)
+  } catch {
+    // Analytics must never interrupt the action being measured.
+  }
+}
+
+function flushOperationQueue(posthogClient: PostHogClient) {
+  for (const operation of operationQueue.splice(0)) {
+    executeOperation(posthogClient, operation)
+  }
+}
+
+function startClientLoad(key: string, host: string) {
+  if (initializationState !== "scheduled" || clientPromise) return
+
+  initializationState = "loading"
+  clientPromise = import("posthog-js")
+    .then(({ default: loadedPostHog }) => {
+      loadedPostHog.init(key, {
+        api_host: host,
+        defaults: "2026-06-25",
+        autocapture: true,
+        capture_pageview: false,
+        capture_pageleave: true,
+        capture_exceptions: {
+          capture_unhandled_errors: true,
+          capture_unhandled_rejections: true,
+          capture_console_errors: true,
+        },
+        capture_performance: {
+          network_timing: true,
+          web_vitals: true,
+          web_vitals_attribution: true,
+        },
+        capture_heatmaps: true,
+        capture_dead_clicks: true,
+        advanced_disable_flags: entryRoute === "unknown",
+        advanced_disable_feature_flags: true,
+        advanced_disable_feature_flags_on_first_load: true,
+        person_profiles: "never",
+        respect_dnt: true,
+        disable_capture_url_hashes: true,
+        mask_personal_data_properties: true,
+        custom_personal_data_properties: ["session", "token", "code", "state"],
+        session_recording: {
+          maskAllInputs: true,
+          maskTextSelector: MASKED_CONTENT_SELECTOR,
+          recordBody: false,
+          recordHeaders: false,
+          maskCapturedNetworkRequestFn: (request) => ({
+            ...request,
+            name: request.name
+              ? redactUrl(request.name, hasUnknownInternalPath(request.name))
+              : request.name,
+          }),
+        },
+        before_send: redactAnalyticsEvent,
+      })
+
+      client = loadedPostHog
+      initializationState = "initialized"
+
+      try {
+        loadedPostHog.register(getSharedAnalyticsContext())
+      } catch {
+        // Captures still work when shared-property registration is unavailable.
+      }
+
+      flushOperationQueue(loadedPostHog)
+      return loadedPostHog
+    })
+    .catch(() => {
+      client = null
+      initializationState = "failed"
+      operationQueue.length = 0
+      return null
+    })
+}
+
+function scheduleClientLoad(key: string, host: string) {
+  const load = () => startClientLoad(key, host)
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(load, { timeout: 2_000 })
+  } else {
+    globalThis.setTimeout(load, 1_000)
+  }
+}
+
 export function initPostHog() {
-  if (initializationState === "initialized") return true
+  if (
+    initializationState === "scheduled" ||
+    initializationState === "loading" ||
+    initializationState === "initialized"
+  ) {
+    return true
+  }
   if (initializationState !== "idle") return false
 
   if (runtimeIsSuppressed()) {
@@ -279,59 +408,36 @@ export function initPostHog() {
     return false
   }
 
-  try {
-    posthog.init(key, {
-      api_host: host,
-      defaults: "2026-06-25",
-      autocapture: true,
-      capture_pageview: false,
-      capture_pageleave: true,
-      capture_exceptions: {
-        capture_unhandled_errors: true,
-        capture_unhandled_rejections: true,
-        capture_console_errors: true,
-      },
-      capture_performance: {
-        network_timing: true,
-        web_vitals: true,
-        web_vitals_attribution: true,
-      },
-      capture_heatmaps: true,
-      capture_dead_clicks: true,
-      advanced_disable_flags: inferRoute() === "unknown",
-      advanced_disable_feature_flags: true,
-      advanced_disable_feature_flags_on_first_load: true,
-      person_profiles: "never",
-      respect_dnt: true,
-      disable_capture_url_hashes: true,
-      mask_personal_data_properties: true,
-      custom_personal_data_properties: ["session", "token", "code", "state"],
-      session_recording: {
-        maskAllInputs: true,
-        maskTextSelector: MASKED_CONTENT_SELECTOR,
-        recordBody: false,
-        recordHeaders: false,
-        maskCapturedNetworkRequestFn: (request) => ({
-          ...request,
-          name: request.name
-            ? redactUrl(request.name, hasUnknownInternalPath(request.name))
-            : request.name,
-        }),
-      },
-      before_send: redactAnalyticsEvent,
-    })
+  entryRoute = inferRoute()
+  initializationState = "scheduled"
+  scheduleClientLoad(key, host)
+  return true
+}
 
-    initializationState = "initialized"
-    registerAnalyticsContext()
-    return true
-  } catch {
-    initializationState = "failed"
-    return false
+function dispatch(operation: QueuedOperation) {
+  if (!initPostHog()) return
+
+  if (client) {
+    executeOperation(client, operation)
+    return
   }
+
+  operationQueue.push(operation)
+}
+
+export const posthog = {
+  capture(event: string, properties?: AnalyticsProperties) {
+    dispatch({ type: "capture", event, properties })
+  },
+  captureException(error: unknown, properties?: AnalyticsProperties) {
+    dispatch({ type: "capture_exception", error, properties })
+  },
+}
+
+export function capture(event: string, properties?: AnalyticsProperties): void {
+  posthog.capture(event, properties)
 }
 
 export function isPostHogReady() {
   return initializationState === "initialized"
 }
-
-export { posthog }

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, type Component } from "svelte"
   import { fade } from "svelte/transition"
   import { replaceState } from "$app/navigation"
-  import AgentSessionViewer from "$lib/vibecoding/agent-sessions/agent-session-viewer.svelte"
   import { capture } from "$lib/analytics"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
+  import { getLocale } from "$lib/paraglide/runtime"
 
   type TabId = "links" | "agent-sessions" | "summary" | "qa"
 
@@ -149,10 +149,22 @@
     },
   ] as const
 
-  let activeTab: TabId = "summary"
-  let agentSessionsVisited = false
-  let activeSectionId: string | null = null
+  let activeTab: TabId = $state("summary")
+  let agentSessionsVisited = $state(false)
+  let activeSectionId: string | null = $state(null)
+  let AgentSessionViewer: Component | null = $state(null)
+  let presentationLoaded = $state(false)
+  let presentationLoadStartedAt: number | null = $state(null)
   const viewedSections = new Set<string>()
+
+  async function loadAgentSessions() {
+    agentSessionsVisited = true
+    if (AgentSessionViewer) return
+
+    const module =
+      await import("$lib/vibecoding/agent-sessions/agent-session-viewer.svelte")
+    AgentSessionViewer = module.default
+  }
 
   function selectTab(
     tabId: TabId,
@@ -164,7 +176,7 @@
   ) {
     const changed = activeTab !== tabId
     activeTab = tabId
-    if (tabId === "agent-sessions") agentSessionsVisited = true
+    if (tabId === "agent-sessions") void loadAgentSessions()
 
     if (changed && options.track) {
       capture("resource tab selected", {
@@ -228,6 +240,37 @@
     replaceState(`#${id}`, {})
   }
 
+  function loadPresentation() {
+    presentationLoadStartedAt = performance.now()
+    presentationLoaded = true
+  }
+
+  function handlePresentationLoaded() {
+    capture("content load completed", {
+      ...analyticsContext,
+      operation: "load_embedded_presentation",
+      status: "success",
+      duration_ms:
+        presentationLoadStartedAt === null
+          ? 0
+          : Math.max(
+              0,
+              Math.round(performance.now() - presentationLoadStartedAt),
+            ),
+    })
+    presentationLoadStartedAt = null
+  }
+
+  function handlePresentationError() {
+    capture("resource load failed", {
+      ...analyticsContext,
+      operation: "load_embedded_presentation",
+      resource_type: "iframe",
+      asset_id: "workshop_presentation",
+    })
+    presentationLoadStartedAt = null
+  }
+
   onMount(() => {
     const url = new URL(window.location.href)
     if (url.searchParams.has("session")) {
@@ -264,7 +307,13 @@
   })
 </script>
 
-<Seo title={m.vibe_title()} description={m.vibe_description()} />
+<Seo
+  mode="indexable"
+  routeId="vibe"
+  locale={getLocale()}
+  title={m.vibe_title()}
+  description={m.vibe_description()}
+/>
 
 <section
   class="mx-auto min-h-[70vh] max-w-[1920px] px-6 pt-12 pb-8 sm:px-8 sm:pt-20 sm:pb-12 md:px-32"
@@ -273,11 +322,16 @@
   <header
     class="mb-6 flex flex-col gap-5 sm:mb-8 sm:flex-row sm:items-end sm:justify-between"
   >
-    <h1
-      class="text-ink-900 text-4xl leading-tight font-black tracking-tight sm:text-5xl md:text-6xl"
-    >
-      Vibe Coding
-    </h1>
+    <div class="max-w-3xl">
+      <h1
+        class="text-ink-900 text-4xl leading-tight font-black tracking-tight sm:text-5xl md:text-6xl"
+      >
+        Vibe Coding
+      </h1>
+      <p class="text-ink-700 mt-3 max-w-2xl text-base leading-7 sm:text-lg">
+        {m.vibe_description()}
+      </p>
+    </div>
 
     <div class="flex w-full items-center gap-5 sm:w-auto sm:justify-end">
       <a
@@ -319,13 +373,46 @@
   <div
     class="overflow-hidden rounded-xl border border-[#ffffff14] bg-black shadow-sm"
   >
-    <iframe
-      class="block aspect-video w-full"
-      src="https://vibecoding-workshop-gilt.vercel.app/"
-      title={m.vibe_iframe_title()}
-      allow="fullscreen"
-      allowfullscreen
-    ></iframe>
+    {#if presentationLoaded}
+      <iframe
+        class="block aspect-video w-full"
+        src="https://vibecoding-workshop-gilt.vercel.app/"
+        title={m.vibe_iframe_title()}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="fullscreen"
+        allowfullscreen
+        onload={handlePresentationLoaded}
+        onerror={handlePresentationError}
+      ></iframe>
+    {:else}
+      <button
+        type="button"
+        class="group relative block aspect-video w-full overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        onclick={loadPresentation}
+        aria-label={m.vibe_load_presentation()}
+      >
+        <img
+          class="h-full w-full object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-90"
+          src="/og/vibecoding-workshop.png"
+          alt=""
+          width="1200"
+          height="630"
+          loading="lazy"
+          decoding="async"
+        />
+        <span
+          class="absolute inset-0 flex items-center justify-center bg-black/25"
+        >
+          <span
+            class="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 text-sm font-bold text-black transition-transform duration-200 group-hover:scale-[1.02]"
+          >
+            <span class="mr-2" aria-hidden="true">▶</span>
+            {m.vibe_load_presentation()}
+          </span>
+        </span>
+      </button>
+    {/if}
   </div>
 
   <p class="text-ink-700 mt-3 text-xs sm:text-sm">
@@ -511,7 +598,7 @@
       tabindex="0"
       hidden={activeTab !== "agent-sessions"}
     >
-      {#if agentSessionsVisited}
+      {#if agentSessionsVisited && AgentSessionViewer}
         <AgentSessionViewer />
       {/if}
     </div>

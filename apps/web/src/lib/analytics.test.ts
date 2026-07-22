@@ -24,6 +24,10 @@ beforeEach(() => {
       origin: "https://chrsep.dev",
       pathname: "/id/cv",
     },
+    requestIdleCallback: vi.fn((callback: IdleRequestCallback) => {
+      callback({ didTimeout: false, timeRemaining: () => 50 })
+      return 1
+    }),
   })
 })
 
@@ -38,6 +42,9 @@ describe("PostHog initialization", () => {
 
     expect(initPostHog()).toBe(true)
     expect(initPostHog()).toBe(true)
+    await vi.waitFor(() => {
+      expect(posthogMock.init).toHaveBeenCalledTimes(1)
+    })
     expect(posthogMock.init).toHaveBeenCalledTimes(1)
     expect(posthogMock.init).toHaveBeenCalledWith(
       "phc_test",
@@ -81,10 +88,17 @@ describe("PostHog initialization", () => {
         origin: "https://chrsep.dev",
         pathname: "/private/customer-slug",
       },
+      requestIdleCallback: vi.fn((callback: IdleRequestCallback) => {
+        callback({ didTimeout: false, timeRemaining: () => 50 })
+        return 1
+      }),
     })
     const { initPostHog } = await import("./posthog")
 
     expect(initPostHog()).toBe(true)
+    await vi.waitFor(() => {
+      expect(posthogMock.init).toHaveBeenCalledTimes(1)
+    })
     expect(posthogMock.init).toHaveBeenCalledWith(
       "phc_test",
       expect.objectContaining({
@@ -93,6 +107,40 @@ describe("PostHog initialization", () => {
         advanced_disable_feature_flags_on_first_load: true,
       }),
     )
+  })
+
+  it("queues events and handled errors until the idle SDK load", async () => {
+    let runIdle: IdleRequestCallback | undefined
+    vi.stubGlobal("window", {
+      location: {
+        href: "https://chrsep.dev/id/cv",
+        origin: "https://chrsep.dev",
+        pathname: "/id/cv",
+      },
+      requestIdleCallback: vi.fn((callback: IdleRequestCallback) => {
+        runIdle = callback
+        return 1
+      }),
+    })
+    const { capture, captureException } = await import("./analytics")
+
+    capture("language changed", {
+      from_locale: "en",
+      to_locale: "id",
+    })
+    captureException(new Error("queued application error"), {
+      source: "test",
+    })
+
+    expect(posthogMock.init).not.toHaveBeenCalled()
+    expect(posthogMock.capture).not.toHaveBeenCalled()
+    expect(posthogMock.captureException).not.toHaveBeenCalled()
+
+    runIdle?.({ didTimeout: false, timeRemaining: () => 50 })
+    await vi.waitFor(() => {
+      expect(posthogMock.capture).toHaveBeenCalledTimes(1)
+      expect(posthogMock.captureException).toHaveBeenCalledTimes(1)
+    })
   })
 })
 
@@ -105,6 +153,9 @@ describe("safe analytics helpers", () => {
       destination: "email",
     })
 
+    await vi.waitFor(() => {
+      expect(posthogMock.capture).toHaveBeenCalledTimes(1)
+    })
     expect(posthogMock.capture).toHaveBeenCalledWith(
       "contact cta clicked",
       expect.objectContaining({
@@ -126,6 +177,9 @@ describe("safe analytics helpers", () => {
       locale: "id",
     })
 
+    await vi.waitFor(() => {
+      expect(posthogMock.capture).toHaveBeenCalledTimes(1)
+    })
     expect(posthogMock.capture).toHaveBeenCalledWith(
       "$pageview",
       expect.objectContaining({
@@ -156,6 +210,11 @@ describe("safe analytics helpers", () => {
         source: "test",
       }),
     ).not.toThrow()
+
+    await vi.waitFor(() => {
+      expect(posthogMock.capture).toHaveBeenCalledTimes(1)
+      expect(posthogMock.captureException).toHaveBeenCalledTimes(1)
+    })
   })
 })
 
@@ -226,6 +285,9 @@ describe("event redaction", () => {
     const { initPostHog } = await import("./posthog")
 
     initPostHog()
+    await vi.waitFor(() => {
+      expect(posthogMock.init).toHaveBeenCalledTimes(1)
+    })
     const config = posthogMock.init.mock.calls[0]?.[1]
     const maskRequest = config?.session_recording?.maskCapturedNetworkRequestFn
 

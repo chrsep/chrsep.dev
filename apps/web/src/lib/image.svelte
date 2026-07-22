@@ -1,14 +1,14 @@
 <script lang="ts">
   import { capture } from "$lib/analytics"
 
-  type Meta = { src: string; width: number; format: string }
+  type Meta = { src: string; width: number; height: number; format: string }
 
   let {
     resourceId,
     meta,
     sizes,
     alt,
-    loading,
+    loading = "lazy",
     class: className,
   }: {
     resourceId: string
@@ -67,6 +67,9 @@
     src={fallback.src}
     {alt}
     {loading}
+    decoding="async"
+    width={fallback.width}
+    height={fallback.height}
     class={className}
     onerror={handleImageError}
   />

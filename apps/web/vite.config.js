@@ -64,6 +64,21 @@ export default defineConfig(({ mode }) => {
         project: "./project.inlang",
         outdir: "./src/lib/paraglide",
         strategy: ["url", "baseLocale"],
+        routeStrategies: [
+          { match: "/sitemap.xml", exclude: true },
+          { match: "/robots.txt", exclude: true },
+          { match: "/studio", exclude: true },
+          { match: "/studio/:path(.*)?", exclude: true },
+          { match: "/resources/vibecoding-workshop.pdf", exclude: true },
+          {
+            match: "/resources/vibecoding-demo/agent-sessions",
+            exclude: true,
+          },
+          {
+            match: "/resources/vibecoding-demo/agent-sessions/:path(.*)?",
+            exclude: true,
+          },
+        ],
       }),
       ...posthogPlugins,
     ],

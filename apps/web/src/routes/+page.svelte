@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade } from "svelte/transition"
+  import { onMount, type Component } from "svelte"
 
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
@@ -14,22 +14,41 @@
   import Icon from "$lib/icon.svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
-  import { localizeHref } from "$lib/paraglide/runtime"
+  import { getLocale, localizeHref } from "$lib/paraglide/runtime"
   import { capture, captureException } from "$lib/analytics"
 
-  const globeModule = loadGlobe()
+  let GlobeComponent: Component | null = $state(null)
+  let showGlobe = $state(false)
 
-  async function loadGlobe() {
-    try {
-      return await import("$lib/globe.svelte")
-    } catch (error) {
-      captureException(error, {
-        component: "globe",
-        stage: "dynamic_import",
-      })
-      return null
+  onMount(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)")
+    let cancelled = false
+    let globeImportFailed = false
+
+    const syncGlobe = async () => {
+      showGlobe = mediaQuery.matches
+      if (!showGlobe || GlobeComponent || globeImportFailed) return
+
+      try {
+        const module = await import("$lib/globe.svelte")
+        if (!cancelled) GlobeComponent = module.default
+      } catch (error) {
+        globeImportFailed = true
+        captureException(error, {
+          component: "globe",
+          stage: "dynamic_import",
+        })
+      }
     }
-  }
+
+    void syncGlobe()
+    mediaQuery.addEventListener("change", syncGlobe)
+
+    return () => {
+      cancelled = true
+      mediaQuery.removeEventListener("change", syncGlobe)
+    }
+  })
 
   function captureSocialLink(
     label: "github" | "linkedin" | "twitter" | "stackoverflow",
@@ -45,12 +64,15 @@
   }
 </script>
 
-<Seo title={m.site_title()} description={m.site_description()} />
+<Seo
+  mode="indexable"
+  routeId="home"
+  locale={getLocale()}
+  title={m.site_title()}
+  description={m.site_description()}
+/>
 
-<div
-  class="hero-bg relative overflow-hidden border-t border-[#ffffff0A]"
-  in:fade={{ duration: 250 }}
->
+<div class="hero-bg relative overflow-hidden border-t border-[#ffffff0A]">
   <header
     class="relative z-1 mx-auto max-w-[1920px] px-6 pt-6 pb-8 sm:px-8 sm:pt-40 sm:pb-16 md:h-[720px] md:px-32"
   >
@@ -63,17 +85,16 @@
       />
       <SocialLink
         text="Chrisando"
-        href="https://linkedin.com/in/chrsep"
+        href="https://www.linkedin.com/in/chrsep"
         icon="/icons/linkedin.svg"
         onclick={() =>
-          captureSocialLink("linkedin", "https://linkedin.com/in/chrsep")}
+          captureSocialLink("linkedin", "https://www.linkedin.com/in/chrsep")}
       />
       <SocialLink
         text="@_chrsep"
-        href="https://twitter.com/_chrsep"
+        href="https://x.com/_chrsep"
         icon="/icons/twitter.svg"
-        onclick={() =>
-          captureSocialLink("twitter", "https://twitter.com/_chrsep")}
+        onclick={() => captureSocialLink("twitter", "https://x.com/_chrsep")}
       />
       <SocialLink
         text="@chrsep"
@@ -116,7 +137,7 @@
 
       <ButtonLink
         variant="secondary"
-        href={localizeHref("/cv")}
+        href={localizeHref("/about")}
         class="group !inline-block w-full sm:w-auto"
       >
         {m.home_more_about_me()}
@@ -133,12 +154,9 @@
     </div>
   </header>
 
-  {#await globeModule then module}
-    {#if module}
-      {@const Globe = module.default}
-      <Globe />
-    {/if}
-  {/await}
+  {#if showGlobe && GlobeComponent}
+    <GlobeComponent />
+  {/if}
 </div>
 
 <div class="border-t border-[#ffffff0D] pt-16">
