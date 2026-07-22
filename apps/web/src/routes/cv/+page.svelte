@@ -3,11 +3,66 @@
   import { onMount } from "svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
-  import { posthog } from "$lib/posthog"
+  import { capture } from "$lib/analytics"
+
+  let cvArticle: HTMLElement | null = null
 
   onMount(() => {
-    posthog.capture("cv viewed")
+    if (!cvArticle || typeof IntersectionObserver === "undefined") return
+
+    const sectionHeadings = [
+      ...cvArticle.querySelectorAll<HTMLElement>("h2[id]"),
+    ]
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.5) continue
+
+          const heading = entry.target as HTMLElement
+          capture("content section viewed", {
+            content_id: "cv",
+            section_id: heading.id,
+            position: sectionHeadings.indexOf(heading) + 1,
+          })
+          observer.unobserve(heading)
+        }
+      },
+      { threshold: 0.5 },
+    )
+
+    sectionHeadings.forEach((heading) => observer.observe(heading))
+    return () => observer.disconnect()
   })
+
+  function captureCvOutbound({
+    placement,
+    destinationUrl,
+    label,
+    category,
+    projectId,
+    projectTitle,
+  }: {
+    placement: "cv_projects" | "cv_courses"
+    destinationUrl: string
+    label: string
+    category:
+      | "project_repository"
+      | "project_website"
+      | "project_store"
+      | "certificate"
+    projectId?: string
+    projectTitle?: string
+  }) {
+    capture("outbound link clicked", {
+      placement,
+      destination_id: label,
+      destination_host: new URL(destinationUrl).hostname,
+      label,
+      category,
+      ...(projectId ? { project_id: projectId } : {}),
+      ...(projectTitle ? { project_title: projectTitle } : {}),
+    })
+  }
 </script>
 
 <Seo title={m.cv_title()} description={m.cv_description()} />
@@ -44,7 +99,11 @@
 </header>
 
 <div class="max-w-7xl px-6 md:px-32 2xl:mx-auto 2xl:px-0">
-  <article class="prose max-w-xl" in:fade={{ delay: 100 }}>
+  <article
+    class="prose max-w-xl"
+    in:fade={{ delay: 100 }}
+    bind:this={cvArticle}
+  >
     <section>
       <h2 id="experience" class="!mt-8">
         {m.cv_experiences()}
@@ -79,24 +138,84 @@
       <h3>Atreus</h3>
       <p>
         {m.cv_project_atreus_body()}
-        <a href="https://github.com/chrsep/atreus"> GitHub. </a>
+        <a
+          href="https://github.com/chrsep/atreus"
+          onclick={() =>
+            captureCvOutbound({
+              placement: "cv_projects",
+              destinationUrl: "https://github.com/chrsep/atreus",
+              label: "atreus_github",
+              category: "project_repository",
+              projectId: "atreus",
+              projectTitle: "Atreus",
+            })}
+        >
+          GitHub.
+        </a>
       </p>
       <p class="text-sm">{m.cv_project_atreus_meta()}</p>
 
       <h3>Obserfy</h3>
       <p>
         {m.cv_project_obserfy_body()}
-        <a href="https://github.com/chrsep/obserfy"> GitHub </a>
-        <a href="https://obserfy.com">Web</a>
+        <a
+          href="https://github.com/chrsep/obserfy"
+          onclick={() =>
+            captureCvOutbound({
+              placement: "cv_projects",
+              destinationUrl: "https://github.com/chrsep/obserfy",
+              label: "obserfy_github",
+              category: "project_repository",
+              projectId: "obserfy",
+              projectTitle: "Obserfy",
+            })}
+        >
+          GitHub
+        </a>
+        <a
+          href="https://obserfy.com"
+          onclick={() =>
+            captureCvOutbound({
+              placement: "cv_projects",
+              destinationUrl: "https://obserfy.com",
+              label: "obserfy_web",
+              category: "project_website",
+              projectId: "obserfy",
+              projectTitle: "Obserfy",
+            })}>Web</a
+        >
       </p>
       <p class="text-sm">{m.cv_project_obserfy_meta()}</p>
 
       <h3>Portal</h3>
       <p>
         {m.cv_project_portal_body()}
-        <a href="https://github.com/chrsep/Kingfish"> GitHub. </a>
+        <a
+          href="https://github.com/chrsep/Kingfish"
+          onclick={() =>
+            captureCvOutbound({
+              placement: "cv_projects",
+              destinationUrl: "https://github.com/chrsep/Kingfish",
+              label: "portal_github",
+              category: "project_repository",
+              projectId: "portal",
+              projectTitle: "Portal",
+            })}
+        >
+          GitHub.
+        </a>
         <a
           href="https://play.google.com/store/apps/details?id=com.directdev.portal"
+          onclick={() =>
+            captureCvOutbound({
+              placement: "cv_projects",
+              destinationUrl:
+                "https://play.google.com/store/apps/details?id=com.directdev.portal",
+              label: "portal_google_play",
+              category: "project_store",
+              projectId: "portal",
+              projectTitle: "Portal",
+            })}
         >
           Google Play.
         </a>
@@ -136,25 +255,65 @@
       <ul>
         <li>
           {m.cv_course_dl_1()}
-          <a href="https://coursera.org/share/7e2e1b6c4be6fe5b187aee64362ba4a8">
+          <a
+            href="https://coursera.org/share/7e2e1b6c4be6fe5b187aee64362ba4a8"
+            onclick={() =>
+              captureCvOutbound({
+                placement: "cv_courses",
+                destinationUrl:
+                  "https://coursera.org/share/7e2e1b6c4be6fe5b187aee64362ba4a8",
+                label: "deep_learning_cnn_certificate",
+                category: "certificate",
+              })}
+          >
             {m.cv_certificate()}
           </a>
         </li>
         <li>
           {m.cv_course_dl_2()}
-          <a href="https://coursera.org/share/228b975f5d801b33f02680a0be0dfcb2">
+          <a
+            href="https://coursera.org/share/228b975f5d801b33f02680a0be0dfcb2"
+            onclick={() =>
+              captureCvOutbound({
+                placement: "cv_courses",
+                destinationUrl:
+                  "https://coursera.org/share/228b975f5d801b33f02680a0be0dfcb2",
+                label: "deep_learning_structuring_projects_certificate",
+                category: "certificate",
+              })}
+          >
             {m.cv_certificate()}
           </a>
         </li>
         <li>
           {m.cv_course_dl_3()}
-          <a href="https://coursera.org/share/5ebb9114286e6700c399a0f9a90f43cb">
+          <a
+            href="https://coursera.org/share/5ebb9114286e6700c399a0f9a90f43cb"
+            onclick={() =>
+              captureCvOutbound({
+                placement: "cv_courses",
+                destinationUrl:
+                  "https://coursera.org/share/5ebb9114286e6700c399a0f9a90f43cb",
+                label: "deep_learning_neural_networks_certificate",
+                category: "certificate",
+              })}
+          >
             {m.cv_certificate()}
           </a>
         </li>
         <li>
           {m.cv_course_dl_4()}
-          <a href="https://coursera.org/share/0449290a2a586775031187ee0876f2ec">
+          <a
+            href="https://coursera.org/share/0449290a2a586775031187ee0876f2ec"
+            onclick={() =>
+              captureCvOutbound({
+                placement: "cv_courses",
+                destinationUrl:
+                  "https://coursera.org/share/0449290a2a586775031187ee0876f2ec",
+                label: "deep_learning_optimization_certificate",
+                category: "certificate",
+              })}
+          >
             {m.cv_certificate()}
           </a>
         </li>
@@ -164,7 +323,17 @@
       <h4>Coursera</h4>
       <p>
         {m.cv_course_ml_body()}
-        <a href="https://coursera.org/share/9747c18a12fd68667db0001980a8ab26">
+        <a
+          href="https://coursera.org/share/9747c18a12fd68667db0001980a8ab26"
+          onclick={() =>
+            captureCvOutbound({
+              placement: "cv_courses",
+              destinationUrl:
+                "https://coursera.org/share/9747c18a12fd68667db0001980a8ab26",
+              label: "machine_learning_certificate",
+              category: "certificate",
+            })}
+        >
           {m.cv_certificate()}
         </a>
       </p>

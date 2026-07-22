@@ -15,9 +15,34 @@
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
   import { localizeHref } from "$lib/paraglide/runtime"
-  import { posthog } from "$lib/posthog"
+  import { capture, captureException } from "$lib/analytics"
 
-  const globeModule = import("$lib/globe.svelte")
+  const globeModule = loadGlobe()
+
+  async function loadGlobe() {
+    try {
+      return await import("$lib/globe.svelte")
+    } catch (error) {
+      captureException(error, {
+        component: "globe",
+        stage: "dynamic_import",
+      })
+      return null
+    }
+  }
+
+  function captureSocialLink(
+    label: "github" | "linkedin" | "twitter" | "stackoverflow",
+    destinationUrl: string,
+  ) {
+    capture("outbound link clicked", {
+      placement: "home_hero_social",
+      destination_id: label,
+      destination_host: new URL(destinationUrl).hostname,
+      label,
+      category: "social",
+    })
+  }
 </script>
 
 <Seo title={m.site_title()} description={m.site_description()} />
@@ -34,22 +59,21 @@
         text="@chrsep"
         href="https://github.com/chrsep"
         icon="/icons/github.svg"
-        onclick={() =>
-          posthog.capture("social link clicked", { platform: "github" })}
+        onclick={() => captureSocialLink("github", "https://github.com/chrsep")}
       />
       <SocialLink
         text="Chrisando"
         href="https://linkedin.com/in/chrsep"
         icon="/icons/linkedin.svg"
         onclick={() =>
-          posthog.capture("social link clicked", { platform: "linkedin" })}
+          captureSocialLink("linkedin", "https://linkedin.com/in/chrsep")}
       />
       <SocialLink
         text="@_chrsep"
         href="https://twitter.com/_chrsep"
         icon="/icons/twitter.svg"
         onclick={() =>
-          posthog.capture("social link clicked", { platform: "twitter" })}
+          captureSocialLink("twitter", "https://twitter.com/_chrsep")}
       />
       <SocialLink
         text="@chrsep"
@@ -57,7 +81,10 @@
         class="hidden sm:flex"
         icon="/icons/stackoverflow.svg"
         onclick={() =>
-          posthog.capture("social link clicked", { platform: "stackoverflow" })}
+          captureSocialLink(
+            "stackoverflow",
+            "https://stackoverflow.com/users/6656573/chrsep",
+          )}
       />
     </ul>
 
@@ -74,7 +101,10 @@
         href="mailto:hi@chrsep.dev"
         class="group mb-4 !inline-block w-full sm:mr-2 sm:mb-0 sm:w-auto"
         onclick={() =>
-          posthog.capture("contact cta clicked", { location: "hero" })}
+          capture("contact cta clicked", {
+            location: "home_hero",
+            destination: "email",
+          })}
       >
         {m.lets_work_together()}
         <span
@@ -103,9 +133,11 @@
     </div>
   </header>
 
-  {#await globeModule then m}
-    {@const Globe = m.default}
-    <Globe />
+  {#await globeModule then module}
+    {#if module}
+      {@const Globe = module.default}
+      <Globe />
+    {/if}
   {/await}
 </div>
 
@@ -125,6 +157,8 @@
     class="mx-auto flex max-w-[1920px] snap-x snap-mandatory gap-8 overflow-auto pb-8 sm:px-8 md:grid md:grid-cols-2 md:px-32 lg:gap-16 xl:grid-cols-4 xl:gap-8"
   >
     <Project
+      projectId="obserfy"
+      position={1}
       title="Obserfy"
       description={m.home_project_obserfy_description()}
       saas
@@ -139,6 +173,7 @@
     >
       {#snippet image()}
         <Image
+          resourceId="obserfy_project_image"
           meta={ObserfyImage}
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
           alt=""
@@ -147,6 +182,8 @@
     </Project>
 
     <Project
+      projectId="joyful_montessori"
+      position={2}
       title="Joyful Montessori"
       description={m.home_project_joyful_description()}
       marketing
@@ -159,6 +196,7 @@
     >
       {#snippet image()}
         <Image
+          resourceId="joyful_montessori_project_image"
           meta={JoyfulImage}
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
           alt=""
@@ -167,6 +205,8 @@
     </Project>
 
     <Project
+      projectId="sekitarmu"
+      position={3}
       title="Sekitarmu"
       description={m.home_project_sekitarmu_description()}
       ecommerce
@@ -181,6 +221,7 @@
     >
       {#snippet image()}
         <Image
+          resourceId="sekitarmu_project_image"
           meta={SekitarmuImage}
           loading="lazy"
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
@@ -190,6 +231,8 @@
     </Project>
 
     <Project
+      projectId="atreus"
+      position={4}
       title="Atreus"
       description={m.home_project_atreus_description()}
       openSource
@@ -199,6 +242,7 @@
     >
       {#snippet image()}
         <Image
+          resourceId="atreus_project_image"
           meta={AtreusImage}
           loading="lazy"
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 90vw"
@@ -248,7 +292,14 @@
           target="_blank"
           rel="noreferrer"
           class="mt-6 ml-0 w-full flex-shrink-0 !px-6 !py-4 text-xs sm:w-auto lg:ml-8"
-          onclick={() => posthog.capture("github cta clicked")}
+          onclick={() =>
+            capture("outbound link clicked", {
+              placement: "home_open_source_cta",
+              destination_id: "github_profile",
+              destination_host: "github.com",
+              label: "github_profile",
+              category: "open_source",
+            })}
         >
           {m.home_open_source_cta()}
           <Icon

@@ -13,9 +13,8 @@
     locales,
     localizeHref,
   } from "$lib/paraglide/runtime"
-  import { onMount } from "svelte"
   import { afterNavigate } from "$app/navigation"
-  import { initPostHog, posthog } from "$lib/posthog"
+  import { capture, capturePageview } from "$lib/analytics"
 
   let { children }: { children?: Snippet } = $props()
 
@@ -24,13 +23,11 @@
     id: "Bahasa Indonesia",
   }
 
-  onMount(() => {
-    initPostHog()
-  })
-
   afterNavigate(({ to }) => {
-    posthog.capture("$pageview", {
-      $current_url: to?.url.href ?? window.location.href,
+    const url = to?.url ?? new URL(window.location.href)
+    capturePageview(url.href, {
+      route_id: routeId(url.pathname),
+      locale: getLocale(),
     })
   })
 
@@ -39,6 +36,45 @@
   function localizedPath(path: string, locale: (typeof locales)[number]) {
     const href = localizeHref(path, { locale })
     return href !== "/" && href.endsWith("/") ? href.slice(0, -1) : href
+  }
+
+  function routeId(pathname: string) {
+    const path = deLocalizeHref(pathname)
+    if (path === "/") return "home"
+    if (path === "/cv") return "cv"
+    if (path === "/about") return "about"
+    if (path === "/resources/vibecoding-demo") return "vibecoding_demo"
+    return "unknown"
+  }
+
+  function captureLanguageChange(toLocale: (typeof locales)[number]) {
+    const fromLocale = getLocale()
+    if (fromLocale === toLocale) return
+
+    capture("language changed", {
+      from_locale: fromLocale,
+      to_locale: toLocale,
+    })
+  }
+
+  function captureContact(location: "footer_primary" | "footer_email") {
+    capture("contact cta clicked", {
+      location,
+      destination: "email",
+    })
+  }
+
+  function captureFooterSocial(
+    label: "github" | "linkedin" | "twitter" | "stackoverflow",
+    destinationUrl: string,
+  ) {
+    capture("outbound link clicked", {
+      placement: "footer_social",
+      destination_id: label,
+      destination_host: new URL(destinationUrl).hostname,
+      label,
+      category: "social",
+    })
   }
 </script>
 
@@ -98,6 +134,7 @@
             aria-label={localeNames[locale]}
             aria-current={locale === getLocale() ? "page" : undefined}
             data-sveltekit-reload
+            onclick={() => captureLanguageChange(locale)}
             class="transition-colors {locale === getLocale()
               ? 'text-ink-900'
               : 'text-ink-700 hover:text-ink-900'}"
@@ -130,6 +167,7 @@
       <ButtonLink
         href="mailto:hi@chrsep.dev"
         class="group mt-2 mb-4 !inline-block w-full text-sm sm:mt-6 sm:mr-4 sm:mb-0 sm:w-auto"
+        onclick={() => captureContact("footer_primary")}
       >
         {m.footer_cta()}
         <span
@@ -144,6 +182,7 @@
       <a
         href="mailto:hi@chrsep.dev"
         class="text-ink-900 flex items-center font-medium opacity-40 transition hover:opacity-100"
+        onclick={() => captureContact("footer_email")}
       >
         <svg
           class="mr-3 h-4 w-4"
@@ -167,6 +206,8 @@
           <a
             href="https://github.com/chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            onclick={() =>
+              captureFooterSocial("github", "https://github.com/chrsep")}
           >
             <Icon --src="url(/icons/github.svg)" class="h-4 w-4" />
           </a>
@@ -175,6 +216,8 @@
           <a
             href="https://linkedin.com/in/chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            onclick={() =>
+              captureFooterSocial("linkedin", "https://linkedin.com/in/chrsep")}
           >
             <Icon --src="url(/icons/linkedin.svg)" class="h-4 w-4" />
           </a>
@@ -183,6 +226,8 @@
           <a
             href="https://twitter.com/_chrsep"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            onclick={() =>
+              captureFooterSocial("twitter", "https://twitter.com/_chrsep")}
           >
             <Icon --src="url(/icons/twitter.svg)" class="h-4 w-4" />
           </a>
@@ -191,6 +236,11 @@
           <a
             href="https://stackoverflow.com/users/story/6656573"
             class="flex items-center rounded-lg p-2 opacity-40 ring-white transition duration-200 ease-in-out hover:opacity-100 hover:ring-2"
+            onclick={() =>
+              captureFooterSocial(
+                "stackoverflow",
+                "https://stackoverflow.com/users/story/6656573",
+              )}
           >
             <Icon --src="url(/icons/stackoverflow.svg)" class="h-4 w-4" />
           </a>

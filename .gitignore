@@ -12,3 +12,5 @@ dist
 .turbo
 .sanity
 .env
+.env.*
+!.env.example

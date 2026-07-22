@@ -1,5 +1,25 @@
 /// <reference types="@sveltejs/kit" />
 
+declare const __APP_ENVIRONMENT__: string
+declare const __APP_RELEASE__: string
+
+interface ImportMetaEnv {
+  readonly PUBLIC_POSTHOG_KEY?: string
+  readonly PUBLIC_POSTHOG_HOST?: string
+  readonly PUBLIC_POSTHOG_ENVIRONMENT?: string
+  readonly PUBLIC_POSTHOG_DISABLED?: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
+declare namespace App {
+  interface Error {
+    message: string
+  }
+}
+
 declare module "*.svg" {
   import type { Component } from "svelte"
   const Svg: Component<{ class?: string }>

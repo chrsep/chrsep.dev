@@ -3,9 +3,9 @@
   import { fade } from "svelte/transition"
   import { replaceState } from "$app/navigation"
   import AgentSessionViewer from "$lib/vibecoding/agent-sessions/agent-session-viewer.svelte"
+  import { capture } from "$lib/analytics"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
-  import { posthog } from "$lib/posthog"
 
   type TabId = "links" | "agent-sessions" | "summary" | "qa"
 
@@ -18,8 +18,15 @@
       description: string
       domain: string
       href: string
+      destinationId: string
     }[]
   }
+
+  const analyticsContext = {
+    content_id: "vibecoding_demo",
+    resource_id: "vibecoding_demo",
+    app_surface: "workshop_resource",
+  } as const
 
   const tabs = [
     { id: "summary", label: m.vibe_tab_summary() },
@@ -39,24 +46,28 @@
           description: m.vibe_link_skills_description(),
           domain: "skills.sh",
           href: "https://www.skills.sh/",
+          destinationId: "skills_directory",
         },
         {
           label: "chrsep/inventory",
           description: m.vibe_link_inventory_repo_description(),
           domain: "github.com",
           href: "https://github.com/chrsep/inventory",
+          destinationId: "inventory_repository",
         },
         {
           label: m.vibe_link_inventory_demo_label(),
           description: m.vibe_link_inventory_demo_description(),
           domain: "inventory-wine-five.vercel.app",
           href: "https://inventory-wine-five.vercel.app/",
+          destinationId: "inventory_demo",
         },
         {
           label: "chrsep/vibecoding-workshop",
           description: m.vibe_link_workshop_repo_description(),
           domain: "github.com",
           href: "https://github.com/chrsep/vibecoding-workshop",
+          destinationId: "workshop_repository",
         },
       ],
     },
@@ -70,24 +81,28 @@
           description: m.vibe_link_vercel_description(),
           domain: "vercel.com",
           href: "https://vercel.com/",
+          destinationId: "vercel",
         },
         {
           label: "GitHub",
           description: m.vibe_link_github_description(),
           domain: "github.com",
           href: "https://github.com/",
+          destinationId: "github",
         },
         {
           label: "Neon",
           description: m.vibe_link_neon_description(),
           domain: "neon.com",
           href: "https://neon.com/",
+          destinationId: "neon",
         },
         {
           label: "Codex",
           description: m.vibe_link_codex_description(),
           domain: "openai.com/codex",
           href: "https://openai.com/codex/",
+          destinationId: "codex",
         },
       ],
     },
@@ -137,13 +152,29 @@
   let activeTab: TabId = "summary"
   let agentSessionsVisited = false
   let activeSectionId: string | null = null
+  const viewedSections = new Set<string>()
 
-  function selectTab(tabId: TabId, moveFocus = false) {
-    posthog.capture("vibecoding tab switched", { tab: tabId })
+  function selectTab(
+    tabId: TabId,
+    options: {
+      moveFocus?: boolean
+      track?: boolean
+      selectionMethod?: "pointer" | "keyboard"
+    } = {},
+  ) {
+    const changed = activeTab !== tabId
     activeTab = tabId
     if (tabId === "agent-sessions") agentSessionsVisited = true
 
-    if (moveFocus) {
+    if (changed && options.track) {
+      capture("resource tab selected", {
+        ...analyticsContext,
+        tab_id: tabId,
+        selection_method: options.selectionMethod ?? "pointer",
+      })
+    }
+
+    if (options.moveFocus) {
       requestAnimationFrame(() => {
         document.getElementById(`tab-${tabId}`)?.focus()
       })
@@ -166,7 +197,22 @@
     if (nextIndex === undefined) return
 
     event.preventDefault()
-    selectTab(tabs[nextIndex].id, true)
+    selectTab(tabs[nextIndex].id, {
+      moveFocus: true,
+      track: true,
+      selectionMethod: "keyboard",
+    })
+  }
+
+  function trackSectionViewed(sectionId: string) {
+    if (viewedSections.has(sectionId)) return
+
+    viewedSections.add(sectionId)
+    capture("content section viewed", {
+      ...analyticsContext,
+      section_id: sectionId,
+      content_type: "workshop_summary",
+    })
   }
 
   function scrollToSection(event: MouseEvent, id: string) {
@@ -201,10 +247,10 @@
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
-          )[0]
-        if (visible) activeSectionId = visible.target.id
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+
+        for (const entry of visible) trackSectionViewed(entry.target.id)
+        if (visible[0]) activeSectionId = visible[0].target.id
       },
       { rootMargin: "-80px 0px -60% 0px" },
     )
@@ -239,7 +285,13 @@
         href="https://vibecoding-workshop-gilt.vercel.app/"
         target="_blank"
         rel="noreferrer"
-        onclick={() => posthog.capture("vibecoding presentation opened")}
+        onclick={() =>
+          capture("outbound link clicked", {
+            ...analyticsContext,
+            destination_id: "workshop_presentation",
+            destination_host: "vibecoding-workshop-gilt.vercel.app",
+            placement: "resource_header",
+          })}
       >
         {m.vibe_open_presentation()}
         <span class="ml-1.5" aria-hidden="true">↗</span>
@@ -249,7 +301,14 @@
         class="text-ink-700 hover:text-ink-900 inline-flex min-h-11 items-center text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
         href="/resources/vibecoding-workshop.pdf"
         download="vibecoding-workshop.pdf"
-        onclick={() => posthog.capture("vibecoding pdf downloaded")}
+        onclick={() =>
+          capture("asset download clicked", {
+            ...analyticsContext,
+            asset_id: "vibecoding_workshop_pdf",
+            asset_type: "pdf",
+            asset_host: "same_origin",
+            placement: "resource_header",
+          })}
       >
         {m.vibe_download()}
         <span class="ml-1.5" aria-hidden="true">↓</span>
@@ -305,7 +364,11 @@
             aria-selected={activeTab === tab.id}
             aria-controls={`panel-${tab.id}`}
             tabindex={activeTab === tab.id ? 0 : -1}
-            onclick={() => selectTab(tab.id)}
+            onclick={() =>
+              selectTab(tab.id, {
+                track: true,
+                selectionMethod: "pointer",
+              })}
             onkeydown={(event) => handleTabKeydown(event, index)}
           >
             {tab.label}
@@ -406,10 +469,12 @@
                     target="_blank"
                     rel="noreferrer"
                     onclick={() =>
-                      posthog.capture("vibecoding resource link clicked", {
-                        link_label: link.label,
+                      capture("outbound link clicked", {
+                        ...analyticsContext,
+                        destination_id: link.destinationId,
+                        destination_host: new URL(link.href).hostname,
                         link_group: group.id,
-                        link_href: link.href,
+                        placement: "resource_list",
                       })}
                   >
                     <span class="min-w-0">
