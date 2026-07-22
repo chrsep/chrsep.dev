@@ -94,6 +94,9 @@ importers:
       mdsvex:
         specifier: ^0.12.7
         version: 0.12.7(svelte@5.55.9(@typescript-eslint/types@8.59.4))
+      parse5:
+        specifier: ^8.0.0
+        version: 8.0.1
       prettier:
         specifier: ^3.8.3
         version: 3.8.3

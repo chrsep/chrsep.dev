@@ -1,11 +1,11 @@
 <script lang="ts">
-  type Meta = { src: string; width: number; format: string }
+  type Meta = { src: string; width: number; height: number; format: string }
 
   let {
     meta,
     sizes,
     alt,
-    loading,
+    loading = "lazy",
     class: className,
   }: {
     meta: Meta[] | Meta
@@ -43,5 +43,13 @@
       srcset={list.map((m) => `${m.src} ${m.width}w`).join(", ")}
     />
   {/each}
-  <img src={fallback.src} {alt} {loading} class={className} />
+  <img
+    src={fallback.src}
+    {alt}
+    {loading}
+    decoding="async"
+    width={fallback.width}
+    height={fallback.height}
+    class={className}
+  />
 </picture>

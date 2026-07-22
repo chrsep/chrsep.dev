@@ -19,7 +19,7 @@
 <li>
   <a
     {href}
-    class="flex items-center text-sm font-medium opacity-40 transition-opacity hover:opacity-100 {className}"
+    class="flex min-h-11 items-center text-sm font-medium opacity-70 transition-opacity hover:opacity-100 {className}"
     target="_blank"
     rel="noreferrer"
     {onclick}
