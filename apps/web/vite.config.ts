@@ -18,6 +18,12 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
+        // Vite+ 0.2 caches files but not pnpm symlinks in Vercel functions.
+        command: "node ../../scripts/restore-vercel-symlinks.mjs",
+        dependsOn: ["build:cached"],
+        cache: false,
+      },
+      "build:cached": {
         command: "node ../../scripts/run-stable-build.mjs vp build",
         dependsOn: ["sync:studio"],
         cache: true,
@@ -40,7 +46,11 @@ export default defineConfig({
           },
           { pattern: "vite.config.ts", base: "workspace" },
         ],
-        output: [".svelte-kit/output/**", ".vercel/output/**"],
+        output: [
+          ".svelte-kit/output/**",
+          ".svelte-kit/vite-plus-vercel-symlinks.json",
+          ".vercel/output/**",
+        ],
       },
       "sync:studio": {
         command: "node ./scripts/sync-studio.mjs",
