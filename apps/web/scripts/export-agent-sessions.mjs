@@ -883,7 +883,7 @@ async function walkJsonlFiles(directory) {
     }
   }
 
-  return files.sort()
+  return files.sort((left, right) => left.localeCompare(right))
 }
 
 export async function discoverAllowlistedSessions(

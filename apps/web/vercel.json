@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "vp run -w build",
   "redirects": [
     {
       "source": "/vibe-coding",

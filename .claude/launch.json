@@ -3,14 +3,14 @@
   "configurations": [
     {
       "name": "web-preview",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "web", "preview"],
+      "runtimeExecutable": "vp",
+      "runtimeArgs": ["run", "web#preview"],
       "port": 4173
     },
     {
       "name": "web-dev",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "web", "dev", "--port", "5199", "--strictPort"],
+      "runtimeExecutable": "vp",
+      "runtimeArgs": ["run", "web#dev", "--port", "5199", "--strictPort"],
       "port": 5199
     }
   ]

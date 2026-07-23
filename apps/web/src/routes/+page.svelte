@@ -99,7 +99,7 @@
     <h1 class="max-w-md text-xl sm:text-2xl">
       <span class="text-ink-900 font-black">{m.home_hero_greeting()}</span>
       <span class="text-ink-700">
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -- static, developer-authored message -->
+        <!-- The localized message is static and developer-authored. -->
         {@html m.home_hero_pitch()}
       </span>
     </h1>

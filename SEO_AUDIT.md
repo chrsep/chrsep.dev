@@ -101,7 +101,7 @@ Targeted rewrites resolve Sanity's generated root `/static/...` favicon and mani
 - Vector monogram favicon master plus 48, 180, 192, and 512-pixel PNG exports.
 - Minimal dark-theme web manifest with 192 and 512-pixel icons.
 
-The prior 24×24 photographic favicon was removed rather than enlarged. Asset generation is reproducible through `pnpm --filter web generate:seo-assets` and uses the existing Sharp dependency.
+The prior 24×24 photographic favicon was removed rather than enlarged. Asset generation is reproducible through `vp run --filter web generate:seo-assets` and uses the existing Sharp dependency.
 
 ## On-page, accessibility, and performance work
 
@@ -129,6 +129,10 @@ Final local mobile Lighthouse snapshot:
 Lighthouse is a lab snapshot and can vary between runs. The Core Web Vitals goals still need field validation at p75 after sufficient production traffic: LCP ≤2.5 s, CLS ≤0.1, and INP ≤200 ms.
 
 ## Verification record
+
+This table is the historical pre-Vite+ verification record from the original
+SEO implementation. The commands are preserved as evidence of what ran at that
+time; current commands are documented in the repository README.
 
 | Check                              | Result                                                                                       |
 | ---------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -160,7 +164,7 @@ The existing apex-to-www redirect, `/vibe-coding` redirect, trailing-slash handl
 ## Deployment and monitoring checklist
 
 1. Review and deploy this worktree through the normal Vercel workflow.
-2. Run `SEO_BASE_URL=https://www.chrsep.dev pnpm --filter web test:seo:live` against the deployed result; it should replace the 462-check pre-deployment failure baseline with a clean run.
+2. Run `SEO_BASE_URL=https://www.chrsep.dev vp run -w seo:live` against the deployed result; it should replace the 462-check pre-deployment failure baseline with a clean run.
 3. Reconfirm one-hop aliases, query preservation, apex-to-www, true 404 status, `X-Robots-Tag` headers, content types, Studio rewrites, and client-navigation head replacement on the deployed CDN.
 4. Test representative pages in a schema validator and social-card preview tools after the assets are publicly available.
 5. Add the sitemap in Google Search Console, inspect all eight canonical URLs, and monitor indexing, duplicate/canonical reports, rich-result parsing, search queries, and Core Web Vitals.

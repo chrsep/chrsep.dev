@@ -4,10 +4,12 @@ My personal space on the web.
 
 ## Local development
 
-Install dependencies with `pnpm install`, then run the web app with:
+Install the [Vite+ CLI](https://viteplus.dev/guide/) once, then let it select
+Node `22.22` and pnpm `10.33` from the repository:
 
 ```sh
-pnpm --filter web dev
+vp install --frozen-lockfile
+vp run web#dev
 ```
 
 PostHog is optional for local development and verification. The site skips
@@ -18,11 +20,22 @@ to exist, copy `apps/web/.env.example`; its project key and ingestion host are
 intentionally non-production, with the latter pointing to the reserved
 `.invalid` domain.
 
-The main web verification commands are:
+The main workspace commands are:
 
 ```sh
-pnpm --filter web check
-pnpm --filter web test
-pnpm build
-pnpm --filter web test:seo
+vp run -w check
+vp run -w test
+vp run -w build
+vp run -r --parallel dev
+```
+
+Vite Task caches build, check, and test work under
+`node_modules/.vite/task-cache`. Use `vp run -w build -v` to inspect cache
+hits, `vp cache clean` to clear the task cache, and
+`vp run --cache cv#build:cv` to compile the separate XeLaTeX CV package.
+
+After deployment, run the uncached live SEO audit with:
+
+```sh
+SEO_BASE_URL=https://www.chrsep.dev vp run -w seo:live
 ```
