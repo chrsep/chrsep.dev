@@ -4,9 +4,8 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        // Vercel changes these per deployment, but Sanity uses them only for telemetry.
         command:
-          "BAGGAGE= DD_TAGS= RUNTIME_CACHE_HEADERS= TRACEPARENT= TRACESTATE= VERCEL_ARTIFACTS_TOKEN= VERCEL_OIDC_TOKEN= ./node_modules/.bin/sanity build ./dist -y",
+          "node ../../scripts/run-stable-build.mjs ./node_modules/.bin/sanity build ./dist -y",
         cache: true,
         env: ["SANITY_STUDIO_*"],
         input: [
@@ -19,6 +18,10 @@ export default defineConfig({
           "vite.config.ts",
           { pattern: "package.json", base: "workspace" },
           { pattern: "pnpm-lock.yaml", base: "workspace" },
+          {
+            pattern: "scripts/run-stable-build.mjs",
+            base: "workspace",
+          },
           { pattern: "vite.config.ts", base: "workspace" },
         ],
         output: ["dist/**"],

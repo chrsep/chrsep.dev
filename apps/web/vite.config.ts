@@ -18,9 +18,7 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        // Vercel changes these per deployment, but the build uses them only for telemetry.
-        command:
-          "BAGGAGE= DD_TAGS= RUNTIME_CACHE_HEADERS= TRACEPARENT= TRACESTATE= VERCEL_ARTIFACTS_TOKEN= VERCEL_OIDC_TOKEN= vp build",
+        command: "node ../../scripts/run-stable-build.mjs vp build",
         dependsOn: ["sync:studio"],
         cache: true,
         input: [
@@ -36,6 +34,10 @@ export default defineConfig({
           "vite.config.ts",
           { pattern: "package.json", base: "workspace" },
           { pattern: "pnpm-lock.yaml", base: "workspace" },
+          {
+            pattern: "scripts/run-stable-build.mjs",
+            base: "workspace",
+          },
           { pattern: "vite.config.ts", base: "workspace" },
         ],
         output: [".svelte-kit/output/**", ".vercel/output/**"],
