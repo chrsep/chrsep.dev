@@ -7,6 +7,7 @@ export default defineConfig({
         command: "./node_modules/.bin/sanity build ./dist -y",
         cache: true,
         env: ["SANITY_STUDIO_*"],
+        untrackedEnv: ["DD_*"],
         input: [
           "package.json",
           "sanity.cli.ts",
