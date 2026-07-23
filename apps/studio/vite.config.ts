@@ -4,10 +4,10 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        command: "./node_modules/.bin/sanity build ./dist -y",
+        // Vercel changes DD_TAGS per deployment, but Sanity uses it only for telemetry.
+        command: "DD_TAGS= ./node_modules/.bin/sanity build ./dist -y",
         cache: true,
         env: ["SANITY_STUDIO_*"],
-        untrackedEnv: ["DD_*"],
         input: [
           "package.json",
           "sanity.cli.ts",

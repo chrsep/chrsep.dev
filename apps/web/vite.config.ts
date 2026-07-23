@@ -18,7 +18,8 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        command: "vp build",
+        // Vercel changes DD_TAGS per deployment, but the build uses it only for telemetry.
+        command: "DD_TAGS= vp build",
         dependsOn: ["sync:studio"],
         cache: true,
         input: [
