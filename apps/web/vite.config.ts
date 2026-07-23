@@ -18,19 +18,10 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        command: "vp build",
-        dependsOn: ["sync:studio"],
-        cache: false,
-      },
-      "sync:studio": {
-        command: "node ./scripts/sync-studio.mjs",
+        command:
+          "rm -rf ./static/studio && mkdir ./static/studio && cp -R ../studio/dist/. ./static/studio && vp build",
         dependsOn: ["studio#build"],
-        cache: true,
-        input: [
-          "scripts/sync-studio.mjs",
-          { pattern: "apps/studio/dist/**", base: "workspace" },
-        ],
-        output: ["static/studio/**"],
+        cache: false,
       },
     },
   },

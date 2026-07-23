@@ -60,7 +60,8 @@ export default defineConfig({
     },
     tasks: {
       "generate:paraglide": {
-        command: "node ./scripts/compile-paraglide.mjs",
+        command:
+          "./node_modules/.bin/paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url baseLocale --no-emit-prettier-ignore --is-server \"import.meta.env?.SSR ?? typeof window === 'undefined'\" --output-structure message-modules",
         cwd: "apps/web",
         cache: true,
         input: [
@@ -71,7 +72,6 @@ export default defineConfig({
           "apps/web/paraglide.config.js",
           "apps/web/project.inlang/**",
           "apps/web/messages/**",
-          "apps/web/scripts/compile-paraglide.mjs",
         ],
         output: [
           {
@@ -116,7 +116,6 @@ export default defineConfig({
           "apps/web/paraglide.config.js",
           "apps/web/project.inlang/**",
           "apps/web/messages/**",
-          "apps/web/scripts/compile-paraglide.mjs",
           "apps/web/src/**",
           "!apps/web/src/lib/paraglide/**",
           "apps/web/svelte.config.js",
