@@ -1,9 +1,0 @@
-node_modules
-.svelte-kit
-.vercel
-.vercel_build_output
-.turbo
-build
-static/studio
-package
-pnpm-lock.yaml

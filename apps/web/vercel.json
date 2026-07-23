@@ -1,5 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "corepack pnpm install --frozen-lockfile",
+  "buildCommand": "vp run -w build",
   "redirects": [
     {
       "source": "/vibe-coding",

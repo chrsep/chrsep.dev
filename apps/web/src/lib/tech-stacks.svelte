@@ -57,13 +57,11 @@
 
 <div class="mt-2 mb-16 flex rounded-full p-2">
   {#each techs as tech (tech.name)}
-    <div class="hover:z-1 group -ml-3 flex">
-      <div
-        class="rounded-full border-4 border-default-900 bg-default-800 p-2"
-      >
+    <div class="group -ml-3 flex hover:z-1">
+      <div class="border-default-900 bg-default-800 rounded-full border-4 p-2">
         <Icon
           --src="url({tech.icon})"
-          class="h-4 w-4 bg-default-500 {tech.hoverColor} transition-colors"
+          class="bg-default-500 h-4 w-4 {tech.hoverColor} transition-colors"
         />
       </div>
     </div>

@@ -4,7 +4,9 @@
   import { fade } from "svelte/transition"
 
   let canvas: HTMLCanvasElement | undefined = $state()
-  let globe: { update: (s: Record<string, unknown>) => void; destroy: () => void } | undefined
+  let globe:
+    | { update: (s: Record<string, unknown>) => void; destroy: () => void }
+    | undefined
   let frame: number | undefined
 
   onMount(() => {
@@ -47,5 +49,5 @@
   bind:this={canvas}
   width="1500"
   height="1500"
-  class="absolute -bottom-[110%] left-0 -z-0 hidden xl:-bottom-[95%] xl:left-auto xl:-right-[600px] xl:block"
+  class="absolute -bottom-[110%] left-0 -z-0 hidden xl:-right-[600px] xl:-bottom-[95%] xl:left-auto xl:block"
 ></canvas>

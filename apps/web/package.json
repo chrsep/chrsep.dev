@@ -4,17 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev --host 0.0.0.0",
-    "build": "rm -rf ./static/studio && mkdir ./static/studio && cp -R ../studio/dist/* ./static/studio && vite build",
-    "export:agent-sessions": "node ./scripts/export-agent-sessions.mjs",
-    "generate:seo-assets": "node ./scripts/generate-seo-assets.mjs",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:seo": "node ./scripts/seo-audit.mjs build",
-    "test:seo:live": "node ./scripts/seo-audit.mjs live",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "format": "prettier --ignore-path .gitignore --write ."
+    "dev": "vp dev --host 0.0.0.0",
+    "export:agent-sessions": "vp exec node ./scripts/export-agent-sessions.mjs",
+    "generate:seo-assets": "vp exec node ./scripts/generate-seo-assets.mjs",
+    "preview": "vp preview",
+    "test": "vp test run",
+    "check": "vp exec svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "vp exec svelte-check --tsconfig ./tsconfig.json --watch",
+    "format": "vp fmt . --write"
   },
   "devDependencies": {
     "@inlang/paraglide-js": "^2.22.0",
@@ -28,9 +25,6 @@
     "marked": "^18.0.7",
     "mdsvex": "^0.12.8",
     "parse5": "^8.0.1",
-    "prettier": "^3.9.6",
-    "prettier-plugin-svelte": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.8.1",
     "sanitize-html": "^2.17.6",
     "sharp": "^0.35.3",
     "svelte": "^5.56.7",
@@ -38,9 +32,9 @@
     "tailwindcss": "^4.3.3",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
-    "vite": "^8.1.5",
+    "vite": "catalog:",
     "vite-imagetools": "^10.0.1",
-    "vitest": "^4.1.10"
+    "vite-plus": "catalog:"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",

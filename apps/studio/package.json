@@ -8,11 +8,10 @@
   "license": "UNLICENSED",
   "type": "module",
   "scripts": {
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build ./dist -y",
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "dev": "vp exec sanity dev",
+    "start": "vp exec sanity start",
+    "deploy": "vp exec sanity deploy",
+    "deploy-graphql": "vp exec sanity graphql deploy"
   },
   "keywords": [
     "sanity"
@@ -26,10 +25,8 @@
     "styled-components": "^6.4.4"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^6.0.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.5",
     "typescript": "^6.0.3"
   },
   "repository": {

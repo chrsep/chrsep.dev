@@ -9,7 +9,6 @@ package
 .vercel_build_output
 static/studio
 dist
-.turbo
 .sanity
 .env
 .env.local

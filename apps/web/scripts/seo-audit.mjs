@@ -517,10 +517,12 @@ function validatePageHtml(audit, page, html, label) {
 }
 
 function validateSitemap(audit, xml, label) {
-  const expectedUrls = pages.map((page) => absolute(page.path)).sort()
+  const expectedUrls = pages
+    .map((page) => absolute(page.path))
+    .sort((left, right) => left.localeCompare(right))
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map((match) => match[1])
-    .sort()
+    .sort((left, right) => left.localeCompare(right))
   audit.equal(urls, expectedUrls, `${label}: canonical URL set`)
 
   const blocks = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(
@@ -780,7 +782,7 @@ async function validateInitialRouteJavaScript(audit) {
 async function runBuildAudit() {
   if (!(await exists(path.join(staticOutputDirectory, "index.html")))) {
     console.error(
-      `SEO build output was not found at ${staticOutputDirectory}. Run pnpm build before pnpm --filter web test:seo.`,
+      `SEO build output was not found at ${staticOutputDirectory}. Run vp run -w build before vp run -w test:seo.`,
     )
     process.exitCode = 2
     return
@@ -791,7 +793,7 @@ async function runBuildAudit() {
   const outputFiles = await listRelativeFiles(staticOutputDirectory)
   const pageHtmlFiles = outputFiles
     .filter((file) => file.endsWith(".html") && !file.startsWith("studio/"))
-    .sort()
+    .sort((left, right) => left.localeCompare(right))
   audit.equal(
     pageHtmlFiles,
     pages.map((page) => page.output).sort(),
@@ -1108,7 +1110,7 @@ async function runLiveAudit() {
   const configuredBaseUrl = process.env.SEO_BASE_URL
   if (!configuredBaseUrl) {
     console.error(
-      "SEO_BASE_URL is required. Example: SEO_BASE_URL=https://www.chrsep.dev pnpm --filter web test:seo:live",
+      "SEO_BASE_URL is required. Example: SEO_BASE_URL=https://www.chrsep.dev vp run -w seo:live",
     )
     process.exitCode = 2
     return
@@ -1316,13 +1318,13 @@ async function runLiveAudit() {
 
 function printHelp() {
   console.log(`Usage:
-  pnpm --filter web test:seo
+  vp run -w test:seo
       Validate the completed Vercel build in apps/web/.vercel/output.
 
-  SEO_BASE_URL=https://www.chrsep.dev pnpm --filter web test:seo:live
+  SEO_BASE_URL=https://www.chrsep.dev vp run -w seo:live
       Validate a deployed preview or production site, including redirects and headers.
 
-  node ./scripts/seo-audit.mjs --help
+  vp exec node ./apps/web/scripts/seo-audit.mjs --help
       Show this help.`)
 }
 
