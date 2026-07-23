@@ -1,0 +1,106 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+>
+  <defs>
+    <radialGradient id="violet-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#4338ca" stop-opacity="0.78" />
+      <stop offset="1" stop-color="#4338ca" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#0369a1" stop-opacity="0.64" />
+      <stop offset="1" stop-color="#0369a1" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="canvas">
+      <rect width="1200" height="630" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#canvas)">
+    <rect width="1200" height="630" fill="#181818" />
+    <circle cx="1015" cy="92" r="365" fill="url(#violet-glow)" />
+    <circle cx="880" cy="580" r="330" fill="url(#cyan-glow)" />
+
+    <g transform="translate(72 66)">
+      <rect width="72" height="72" rx="16" fill="#282828" />
+      <path
+        d="M47 22a20 20 0 1 0 0 28"
+        fill="none"
+        stroke="#ffffff"
+        stroke-linecap="round"
+        stroke-width="8"
+      />
+      <path
+        d="m43 29 8 7-8 7"
+        fill="none"
+        stroke="#60a5fa"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="6"
+      />
+    </g>
+
+    <text
+      x="72"
+      y="266"
+      fill="#ffffff"
+      font-family="Inter, Arial, Helvetica, sans-serif"
+      font-size="108"
+      font-weight="900"
+      letter-spacing="-4"
+    >
+      VIBE
+    </text>
+    <text
+      x="72"
+      y="376"
+      fill="#60a5fa"
+      font-family="Inter, Arial, Helvetica, sans-serif"
+      font-size="108"
+      font-weight="900"
+      letter-spacing="-4"
+    >
+      CODING
+    </text>
+    <text
+      x="78"
+      y="445"
+      fill="#bbbbbb"
+      font-family="Inter, Arial, Helvetica, sans-serif"
+      font-size="28"
+      font-weight="500"
+    >
+      chrsep.dev
+    </text>
+
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M767 208 850 315l-83 107" stroke="#ffffff" stroke-width="30" />
+      <path d="M889 422h122" stroke="#60a5fa" stroke-width="30" />
+      <path
+        d="M880 178c111 0 201 90 201 201"
+        stroke="#ffffff"
+        stroke-opacity="0.18"
+        stroke-width="4"
+      />
+      <path
+        d="M737 468c-66-86-51-210 35-277"
+        stroke="#ffffff"
+        stroke-opacity="0.18"
+        stroke-width="4"
+      />
+      <path
+        d="m1012 154 23 35 41 4-30 28 8 41-37-20-36 21 7-41-31-28 42-5Z"
+        stroke="#a78bfa"
+        stroke-width="5"
+      />
+    </g>
+    <circle cx="738" cy="468" r="11" fill="#22c55e" />
+    <circle cx="1081" cy="379" r="11" fill="#60a5fa" />
+    <path d="M72 526h486" stroke="#343434" stroke-width="2" />
+    <circle cx="76" cy="565" r="6" fill="#60a5fa" />
+    <circle cx="101" cy="565" r="6" fill="#a78bfa" />
+    <circle cx="126" cy="565" r="6" fill="#22c55e" />
+  </g>
+</svg>

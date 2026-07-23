@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, type Component } from "svelte"
   import { fade } from "svelte/transition"
   import { replaceState } from "$app/navigation"
-  import AgentSessionViewer from "$lib/vibecoding/agent-sessions/agent-session-viewer.svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
-  import { posthog } from "$lib/posthog"
+  import { getLocale } from "$lib/paraglide/runtime"
+  import { capture } from "$lib/posthog"
 
   type TabId = "links" | "agent-sessions" | "summary" | "qa"
 
@@ -134,14 +134,25 @@
     },
   ] as const
 
-  let activeTab: TabId = "summary"
-  let agentSessionsVisited = false
-  let activeSectionId: string | null = null
+  let activeTab: TabId = $state("summary")
+  let agentSessionsVisited = $state(false)
+  let activeSectionId: string | null = $state(null)
+  let AgentSessionViewer: Component | null = $state(null)
+  let presentationLoaded = $state(false)
+
+  async function loadAgentSessions() {
+    agentSessionsVisited = true
+    if (AgentSessionViewer) return
+
+    const module =
+      await import("$lib/vibecoding/agent-sessions/agent-session-viewer.svelte")
+    AgentSessionViewer = module.default
+  }
 
   function selectTab(tabId: TabId, moveFocus = false) {
-    posthog.capture("vibecoding tab switched", { tab: tabId })
+    capture("vibecoding tab switched", { tab: tabId })
     activeTab = tabId
-    if (tabId === "agent-sessions") agentSessionsVisited = true
+    if (tabId === "agent-sessions") void loadAgentSessions()
 
     if (moveFocus) {
       requestAnimationFrame(() => {
@@ -218,7 +229,13 @@
   })
 </script>
 
-<Seo title={m.vibe_title()} description={m.vibe_description()} />
+<Seo
+  mode="indexable"
+  routeId="vibe"
+  locale={getLocale()}
+  title={m.vibe_title()}
+  description={m.vibe_description()}
+/>
 
 <section
   class="mx-auto min-h-[70vh] max-w-[1920px] px-6 pt-12 pb-8 sm:px-8 sm:pt-20 sm:pb-12 md:px-32"
@@ -227,11 +244,16 @@
   <header
     class="mb-6 flex flex-col gap-5 sm:mb-8 sm:flex-row sm:items-end sm:justify-between"
   >
-    <h1
-      class="text-ink-900 text-4xl leading-tight font-black tracking-tight sm:text-5xl md:text-6xl"
-    >
-      Vibe Coding
-    </h1>
+    <div class="max-w-3xl">
+      <h1
+        class="text-ink-900 text-4xl leading-tight font-black tracking-tight sm:text-5xl md:text-6xl"
+      >
+        Vibe Coding
+      </h1>
+      <p class="text-ink-700 mt-3 max-w-2xl text-base leading-7 sm:text-lg">
+        {m.vibe_description()}
+      </p>
+    </div>
 
     <div class="flex w-full items-center gap-5 sm:w-auto sm:justify-end">
       <a
@@ -239,7 +261,7 @@
         href="https://vibecoding-workshop-gilt.vercel.app/"
         target="_blank"
         rel="noreferrer"
-        onclick={() => posthog.capture("vibecoding presentation opened")}
+        onclick={() => capture("vibecoding presentation opened")}
       >
         {m.vibe_open_presentation()}
         <span class="ml-1.5" aria-hidden="true">↗</span>
@@ -249,7 +271,7 @@
         class="text-ink-700 hover:text-ink-900 inline-flex min-h-11 items-center text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
         href="/resources/vibecoding-workshop.pdf"
         download="vibecoding-workshop.pdf"
-        onclick={() => posthog.capture("vibecoding pdf downloaded")}
+        onclick={() => capture("vibecoding pdf downloaded")}
       >
         {m.vibe_download()}
         <span class="ml-1.5" aria-hidden="true">↓</span>
@@ -260,13 +282,47 @@
   <div
     class="overflow-hidden rounded-xl border border-[#ffffff14] bg-black shadow-sm"
   >
-    <iframe
-      class="block aspect-video w-full"
-      src="https://vibecoding-workshop-gilt.vercel.app/"
-      title={m.vibe_iframe_title()}
-      allow="fullscreen"
-      allowfullscreen
-    ></iframe>
+    {#if presentationLoaded}
+      <iframe
+        class="block aspect-video w-full"
+        src="https://vibecoding-workshop-gilt.vercel.app/"
+        title={m.vibe_iframe_title()}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="fullscreen"
+        allowfullscreen
+      ></iframe>
+    {:else}
+      <button
+        type="button"
+        class="group relative block aspect-video w-full overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        onclick={() => {
+          presentationLoaded = true
+          capture("vibecoding embedded presentation loaded")
+        }}
+        aria-label={m.vibe_load_presentation()}
+      >
+        <img
+          class="h-full w-full object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-90"
+          src="/og/vibecoding-workshop.png"
+          alt=""
+          width="1200"
+          height="630"
+          loading="lazy"
+          decoding="async"
+        />
+        <span
+          class="absolute inset-0 flex items-center justify-center bg-black/25"
+        >
+          <span
+            class="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 text-sm font-bold text-black transition-transform duration-200 group-hover:scale-[1.02]"
+          >
+            <span class="mr-2" aria-hidden="true">▶</span>
+            {m.vibe_load_presentation()}
+          </span>
+        </span>
+      </button>
+    {/if}
   </div>
 
   <p class="text-ink-700 mt-3 text-xs sm:text-sm">
@@ -406,7 +462,7 @@
                     target="_blank"
                     rel="noreferrer"
                     onclick={() =>
-                      posthog.capture("vibecoding resource link clicked", {
+                      capture("vibecoding resource link clicked", {
                         link_label: link.label,
                         link_group: group.id,
                         link_href: link.href,
@@ -446,7 +502,7 @@
       tabindex="0"
       hidden={activeTab !== "agent-sessions"}
     >
-      {#if agentSessionsVisited}
+      {#if agentSessionsVisited && AgentSessionViewer}
         <AgentSessionViewer />
       {/if}
     </div>

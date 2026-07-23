@@ -15,7 +15,7 @@
   --color-default-900: #181818;
 
   /* Ink / text (light scale) */
-  --color-ink-600: #737373;
+  --color-ink-600: #919191;
   --color-ink-700: #bbbbbb;
   --color-ink-800: #d0d0d0;
   --color-ink-900: #ffffff;
@@ -44,10 +44,39 @@
 }
 
 @layer base {
+  html {
+    background: var(--color-default-900);
+    scroll-padding-top: 6rem;
+  }
+
+  :is(h1, h2, h3) {
+    text-wrap: balance;
+  }
+
+  :is(p, li) {
+    text-wrap: pretty;
+  }
+
+  :where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--color-ink-900);
+    outline-offset: 4px;
+  }
+
   .prose :is(h1, h2) {
     font-weight: 900;
   }
   .prose h3 {
     font-weight: 700;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

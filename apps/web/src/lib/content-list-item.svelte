@@ -1,8 +1,13 @@
 <script lang="ts">
   import Image from "$lib/image.svelte"
-  import { posthog } from "$lib/posthog"
+  import { capture } from "$lib/posthog"
 
-  type ImageMeta = { src: string; width: number; format: string }
+  type ImageMeta = {
+    src: string
+    width: number
+    height: number
+    format: string
+  }
 
   let {
     title,
@@ -23,7 +28,7 @@
   } = $props()
 
   function trackClick() {
-    posthog.capture("content item clicked", {
+    capture("content item clicked", {
       content_id: analyticsId,
       content_title: title,
       content_type: tag,

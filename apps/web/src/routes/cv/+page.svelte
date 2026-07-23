@@ -3,14 +3,21 @@
   import { onMount } from "svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
-  import { posthog } from "$lib/posthog"
+  import { getLocale } from "$lib/paraglide/runtime"
+  import { capture } from "$lib/posthog"
 
   onMount(() => {
-    posthog.capture("cv viewed")
+    capture("cv viewed")
   })
 </script>
 
-<Seo title={m.cv_title()} description={m.cv_description()} />
+<Seo
+  mode="indexable"
+  routeId="cv"
+  locale={getLocale()}
+  title={m.cv_title()}
+  description={m.cv_description()}
+/>
 
 <header
   class="relative block w-full skew-y-6 transform border-b border-black px-6 pt-16 pb-12 sm:skew-y-4 sm:pb-16 md:px-32 lg:pt-24 lg:pb-32 2xl:px-0"

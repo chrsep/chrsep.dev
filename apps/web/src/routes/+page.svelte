@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade } from "svelte/transition"
+  import { onMount, type Component } from "svelte"
 
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
@@ -16,10 +16,8 @@
   import Icon from "$lib/icon.svelte"
   import Seo from "$lib/seo.svelte"
   import { m } from "$lib/paraglide/messages"
-  import { localizeHref } from "$lib/paraglide/runtime"
-  import { posthog } from "$lib/posthog"
-
-  const globeModule = import("$lib/globe.svelte")
+  import { getLocale, localizeHref } from "$lib/paraglide/runtime"
+  import { capture } from "$lib/posthog"
 
   const contentItems = [
     {
@@ -31,14 +29,41 @@
       image: VibeCodingWorkshopImage,
     },
   ] as const
+
+  let GlobeComponent: Component | null = $state(null)
+  let showGlobe = $state(false)
+
+  onMount(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)")
+    let cancelled = false
+
+    const syncGlobe = async () => {
+      showGlobe = mediaQuery.matches
+      if (!showGlobe || GlobeComponent) return
+
+      const module = await import("$lib/globe.svelte")
+      if (!cancelled) GlobeComponent = module.default
+    }
+
+    void syncGlobe()
+    mediaQuery.addEventListener("change", syncGlobe)
+
+    return () => {
+      cancelled = true
+      mediaQuery.removeEventListener("change", syncGlobe)
+    }
+  })
 </script>
 
-<Seo title={m.site_title()} description={m.site_description()} />
+<Seo
+  mode="indexable"
+  routeId="home"
+  locale={getLocale()}
+  title={m.site_title()}
+  description={m.site_description()}
+/>
 
-<div
-  class="hero-bg relative overflow-hidden border-t border-[#ffffff0A]"
-  in:fade={{ duration: 250 }}
->
+<div class="hero-bg relative overflow-hidden border-t border-[#ffffff0A]">
   <header
     class="relative z-1 mx-auto max-w-[1920px] px-6 pt-6 pb-8 sm:px-8 sm:pt-40 sm:pb-16 md:h-[720px] md:px-32"
   >
@@ -47,22 +72,19 @@
         text="@chrsep"
         href="https://github.com/chrsep"
         icon="/icons/github.svg"
-        onclick={() =>
-          posthog.capture("social link clicked", { platform: "github" })}
+        onclick={() => capture("social link clicked", { platform: "github" })}
       />
       <SocialLink
         text="Chrisando"
-        href="https://linkedin.com/in/chrsep"
+        href="https://www.linkedin.com/in/chrsep"
         icon="/icons/linkedin.svg"
-        onclick={() =>
-          posthog.capture("social link clicked", { platform: "linkedin" })}
+        onclick={() => capture("social link clicked", { platform: "linkedin" })}
       />
       <SocialLink
         text="@_chrsep"
-        href="https://twitter.com/_chrsep"
+        href="https://x.com/_chrsep"
         icon="/icons/twitter.svg"
-        onclick={() =>
-          posthog.capture("social link clicked", { platform: "twitter" })}
+        onclick={() => capture("social link clicked", { platform: "twitter" })}
       />
       <SocialLink
         text="@chrsep"
@@ -70,7 +92,7 @@
         class="hidden sm:flex"
         icon="/icons/stackoverflow.svg"
         onclick={() =>
-          posthog.capture("social link clicked", { platform: "stackoverflow" })}
+          capture("social link clicked", { platform: "stackoverflow" })}
       />
     </ul>
 
@@ -86,8 +108,7 @@
       <ButtonLink
         href="mailto:hi@chrsep.dev"
         class="group mb-4 !inline-block w-full sm:mr-2 sm:mb-0 sm:w-auto"
-        onclick={() =>
-          posthog.capture("contact cta clicked", { location: "hero" })}
+        onclick={() => capture("contact cta clicked", { location: "hero" })}
       >
         {m.lets_work_together()}
         <span
@@ -99,7 +120,7 @@
 
       <ButtonLink
         variant="secondary"
-        href={localizeHref("/cv")}
+        href={localizeHref("/about")}
         class="group !inline-block w-full sm:w-auto"
       >
         {m.home_more_about_me()}
@@ -116,10 +137,9 @@
     </div>
   </header>
 
-  {#await globeModule then m}
-    {@const Globe = m.default}
-    <Globe />
-  {/await}
+  {#if showGlobe && GlobeComponent}
+    <GlobeComponent />
+  {/if}
 </div>
 
 <div class="border-t border-[#ffffff0D] pt-16">
@@ -287,7 +307,7 @@
           target="_blank"
           rel="noreferrer"
           class="mt-6 ml-0 w-full flex-shrink-0 !px-6 !py-4 text-xs sm:w-auto lg:mt-0 lg:ml-auto"
-          onclick={() => posthog.capture("github cta clicked")}
+          onclick={() => capture("github cta clicked")}
         >
           {m.home_open_source_cta()}
           <Icon
