@@ -20,7 +20,7 @@ export default defineConfig({
       build: {
         // Vercel changes these per deployment, but the build uses them only for telemetry.
         command:
-          "BAGGAGE= DD_TAGS= RUNTIME_CACHE_HEADERS= TRACEPARENT= TRACESTATE= vp build",
+          "BAGGAGE= DD_TAGS= RUNTIME_CACHE_HEADERS= TRACEPARENT= TRACESTATE= VERCEL_ARTIFACTS_TOKEN= VERCEL_OIDC_TOKEN= vp build",
         dependsOn: ["sync:studio"],
         cache: true,
         input: [
