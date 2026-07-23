@@ -30,7 +30,7 @@ vp run -r --parallel dev
 ```
 
 Vite Task caches build, check, and test work under
-`node_modules/.vite/task-cache`. Use `vp run -w build -v` to inspect cache
+`node_modules/.vite/task-cache`. Use `vp run -w -v build` to inspect cache
 hits, `vp cache clean` to clear the task cache, and
 `vp run --cache cv#build:cv` to compile the separate XeLaTeX CV package.
 
