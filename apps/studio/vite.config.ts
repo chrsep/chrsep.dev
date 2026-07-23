@@ -6,7 +6,7 @@ export default defineConfig({
       build: {
         // Vercel changes these per deployment, but Sanity uses them only for telemetry.
         command:
-          "DD_TAGS= RUNTIME_CACHE_HEADERS= ./node_modules/.bin/sanity build ./dist -y",
+          "BAGGAGE= DD_TAGS= RUNTIME_CACHE_HEADERS= TRACEPARENT= TRACESTATE= ./node_modules/.bin/sanity build ./dist -y",
         cache: true,
         env: ["SANITY_STUDIO_*"],
         input: [
