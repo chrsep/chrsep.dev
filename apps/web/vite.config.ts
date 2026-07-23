@@ -42,6 +42,10 @@ export default defineConfig({
         command: "node ./scripts/sync-studio.mjs",
         dependsOn: ["studio#build"],
         cache: true,
+        input: [
+          "scripts/sync-studio.mjs",
+          { pattern: "apps/studio/dist/**", base: "workspace" },
+        ],
         output: ["static/studio/**"],
       },
     },
