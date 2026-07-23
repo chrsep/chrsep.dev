@@ -4,11 +4,13 @@
   import SocialLink from "$lib/social-link.svelte"
   import Project from "$lib/projects.svelte"
   import TechStacks from "$lib/tech-stacks.svelte"
+  import ContentListItem from "$lib/content-list-item.svelte"
 
   import JoyfulImage from "$images/portofolio/joyful.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import ObserfyImage from "$images/portofolio/obserfy.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import AtreusImage from "$images/portofolio/atreus.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
   import SekitarmuImage from "$images/portofolio/sekitarmu.png?w=300;500;700;1200&format=avif;webp;jpg&as=metadata"
+  import VibeCodingWorkshopImage from "$images/resources/vibecoding-workshop-cover.png?w=224;384;576;768&format=avif;webp;jpg&as=metadata"
   import Image from "$lib/image.svelte"
   import ButtonLink from "$lib/button-link.svelte"
   import Icon from "$lib/icon.svelte"
@@ -16,6 +18,17 @@
   import { m } from "$lib/paraglide/messages"
   import { getLocale, localizeHref } from "$lib/paraglide/runtime"
   import { capture } from "$lib/posthog"
+
+  const contentItems = [
+    {
+      id: "vibe-coding-workshop",
+      title: m.home_notes_vibe_coding_title(),
+      description: m.home_notes_vibe_coding_description(),
+      tag: m.home_notes_workshop_tag(),
+      href: localizeHref("/resources/vibecoding-demo"),
+      image: VibeCodingWorkshopImage,
+    },
+  ] as const
 
   let GlobeComponent: Component | null = $state(null)
   let showGlobe = $state(false)
@@ -130,8 +143,34 @@
 </div>
 
 <div class="border-t border-[#ffffff0D] pt-16">
+  <section
+    class="mx-auto max-w-[1920px] px-6 sm:px-8 md:px-32"
+    aria-labelledby="notes-resources-heading"
+  >
+    <h2
+      id="notes-resources-heading"
+      class="text-ink-900 text-2xl leading-tight font-black"
+    >
+      {m.home_notes_resources_heading()}
+    </h2>
+
+    <ul class="mt-6 sm:mt-8">
+      {#each contentItems as item (item.id)}
+        <ContentListItem
+          title={item.title}
+          description={item.description}
+          tag={item.tag}
+          href={item.href}
+          image={item.image}
+          imageAlt=""
+          analyticsId={item.id}
+        />
+      {/each}
+    </ul>
+  </section>
+
   <article
-    class="bg-default-900 relative z-1 mx-auto max-w-[1920px] px-6 sm:px-8 md:px-32"
+    class="bg-default-900 relative z-1 mx-auto mt-16 max-w-[1920px] px-6 sm:mt-24 sm:px-8 md:px-32"
   >
     <div class="prose mb-8 max-w-lg">
       <h2>{m.home_projects_heading()}</h2>
@@ -244,8 +283,8 @@
     <!--      />-->
   </section>
 
-  <section class="mt-8 flex items-center">
-    <div class="relative mx-auto inline-block">
+  <section class="mx-auto mt-16 max-w-[1920px] px-6 sm:mt-24 sm:px-8 md:px-32">
+    <div class="relative w-full">
       <div
         class="absolute -z-10 h-40 w-40 rounded-full bg-indigo-800 opacity-80 blur-3xl filter"
       ></div>
@@ -254,9 +293,9 @@
       ></div>
 
       <div
-        class="bg-default-700 bg-opacity-60 border-opacity-10 m-6 items-end rounded-3xl border border-white p-6 lg:flex"
+        class="bg-default-700/35 hover:bg-default-700/45 rounded-3xl border border-white/5 p-6 backdrop-blur-xl backdrop-filter transition-colors duration-300 ease-out hover:border-white/10 lg:flex lg:items-end lg:justify-between lg:gap-12"
       >
-        <div class="prose prose-sm max-w-md">
+        <div class="prose prose-sm max-w-2xl">
           <h2>{m.home_open_source_heading()}</h2>
           <p>
             {m.home_open_source_body()}
@@ -267,13 +306,13 @@
           href="https://github.com/chrsep"
           target="_blank"
           rel="noreferrer"
-          class="mt-6 ml-0 w-full flex-shrink-0 !px-6 !py-4 text-xs sm:w-auto lg:ml-8"
+          class="mt-6 ml-0 w-full flex-shrink-0 !px-6 !py-4 text-xs sm:w-auto lg:mt-0 lg:ml-auto"
           onclick={() => capture("github cta clicked")}
         >
           {m.home_open_source_cta()}
           <Icon
             --src="url(/icons/github.svg)"
-            class={"ml-auto h-4 w-4 bg-black lg:ml-4"}
+            class={"ml-auto h-4 w-4 !bg-black lg:ml-4"}
           />
         </ButtonLink>
       </div>
