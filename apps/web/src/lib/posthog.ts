@@ -19,8 +19,9 @@ export function initPostHog(): Promise<PostHogClient | null> {
 
   const key = env.PUBLIC_POSTHOG_KEY
   const host = env.PUBLIC_POSTHOG_HOST
+  const uiHost = env.PUBLIC_POSTHOG_UI_HOST
 
-  if (!key || !host) {
+  if (!key || !host || !uiHost) {
     initializationUnavailable = true
     return Promise.resolve(null)
   }
@@ -29,6 +30,7 @@ export function initPostHog(): Promise<PostHogClient | null> {
     .then(({ default: posthog }) => {
       posthog.init(key, {
         api_host: host,
+        ui_host: uiHost,
         capture_pageview: false,
         capture_exceptions: true,
       })
