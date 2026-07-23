@@ -1,4 +1,5 @@
 {
+  "enabled": false,
   "automerge": true,
   "extends": ["config:base"],
   "stabilityDays": 5,
