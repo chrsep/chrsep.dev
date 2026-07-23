@@ -4,8 +4,9 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        // Vercel changes DD_TAGS per deployment, but Sanity uses it only for telemetry.
-        command: "DD_TAGS= ./node_modules/.bin/sanity build ./dist -y",
+        // Vercel changes these per deployment, but Sanity uses them only for telemetry.
+        command:
+          "DD_TAGS= RUNTIME_CACHE_HEADERS= ./node_modules/.bin/sanity build ./dist -y",
         cache: true,
         env: ["SANITY_STUDIO_*"],
         input: [

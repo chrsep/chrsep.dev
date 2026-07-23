@@ -18,8 +18,8 @@ export default defineConfig({
   run: {
     tasks: {
       build: {
-        // Vercel changes DD_TAGS per deployment, but the build uses it only for telemetry.
-        command: "DD_TAGS= vp build",
+        // Vercel changes these per deployment, but the build uses them only for telemetry.
+        command: "DD_TAGS= RUNTIME_CACHE_HEADERS= vp build",
         dependsOn: ["sync:studio"],
         cache: true,
         input: [
