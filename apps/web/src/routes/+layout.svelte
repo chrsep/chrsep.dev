@@ -59,7 +59,7 @@
 </svelte:head>
 
 <nav
-  class="bg-default-900 bg-opacity-80 text-ink-900 fixed inset-x-0 top-0 z-10 h-12 w-full px-6 text-sm backdrop-blur-lg backdrop-filter sm:h-16 sm:px-8 md:px-32"
+  class="bg-default-900/55 text-ink-900 fixed inset-x-0 top-0 z-10 h-12 w-full border-b border-white/5 px-6 text-sm backdrop-blur-xl backdrop-filter transition-colors duration-300 sm:h-16 sm:px-8 md:px-32"
 >
   <div class="mx-auto flex h-12 max-w-[1920px] gap-4 sm:h-16 sm:gap-8">
     <a
