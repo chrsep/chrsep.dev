@@ -11,11 +11,12 @@ pnpm --filter web dev
 ```
 
 PostHog is optional for local development and verification. The site skips
-analytics when `PUBLIC_POSTHOG_KEY` or `PUBLIC_POSTHOG_HOST` is absent, so a
-production credential is never required to build or test the portfolio. If a
-local environment requires both variables to exist, copy
-`apps/web/.env.example`; its values are intentionally non-production and point
-to the reserved `.invalid` domain.
+analytics when `PUBLIC_POSTHOG_KEY`, `PUBLIC_POSTHOG_HOST`, or
+`PUBLIC_POSTHOG_UI_HOST` is absent, so a production credential is never required
+to build or test the portfolio. If a local environment requires these variables
+to exist, copy `apps/web/.env.example`; its project key and ingestion host are
+intentionally non-production, with the latter pointing to the reserved
+`.invalid` domain.
 
 The main web verification commands are:
 

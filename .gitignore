@@ -12,3 +12,4 @@ dist
 .turbo
 .sanity
 .env
+.env.local
