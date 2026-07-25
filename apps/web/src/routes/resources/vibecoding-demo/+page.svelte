@@ -3,6 +3,7 @@
   import { fade } from "svelte/transition"
   import { replaceState } from "$app/navigation"
   import Seo from "$lib/seo.svelte"
+  import PresentationPoster from "$lib/vibecoding/presentation-poster.svelte"
   import { m } from "$lib/paraglide/messages"
   import { getLocale } from "$lib/paraglide/runtime"
   import { capture } from "$lib/posthog"
@@ -302,20 +303,12 @@
         }}
         aria-label={m.vibe_load_presentation()}
       >
-        <img
-          class="h-full w-full object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-90"
-          src="/og/vibecoding-workshop.png"
-          alt=""
-          width="1200"
-          height="630"
-          loading="lazy"
-          decoding="async"
-        />
+        <PresentationPoster />
         <span
-          class="absolute inset-0 flex items-center justify-center bg-black/25"
+          class="absolute inset-0 flex items-end justify-center pb-[5%] transition-colors duration-300 group-hover:bg-[#3a332a]/8"
         >
           <span
-            class="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 text-sm font-bold text-black transition-transform duration-200 group-hover:scale-[1.02]"
+            class="inline-flex min-h-9 items-center rounded-xl bg-[#3a332a] px-3.5 py-2 text-xs font-bold text-[#f8f4e9] shadow-lg transition-transform duration-200 group-hover:scale-[1.02] sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
           >
             <span class="mr-2" aria-hidden="true">▶</span>
             {m.vibe_load_presentation()}

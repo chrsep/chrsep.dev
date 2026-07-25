@@ -3,13 +3,13 @@
   "configurations": [
     {
       "name": "web-preview",
-      "runtimeExecutable": "vp",
+      "runtimeExecutable": "./node_modules/.bin/vp",
       "runtimeArgs": ["run", "web#preview"],
       "port": 4173
     },
     {
       "name": "web-dev",
-      "runtimeExecutable": "vp",
+      "runtimeExecutable": "./node_modules/.bin/vp",
       "runtimeArgs": ["run", "web#dev", "--port", "5199", "--strictPort"],
       "port": 5199
     }
