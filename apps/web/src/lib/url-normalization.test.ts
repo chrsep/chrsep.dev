@@ -11,6 +11,12 @@ describe("localized route resolution", () => {
     ["/id/about", "/about"],
     ["/id/cv", "/cv"],
     ["/id/resources/vibecoding-demo", "/resources/vibecoding-demo"],
+    ["/id/resources/vibecoding-demo/links", "/resources/vibecoding-demo/links"],
+    [
+      "/id/resources/vibecoding-demo/sessions",
+      "/resources/vibecoding-demo/sessions",
+    ],
+    ["/id/resources/vibecoding-demo/qa", "/resources/vibecoding-demo/qa"],
   ])("reroutes canonical %s to %s", (pathname, route) => {
     expect(rerouteLocalizedPath(pathname)).toBe(route)
   })
@@ -76,10 +82,15 @@ describe("localization exclusions", () => {
     expect(isLocalizationExcludedPath(pathname)).toBe(true)
   })
 
-  it.each(["/", "/cv", "/resources/vibecoding-demo"])(
-    "keeps page route %s localizable",
-    (pathname) => {
-      expect(isLocalizationExcludedPath(pathname)).toBe(false)
-    },
-  )
+  it.each([
+    "/",
+    "/cv",
+    "/resources/vibecoding-demo",
+    "/resources/vibecoding-demo/links",
+    // Distinct from the excluded /agent-sessions/ data directory above.
+    "/resources/vibecoding-demo/sessions",
+    "/resources/vibecoding-demo/qa",
+  ])("keeps page route %s localizable", (pathname) => {
+    expect(isLocalizationExcludedPath(pathname)).toBe(false)
+  })
 })

@@ -1,98 +1,10 @@
 <script lang="ts">
-  import { onMount, type Component } from "svelte"
-  import { fade } from "svelte/transition"
-  import { replaceState } from "$app/navigation"
+  import { onMount } from "svelte"
+  import { page } from "$app/state"
+  import { goto, replaceState } from "$app/navigation"
   import Seo from "$lib/seo.svelte"
-  import PresentationPoster from "$lib/vibecoding/presentation-poster.svelte"
   import { m } from "$lib/paraglide/messages"
   import { getLocale } from "$lib/paraglide/runtime"
-  import { capture } from "$lib/posthog"
-
-  type TabId = "links" | "agent-sessions" | "summary" | "qa"
-
-  type LinkGroup = {
-    id: string
-    title: string
-    description: string
-    links: readonly {
-      label: string
-      description: string
-      domain: string
-      href: string
-    }[]
-  }
-
-  const tabs = [
-    { id: "summary", label: m.vibe_tab_summary() },
-    { id: "links", label: m.vibe_tab_links() },
-    { id: "agent-sessions", label: m.vibe_tab_sessions() },
-    { id: "qa", label: m.vibe_tab_qa() },
-  ] as const satisfies readonly { id: TabId; label: string }[]
-
-  const linkGroups = [
-    {
-      id: "resources",
-      title: m.vibe_group_resources_title(),
-      description: m.vibe_group_resources_description(),
-      links: [
-        {
-          label: "Skills.sh",
-          description: m.vibe_link_skills_description(),
-          domain: "skills.sh",
-          href: "https://www.skills.sh/",
-        },
-        {
-          label: "chrsep/inventory",
-          description: m.vibe_link_inventory_repo_description(),
-          domain: "github.com",
-          href: "https://github.com/chrsep/inventory",
-        },
-        {
-          label: m.vibe_link_inventory_demo_label(),
-          description: m.vibe_link_inventory_demo_description(),
-          domain: "inventory-wine-five.vercel.app",
-          href: "https://inventory-wine-five.vercel.app/",
-        },
-        {
-          label: "chrsep/vibecoding-workshop",
-          description: m.vibe_link_workshop_repo_description(),
-          domain: "github.com",
-          href: "https://github.com/chrsep/vibecoding-workshop",
-        },
-      ],
-    },
-    {
-      id: "tools",
-      title: m.vibe_group_tools_title(),
-      description: m.vibe_group_tools_description(),
-      links: [
-        {
-          label: "Vercel",
-          description: m.vibe_link_vercel_description(),
-          domain: "vercel.com",
-          href: "https://vercel.com/",
-        },
-        {
-          label: "GitHub",
-          description: m.vibe_link_github_description(),
-          domain: "github.com",
-          href: "https://github.com/",
-        },
-        {
-          label: "Neon",
-          description: m.vibe_link_neon_description(),
-          domain: "neon.com",
-          href: "https://neon.com/",
-        },
-        {
-          label: "Codex",
-          description: m.vibe_link_codex_description(),
-          domain: "openai.com/codex",
-          href: "https://openai.com/codex/",
-        },
-      ],
-    },
-  ] as const satisfies readonly LinkGroup[]
 
   const summarySections = [
     {
@@ -135,51 +47,9 @@
     },
   ] as const
 
-  let activeTab: TabId = $state("summary")
-  let agentSessionsVisited = $state(false)
+  // Scroll-spy output, deliberately not URL state: the observer rewrites this
+  // continuously while scrolling. The hash is the shareable deep-link anchor.
   let activeSectionId: string | null = $state(null)
-  let AgentSessionViewer: Component | null = $state(null)
-  let presentationLoaded = $state(false)
-
-  async function loadAgentSessions() {
-    agentSessionsVisited = true
-    if (AgentSessionViewer) return
-
-    const module =
-      await import("$lib/vibecoding/agent-sessions/agent-session-viewer.svelte")
-    AgentSessionViewer = module.default
-  }
-
-  function selectTab(tabId: TabId, moveFocus = false) {
-    capture("vibecoding tab switched", { tab: tabId })
-    activeTab = tabId
-    if (tabId === "agent-sessions") void loadAgentSessions()
-
-    if (moveFocus) {
-      requestAnimationFrame(() => {
-        document.getElementById(`tab-${tabId}`)?.focus()
-      })
-    }
-  }
-
-  function handleTabKeydown(event: KeyboardEvent, currentIndex: number) {
-    let nextIndex: number | undefined
-
-    if (event.key === "ArrowRight") {
-      nextIndex = (currentIndex + 1) % tabs.length
-    } else if (event.key === "ArrowLeft") {
-      nextIndex = (currentIndex - 1 + tabs.length) % tabs.length
-    } else if (event.key === "Home") {
-      nextIndex = 0
-    } else if (event.key === "End") {
-      nextIndex = tabs.length - 1
-    }
-
-    if (nextIndex === undefined) return
-
-    event.preventDefault()
-    selectTab(tabs[nextIndex].id, true)
-  }
 
   function scrollToSection(event: MouseEvent, id: string) {
     event.preventDefault()
@@ -195,14 +65,20 @@
   }
 
   onMount(() => {
-    const url = new URL(window.location.href)
-    if (url.searchParams.has("session")) {
-      selectTab("agent-sessions")
+    // A legacy shared link may still carry ?session=; hand it to the tab that
+    // owns it. The Vercel redirect covers this too, but it does not run in dev.
+    if (page.url.searchParams.has("session")) {
+      const target = new URL(page.url)
+      target.pathname = `${target.pathname.replace(/\/$/, "")}/sessions`
+      void goto(`${target.pathname}${target.search}`, { replaceState: true })
+      return
     }
 
-    const hash = url.hash.slice(1)
+    // Re-assert the scroll after the observer below exists. The browser's own
+    // hash scroll lands before hydration, so without this the observer settles
+    // against a stale position and highlights the wrong section.
+    const hash = page.url.hash.slice(1)
     if (summarySections.some((section) => section.id === hash)) {
-      selectTab("summary")
       activeSectionId = hash
       requestAnimationFrame(() => {
         document.getElementById(hash)?.scrollIntoView()
@@ -238,294 +114,47 @@
   description={m.vibe_description()}
 />
 
-<section
-  class="mx-auto min-h-[70vh] max-w-[1920px] px-6 pt-12 pb-8 sm:px-8 sm:pt-20 sm:pb-12 md:px-32"
-  in:fade={{ duration: 250 }}
->
-  <header
-    class="mb-6 flex flex-col gap-5 sm:mb-8 sm:flex-row sm:items-end sm:justify-between"
-  >
-    <div class="max-w-3xl">
-      <h1
-        class="text-ink-900 text-4xl leading-tight font-black tracking-tight sm:text-5xl md:text-6xl"
-      >
-        Vibe Coding
-      </h1>
-      <p class="text-ink-700 mt-3 max-w-2xl text-base leading-7 sm:text-lg">
-        {m.vibe_description()}
-      </p>
-    </div>
+<div class="pt-8 pb-12 sm:pt-10">
+  <div class="flex gap-16">
+    <article class="prose max-w-2xl min-w-0">
+      <h3 class="text-2xl leading-tight font-black sm:text-3xl">
+        {m.vibe_summary_heading()}
+      </h3>
 
-    <div class="flex w-full items-center gap-5 sm:w-auto sm:justify-end">
-      <a
-        class="text-ink-700 hover:text-ink-900 inline-flex min-h-11 items-center text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-        href="https://vibecoding-workshop-gilt.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-        onclick={() => capture("vibecoding presentation opened")}
-      >
-        {m.vibe_open_presentation()}
-        <span class="ml-1.5" aria-hidden="true">↗</span>
-      </a>
-
-      <a
-        class="text-ink-700 hover:text-ink-900 inline-flex min-h-11 items-center text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-        href="/resources/vibecoding-workshop.pdf"
-        download="vibecoding-workshop.pdf"
-        onclick={() => capture("vibecoding pdf downloaded")}
-      >
-        {m.vibe_download()}
-        <span class="ml-1.5" aria-hidden="true">↓</span>
-      </a>
-    </div>
-  </header>
-
-  <div
-    class="overflow-hidden rounded-xl border border-[#ffffff14] bg-black shadow-sm"
-  >
-    {#if presentationLoaded}
-      <iframe
-        class="block aspect-video w-full"
-        src="https://vibecoding-workshop-gilt.vercel.app/"
-        title={m.vibe_iframe_title()}
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allow="fullscreen"
-        allowfullscreen
-      ></iframe>
-    {:else}
-      <button
-        type="button"
-        class="group relative block aspect-video w-full overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-        onclick={() => {
-          presentationLoaded = true
-          capture("vibecoding embedded presentation loaded")
-        }}
-        aria-label={m.vibe_load_presentation()}
-      >
-        <PresentationPoster />
-        <span
-          class="absolute inset-0 flex items-end justify-center pb-[5%] transition-colors duration-300 group-hover:bg-[#3a332a]/8"
-        >
-          <span
-            class="inline-flex min-h-9 items-center rounded-xl bg-[#3a332a] px-3.5 py-2 text-xs font-bold text-[#f8f4e9] shadow-lg transition-transform duration-200 group-hover:scale-[1.02] sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
-          >
-            <span class="mr-2" aria-hidden="true">▶</span>
-            {m.vibe_load_presentation()}
-          </span>
-        </span>
-      </button>
-    {/if}
-  </div>
-
-  <p class="text-ink-700 mt-3 text-xs sm:text-sm">
-    {m.vibe_presentation_hint()}
-  </p>
-
-  <section class="mt-16 border-t border-[#ffffff14] pt-9 sm:mt-20 sm:pt-12">
-    <div class="mb-5 max-w-3xl sm:mb-6">
-      <h2
-        class="text-ink-900 text-3xl leading-tight font-black tracking-tight sm:text-4xl md:text-5xl"
-      >
-        {m.vibe_resources_heading()}
-      </h2>
-      <p class="text-ink-700 mt-3 max-w-2xl text-base leading-7 sm:text-lg">
-        {m.vibe_resources_body()}
-      </p>
-    </div>
-
-    <div
-      class="tab-scroll -mx-6 overflow-x-auto border-b border-[#ffffff1f] px-6 sm:mx-0 sm:px-0"
-    >
-      <div
-        class="-ml-2.5 flex min-w-max sm:-ml-3"
-        role="tablist"
-        aria-label={m.vibe_tablist_label()}
-      >
-        {#each tabs as tab, index}
-          <button
-            id={`tab-${tab.id}`}
-            class="relative min-h-11 shrink-0 px-2.5 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white sm:px-3 {activeTab ===
-            tab.id
-              ? 'text-ink-900'
-              : 'text-ink-700 hover:text-ink-900'}"
-            type="button"
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`panel-${tab.id}`}
-            tabindex={activeTab === tab.id ? 0 : -1}
-            onclick={() => selectTab(tab.id)}
-            onkeydown={(event) => handleTabKeydown(event, index)}
-          >
-            {tab.label}
-            {#if activeTab === tab.id}
-              <span
-                class="absolute inset-x-2.5 -bottom-px h-0.5 bg-white sm:inset-x-3"
-                aria-hidden="true"
-              ></span>
-            {/if}
-          </button>
+      {#each summarySections as section}
+        <h4 id={section.id} class="scroll-mt-24 text-lg font-bold">
+          {section.heading}
+        </h4>
+        {#each section.paragraphs as paragraph}
+          <p>{paragraph}</p>
         {/each}
-      </div>
-    </div>
+      {/each}
+    </article>
 
-    <div
-      id="panel-summary"
-      class="pt-8 pb-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
-      role="tabpanel"
-      aria-labelledby="tab-summary"
-      tabindex="0"
-      hidden={activeTab !== "summary"}
+    <nav
+      class="sticky top-28 hidden max-h-[calc(100vh-9rem)] w-56 shrink-0 self-start overflow-y-auto xl:block"
+      aria-label={m.vibe_summary_toc_label()}
     >
-      <div class="flex gap-16">
-        <article class="prose max-w-2xl min-w-0">
-          <h3 class="text-2xl leading-tight font-black sm:text-3xl">
-            {m.vibe_summary_heading()}
-          </h3>
-
-          {#each summarySections as section}
-            <h4 id={section.id} class="scroll-mt-24 text-lg font-bold">
+      <p class="text-ink-900 text-sm font-semibold">
+        {m.vibe_summary_toc_label()}
+      </p>
+      <ul class="mt-3 border-l border-[#ffffff1f]">
+        {#each summarySections as section}
+          <li>
+            <a
+              href={`#${section.id}`}
+              class="-ml-px block border-l py-1.5 pl-4 text-sm leading-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white {activeSectionId ===
+              section.id
+                ? 'text-ink-900 border-white'
+                : 'text-ink-700 hover:text-ink-900 border-transparent'}"
+              aria-current={activeSectionId === section.id ? "true" : undefined}
+              onclick={(event) => scrollToSection(event, section.id)}
+            >
               {section.heading}
-            </h4>
-            {#each section.paragraphs as paragraph}
-              <p>{paragraph}</p>
-            {/each}
-          {/each}
-        </article>
-
-        <nav
-          class="sticky top-28 hidden max-h-[calc(100vh-9rem)] w-56 shrink-0 self-start overflow-y-auto xl:block"
-          aria-label={m.vibe_summary_toc_label()}
-        >
-          <p class="text-ink-900 text-sm font-semibold">
-            {m.vibe_summary_toc_label()}
-          </p>
-          <ul class="mt-3 border-l border-[#ffffff1f]">
-            {#each summarySections as section}
-              <li>
-                <a
-                  href={`#${section.id}`}
-                  class="-ml-px block border-l py-1.5 pl-4 text-sm leading-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white {activeSectionId ===
-                  section.id
-                    ? 'text-ink-900 border-white'
-                    : 'text-ink-700 hover:text-ink-900 border-transparent'}"
-                  aria-current={activeSectionId === section.id
-                    ? "true"
-                    : undefined}
-                  onclick={(event) => scrollToSection(event, section.id)}
-                >
-                  {section.heading}
-                </a>
-              </li>
-            {/each}
-          </ul>
-        </nav>
-      </div>
-    </div>
-
-    <div
-      id="panel-links"
-      class="pt-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
-      role="tabpanel"
-      aria-labelledby="tab-links"
-      tabindex="0"
-      hidden={activeTab !== "links"}
-    >
-      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
-        {#each linkGroups as group}
-          <section aria-labelledby={`link-group-${group.id}`}>
-            <div class="min-h-24 border-b border-[#ffffff1f] pb-5">
-              <h3
-                id={`link-group-${group.id}`}
-                class="text-ink-900 text-lg font-bold"
-              >
-                {group.title}
-              </h3>
-              <p class="text-ink-700 mt-2 max-w-md text-sm leading-6">
-                {group.description}
-              </p>
-            </div>
-
-            <ul>
-              {#each group.links as link}
-                <li class="border-b border-[#ffffff14]">
-                  <a
-                    class="group -mx-3 flex min-h-24 items-center justify-between gap-5 px-3 py-4 transition-colors hover:bg-[#ffffff08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    onclick={() =>
-                      capture("vibecoding resource link clicked", {
-                        link_label: link.label,
-                        link_group: group.id,
-                        link_href: link.href,
-                      })}
-                  >
-                    <span class="min-w-0">
-                      <span class="text-ink-900 block font-semibold">
-                        {link.label}
-                      </span>
-                      <span class="text-ink-700 mt-1 block text-sm leading-5">
-                        {link.description}
-                      </span>
-                      <span class="text-ink-700 mt-1.5 block text-xs">
-                        {link.domain}
-                      </span>
-                    </span>
-                    <span
-                      class="text-ink-700 group-hover:text-ink-900 shrink-0 text-lg transition-colors"
-                      aria-hidden="true"
-                    >
-                      ↗
-                    </span>
-                  </a>
-                </li>
-              {/each}
-            </ul>
-          </section>
+            </a>
+          </li>
         {/each}
-      </div>
-    </div>
-
-    <div
-      id="panel-agent-sessions"
-      class="pt-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:pt-10"
-      role="tabpanel"
-      aria-labelledby="tab-agent-sessions"
-      tabindex="0"
-      hidden={activeTab !== "agent-sessions"}
-    >
-      {#if agentSessionsVisited && AgentSessionViewer}
-        <AgentSessionViewer />
-      {/if}
-    </div>
-
-    <div
-      id="panel-qa"
-      class="flex min-h-72 max-w-2xl items-center py-12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:py-16"
-      role="tabpanel"
-      aria-labelledby="tab-qa"
-      tabindex="0"
-      hidden={activeTab !== "qa"}
-    >
-      <div>
-        <h3 class="text-ink-900 text-2xl leading-tight font-black sm:text-3xl">
-          {m.vibe_qa_heading()}
-        </h3>
-        <p class="text-ink-700 mt-4 max-w-xl text-base leading-7">
-          {m.vibe_qa_body()}
-        </p>
-      </div>
-    </div>
-  </section>
-</section>
-
-<style>
-  .tab-scroll {
-    scrollbar-width: none;
-  }
-
-  .tab-scroll::-webkit-scrollbar {
-    display: none;
-  }
-</style>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -98,7 +98,7 @@
 
     <a
       href={localizeHref("/resources/vibecoding-demo")}
-      aria-current={canonicalPath === "/resources/vibecoding-demo"
+      aria-current={canonicalPath.startsWith("/resources/vibecoding-demo")
         ? "page"
         : undefined}
       class="text-ink-700 hover:text-ink-900 hidden h-full items-center font-medium transition-colors lg:flex"
