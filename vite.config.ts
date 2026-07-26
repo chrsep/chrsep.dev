@@ -158,6 +158,7 @@ export default defineConfig({
           "apps/web/package.json",
           "apps/web/scripts/seo-audit.mjs",
           "apps/web/vercel.json",
+          "apps/web/.svelte-kit/generated/client/app.js",
           "apps/web/.svelte-kit/output/client/**",
           "apps/web/.vercel/output/**",
         ],

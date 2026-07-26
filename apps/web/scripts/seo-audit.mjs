@@ -150,6 +150,96 @@ const pages = [
       "PresentationDigitalDocument",
     ],
   },
+  {
+    path: "/resources/vibecoding-demo/links",
+    output: "resources/vibecoding-demo/links.html",
+    locale: "en",
+    title: "Vibe Coding Tools & Links — Chrisando E. Pramudhita",
+    description:
+      "Repositories, live demos, and the tools used in Chrisando’s Vibe Coding workshop, including Skills.sh, Vercel, GitHub, Neon, and Codex.",
+    en: "/resources/vibecoding-demo/links",
+    id: "/id/resources/vibecoding-demo/links",
+    ogLocale: "en_US",
+    ogAlternateLocale: "id_ID",
+    image: "/og/vibecoding-workshop.png",
+    imageAlt: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
+    schemaTypes: ["WebPage"],
+  },
+  {
+    path: "/id/resources/vibecoding-demo/links",
+    output: "id/resources/vibecoding-demo/links.html",
+    locale: "id",
+    title: "Tools dan Link Vibe Coding — Chrisando E. Pramudhita",
+    description:
+      "Repositori, demo langsung, dan tools yang dipakai di workshop Vibe Coding Chrisando, termasuk Skills.sh, Vercel, GitHub, Neon, dan Codex.",
+    en: "/resources/vibecoding-demo/links",
+    id: "/id/resources/vibecoding-demo/links",
+    ogLocale: "id_ID",
+    ogAlternateLocale: "en_US",
+    image: "/og/vibecoding-workshop.png",
+    imageAlt: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
+    schemaTypes: ["WebPage"],
+  },
+  {
+    path: "/resources/vibecoding-demo/sessions",
+    output: "resources/vibecoding-demo/sessions.html",
+    locale: "en",
+    title: "Vibe Coding Chat Transcripts — Chrisando E. Pramudhita",
+    description:
+      "Read the full AI agent chat transcripts behind the Inventory demo app built live during Chrisando’s Vibe Coding workshop.",
+    en: "/resources/vibecoding-demo/sessions",
+    id: "/id/resources/vibecoding-demo/sessions",
+    ogLocale: "en_US",
+    ogAlternateLocale: "id_ID",
+    image: "/og/vibecoding-workshop.png",
+    imageAlt: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
+    schemaTypes: ["WebPage"],
+  },
+  {
+    path: "/id/resources/vibecoding-demo/sessions",
+    output: "id/resources/vibecoding-demo/sessions.html",
+    locale: "id",
+    title: "Transkrip Chat Vibe Coding — Chrisando E. Pramudhita",
+    description:
+      "Baca transkrip lengkap chat AI agent di balik aplikasi demo Inventory yang dibangun langsung di workshop Vibe Coding Chrisando.",
+    en: "/resources/vibecoding-demo/sessions",
+    id: "/id/resources/vibecoding-demo/sessions",
+    ogLocale: "id_ID",
+    ogAlternateLocale: "en_US",
+    image: "/og/vibecoding-workshop.png",
+    imageAlt: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
+    schemaTypes: ["WebPage"],
+  },
+  {
+    path: "/resources/vibecoding-demo/qa",
+    output: "resources/vibecoding-demo/qa.html",
+    locale: "en",
+    title: "Vibe Coding Workshop Q&A — Chrisando E. Pramudhita",
+    description:
+      "Questions and answers from Chrisando’s Vibe Coding workshop, covering AI agents, tooling, and getting started without writing code.",
+    en: "/resources/vibecoding-demo/qa",
+    id: "/id/resources/vibecoding-demo/qa",
+    ogLocale: "en_US",
+    ogAlternateLocale: "id_ID",
+    image: "/og/vibecoding-workshop.png",
+    imageAlt: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
+    schemaTypes: ["WebPage"],
+  },
+  {
+    path: "/id/resources/vibecoding-demo/qa",
+    output: "id/resources/vibecoding-demo/qa.html",
+    locale: "id",
+    title: "Tanya Jawab Workshop Vibe Coding — Chrisando E. Pramudhita",
+    description:
+      "Tanya jawab dari workshop Vibe Coding Chrisando seputar AI agent, tooling, dan cara memulai tanpa menulis kode.",
+    en: "/resources/vibecoding-demo/qa",
+    id: "/id/resources/vibecoding-demo/qa",
+    ogLocale: "id_ID",
+    ogAlternateLocale: "en_US",
+    image: "/og/vibecoding-workshop.png",
+    imageAlt: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
+    schemaTypes: ["WebPage"],
+  },
 ]
 
 const rasterAssets = [
@@ -709,7 +799,37 @@ async function validateStudioBuild(audit, vercelConfig) {
   }
 }
 
+/**
+ * Resolves the Vite manifest entry name for the home route's leaf node.
+ *
+ * SvelteKit numbers nodes in two passes — every layout and error component
+ * first, then every page leaf — so adding any nested `+layout.svelte`
+ * renumbers the leaves. Hardcoding `nodes/2` would silently start measuring a
+ * different route's JavaScript while still reporting a pass, so the index is
+ * read from the generated route dictionary instead. Node 0 is always the root
+ * layout by construction and is safe to hardcode.
+ */
+async function resolveHomeLeafNode(audit) {
+  const appJs = await readText(
+    path.join(webDirectory, ".svelte-kit", "generated", "client", "app.js"),
+    audit,
+    "Client route dictionary",
+  )
+  if (appJs === null) return null
+
+  const match = /"\/":\s*\[~?(\d+)/.exec(appJs)
+  if (!match) {
+    audit.fail("Client route dictionary: home route leaf node index not found")
+    return null
+  }
+
+  return `nodes/${match[1]}`
+}
+
 async function validateInitialRouteJavaScript(audit) {
+  const homeLeafNode = await resolveHomeLeafNode(audit)
+  if (!homeLeafNode) return
+
   const manifest = await readJson(
     path.join(
       webDirectory,
@@ -728,7 +848,7 @@ async function validateInitialRouteJavaScript(audit) {
     "entry/start",
     "entry/app",
     "nodes/0",
-    "nodes/2",
+    homeLeafNode,
   ])
   const visited = new Set()
 
@@ -797,7 +917,7 @@ async function runBuildAudit() {
   audit.equal(
     pageHtmlFiles,
     pages.map((page) => page.output).sort(),
-    "Build output: exactly eight intended page HTML files",
+    "Build output: exactly fourteen intended page HTML files",
   )
   for (const unexpectedPath of [
     "en/index.html",

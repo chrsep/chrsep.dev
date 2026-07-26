@@ -1,11 +1,24 @@
 export const SITE_ORIGIN = "https://www.chrsep.dev" as const
 export const SITE_NAME = "Chrisando E. Pramudhita" as const
 
-export const SEO_ROUTE_IDS = ["home", "about", "cv", "vibe"] as const
+export const SEO_ROUTE_IDS = [
+  "home",
+  "about",
+  "cv",
+  "vibe",
+  "vibeLinks",
+  "vibeSessions",
+  "vibeQa",
+] as const
 
 export type Locale = "en" | "id"
 export type SeoRouteId = (typeof SEO_ROUTE_IDS)[number]
-export type SeoSchemaKind = "home" | "profile" | "cv" | "workshop"
+export type SeoSchemaKind =
+  | "home"
+  | "profile"
+  | "cv"
+  | "workshop"
+  | "workshopSection"
 
 type LocalizedValue = Readonly<Record<Locale, string>>
 
@@ -72,6 +85,42 @@ export const SEO_ROUTES = {
       id: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
     },
     schemaKind: "workshop",
+  },
+  vibeLinks: {
+    paths: {
+      en: "/resources/vibecoding-demo/links",
+      id: "/id/resources/vibecoding-demo/links",
+    },
+    socialImage: "/og/vibecoding-workshop.png",
+    socialImageAlt: {
+      en: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
+      id: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
+    },
+    schemaKind: "workshopSection",
+  },
+  vibeSessions: {
+    paths: {
+      en: "/resources/vibecoding-demo/sessions",
+      id: "/id/resources/vibecoding-demo/sessions",
+    },
+    socialImage: "/og/vibecoding-workshop.png",
+    socialImageAlt: {
+      en: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
+      id: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
+    },
+    schemaKind: "workshopSection",
+  },
+  vibeQa: {
+    paths: {
+      en: "/resources/vibecoding-demo/qa",
+      id: "/id/resources/vibecoding-demo/qa",
+    },
+    socialImage: "/og/vibecoding-workshop.png",
+    socialImageAlt: {
+      en: "Vibe Coding workshop resources by Chrisando E. Pramudhita.",
+      id: "Materi workshop Vibe Coding oleh Chrisando E. Pramudhita.",
+    },
+    schemaKind: "workshopSection",
   },
 } as const satisfies Record<SeoRouteId, SeoRouteConfig>
 
@@ -193,7 +242,23 @@ export function buildStructuredData(props: IndexableSeoProps): JsonLdGraph {
     }
   }
 
-  const learningResourceId = `${route.canonicalUrl}#learning-resource`
+  const learningResourceId = `${getSeoRoute("vibe", props.locale).canonicalUrl}#learning-resource`
+
+  // Tab pages point back at the hub's LearningResource instead of restating it.
+  // Repeating the full workshop graph on every tab would leave Google choosing
+  // its own canonical among four near-identical descriptions of one resource.
+  if (route.schemaKind === "workshopSection") {
+    return {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          ...commonPageProperties,
+          about: { "@id": learningResourceId },
+        },
+      ],
+    }
+  }
 
   return {
     "@context": "https://schema.org",

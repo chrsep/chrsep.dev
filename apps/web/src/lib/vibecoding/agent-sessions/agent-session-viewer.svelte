@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { replaceState } from "$app/navigation"
-  import { onMount } from "svelte"
+  import { goto } from "$app/navigation"
+  import { page } from "$app/state"
+  import { onMount, untrack } from "svelte"
   import { m } from "$lib/paraglide/messages"
   import { isSessionManifest, isSessionTranscript } from "./guards"
   import type {
@@ -14,37 +15,84 @@
 
   class PublishedDataError extends Error {}
 
-  export let manifestUrl =
-    "/resources/vibecoding-demo/agent-sessions/index.json"
+  let {
+    manifestUrl = "/resources/vibecoding-demo/agent-sessions/index.json",
+  }: {
+    manifestUrl?: string
+  } = $props()
 
-  let manifest: SessionManifest | null = null
-  let manifestState: ManifestState = "loading"
-  let manifestErrorIsData = false
-  let transcript: SessionTranscript | null = null
-  let transcriptState: TranscriptState = "idle"
-  let transcriptErrorIsData = false
-  let selectedSlug = ""
-  let invalidSlugMessage = ""
-  let liveMessage = ""
+  let manifest: SessionManifest | null = $state(null)
+  let manifestState: ManifestState = $state("loading")
+  let manifestErrorIsData = $state(false)
+  let transcript: SessionTranscript | null = $state(null)
+  let transcriptState: TranscriptState = $state("idle")
+  let transcriptErrorIsData = $state(false)
+  let liveMessage = $state("")
+  let transcriptEl: HTMLDivElement | null = $state(null)
+  let switchEl: HTMLButtonElement | null = $state(null)
+  let isMobile = $state(false)
+  let menuOpen = $state(false)
+
   let manifestController: AbortController | null = null
   let sessionRequestId = 0
   let destroyed = false
-  let transcriptEl: HTMLDivElement | null = null
-  let switchEl: HTMLButtonElement | null = null
-  let isMobile = false
-  let menuOpen = false
 
   const transcriptCache = new Map<string, SessionTranscript>()
   const inflightTranscripts = new Map<string, Promise<SessionTranscript>>()
   const transcriptControllers = new Map<string, AbortController>()
 
-  let selectedSession: SessionSummary | null = null
-  $: selectedSession =
-    manifest?.sessions.find((session) => session.slug === selectedSlug) ?? null
+  // The URL is the source of truth for which session is shown. Everything below
+  // is derived from it, so history navigation needs no popstate listener —
+  // SvelteKit updates `page.url` and the derivations re-resolve.
+  const requestedSlug = $derived(page.url.searchParams.get("session"))
+
+  const selectedSession = $derived.by(() => {
+    const data = manifest
+    if (!data || data.sessions.length === 0) return null
+
+    const requested = requestedSlug
+      ? data.sessions.find((session) => session.slug === requestedSlug)
+      : undefined
+
+    return (
+      requested ??
+      data.sessions.find((session) => session.slug === data.defaultSession) ??
+      data.sessions[0]
+    )
+  })
+
+  const selectedSlug = $derived(selectedSession?.slug ?? "")
+
+  const invalidSlugMessage = $derived.by(() => {
+    const data = manifest
+    if (!requestedSlug || !data) return ""
+    if (data.sessions.some((session) => session.slug === requestedSlug)) {
+      return ""
+    }
+
+    return `That shared session isn't available. Showing ${selectedSession?.title}.`
+  })
+
+  $effect(() => {
+    const session = selectedSession
+    if (!session) return
+
+    untrack(() => {
+      transcriptEl?.scrollTo({ top: 0 })
+      if (
+        transcriptState === "ready" &&
+        transcript?.slug === session.slug &&
+        transcriptCache.has(session.slug)
+      ) {
+        return
+      }
+
+      void loadTranscript(session)
+    })
+  })
 
   onMount(() => {
     void loadManifest()
-    window.addEventListener("popstate", handlePopState)
 
     const mediaQuery = window.matchMedia("(max-width: 63.99rem)")
     isMobile = mediaQuery.matches
@@ -58,7 +106,6 @@
       destroyed = true
       manifestController?.abort()
       transcriptControllers.forEach((controller) => controller.abort())
-      window.removeEventListener("popstate", handlePopState)
       mediaQuery.removeEventListener("change", handleMediaChange)
     }
   })
@@ -91,7 +138,6 @@
       }
 
       manifestState = "ready"
-      selectInitialSession(data)
     } catch (error) {
       if (controller.signal.aborted || destroyed) return
       manifest = null
@@ -103,68 +149,27 @@
     }
   }
 
-  function selectInitialSession(data: SessionManifest) {
-    const requestedSlug = getSessionSlugFromUrl()
-    const requestedSession = data.sessions.find(
-      (session) => session.slug === requestedSlug,
-    )
-    const fallbackSession =
-      data.sessions.find((session) => session.slug === data.defaultSession) ??
-      data.sessions[0]
-
-    if (requestedSlug && !requestedSession) {
-      invalidSlugMessage = `That shared session isn't available. Showing ${fallbackSession.title}.`
-    } else {
-      invalidSlugMessage = ""
-    }
-
-    const nextSession = requestedSession ?? fallbackSession
-    selectedSlug = nextSession.slug
-    syncSessionUrl(nextSession.slug)
-    void loadTranscript(nextSession)
-  }
-
-  function handlePopState() {
-    if (!manifest || manifest.sessions.length === 0) return
-
-    const requestedSlug = getSessionSlugFromUrl()
-    const requestedSession = manifest.sessions.find(
-      (session) => session.slug === requestedSlug,
-    )
-    const fallbackSession =
-      manifest.sessions.find(
-        (session) => session.slug === manifest?.defaultSession,
-      ) ?? manifest.sessions[0]
-
-    if (requestedSlug && !requestedSession) {
-      invalidSlugMessage = `That shared session isn't available. Showing ${fallbackSession.title}.`
-    } else {
-      invalidSlugMessage = ""
-    }
-
-    const nextSession = requestedSession ?? fallbackSession
-    selectSession(nextSession.slug, !requestedSession)
-  }
-
-  function selectSession(slug: string, updateUrl = true) {
-    const session = manifest?.sessions.find((item) => item.slug === slug)
-    if (!session) return
-
+  /**
+   * Writes the selection to the URL and stops there — the `$effect` above
+   * reacts to `page.url` changing and loads the transcript.
+   *
+   * This has to be `goto`, not the shallow `replaceState` from `$app/navigation`:
+   * shallow routing updates `page.state` and the address bar but deliberately
+   * leaves `page.url` pointing at the old URL, so nothing would re-derive.
+   * `replaceState: true` keeps browsing transcripts from burying the page in
+   * history; there are no load functions on this route, so the navigation is
+   * client-side and cheap.
+   */
+  function selectSession(slug: string) {
     menuOpen = false
-    transcriptEl?.scrollTo({ top: 0 })
-    if (selectedSlug !== slug) invalidSlugMessage = ""
-    selectedSlug = slug
-    if (updateUrl) syncSessionUrl(slug)
 
-    if (
-      transcriptState === "ready" &&
-      transcript?.slug === slug &&
-      transcriptCache.has(slug)
-    ) {
-      return
-    }
-
-    void loadTranscript(session)
+    const url = new URL(page.url)
+    url.searchParams.set("session", slug)
+    void goto(`${url.pathname}${url.search}${url.hash}`, {
+      replaceState: true,
+      noScroll: true,
+      keepFocus: true,
+    })
   }
 
   async function loadTranscript(session: SessionSummary) {
@@ -238,30 +243,26 @@
   }
 
   function handleSessionLink(event: MouseEvent, slug: string) {
+    // Leave modified and non-primary clicks to the browser so the links stay
+    // openable in a new tab or window.
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return
+    }
+
     event.preventDefault()
     selectSession(slug)
   }
 
-  function getSessionSlugFromUrl() {
-    return new URL(window.location.href).searchParams.get("session")
-  }
-
   function sessionHref(slug: string) {
-    if (typeof window === "undefined") {
-      return `?session=${encodeURIComponent(slug)}`
-    }
-
-    const url = new URL(window.location.href)
+    const url = new URL(page.url)
     url.searchParams.set("session", slug)
     return `${url.pathname}${url.search}${url.hash}`
-  }
-
-  function syncSessionUrl(slug: string) {
-    const nextUrl = sessionHref(slug)
-    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
-    if (nextUrl !== currentUrl) {
-      replaceState(nextUrl, {})
-    }
   }
 
   function formatDuration(durationMs: number | null) {

@@ -9,6 +9,18 @@
       "permanent": true
     },
     {
+      "source": "/resources/vibecoding-demo",
+      "has": [{ "type": "query", "key": "session", "value": "(?<slug>.*)" }],
+      "destination": "/resources/vibecoding-demo/sessions?session=:slug",
+      "permanent": true
+    },
+    {
+      "source": "/id/resources/vibecoding-demo",
+      "has": [{ "type": "query", "key": "session", "value": "(?<slug>.*)" }],
+      "destination": "/id/resources/vibecoding-demo/sessions?session=:slug",
+      "permanent": true
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true
